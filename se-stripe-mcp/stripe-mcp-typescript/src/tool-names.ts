@@ -1,0 +1,43 @@
+// Auto-generated at build time
+export const toolNames: Array<{ name: string; description: string }>= [
+  {
+    "name": "get-account",
+    "description": "Retrieve account\n\n<p>Retrieves the details of an account.</p>"
+  },
+  {
+    "name": "get-balance",
+    "description": "Retrieve balance\n\n<p>Retrieves the current account balance, based on the authentication that was used to make the request.\n For a sample request, see <a href=\"/docs/connect/account-balances#accounting-for-negative-balances\">Accounting for negative balances</a>.</p>"
+  },
+  {
+    "name": "get-coupons",
+    "description": "List all coupons\n\n<p>Returns a list of your coupons.</p>"
+  },
+  {
+    "name": "get-customers",
+    "description": "List all customers\n\n<p>Returns a list of your customers. The customers are returned sorted by creation date, with the most recent customers appearing first.</p>"
+  },
+  {
+    "name": "get-disputes",
+    "description": "List all disputes\n\n<p>Returns a list of your disputes.</p>"
+  },
+  {
+    "name": "get-invoices",
+    "description": "List all invoices\n\n<p>You can list all invoices, or list the invoices for a specific customer. The invoices are returned sorted by creation date, with the most recently created invoices appearing first.</p>"
+  },
+  {
+    "name": "get-payment-intents",
+    "description": "List all PaymentIntents\n\n<p>Returns a list of PaymentIntents.</p>"
+  },
+  {
+    "name": "get-prices",
+    "description": "List all prices\n\n<p>Returns a list of your active prices, excluding <a href=\"/docs/products-prices/pricing-models#inline-pricing\">inline prices</a>. For the list of inactive prices, set <code>active</code> to false.</p>"
+  },
+  {
+    "name": "get-products",
+    "description": "List all products\n\n<p>Returns a list of your products. The products are returned sorted by creation date, with the most recently created products appearing first.</p>"
+  },
+  {
+    "name": "get-subscriptions",
+    "description": "List subscriptions\n\n<p>By default, returns a list of subscriptions that have not been canceled. In order to list canceled subscriptions, specify <code>status=canceled</code>.</p>"
+  }
+];

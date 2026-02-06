@@ -1,0 +1,43 @@
+{
+  "dxt_version": "0.2",
+  "name": "@stainless-commons/stripe-minimal-mcp",
+  "version": "0.0.1",
+  "description": "The official MCP Server for the Stripe API",
+  "author": {
+    "name": "Stripe",
+    "email": "dev-platform@stripe.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stainless-sdks/stripe-minimal-typescript.git"
+  },
+  "homepage": "https://github.com/stainless-sdks/stripe-minimal-typescript/tree/main/packages/mcp-server#readme",
+  "documentation": "https://stripe.com",
+  "server": {
+    "type": "node",
+    "entry_point": "index.js",
+    "mcp_config": {
+      "command": "node",
+      "args": ["${__dirname}/index.js"],
+      "env": {
+        "STRIPE_SECRET_KEY": "${user_config.STRIPE_SECRET_KEY}"
+      }
+    }
+  },
+  "user_config": {
+    "STRIPE_SECRET_KEY": {
+      "title": "api_key",
+      "description": "Bearer HTTP authentication. Allowed headers-- Authorization: Bearer <api_key>",
+      "required": false,
+      "type": "string"
+    }
+  },
+  "tools": [],
+  "tools_generated": true,
+  "compatibility": {
+    "runtimes": {
+      "node": ">=18.0.0"
+    }
+  },
+  "keywords": ["api"]
+}

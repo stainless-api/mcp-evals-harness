@@ -1,0 +1,22 @@
+{
+  "name": "stripe-mcp-evals",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "eval:e2e": "npx braintrust eval src/evals/e2e.eval.ts",
+    "eval:direct": "npx braintrust eval src/evals/direct.eval.ts",
+    "eval:all": "npx braintrust eval src/evals/run-all.ts"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.39.0",
+    "@modelcontextprotocol/sdk": "^1.10.0",
+    "braintrust": "^0.0.182",
+    "autoevals": "^0.0.105",
+    "dotenv": "^16.4.5"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.7.0",
+    "tsx": "^4.19.0"
+  }
+}

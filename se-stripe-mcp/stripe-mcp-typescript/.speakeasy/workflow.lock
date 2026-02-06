@@ -1,0 +1,19 @@
+speakeasyVersion: 1.707.0
+sources: {}
+targets:
+    stripe:
+        source: Stripe API
+workflow:
+    workflowVersion: 1.0.0
+    speakeasyVersion: latest
+    sources:
+        Stripe API:
+            inputs:
+                - location: ../minimal-openapi.json
+            output: .speakeasy/out.openapi.yaml
+            registry:
+                location: registry.speakeasyapi.dev/daves/daves/stripe-api
+    targets:
+        stripe:
+            target: mcp-typescript
+            source: Stripe API

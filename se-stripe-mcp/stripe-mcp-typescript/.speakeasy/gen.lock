@@ -1,0 +1,1539 @@
+lockVersion: 2.0.0
+id: e9f7e37e-5b0d-4f7b-9aa3-18927bc31f6e
+management:
+  docChecksum: 8c397baf55f5f78d1f8693bdcb49e7d3
+  docVersion: 2026-01-28.clover
+  speakeasyVersion: 1.707.0
+  generationVersion: 2.803.3
+  releaseVersion: 0.0.1
+  configChecksum: dc938869411f9c51beee4b945d4856b7
+features:
+  mcp-typescript:
+    additionalDependencies: 0.1.0
+    core: 1.2.1
+    decimal: 0.1.0
+    defaultEnabledRetries: 0.1.0
+    enumUnions: 0.1.0
+    globalSecurity: 0.1.1
+    globalSecurityCallbacks: 0.0.0
+    globalServerURLs: 0.1.1
+    nullables: 0.1.0
+    responseFormat: 0.1.1
+    retries: 0.1.0
+    sdkHooks: 0.3.0
+    unions: 0.2.0
+trackedFiles:
+  .dxtignore:
+    last_write_checksum: sha1:0cbab1b303d9060f6324f6a9cddabe13c2cfa7c9
+  .gitattributes:
+    last_write_checksum: sha1:26d16d8297b104945139da8c25bd38feeaad3e25
+  .npmignore:
+    last_write_checksum: sha1:31ba03a712796b133695c4c410504b6824e09506
+  eslint.config.mjs:
+    last_write_checksum: sha1:576025302d3d8650f37276bc9075f6ade3842cc7
+  manifest.json:
+    last_write_checksum: sha1:f5fbfa0e26ed1564dd58650c8d8afad9b4394e4e
+  package.json:
+    last_write_checksum: sha1:1798e90c872c6cac76eab1f5e8c678e34ffae4a4
+  src/core.ts:
+    last_write_checksum: sha1:bbbce4fc3ffc393e8a549f9969c373ca8839104c
+  src/funcs/getAccount.ts:
+    last_write_checksum: sha1:702a879e2ea19f2acb9a101d51804e495e4231c7
+  src/funcs/getBalance.ts:
+    last_write_checksum: sha1:9db4de2b77df51c42352e251164754dc604c4be4
+  src/funcs/getCoupons.ts:
+    last_write_checksum: sha1:f2913823faec6f34d756a6635461c1bad515cd55
+  src/funcs/getCustomers.ts:
+    last_write_checksum: sha1:28426b70a8c4fb1351611b99dc831f164bd2e178
+  src/funcs/getDisputes.ts:
+    last_write_checksum: sha1:65f22e4f8a38df2952ce5a758ba657cbea2d78b3
+  src/funcs/getInvoices.ts:
+    last_write_checksum: sha1:a5c264f0ba79c17a0b2993877f9da4f7de09c51f
+  src/funcs/getPaymentIntents.ts:
+    last_write_checksum: sha1:99f85a458cc94e6702a33b3c5ea18218a09ecbf2
+  src/funcs/getPrices.ts:
+    last_write_checksum: sha1:aba5c859b3f416528a00ecf3d3b4c82a94b2f0f4
+  src/funcs/getProducts.ts:
+    last_write_checksum: sha1:ea0a6d9b8563af9373294de2e8f643a02868b48d
+  src/funcs/getSubscriptions.ts:
+    last_write_checksum: sha1:6c3548450b14deecc0fafcb9cbb3c4e2c4018c71
+  src/hooks/hooks.ts:
+    last_write_checksum: sha1:327ed0fa581be991d633155a30a13e502caa80ef
+  src/hooks/types.ts:
+    last_write_checksum: sha1:27a3444c4839bec58ae89820fd8c2483edafc3f4
+  src/landing-page.ts:
+    last_write_checksum: sha1:42df976820cd6718a3c7bd7cfd6211640e6fa97b
+  src/lib/base64.ts:
+    last_write_checksum: sha1:e9f04a037018040361043104960982f7c22db52d
+  src/lib/config.ts:
+    last_write_checksum: sha1:01952e88bf4e217b5fdc1e64167ea98d4a80f8df
+  src/lib/dlv.ts:
+    last_write_checksum: sha1:1dd3e3fbb4550c4bf31f5ef997faff355d6f3250
+  src/lib/encodings.ts:
+    last_write_checksum: sha1:c042529292568e18a69a04c1be7e18588ccd3821
+  src/lib/env.ts:
+    last_write_checksum: sha1:c979e6809c545dae9b08180629255b90bcd30101
+  src/lib/files.ts:
+    last_write_checksum: sha1:d0f325f445b8d22e7d73baf052c585ec2dd24841
+  src/lib/http.ts:
+    last_write_checksum: sha1:797cbf16d3c7c4d62d3ba0eedb08617524938457
+  src/lib/is-plain-object.ts:
+    last_write_checksum: sha1:df687f25a9590b6fd95d39df41a652ae3fd4e517
+  src/lib/logger.ts:
+    last_write_checksum: sha1:0ec9d3a2a34c362746b767e4f9a746c055d57a7b
+  src/lib/matchers.ts:
+    last_write_checksum: sha1:595f63f2a10c6999a616521fa8d00768dd9ff09e
+  src/lib/primitives.ts:
+    last_write_checksum: sha1:d5fbb4e2feef5747fc8071046bdd4122c87bd066
+  src/lib/result.ts:
+    last_write_checksum: sha1:d24994d58f37a1ca106847fcc6d2e976c6f1c093
+  src/lib/retries.ts:
+    last_write_checksum: sha1:f3da74dffcbe2756c69393f8600205aa1dc06e68
+  src/lib/schemas.ts:
+    last_write_checksum: sha1:7c7ba40781682f6d44bb585b5016e2527b52660e
+  src/lib/sdks.ts:
+    last_write_checksum: sha1:1ea0f0d34186e7ac036bfc70d79da657d13d0ef7
+  src/lib/security.ts:
+    last_write_checksum: sha1:8de9acb15f334dd445a9913de09776991fc275b0
+  src/lib/url.ts:
+    last_write_checksum: sha1:9550819577dc1e514e61496167aefcc137238aaf
+  src/mcp-server/build.mts:
+    last_write_checksum: sha1:9f98fe2b333bd6211cfffa008a9b6ee95d523596
+  src/mcp-server/cli.ts:
+    last_write_checksum: sha1:7331efddde881832342fa8779d23be7445d4480c
+  src/mcp-server/cli/start/command.ts:
+    last_write_checksum: sha1:22b268186484d06a4b8a2f5b3d251bd124c74645
+  src/mcp-server/cli/start/impl.ts:
+    last_write_checksum: sha1:0f00dd79f452589fee560c53d9efd12bccf865b8
+  src/mcp-server/console-logger.ts:
+    last_write_checksum: sha1:0c4b9b7c79ad0a81359210cb31b9ee4d887d5de1
+  src/mcp-server/extensions.ts:
+    last_write_checksum: sha1:27de1e2b8aaedc8965d1d4c4d4c500df1f28b483
+  src/mcp-server/flags.ts:
+    last_write_checksum: sha1:a90d9ebefc69b1585b76fd713c069acd3eb394d2
+  src/mcp-server/mcp-server.ts:
+    last_write_checksum: sha1:d2401496879f437672e2ce60da9b099397ef7c87
+  src/mcp-server/prompts.ts:
+    last_write_checksum: sha1:29be5fa3daea511ec7d0e2e3c3b5e8d0ee1bc9cd
+  src/mcp-server/resources.ts:
+    last_write_checksum: sha1:4f27ba86bc677eafb28660a52144cc6ae3f7d33b
+  src/mcp-server/scopes.ts:
+    last_write_checksum: sha1:77d0eb95785e84f9fd0b27c4612f8c6470489fe4
+  src/mcp-server/server.ts:
+    last_write_checksum: sha1:94685fc995bfa7787423851507a58d18c49310d0
+  src/mcp-server/shared.ts:
+    last_write_checksum: sha1:19c9034032819a14f15c430de4350c8aba99d725
+  src/mcp-server/tools.ts:
+    last_write_checksum: sha1:b540b2c0fd807e0fa72619808241b5edd77e3f1a
+  src/mcp-server/tools/getAccount.ts:
+    last_write_checksum: sha1:dca37f67c5cf7a597e4ac212be34976dab45ce9c
+  src/mcp-server/tools/getBalance.ts:
+    last_write_checksum: sha1:91e965b4a0b9758b86472fdf92bae2e1908dadbb
+  src/mcp-server/tools/getCoupons.ts:
+    last_write_checksum: sha1:3e99269cb79e911fe427d8a0fa7b021359f9247f
+  src/mcp-server/tools/getCustomers.ts:
+    last_write_checksum: sha1:b3a7c8db081270ca99e3e73dd3d17e42a0372225
+  src/mcp-server/tools/getDisputes.ts:
+    last_write_checksum: sha1:91b762e3286a6af72132d19aaaca21d237519009
+  src/mcp-server/tools/getInvoices.ts:
+    last_write_checksum: sha1:a028efdeaef9c832982fc2819ae92904b1856c61
+  src/mcp-server/tools/getPaymentIntents.ts:
+    last_write_checksum: sha1:fde9a0bbff42acefaf3cd96ca9656f5d5d604010
+  src/mcp-server/tools/getPrices.ts:
+    last_write_checksum: sha1:89404deced979d3612c2ef51a81feb5a598faac0
+  src/mcp-server/tools/getProducts.ts:
+    last_write_checksum: sha1:7f4ad0e6cafc9e72646cd0edca84743bb01c3801
+  src/mcp-server/tools/getSubscriptions.ts:
+    last_write_checksum: sha1:5f4419802b98e9f54f0c0d14c97f9f8ed72aad45
+  src/models/account.ts:
+    last_write_checksum: sha1:090a1ede67d7ccd4ead2cdf8fb0c5a68d1a95a4d
+  src/models/accountannualrevenue.ts:
+    last_write_checksum: sha1:d2024a60e78e45ad0355cd3fad7567c599ba479d
+  src/models/accountbacsdebitpaymentssettings.ts:
+    last_write_checksum: sha1:e65d6fc3566992fada1f287a14ef9966c616f562
+  src/models/accountbrandingsettings.ts:
+    last_write_checksum: sha1:c4c7b7e5375896e9618a09dfd7d2ef7a73e9fd62
+  src/models/accountbusinessprofile.ts:
+    last_write_checksum: sha1:1801bbced818e9233e74505caa08c2eef3d6c80c
+  src/models/accountcapabilities.ts:
+    last_write_checksum: sha1:5eb942cf7ded49ec41b46c926856047bc248da99
+  src/models/accountcardissuingsettings.ts:
+    last_write_checksum: sha1:146ecc8b180825e0c9b64f47028316dff29be85c
+  src/models/accountcardpaymentssettings.ts:
+    last_write_checksum: sha1:6ed24a0669021f2c66c09c4a129f443d79c20202
+  src/models/accountdashboardsettings.ts:
+    last_write_checksum: sha1:402cdb07b7c2b920acaa0c5f5fdd817fe306ecc2
+  src/models/accountdeclinechargeon.ts:
+    last_write_checksum: sha1:c333e8056762909489991d2cc9c27c849c965a49
+  src/models/accountfuturerequirements.ts:
+    last_write_checksum: sha1:b0cd9660c1dfd30d73913395094e29c1b14e1090
+  src/models/accountgroupmembership.ts:
+    last_write_checksum: sha1:2e3004870a7031ec6f1e15ee3a2eddfe7bb6f7e9
+  src/models/accountinvoicessettings.ts:
+    last_write_checksum: sha1:1256a0ca50e52036ea45b3c3b42c24458929ea7e
+  src/models/accountmonthlyestimatedrevenue.ts:
+    last_write_checksum: sha1:b63240cbbd67368fa622dada5c342a87202f332c
+  src/models/accountpaymentssettings.ts:
+    last_write_checksum: sha1:146173b1a46a27dd0a24449a8a7f5d66a587bfce
+  src/models/accountpayoutsettings.ts:
+    last_write_checksum: sha1:496d511cb56b4d527104b836c168cfada17eeedc
+  src/models/accountrequirements.ts:
+    last_write_checksum: sha1:bda1b18227172c1366b4c772abe8fed88b6958a8
+  src/models/accountrequirementsalternative.ts:
+    last_write_checksum: sha1:a843743c03d46466c5adceb366e9b2845f43548e
+  src/models/accountrequirementserror.ts:
+    last_write_checksum: sha1:f8353dc0c8684da70374ab4d47d5ae41bd7b8484
+  src/models/accountsepadebitpaymentssettings.ts:
+    last_write_checksum: sha1:ac6e5ec6244849a52b1d8c429b5497298916d650
+  src/models/accountsettings.ts:
+    last_write_checksum: sha1:c341d61619dfd4bd55bcaf6c73c203b5f6b45e8a
+  src/models/accounttermsofservice.ts:
+    last_write_checksum: sha1:2afa5698448b3560f0e0d0453bbc6f31c579abf8
+  src/models/accounttosacceptance.ts:
+    last_write_checksum: sha1:8caf34a02b7b86b954044cf5a4905dcbd0039c47
+  src/models/accounttreasurysettings.ts:
+    last_write_checksum: sha1:edefcc386d349bbe98572c1d94b267014af0e2f7
+  src/models/accountunificationaccountcontroller.ts:
+    last_write_checksum: sha1:9984f264297123794e8ad0e7572f7d9f7b8322d9
+  src/models/accountunificationaccountcontrollerfees.ts:
+    last_write_checksum: sha1:8c97317579a2ed494f748d4c322b2c801bc8fd75
+  src/models/accountunificationaccountcontrollerlosses.ts:
+    last_write_checksum: sha1:1e2bd859456beecd4b7686cadf41d9a2c11b2b52
+  src/models/accountunificationaccountcontrollerstripedashboard.ts:
+    last_write_checksum: sha1:d7fb84420bc578d7b01c66e759cf687144a2dba9
+  src/models/address.ts:
+    last_write_checksum: sha1:6137a5ffb7cd2e0747a0758ce16f0e74c9102272
+  src/models/almainstallments.ts:
+    last_write_checksum: sha1:408b6168b5a9080472e01866fb2c9aeb07185bbd
+  src/models/amazonpayunderlyingpaymentmethodfundingdetails.ts:
+    last_write_checksum: sha1:44bc9fd1c552005c09976d2376435fea9290c302
+  src/models/apierrors.ts:
+    last_write_checksum: sha1:0a880113b742dd6629a25909ab27e8e674434cd1
+  src/models/application.ts:
+    last_write_checksum: sha1:5a000f65d2dd8b234175a2da1d14e9358c80aad1
+  src/models/applicationfee.ts:
+    last_write_checksum: sha1:10024d28f35a11390a20a1c63305b02ed3c69c95
+  src/models/automatictax.ts:
+    last_write_checksum: sha1:8712f914afeda459c20250d49b9040914a314198
+  src/models/balance.ts:
+    last_write_checksum: sha1:6b44ee6b82212d63692dc46c642cdd596c8b73ed
+  src/models/balanceamount.ts:
+    last_write_checksum: sha1:e712a97122c3feed3171a3e793e5cf811a94a2ed
+  src/models/balanceamountbysourcetype.ts:
+    last_write_checksum: sha1:5c9ff04db103a14b385c30f6b180b54c7c6513a0
+  src/models/balanceamountnet.ts:
+    last_write_checksum: sha1:39a75b88b3b140c85a3bc5c61cacfd6b28dd2b29
+  src/models/balancedetail.ts:
+    last_write_checksum: sha1:c5b2e6798aafc6268f9396004994624e9deb4f14
+  src/models/balancedetailungated.ts:
+    last_write_checksum: sha1:0a80c69d2223371872a6317cbe3838b42f4488ff
+  src/models/balancenetavailable.ts:
+    last_write_checksum: sha1:0e15c10041405469e5067f10af79e91bd9ce5688
+  src/models/balancetransaction.ts:
+    last_write_checksum: sha1:4c4d532b0368f81a15c19c152017f70fde665151
+  src/models/bankaccount.ts:
+    last_write_checksum: sha1:04eb14b687d300a382623c1e53a37b233f1a5dd2
+  src/models/billingbillresourceinvoicinglinescommoncrediteditems.ts:
+    last_write_checksum: sha1:4b84d8604a2c6c35263fad967334474a81f5d15c
+  src/models/billingbillresourceinvoicinglinescommonprorationdetails.ts:
+    last_write_checksum: sha1:0a74eed0e7fd214ec7fcc119a043d04cd67d21a6
+  src/models/billingbillresourceinvoicinglinesparentsinvoicelineiteminvoiceitemparent.ts:
+    last_write_checksum: sha1:c8fca48efbe06d47d6f44b4d6d7886623064737c
+  src/models/billingbillresourceinvoicinglinesparentsinvoicelineitemparent.ts:
+    last_write_checksum: sha1:e9f5144e17917f787fa22cc5e8ad5b77a7ff47cb
+  src/models/billingbillresourceinvoicinglinesparentsinvoicelineitemsubscriptionitemparent.ts:
+    last_write_checksum: sha1:7af162c2ee2b76292e10698fc7c68d504e5f62a3
+  src/models/billingbillresourceinvoicingparentsinvoiceparent.ts:
+    last_write_checksum: sha1:1384c3a171f193f1f80b768039ac126fff6d596c
+  src/models/billingbillresourceinvoicingparentsinvoicequoteparent.ts:
+    last_write_checksum: sha1:f94b29e49dcfb3904b16ab1bac99b19da1e0f1ab
+  src/models/billingbillresourceinvoicingparentsinvoicesubscriptionparent.ts:
+    last_write_checksum: sha1:ac71582c40a31631a5db821730d177b50946feb0
+  src/models/billingbillresourceinvoicingpricingpricing.ts:
+    last_write_checksum: sha1:d99a544d97c181fc49893854b0881719d1659d7b
+  src/models/billingbillresourceinvoicingpricingpricingpricedetails.ts:
+    last_write_checksum: sha1:d294a0f1344135181cb77d258cf79e2d3b93e9f8
+  src/models/billingbillresourceinvoicingtaxestax.ts:
+    last_write_checksum: sha1:af37dcaee8292f005c834aea385427b52b19ce18
+  src/models/billingbillresourceinvoicingtaxestaxratedetails.ts:
+    last_write_checksum: sha1:bbd19acd5a12174222a7761d7264f1176c2d7e05
+  src/models/billingclocksresourcestatusdetailsadvancingstatusdetails.ts:
+    last_write_checksum: sha1:0c9129938c48a9dc0875b69e37d971b98bc5cb4f
+  src/models/billingclocksresourcestatusdetailsstatusdetails.ts:
+    last_write_checksum: sha1:a590c2c1e9a28b156e43e537e1d55d2ea4de857b
+  src/models/billingcreditbalancetransaction.ts:
+    last_write_checksum: sha1:b23554a08f687162ee576793ae5c1055186759fb
+  src/models/billingcreditgrant.ts:
+    last_write_checksum: sha1:2bcb981e62308a045791cb02933234a6cf2749c5
+  src/models/billingcreditgrantsresourceamount.ts:
+    last_write_checksum: sha1:db34f93f85eb4c27c26bf256371bd6619cda051f
+  src/models/billingcreditgrantsresourceapplicabilityconfig.ts:
+    last_write_checksum: sha1:ea74cdf5a45be71e5c5ea77fb42c681b36461220
+  src/models/billingcreditgrantsresourceapplicableprice.ts:
+    last_write_checksum: sha1:c43d08128073c158aaa804a66c4d5521c8be973a
+  src/models/billingcreditgrantsresourcebalancecredit.ts:
+    last_write_checksum: sha1:efaac2bfede3009e6f9cd5520590c183a40bef03
+  src/models/billingcreditgrantsresourcebalancecreditsapplicationinvoicevoided.ts:
+    last_write_checksum: sha1:61196da6743dadc46ddb1d2d614d184cf0bacbf4
+  src/models/billingcreditgrantsresourcebalancecreditsapplied.ts:
+    last_write_checksum: sha1:a36e22cdcb56598f5beb893b4af4bee44389a833
+  src/models/billingcreditgrantsresourcebalancedebit.ts:
+    last_write_checksum: sha1:90983425bcf0ed4a1b0f91a536303135aebad38e
+  src/models/billingcreditgrantsresourcemonetaryamount.ts:
+    last_write_checksum: sha1:415a9fbbfafcb084267d645174095bb9ab5eef5d
+  src/models/billingcreditgrantsresourcescope.ts:
+    last_write_checksum: sha1:3e76106091935af1920d7e5d20d0cdaa26d8dda9
+  src/models/billingdetails.ts:
+    last_write_checksum: sha1:f0ae17e11dbbf8acc75b82d97323039c6d38bbea
+  src/models/cancellationdetails.ts:
+    last_write_checksum: sha1:d167144c98a50f4a52b5e41ec38d631236215f64
+  src/models/cardgeneratedfrompaymentmethoddetails.ts:
+    last_write_checksum: sha1:c362bd6d3a9f37b0ecde20cc887da5cb5df445e1
+  src/models/cardissuingaccounttermsofservice.ts:
+    last_write_checksum: sha1:c56410760a5334a31f14124114843b399e6a8121
+  src/models/cardmandatepaymentmethoddetails.ts:
+    last_write_checksum: sha1:338370c5df39093e0c4a744545905d255d2e3b63
+  src/models/cashbalance.ts:
+    last_write_checksum: sha1:51407143f08fc52895d81164e2341624572b0248
+  src/models/charge.ts:
+    last_write_checksum: sha1:b14d94523d0cb7cc09aa5af98ac3cfbdfa650ecd
+  src/models/chargefrauddetails.ts:
+    last_write_checksum: sha1:accf8b0dc0ff84cae357e4776774176456c3ebbc
+  src/models/chargeoutcome.ts:
+    last_write_checksum: sha1:6c09cf98b4f047cc70caa83d07cdcedbbe2972c5
+  src/models/chargetransferdata.ts:
+    last_write_checksum: sha1:2b8bd7b7dd821631181e5269ff1821ef7715963c
+  src/models/connectaccountreference.ts:
+    last_write_checksum: sha1:5bb8d5040df546d1300c6349a9cbfb22f63e3863
+  src/models/coupon.ts:
+    last_write_checksum: sha1:66606615f9fa06b851494f63328023c0c7bcbf54
+  src/models/couponappliesto.ts:
+    last_write_checksum: sha1:d339c9881311cab7b4ab0742de15096dd7f9542b
+  src/models/couponcurrencyoption.ts:
+    last_write_checksum: sha1:82101d79093b35962362ea2e5e90d2faa9fc0ca4
+  src/models/currencyoption.ts:
+    last_write_checksum: sha1:804697892b836ced8e0fed81f16c0e59f5f100f9
+  src/models/customer.ts:
+    last_write_checksum: sha1:cf689199eb43e2745c661c40cc32e8263498ae91
+  src/models/customeracceptance.ts:
+    last_write_checksum: sha1:3fcd1e072faa2bf9f2428a84415bcb72882d7836
+  src/models/customerbalancecustomerbalancesettings.ts:
+    last_write_checksum: sha1:152d29665100237a38600348b68903e54550952c
+  src/models/customertax.ts:
+    last_write_checksum: sha1:840bbdcb949bf33248d650813629c9a179e4e6d8
+  src/models/customertaxlocation.ts:
+    last_write_checksum: sha1:d97355353b22829a140dcca6dab5c42306c770e9
+  src/models/customlogo.ts:
+    last_write_checksum: sha1:053a3601c7545c6e0b961f4328ef82a3138843d2
+  src/models/customunitamount.ts:
+    last_write_checksum: sha1:87c59581e9801799ecfa8bf5765a1f0afd0eaae6
+  src/models/destinationdetailsunimplemented.ts:
+    last_write_checksum: sha1:aa643804cf680c5e123cba215d5fd2194e630c27
+  src/models/discount.ts:
+    last_write_checksum: sha1:91dd062589c8a6f2ec843252907695bfd7e563f0
+  src/models/discountsource.ts:
+    last_write_checksum: sha1:c754684b3ec4cefd7ed1a073242c196cdfa37465
+  src/models/discountsresourcediscountamount.ts:
+    last_write_checksum: sha1:3d7a728bcd4a6c5166dbea149832415abdecb35a
+  src/models/discountsresourcestackablediscount.ts:
+    last_write_checksum: sha1:4669b75e9aed021e47bf3600546637840cb9f2e7
+  src/models/dispute.ts:
+    last_write_checksum: sha1:0540b4a9419fc1cad4a7816e678d06d7b89357bd
+  src/models/disputeenhancedeligibility.ts:
+    last_write_checksum: sha1:3613b288fe81fc7036ad5ebc158a831b3f5c5540
+  src/models/disputeenhancedeligibilityvisacompellingevidence3.ts:
+    last_write_checksum: sha1:be169ed2410b1aa0a74a32c7ebb0c87d6799fa06
+  src/models/disputeenhancedeligibilityvisacompliance.ts:
+    last_write_checksum: sha1:7094aa1a03823042481948d9dee994d56c0e0983
+  src/models/disputeenhancedevidence.ts:
+    last_write_checksum: sha1:fd3ffddcc610646093f6a75f2c2dbe4082ecdc98
+  src/models/disputeenhancedevidencevisacompellingevidence3.ts:
+    last_write_checksum: sha1:be1b4ed553cf5fc79a458db09ff98833b83617fd
+  src/models/disputeenhancedevidencevisacompliance.ts:
+    last_write_checksum: sha1:b84651a816e86e9d42a9194feb465808f5a98aa7
+  src/models/disputeevidence.ts:
+    last_write_checksum: sha1:1152f08bbbeabcb61bfa8531515f00f4c51c9ebf
+  src/models/disputeevidencedetails.ts:
+    last_write_checksum: sha1:da014c02c97a72fdef4e9409728bbd04c33f9a40
+  src/models/disputepaymentmethoddetails.ts:
+    last_write_checksum: sha1:1953f5a393435db156a0718cb0db23c05c3698a7
+  src/models/disputepaymentmethoddetailsamazonpay.ts:
+    last_write_checksum: sha1:c08a63c3506e93d91d5e31a54a9de48341e3e66f
+  src/models/disputepaymentmethoddetailscard.ts:
+    last_write_checksum: sha1:4f00cc522bbec6a39f21714fe988c32d1a66e6da
+  src/models/disputepaymentmethoddetailsklarna.ts:
+    last_write_checksum: sha1:0412485e8b954e07403ea48d62b87facee030909
+  src/models/disputepaymentmethoddetailspaypal.ts:
+    last_write_checksum: sha1:48ed09731a9f33e3d09366db3be54cbe758b8d65
+  src/models/disputetransactionshippingaddress.ts:
+    last_write_checksum: sha1:3e695689e97bae22a8351a67c7626a9729492537
+  src/models/disputevisacompellingevidence3disputedtransaction.ts:
+    last_write_checksum: sha1:92618469a3c8a91679cd30de032ae2e540c50ebb
+  src/models/disputevisacompellingevidence3priorundisputedtransaction.ts:
+    last_write_checksum: sha1:be5186e580442459ea994fb0d72006985e6272e0
+  src/models/emailsent.ts:
+    last_write_checksum: sha1:2cbad4871efd084db0a21459a941196d52865753
+  src/models/error.ts:
+    last_write_checksum: sha1:9278b034a9cbc7e5613e6df36ebabe27a69940a1
+  src/models/errors/apierror.ts:
+    last_write_checksum: sha1:1a4199dec47757c19b2e88dbd767d7f24ab9522a
+  src/models/errors/httpclienterrors.ts:
+    last_write_checksum: sha1:994ced121c54fecd0af038ccfb7855fbfd3868ec
+  src/models/errors/sdkvalidationerror.ts:
+    last_write_checksum: sha1:ce8bb73a1243f8ea8fa3b71a181e586e29dd02c9
+  src/models/externalaccountrequirements.ts:
+    last_write_checksum: sha1:e693ee9659113d5470c4863fd303b452a72b4068
+  src/models/fee.ts:
+    last_write_checksum: sha1:ab0ebaa7b12f0938e5f9cd00a3279d759ef48a64
+  src/models/feerefund.ts:
+    last_write_checksum: sha1:17af7c6ace14a64c623814b92f7a178ffcd840b4
+  src/models/fileobject.ts:
+    last_write_checksum: sha1:3695ab5fb40e2bc70b85a9710c2355480904155a
+  src/models/fundinginstructionsbanktransferabarecord.ts:
+    last_write_checksum: sha1:b2b5c619ba7c0dc2cf8108f8e0e63c03ec960d1f
+  src/models/fundinginstructionsbanktransferfinancialaddress.ts:
+    last_write_checksum: sha1:11a7030bf9d61095017d52f29d55184f904994be
+  src/models/fundinginstructionsbanktransferibanrecord.ts:
+    last_write_checksum: sha1:bce2403f048f214b2efc63ccf182c9f88a3d94e2
+  src/models/fundinginstructionsbanktransfersortcoderecord.ts:
+    last_write_checksum: sha1:626d2bf6402fef0f9e7fb4cd71bca0a4afd1a581
+  src/models/fundinginstructionsbanktransferspeirecord.ts:
+    last_write_checksum: sha1:8b27b5fc2fb4152d58547aa5c81c0dec4ac44e24
+  src/models/fundinginstructionsbanktransferswiftrecord.ts:
+    last_write_checksum: sha1:8e02bcd8f9885361867e468c7529656f5a4dfcfe
+  src/models/fundinginstructionsbanktransferzenginrecord.ts:
+    last_write_checksum: sha1:b31e3f10a7aaa07f20ac901983cc5857278d5080
+  src/models/getaccountop.ts:
+    last_write_checksum: sha1:81e3ea868511bfb58f7542bf41cae2be5e236942
+  src/models/getbalanceop.ts:
+    last_write_checksum: sha1:9d38231a447ddf5db6872a8ecbe4f0ee3a9de172
+  src/models/getcouponsop.ts:
+    last_write_checksum: sha1:8f32cda4f06b6ae6a43de2e70910f1e24dc3a9b1
+  src/models/getcustomersop.ts:
+    last_write_checksum: sha1:a5eaa576b090b6914b7c49caf6d1c9ec888a3906
+  src/models/getdisputesop.ts:
+    last_write_checksum: sha1:1ee8f556250969ea9f1cbdddbf15b5f8c64fddef
+  src/models/getinvoicesop.ts:
+    last_write_checksum: sha1:6c1dd19f501a7cffb70f3e2eeb4019139c71f27a
+  src/models/getpaymentintentsop.ts:
+    last_write_checksum: sha1:10c97b82c559e881f875d9edbc970ed774f8dc63
+  src/models/getpricesop.ts:
+    last_write_checksum: sha1:f2f37c1d32d383639bbdbca932d9308e676a5a55
+  src/models/getproductsop.ts:
+    last_write_checksum: sha1:700e48f39591283c4fd65492a406d9185adc94c1
+  src/models/getsubscriptionsop.ts:
+    last_write_checksum: sha1:b1674fac39cf0c2fe046776770e8a236500192ac
+  src/models/internalcard.ts:
+    last_write_checksum: sha1:9711e83461a612da307347d671b8c20f398b2b2f
+  src/models/invoice.ts:
+    last_write_checksum: sha1:4bbbe18811edbc86dcff94311aff479a7b7530bb
+  src/models/invoiceinstallmentscard.ts:
+    last_write_checksum: sha1:90b9095b7fd0aeb7235ccb86a07c8c4f6559b7ea
+  src/models/invoiceitemthresholdreason.ts:
+    last_write_checksum: sha1:969ecdbee5ed97498a5414634a75be1a5711d05c
+  src/models/invoicelineitemperiod.ts:
+    last_write_checksum: sha1:aaeb47f77986dadad4510f4e2c5062deaa0a6f41
+  src/models/invoicemandateoptionscard.ts:
+    last_write_checksum: sha1:f37882a1c1690536ced8ceed675b9183f6184c63
+  src/models/invoicemandateoptionspayto.ts:
+    last_write_checksum: sha1:8631b5f4de629b506da54a1f36356828b02a5ef6
+  src/models/invoicepayment.ts:
+    last_write_checksum: sha1:bc4873470eb9a01ec1b58ba5b4c80deed74a1344
+  src/models/invoicepaymentmethodoptionsacssdebit.ts:
+    last_write_checksum: sha1:bd3f8e555ba3ccd7b6f68173023ea209f027a6af
+  src/models/invoicepaymentmethodoptionsacssdebitmandateoptions.ts:
+    last_write_checksum: sha1:e7ae7726152d31efd1cf8fd366759b5d7a21e258
+  src/models/invoicepaymentmethodoptionsbancontact.ts:
+    last_write_checksum: sha1:c99ab59eb5e35e6b60bdff1d627637a4aacfc9e0
+  src/models/invoicepaymentmethodoptionscard.ts:
+    last_write_checksum: sha1:b1bf5ac4017623fd9ac030bc17e4745f9bce1ac1
+  src/models/invoicepaymentmethodoptionscustomerbalance.ts:
+    last_write_checksum: sha1:c76a2db81dcdfaeba17a18a2d41ddd4fe1f32e0a
+  src/models/invoicepaymentmethodoptionscustomerbalancebanktransfer.ts:
+    last_write_checksum: sha1:a281500f0e682b80ef8e562272b5ab55c25536c2
+  src/models/invoicepaymentmethodoptionscustomerbalancebanktransfereubanktransfer.ts:
+    last_write_checksum: sha1:7e5d2e524fa03e5014e082045e24c260556179e6
+  src/models/invoicepaymentmethodoptionskonbini.ts:
+    last_write_checksum: sha1:15f0688170b85afab98cc5e8bec03080f65ef8c5
+  src/models/invoicepaymentmethodoptionspayto.ts:
+    last_write_checksum: sha1:e62ebe351c699390aa9778a0620a022a40c4ac63
+  src/models/invoicepaymentmethodoptionssepadebit.ts:
+    last_write_checksum: sha1:d58bd7cdf9dbc27c8b92caee15017d729e374448
+  src/models/invoicepaymentmethodoptionsusbankaccount.ts:
+    last_write_checksum: sha1:8f626606656996811b74a36bad836c32724eddcc
+  src/models/invoicepaymentmethodoptionsusbankaccountlinkedaccountoptions.ts:
+    last_write_checksum: sha1:d6788fdb09592ecac83d68063667be6e86ea5ae9
+  src/models/invoicepaymentmethodoptionsusbankaccountlinkedaccountoptionsfilters.ts:
+    last_write_checksum: sha1:78d0c8dec9aecb6a29628d863691da94bcf981fa
+  src/models/invoicerenderingpdf.ts:
+    last_write_checksum: sha1:6c22b177d098f27fba06538e170d21d91c61bfc6
+  src/models/invoicesettingcustomerrenderingoptions.ts:
+    last_write_checksum: sha1:ed8f2afe90a9f52a3ab9cbe2b7dfb1bcbfcc938a
+  src/models/invoicesettingcustomersetting.ts:
+    last_write_checksum: sha1:60590fe4f7559e6de8ce1a0bb39e2362bda2d5a9
+  src/models/invoicesettingcustomfield.ts:
+    last_write_checksum: sha1:c8ef3b63ec2132ed88f57a17bd5047a3997c1abb
+  src/models/invoicesettingsubscriptionschedulephasesetting.ts:
+    last_write_checksum: sha1:8ca7150a0e8167c93f3aedb4a6739c9fa895531c
+  src/models/invoicesettingsubscriptionschedulesetting.ts:
+    last_write_checksum: sha1:6ad00c291b5bbbe3d2e35288aa219250201ff906
+  src/models/invoicespaymentmethodoptions.ts:
+    last_write_checksum: sha1:0cacd0af05a141ee11804dae69c0a50173ec527b
+  src/models/invoicespaymentsettings.ts:
+    last_write_checksum: sha1:b149ed2b4400c8b5b2f695b35e5900b4251b58c8
+  src/models/invoicespaymentsinvoicepaymentassociatedpayment.ts:
+    last_write_checksum: sha1:ba2087b631c2d467b5e27b6fa71871de8c887726
+  src/models/invoicespaymentsinvoicepaymentstatustransitions.ts:
+    last_write_checksum: sha1:11e4b1642e5db96158bd7bd7cc356241bf03b198
+  src/models/invoicesresourceconfirmationsecret.ts:
+    last_write_checksum: sha1:31a6b95fdf47860730e15492b2b7dbfc8a821b05
+  src/models/invoicesresourcefrominvoice.ts:
+    last_write_checksum: sha1:2813a56fe5278729b46fc866079d7e0789bfbff2
+  src/models/invoicesresourceinvoicerendering.ts:
+    last_write_checksum: sha1:544ad7a79ddca077a190a7b075535aaafb8cc6af
+  src/models/invoicesresourceinvoicetaxid.ts:
+    last_write_checksum: sha1:b3eba07672f99a32c6dad76841bfe58bfc2b4944
+  src/models/invoicesresourcepretaxcreditamount.ts:
+    last_write_checksum: sha1:0cddd27fa6503de6f889976b9f10bd8078640147
+  src/models/invoicesresourceshippingcost.ts:
+    last_write_checksum: sha1:856cdad2589b3c00f8768f2053084386314acdfc
+  src/models/invoicesresourcestatustransitions.ts:
+    last_write_checksum: sha1:e0be6b85463f5db5a798d5f40b42ca126dffb7a3
+  src/models/invoicethresholdreason.ts:
+    last_write_checksum: sha1:66e0efd2abc14bb315dad4ddce40ef9811fc843c
+  src/models/klarnaaddress.ts:
+    last_write_checksum: sha1:d4c2ba899379c2220f080da91b17e481a280dac2
+  src/models/klarnapayerdetails.ts:
+    last_write_checksum: sha1:79957c4f8cd17ff83c8ce236a93bb511a8c0b057
+  src/models/legalentitycompany.ts:
+    last_write_checksum: sha1:52d9276a692e5e589d3e9f9c8e6972a8a4fbe519
+  src/models/legalentitycompanyverification.ts:
+    last_write_checksum: sha1:f56188209f6fd11a36c0461bb515f711b5242c5e
+  src/models/legalentitycompanyverificationdocument.ts:
+    last_write_checksum: sha1:5f5e56718ed64fba321a722d70b4440b9400f20f
+  src/models/legalentitydirectorshipdeclaration.ts:
+    last_write_checksum: sha1:dde63ec63cf641b605d441f15e7993961febddeb
+  src/models/legalentitydob.ts:
+    last_write_checksum: sha1:e8e6f524363816209689580c0df2117a273a5c35
+  src/models/legalentityjapanaddress.ts:
+    last_write_checksum: sha1:303cc5d537aa781216c5919e16fe1a42bc2fc1d1
+  src/models/legalentitypersonverification.ts:
+    last_write_checksum: sha1:b2dadef4b67b32ffd8be08b6d33900ab4cb38c4e
+  src/models/legalentitypersonverificationdocument.ts:
+    last_write_checksum: sha1:27325cb290112388b55cef2594388fc2366f9447
+  src/models/legalentityregistrationdate.ts:
+    last_write_checksum: sha1:fa84b92ed1978f1138965b9774cc07624e2313cc
+  src/models/legalentityrepresentativedeclaration.ts:
+    last_write_checksum: sha1:5c787b1401d5a76a6ad7b79b790846abc6d4a0d7
+  src/models/legalentityubodeclaration.ts:
+    last_write_checksum: sha1:7fb2d893387895c699f1ac9b1c4ad8e387aeb403
+  src/models/lineitem.ts:
+    last_write_checksum: sha1:d08ef1f8bbd3608166af51c3f515401da34f1717
+  src/models/lineitemstaxamount.ts:
+    last_write_checksum: sha1:3e7f8f3ca0eb88831370886f6218a09276741d3d
+  src/models/linkedaccountoptionscommon.ts:
+    last_write_checksum: sha1:a63ff74964de4c8b3555641a919f6a20ce266b2c
+  src/models/mandate.ts:
+    last_write_checksum: sha1:63f64d845bc9273f16b951314d7c9fcf03af2e33
+  src/models/mandateacssdebit.ts:
+    last_write_checksum: sha1:16032d2db37cd91a6fe2c928a3146fbcffcf47f2
+  src/models/mandateamazonpay.ts:
+    last_write_checksum: sha1:c44b614626d07c1a090204f1dc30723b9247e3ee
+  src/models/mandateaubecsdebit.ts:
+    last_write_checksum: sha1:ed10c5085dfdd4a2a6e7dbab741c97fc382cd0ce
+  src/models/mandatebacsdebit.ts:
+    last_write_checksum: sha1:fe0b6b7fafd0e4ed1eb498e82b03df9ac09d30fc
+  src/models/mandatecashapp.ts:
+    last_write_checksum: sha1:a9d32d3869acc5e0b9066801485e022e9d72068b
+  src/models/mandatekakaopay.ts:
+    last_write_checksum: sha1:049e3f24b344f89f07d71770cbafe1685df7860e
+  src/models/mandateklarna.ts:
+    last_write_checksum: sha1:f96411e45861bbbc09b076373058420858db9c6f
+  src/models/mandatekrcard.ts:
+    last_write_checksum: sha1:f9583e36f2462511ecf5230bc3509cc9e7f77fdc
+  src/models/mandatelink.ts:
+    last_write_checksum: sha1:0074942972d2d0383d18370e88530f51bba0daf0
+  src/models/mandatemultiuse.ts:
+    last_write_checksum: sha1:5de8214090ea7ee1d717e7b9bb7fc7e7c905e54c
+  src/models/mandatenaverpay.ts:
+    last_write_checksum: sha1:60b4932553c3adf660ce7cd7687f08f86472f3b4
+  src/models/mandatenzbankaccount.ts:
+    last_write_checksum: sha1:c0470db58bb4eb36cd740b74227d3f97deabade9
+  src/models/mandatepaymentmethoddetails.ts:
+    last_write_checksum: sha1:c6c14bcd4596bed9dab3f711c06bf9cacd2a9dfa
+  src/models/mandatepaypal.ts:
+    last_write_checksum: sha1:4c7cfa7529714960a238af5935abe0a00f685329
+  src/models/mandatepayto.ts:
+    last_write_checksum: sha1:df2502e2ad1fcb1e84cad22d58e675cb24219715
+  src/models/mandaterevolutpay.ts:
+    last_write_checksum: sha1:3d194ad4a549848ff35b4d50bbf83fb41d3915f8
+  src/models/mandatesepadebit.ts:
+    last_write_checksum: sha1:127f890c37b1341bb35dd0c37c472fe70a9d2a3d
+  src/models/mandatesingleuse.ts:
+    last_write_checksum: sha1:dffe4130a0410f253f31c8d4ae90c365ed0900ed
+  src/models/mandateusbankaccount.ts:
+    last_write_checksum: sha1:8bf5f7680820fd929268eef36e4bb8e1231da48e
+  src/models/networks.ts:
+    last_write_checksum: sha1:b89785d39860d5b64b7e492d7ca57151afd0a36f
+  src/models/offlineacceptance.ts:
+    last_write_checksum: sha1:f9a6bed7cb386b9168466e6831fd40e0cf75329c
+  src/models/onlineacceptance.ts:
+    last_write_checksum: sha1:e736df0129244eb3f72b025aa6856559bd39dd1b
+  src/models/packagedimensions.ts:
+    last_write_checksum: sha1:7c6b391aac981052be3be7b2130760f20e7a9a91
+  src/models/paymentflowsamountdetails.ts:
+    last_write_checksum: sha1:d5ca2de3f38775e5fee8d2cb5f177b93f7747c76
+  src/models/paymentflowsamountdetailsclientresourcetip.ts:
+    last_write_checksum: sha1:de305bc9caabef13e700472417159d23a13dacc9
+  src/models/paymentflowsamountdetailsresourceerror.ts:
+    last_write_checksum: sha1:7aed40b7e4449af338f0685cc79d905346ddba91
+  src/models/paymentflowsamountdetailsresourcelineitemslistresourcelineitemresourcepaymentmethodoptions.ts:
+    last_write_checksum: sha1:2f144abe86bbb05af60e2060aeba6d49dc43f624
+  src/models/paymentflowsamountdetailsresourcelineitemslistresourcelineitemresourcetax.ts:
+    last_write_checksum: sha1:3f97c7b7c94cd53d914085252bf6406abd183cb0
+  src/models/paymentflowsamountdetailsresourceshipping.ts:
+    last_write_checksum: sha1:0ddbac58b9dd731e47772c9049153049a38b13c3
+  src/models/paymentflowsamountdetailsresourcetax.ts:
+    last_write_checksum: sha1:1409465165b6ac05cd85f13484115282f3ff64a3
+  src/models/paymentflowsautomaticpaymentmethodspaymentintent.ts:
+    last_write_checksum: sha1:6a1786bfa079fbd839433d185c38991653d19dd1
+  src/models/paymentflowsautomaticpaymentmethodssetupintent.ts:
+    last_write_checksum: sha1:78f13bcb80616a3bac63ed0bf352e5428e6c51ad
+  src/models/paymentflowspaymentdetails.ts:
+    last_write_checksum: sha1:edea522f35d5eb6c561fcca6109fc23c46f46d6c
+  src/models/paymentflowspaymentintentasyncworkflows.ts:
+    last_write_checksum: sha1:5970e80488bac14f273d3f2dfd4a6124ae27cce2
+  src/models/paymentflowspaymentintentasyncworkflowsresourceinputs.ts:
+    last_write_checksum: sha1:9a879f6c983abe1a5a66b6aa05510aee8c57b181
+  src/models/paymentflowspaymentintentasyncworkflowsresourceinputsresourcetax.ts:
+    last_write_checksum: sha1:ae7f9796174f4ec4caf06deca530d73ae0d25f0a
+  src/models/paymentflowspaymentintentpresentmentdetails.ts:
+    last_write_checksum: sha1:988c4e04269ffb86b5e8ee91b9eb6843889d7d18
+  src/models/paymentflowsprivatepaymentmethodsalipay.ts:
+    last_write_checksum: sha1:4470a7d35c441e705913595d0f55e35a3fc7d83a
+  src/models/paymentflowsprivatepaymentmethodsalipaydetails.ts:
+    last_write_checksum: sha1:c7b765c91d2d89b9d10c0aeefdf11a2aed696e74
+  ? src/models/paymentflowsprivatepaymentmethodscarddetailsapiresourceenterprisefeaturesextendedauthorizationextendedauthorization.ts
+  : last_write_checksum: sha1:4f47932f18814c3f4ebd65b1eab0b989a76712f7
+  ? src/models/paymentflowsprivatepaymentmethodscarddetailsapiresourceenterprisefeaturesincrementalauthorizationincrementalauthorization.ts
+  : last_write_checksum: sha1:ef3fb77ecce300f5d15671982833ab5f8bae8754
+  src/models/paymentflowsprivatepaymentmethodscarddetailsapiresourceenterprisefeaturesovercaptureovercapture.ts:
+    last_write_checksum: sha1:31e14afd58be863c7fb755b3b24d4747453bca4e
+  src/models/paymentflowsprivatepaymentmethodscarddetailsapiresourcemulticapture.ts:
+    last_write_checksum: sha1:855c75776a67790819d408017aaf4f8b8f091576
+  src/models/paymentflowsprivatepaymentmethodscardpaymentintentamountdetailslineitempaymentmethodoptions.ts:
+    last_write_checksum: sha1:b01b43196e676f855c643ed5a55c975ba5c62091
+  src/models/paymentflowsprivatepaymentmethodscardpresentamountdetailslineitempaymentmethodoptions.ts:
+    last_write_checksum: sha1:3a4601a33c18fb23a5949327b6d238a62acd1e04
+  src/models/paymentflowsprivatepaymentmethodscardpresentcommonwallet.ts:
+    last_write_checksum: sha1:5550ea481ae9fc9a90e4fac4c5ace87d0718c0b9
+  src/models/paymentflowsprivatepaymentmethodsfinancialconnectionscommonlinkedaccountoptionsfilters.ts:
+    last_write_checksum: sha1:c58d643cf385af1dc0be4002a1bc1bd19720e202
+  src/models/paymentflowsprivatepaymentmethodskakaopaypaymentmethodoptions.ts:
+    last_write_checksum: sha1:b185966f1bdc7d3eba6e96f31ede1fdc754084d6
+  src/models/paymentflowsprivatepaymentmethodsklarnadob.ts:
+    last_write_checksum: sha1:d26eca9f3d6336901c6e3998e60d0793690c7993
+  src/models/paymentflowsprivatepaymentmethodsklarnapaymentintentamountdetailslineitempaymentmethodoptions.ts:
+    last_write_checksum: sha1:690b39379aa61dbe271319621f9a4c878c42ee89
+  src/models/paymentflowsprivatepaymentmethodsnaverpaypaymentmethodoptions.ts:
+    last_write_checksum: sha1:22d2d107918e635966c8b355215c98bb5752b1e5
+  src/models/paymentflowsprivatepaymentmethodspaycopaymentmethodoptions.ts:
+    last_write_checksum: sha1:5e1303815d7ec43aaa04c6e73ba23b08b7c35149
+  src/models/paymentflowsprivatepaymentmethodspaypalamountdetailslineitempaymentmethodoptions.ts:
+    last_write_checksum: sha1:d2205ca934915366a30cf3e15386d107613658c5
+  src/models/paymentflowsprivatepaymentmethodssamsungpaypaymentmethodoptions.ts:
+    last_write_checksum: sha1:b9343134c840a82415e8c5728bcb741a3feb2b42
+  src/models/paymentintent.ts:
+    last_write_checksum: sha1:ebc905903a283c35125268214df175f5d5460d06
+  src/models/paymentintentamountdetailslineitem.ts:
+    last_write_checksum: sha1:b4ed70a42ce492da84a46cd47ad5ea21d77aea94
+  src/models/paymentintentcardprocessing.ts:
+    last_write_checksum: sha1:95b2dc78eb11f18ad250d1817d61eada94ba5199
+  src/models/paymentintentnextaction.ts:
+    last_write_checksum: sha1:6dbc55adb83f382fea51d1aebbabfda3ba062b61
+  src/models/paymentintentnextactionalipayhandleredirect.ts:
+    last_write_checksum: sha1:014a6b4531563e3c25b622365a85f5fb41311e18
+  src/models/paymentintentnextactionboleto.ts:
+    last_write_checksum: sha1:601a813612b3f31ccd2002ed0d2d8efb459db334
+  src/models/paymentintentnextactioncardawaitnotification.ts:
+    last_write_checksum: sha1:8b8a368511a7ce9be4499a1565f56fc0479d8beb
+  src/models/paymentintentnextactioncashapphandleredirectordisplayqrcode.ts:
+    last_write_checksum: sha1:fe2f4260e51625c923c4f8b32bb3501f0b277227
+  src/models/paymentintentnextactioncashappqrcode.ts:
+    last_write_checksum: sha1:5317d1b7f7dc1822a7ff7ae234ec6e03e498d39f
+  src/models/paymentintentnextactiondisplaybanktransferinstructions.ts:
+    last_write_checksum: sha1:b979fc851772eb938276b3831cc35e786ac2471d
+  src/models/paymentintentnextactiondisplaymultibancodetails.ts:
+    last_write_checksum: sha1:16d08a115da0a928de1807a73cfcdc4e0c83788e
+  src/models/paymentintentnextactiondisplayoxxodetails.ts:
+    last_write_checksum: sha1:f3743b86284fdd1daf555890e33bb48b60e3add4
+  src/models/paymentintentnextactionkonbini.ts:
+    last_write_checksum: sha1:f1e1f1eb9fecd66adc55867db7d553a5dbfe0df3
+  src/models/paymentintentnextactionkonbinifamilymart.ts:
+    last_write_checksum: sha1:29dd78734be3c7db0f8e2318b7152492bb27ece4
+  src/models/paymentintentnextactionkonbinilawson.ts:
+    last_write_checksum: sha1:62b83226f098a5894fb93aea3b0e5c6806651ee7
+  src/models/paymentintentnextactionkonbiniministop.ts:
+    last_write_checksum: sha1:22d6ba183d907e1dad03e383a48719fc5e21c9d0
+  src/models/paymentintentnextactionkonbiniseicomart.ts:
+    last_write_checksum: sha1:f39ca0623dd944795b5016ef5d756dc31e7ee734
+  src/models/paymentintentnextactionkonbinistores.ts:
+    last_write_checksum: sha1:5604725c06e1d37d8c66ff641667ef2f5914d3a7
+  src/models/paymentintentnextactionpaynowdisplayqrcode.ts:
+    last_write_checksum: sha1:673df40a58449a27b3449572ece4514de948f952
+  src/models/paymentintentnextactionpixdisplayqrcode.ts:
+    last_write_checksum: sha1:54ffd941a07520bca2cfa671dc41e61a07b67247
+  src/models/paymentintentnextactionpromptpaydisplayqrcode.ts:
+    last_write_checksum: sha1:653f7bd4211ff211a60cd585cbc039bce5dd0a6a
+  src/models/paymentintentnextactionredirecttourl.ts:
+    last_write_checksum: sha1:79afc6c6b888445b4ce1d508f4b4e1dab2c693de
+  src/models/paymentintentnextactionswishhandleredirectordisplayqrcode.ts:
+    last_write_checksum: sha1:9cb963f5bf474fc720c052c67cd4824a5ebe85b1
+  src/models/paymentintentnextactionswishqrcode.ts:
+    last_write_checksum: sha1:c1d00932b6293746ae9f90fc3d4b4d415bee4e2e
+  src/models/paymentintentnextactionverifywithmicrodeposits.ts:
+    last_write_checksum: sha1:441e58dcfc0aa98f9bdd9c15adadda1e456bc665
+  src/models/paymentintentnextactionwechatpaydisplayqrcode.ts:
+    last_write_checksum: sha1:bd28bd2d324e089cfc9a25a10f8363b9a68f66eb
+  src/models/paymentintentnextactionwechatpayredirecttoandroidapp.ts:
+    last_write_checksum: sha1:c78e546eff4819d05b33138ef670976a1e24186d
+  src/models/paymentintentnextactionwechatpayredirecttoiosapp.ts:
+    last_write_checksum: sha1:ecbb7ab32c4f6586d989d36dc6d53192a27af096
+  src/models/paymentintentpaymentmethodoptions.ts:
+    last_write_checksum: sha1:a6fe673681e2f9cc4f1708461b31332a42e41310
+  src/models/paymentintentpaymentmethodoptionsacssdebit.ts:
+    last_write_checksum: sha1:81f636b051de5d47eeed1a72ee189a37bb38e6af
+  src/models/paymentintentpaymentmethodoptionsaubecsdebit.ts:
+    last_write_checksum: sha1:4c0548657809267400cec21187305e831e10a420
+  src/models/paymentintentpaymentmethodoptionsbacsdebit.ts:
+    last_write_checksum: sha1:1b0735ba76de98569491eba2ba3c3fbf90892455
+  src/models/paymentintentpaymentmethodoptionsblik.ts:
+    last_write_checksum: sha1:128e537dde01b5770c82c9c0853bcc9c73a6f786
+  src/models/paymentintentpaymentmethodoptionscard.ts:
+    last_write_checksum: sha1:209366a37945cdfeeead0cdf0598a126e3b1b0c3
+  src/models/paymentintentpaymentmethodoptionseps.ts:
+    last_write_checksum: sha1:cb12b3df478075a622f2455c433c3d9bce8615dd
+  src/models/paymentintentpaymentmethodoptionslink.ts:
+    last_write_checksum: sha1:b8b641032af06917dbd247b1fbf03e7919255b91
+  src/models/paymentintentpaymentmethodoptionsmandateoptionsacssdebit.ts:
+    last_write_checksum: sha1:ed2950e093555d9f4d949d1268984f232bf3f99f
+  src/models/paymentintentpaymentmethodoptionsmandateoptionsbacsdebit.ts:
+    last_write_checksum: sha1:ab5b7d0e81e98da5be1f507420197d9d608fe2a0
+  src/models/paymentintentpaymentmethodoptionsmandateoptionspayto.ts:
+    last_write_checksum: sha1:52a28b75b4a0b649decbc4af59878defbf1d37fc
+  src/models/paymentintentpaymentmethodoptionsmandateoptionssepadebit.ts:
+    last_write_checksum: sha1:f03df8e291c67729384698da082bc644055b301d
+  src/models/paymentintentpaymentmethodoptionsmobilepay.ts:
+    last_write_checksum: sha1:ec1e123f1c4e6f8a031f4b060624ba799008884c
+  src/models/paymentintentpaymentmethodoptionsnzbankaccount.ts:
+    last_write_checksum: sha1:bed9da9b5f31c28d790bb1ee8f450aa0925085a2
+  src/models/paymentintentpaymentmethodoptionspayto.ts:
+    last_write_checksum: sha1:a50f0405a7e020e843da0d2e8b78ece7e86512cd
+  src/models/paymentintentpaymentmethodoptionssepadebit.ts:
+    last_write_checksum: sha1:86c8dda6899323e0ab951ea38bf17b7a6e016a89
+  src/models/paymentintentpaymentmethodoptionsswish.ts:
+    last_write_checksum: sha1:de5f3100bd10234486830e78bd6bca163be948d8
+  src/models/paymentintentpaymentmethodoptionsusbankaccount.ts:
+    last_write_checksum: sha1:071e8b0d09367050249dd08c9ac1e2811e52da88
+  src/models/paymentintentprocessing.ts:
+    last_write_checksum: sha1:e09317a05a89aa64cce929b85e083e177571a81f
+  src/models/paymentintentprocessingcustomernotification.ts:
+    last_write_checksum: sha1:84ce131617a9a252a09f3471e0154c99cfae8351
+  src/models/paymentmethod.ts:
+    last_write_checksum: sha1:d8d72a68bac5e1219d475e37ed9e833ffcc01126
+  src/models/paymentmethodacssdebit.ts:
+    last_write_checksum: sha1:dd5566692a2ec145eedd12a9e9a2a30d07dc6294
+  src/models/paymentmethodaffirm.ts:
+    last_write_checksum: sha1:a2de2d3930a3da8d9ece8335fe401ff589d5c919
+  src/models/paymentmethodafterpayclearpay.ts:
+    last_write_checksum: sha1:fa6f4ff084ed940930766f115dab3551d43ed59c
+  src/models/paymentmethodalma.ts:
+    last_write_checksum: sha1:e5d8d21f5170979e057f9f8e10d553bb912ba93f
+  src/models/paymentmethodamazonpay.ts:
+    last_write_checksum: sha1:fa8c0277619689f05e67cdd9b3316b27dace763e
+  src/models/paymentmethodaubecsdebit.ts:
+    last_write_checksum: sha1:832753b41640440138bddaa5a0e33fa37d060a19
+  src/models/paymentmethodbacsdebit.ts:
+    last_write_checksum: sha1:91f6a68bb24be6cc34f9069fb19a00b0b4b0369a
+  src/models/paymentmethodbancontact.ts:
+    last_write_checksum: sha1:e0f4fe3f74890f3e4c4ec6301e8881ac695aa143
+  src/models/paymentmethodbillie.ts:
+    last_write_checksum: sha1:d52535960840ed27b7df964148697fc4f7f6c94c
+  src/models/paymentmethodblik.ts:
+    last_write_checksum: sha1:207d96b8675c32fc8c692e26ed870e34e9bd093c
+  src/models/paymentmethodboleto.ts:
+    last_write_checksum: sha1:50bd2a4cd81858d411ee21676b26542dede5a48b
+  src/models/paymentmethodcard.ts:
+    last_write_checksum: sha1:45cb2ac62793a3c961885e6d5a6c54f88ef0a544
+  src/models/paymentmethodcardchecks.ts:
+    last_write_checksum: sha1:917a5d0812f92d74b1761f4aa27f60e350fff6ff
+  src/models/paymentmethodcardgeneratedcard.ts:
+    last_write_checksum: sha1:120ab48d1cb30994bdc3277c2bae8ae26a1c3add
+  src/models/paymentmethodcardpresent.ts:
+    last_write_checksum: sha1:e9df7e5bb8a0e722fba729ae4c75b3dbe26e3c80
+  src/models/paymentmethodcardpresentnetworks.ts:
+    last_write_checksum: sha1:6c612b923b6ef74b26c3b718622a529a6c43c975
+  src/models/paymentmethodcardwallet.ts:
+    last_write_checksum: sha1:d64874f10e105e79c3a91aac47c8f1a1b585667d
+  src/models/paymentmethodcardwalletamexexpresscheckout.ts:
+    last_write_checksum: sha1:beef79d6eb5442402c924d79558e27d04155ae2e
+  src/models/paymentmethodcardwalletapplepay.ts:
+    last_write_checksum: sha1:c5329ba10d7c364fc60d5ff58c7734e0b3fe08d5
+  src/models/paymentmethodcardwalletgooglepay.ts:
+    last_write_checksum: sha1:97e048d69d8a1ab37addc14093a27e9d087f0592
+  src/models/paymentmethodcardwalletlink.ts:
+    last_write_checksum: sha1:c6174574acd81f3a1ddca96e023eeee46748a65e
+  src/models/paymentmethodcardwalletmasterpass.ts:
+    last_write_checksum: sha1:267851349ce49c99552ea8c3acafdfd86c645d9b
+  src/models/paymentmethodcardwalletsamsungpay.ts:
+    last_write_checksum: sha1:b9b4e4c7a8aed4bb9085c2c6feb2283f08b7e5e5
+  src/models/paymentmethodcardwalletvisacheckout.ts:
+    last_write_checksum: sha1:e7d0b24e658bbe9663d5137346e5535c6163da19
+  src/models/paymentmethodcashapp.ts:
+    last_write_checksum: sha1:69b0c57660263a03e8f73948cd1cd39de1c4b73c
+  src/models/paymentmethodconfigbizpaymentmethodconfigurationdetails.ts:
+    last_write_checksum: sha1:bf5352a9e60053841b257f8806c509e4ceb56bac
+  src/models/paymentmethodcrypto.ts:
+    last_write_checksum: sha1:d6bd2d04ace0c92c5056a17c3fd3e6796d5cee31
+  src/models/paymentmethodcustom.ts:
+    last_write_checksum: sha1:3d78f1ad792771824a8c0071807314da2c49e582
+  src/models/paymentmethodcustomerbalance.ts:
+    last_write_checksum: sha1:b9ab37416b5c4d016579313b6980091f8207256e
+  src/models/paymentmethoddetails.ts:
+    last_write_checksum: sha1:008d58ce4f3f74da850de91d67d557ac2d2f1e16
+  src/models/paymentmethoddetailsachcredittransfer.ts:
+    last_write_checksum: sha1:987f5d7764e57ced24d7bf7f9b4698f72a12d4f6
+  src/models/paymentmethoddetailsachdebit.ts:
+    last_write_checksum: sha1:4825008eace041506232c9c4f7ef26aa0fbd43a3
+  src/models/paymentmethoddetailsacssdebit.ts:
+    last_write_checksum: sha1:f3a6565ddb902797839caada8df7a1a906d96a20
+  src/models/paymentmethoddetailsaffirm.ts:
+    last_write_checksum: sha1:0b8d7adc3af1b300a3d6c4e4221ef0400ad5355a
+  src/models/paymentmethoddetailsafterpayclearpay.ts:
+    last_write_checksum: sha1:50ecd90dc0c10d5b9d5779ca82958a1f11197478
+  src/models/paymentmethoddetailsalma.ts:
+    last_write_checksum: sha1:775a9e0c64f42797835aa1afd71641ca69684979
+  src/models/paymentmethoddetailsamazonpay.ts:
+    last_write_checksum: sha1:c9bcbe1e056753c463248bc86173b44396ef53bf
+  src/models/paymentmethoddetailsaubecsdebit.ts:
+    last_write_checksum: sha1:cca1b05fc44ad544a40ef22f71a2d9d13080283a
+  src/models/paymentmethoddetailsbacsdebit.ts:
+    last_write_checksum: sha1:2840e268ad68f96c379f7adba9aae9ec8efd5bcb
+  src/models/paymentmethoddetailsbancontact.ts:
+    last_write_checksum: sha1:94ae736f93d7c675ce7605f7ad07953b5d8bc984
+  src/models/paymentmethoddetailsbillie.ts:
+    last_write_checksum: sha1:6fcffec1c59d5fe711015bfb1474fd55c0676862
+  src/models/paymentmethoddetailsblik.ts:
+    last_write_checksum: sha1:83dff2780441806bdfe9b88aeaea5c173030aba5
+  src/models/paymentmethoddetailsboleto.ts:
+    last_write_checksum: sha1:fc3d26143926a4c8136fe6715affc4954d9eff87
+  src/models/paymentmethoddetailscard.ts:
+    last_write_checksum: sha1:82763e6c76f3cb80e9ef6732e06f4d046894e91d
+  src/models/paymentmethoddetailscardchecks.ts:
+    last_write_checksum: sha1:d25331f86d3dd75711d0b99d39116e921befdb74
+  src/models/paymentmethoddetailscardinstallments.ts:
+    last_write_checksum: sha1:e17f54c1637722487918b94a66fb5b42c25ed5f3
+  src/models/paymentmethoddetailscardinstallmentsplan.ts:
+    last_write_checksum: sha1:6b54dcf7bd3ccbc7fa27e8b2a1badd80daed86b7
+  src/models/paymentmethoddetailscardnetworktoken.ts:
+    last_write_checksum: sha1:bab8158422791c5cd924766567fc2a29cc86ab13
+  src/models/paymentmethoddetailscardpresent.ts:
+    last_write_checksum: sha1:faa198f6e46f28e28bdca69592352539e11b72f4
+  src/models/paymentmethoddetailscardpresentoffline.ts:
+    last_write_checksum: sha1:c66ee19e355025d05484113c45aaf6f98ccbc382
+  src/models/paymentmethoddetailscardpresentreceipt.ts:
+    last_write_checksum: sha1:6aef86754cae5a4a3cd0962a2e339d430ddba273
+  src/models/paymentmethoddetailscardwallet.ts:
+    last_write_checksum: sha1:ec4c70dc2078320169120b8f78bedeeffdfdd0b8
+  src/models/paymentmethoddetailscardwalletamexexpresscheckout.ts:
+    last_write_checksum: sha1:b68cdf4aacc70ddc7e2bf536aea96c190f3b1e98
+  src/models/paymentmethoddetailscardwalletapplepay.ts:
+    last_write_checksum: sha1:53f6668a414ef66c5812d2d2ce2be2fe0e74f2af
+  src/models/paymentmethoddetailscardwalletgooglepay.ts:
+    last_write_checksum: sha1:3b1f0a9fd8f5a27f67b6f09cb54a02b14d41f94b
+  src/models/paymentmethoddetailscardwalletlink.ts:
+    last_write_checksum: sha1:a1960930277aadf403ed29388335feef4c18b42b
+  src/models/paymentmethoddetailscardwalletmasterpass.ts:
+    last_write_checksum: sha1:52097778c6cebe772df78183247673ef53816a40
+  src/models/paymentmethoddetailscardwalletsamsungpay.ts:
+    last_write_checksum: sha1:8ddd59cb66fa1897874d0880b5d1e7273da90fb2
+  src/models/paymentmethoddetailscardwalletvisacheckout.ts:
+    last_write_checksum: sha1:d8ad22ec274119953b10417fada04120d3f8be12
+  src/models/paymentmethoddetailscashapp.ts:
+    last_write_checksum: sha1:e93779e0749e97db91785fc6baf96ca072f160df
+  src/models/paymentmethoddetailscrypto.ts:
+    last_write_checksum: sha1:7a6f12c055df2bfdb269cc433fafe48c69195bd7
+  src/models/paymentmethoddetailscustomerbalance.ts:
+    last_write_checksum: sha1:da61966bd4d2cd0ef4612ff3e4bda21a5c88ba32
+  src/models/paymentmethoddetailseps.ts:
+    last_write_checksum: sha1:0fe4ce8efe6a192676e2226de515ef429a7095ab
+  src/models/paymentmethoddetailsfpx.ts:
+    last_write_checksum: sha1:b1d1ad143493bbe621940453814e3f401951163b
+  src/models/paymentmethoddetailsgiropay.ts:
+    last_write_checksum: sha1:93bbcc18db4fcffbba5d9a4b613638bcd3b88c3e
+  src/models/paymentmethoddetailsgrabpay.ts:
+    last_write_checksum: sha1:2549d843a6d73b26af3eac529a753b03203fd1be
+  src/models/paymentmethoddetailsideal.ts:
+    last_write_checksum: sha1:9fc2064574dd1192adbd69a40cafbf9582338a49
+  src/models/paymentmethoddetailsinteracpresent.ts:
+    last_write_checksum: sha1:76f7392b6a6e32013217b944eaf78ce251b7d95e
+  src/models/paymentmethoddetailsinteracpresentreceipt.ts:
+    last_write_checksum: sha1:2c535a5036c5bed62b64edbb979d6ea207f62ab4
+  src/models/paymentmethoddetailskakaopay.ts:
+    last_write_checksum: sha1:77f9b8a26044546203cfa3834b6b3de2f9d19ec9
+  src/models/paymentmethoddetailsklarna.ts:
+    last_write_checksum: sha1:d8fa2bb9f67faeba6d9dbdea5c148bff39e09987
+  src/models/paymentmethoddetailskonbini.ts:
+    last_write_checksum: sha1:0c44c8871b48ae1e44f7b65189b3cd4bbd93708f
+  src/models/paymentmethoddetailskonbinistore.ts:
+    last_write_checksum: sha1:2c5ecc3b60ed85b9f74bbb2f645ef939e21fe67a
+  src/models/paymentmethoddetailskrcard.ts:
+    last_write_checksum: sha1:d0d63e58156c993a10120031bdd18b09bd86ba33
+  src/models/paymentmethoddetailslink.ts:
+    last_write_checksum: sha1:16b5a1a717befdc822f1b692a859bb9fd04bbb92
+  src/models/paymentmethoddetailsmbway.ts:
+    last_write_checksum: sha1:b5173b2af211a323f1bdca1b70653c6149cd6133
+  src/models/paymentmethoddetailsmobilepay.ts:
+    last_write_checksum: sha1:cec01da2a87bb7d1c3d007b336642b1e78fc51a8
+  src/models/paymentmethoddetailsmultibanco.ts:
+    last_write_checksum: sha1:a4a49639c678b689c190ed6e0b10a8513cc5e8bf
+  src/models/paymentmethoddetailsnaverpay.ts:
+    last_write_checksum: sha1:b6b14303ffb4958c2cb3ef1a7c81128fac96cdfe
+  src/models/paymentmethoddetailsnzbankaccount.ts:
+    last_write_checksum: sha1:c036efa86f8a0160bf7319de2331810ea6d4915b
+  src/models/paymentmethoddetailsoxxo.ts:
+    last_write_checksum: sha1:8e0871674fae7d61559187eee20bad23ba28132b
+  src/models/paymentmethoddetailsp24.ts:
+    last_write_checksum: sha1:9b9fe13c294b740814724c01451f9f1f635b3f7b
+  src/models/paymentmethoddetailspassthroughcard.ts:
+    last_write_checksum: sha1:ef556aea5104dbfe549a5529577035b87868c74c
+  src/models/paymentmethoddetailspaybybank.ts:
+    last_write_checksum: sha1:04d6dda5fffa52bef6ff2dabe44b54d43da9929b
+  src/models/paymentmethoddetailspayco.ts:
+    last_write_checksum: sha1:9590ce081d56f9c7e4bad9b0b239e3eda562e5ed
+  src/models/paymentmethoddetailspaymentrecordkonbini.ts:
+    last_write_checksum: sha1:56d24688053918fbb3ccc3b0dd5cdd60994146f0
+  src/models/paymentmethoddetailspaymentrecordmbway.ts:
+    last_write_checksum: sha1:42bce2b25078f9dc38433bf3007533c7d74c894a
+  src/models/paymentmethoddetailspaymentrecordpaynow.ts:
+    last_write_checksum: sha1:d9179a380fe1849d2886481cc6a8e764bc8c0849
+  src/models/paymentmethoddetailspaymentrecordpromptpay.ts:
+    last_write_checksum: sha1:812d02ed994a713285b2636987fc3d3f5b3e1061
+  src/models/paymentmethoddetailspaymentrecordusbankaccount.ts:
+    last_write_checksum: sha1:e61a74299d82cecdf9ed56b1711af46202f06dd7
+  src/models/paymentmethoddetailspaymentrecordwechatpay.ts:
+    last_write_checksum: sha1:67ea3de3f125d75dc8eb028a9f0f37abcd46d87c
+  src/models/paymentmethoddetailspaymentrecordzip.ts:
+    last_write_checksum: sha1:e6793f13a9ece975de7886f0a32b72203002f31f
+  src/models/paymentmethoddetailspaynow.ts:
+    last_write_checksum: sha1:5bd1c0409818e71155e9659b2c853f7c3074aa71
+  src/models/paymentmethoddetailspaypal.ts:
+    last_write_checksum: sha1:847315175778d359cd5dd30a0a86e8ace3bc1d87
+  src/models/paymentmethoddetailspayto.ts:
+    last_write_checksum: sha1:f1687365f51ee957b1b57c688c7a71e6833258e0
+  src/models/paymentmethoddetailspix.ts:
+    last_write_checksum: sha1:ee90696724fb0c562ac96f81ceeca993c57dc95e
+  src/models/paymentmethoddetailspromptpay.ts:
+    last_write_checksum: sha1:3842c3019ec69b21585ca3bdded69fafc5e52cde
+  src/models/paymentmethoddetailsrevolutpay.ts:
+    last_write_checksum: sha1:14a0047ef624651f475874aec5adfa35db843c64
+  src/models/paymentmethoddetailssamsungpay.ts:
+    last_write_checksum: sha1:d490f963a8c04aa8a050818e5e6bbddc6fc641c3
+  src/models/paymentmethoddetailssatispay.ts:
+    last_write_checksum: sha1:665fb6802a5d5ddc17a53cd1c1b51db236e08172
+  src/models/paymentmethoddetailssepadebit.ts:
+    last_write_checksum: sha1:8453c1881cf97fa7ced823754a1cf0cd44dd2d5b
+  src/models/paymentmethoddetailssofort.ts:
+    last_write_checksum: sha1:63d6ade5723b86cd0a9b5f031f7a2f8c08c47ab4
+  src/models/paymentmethoddetailsstripeaccount.ts:
+    last_write_checksum: sha1:829578149b8cdd704ef182832f14dc0b707285bc
+  src/models/paymentmethoddetailsswish.ts:
+    last_write_checksum: sha1:bfe820388af3a60da5cbd76c33c76e5a47717364
+  src/models/paymentmethoddetailstwint.ts:
+    last_write_checksum: sha1:8731827491a7c78999ec2c4b8955625e3872ed10
+  src/models/paymentmethoddetailsusbankaccount.ts:
+    last_write_checksum: sha1:9d8d58c3b7c8022217c9e4ef5fdbad12332eefc8
+  src/models/paymentmethoddetailswechat.ts:
+    last_write_checksum: sha1:c2f0395e7bf418eac5245a9afd9597afe2c95acf
+  src/models/paymentmethoddetailswechatpay.ts:
+    last_write_checksum: sha1:e58a820a7da0b13dc9e3a70a025bfb54c6632bbd
+  src/models/paymentmethoddetailszip.ts:
+    last_write_checksum: sha1:5b24286319e50ba21c3c7b7932bb0b1ba9d50146
+  src/models/paymentmethodeps.ts:
+    last_write_checksum: sha1:c226578be4be900b62781226d413f5d12dd77df7
+  src/models/paymentmethodfpx.ts:
+    last_write_checksum: sha1:2edb7f382abf47c3da1eb58b4362779113b46749
+  src/models/paymentmethodgiropay.ts:
+    last_write_checksum: sha1:1f6041079bd5249eaabe66324c49f4706ee41dcf
+  src/models/paymentmethodgrabpay.ts:
+    last_write_checksum: sha1:ea181c878c4faef434940c89e21e722b78e546c3
+  src/models/paymentmethodideal.ts:
+    last_write_checksum: sha1:94f828f3dcad3ab682d9231c660bab586d898e2b
+  src/models/paymentmethodinteracpresent.ts:
+    last_write_checksum: sha1:0d3c3d48fc10aaeb896816699e05f89cbd6b1e92
+  src/models/paymentmethodkakaopay.ts:
+    last_write_checksum: sha1:e045ad4f98ed4861584ed9e70a031a3534d29edb
+  src/models/paymentmethodklarna.ts:
+    last_write_checksum: sha1:10489a2afb8be83eb875aa0989d1f2cbf728df30
+  src/models/paymentmethodkonbini.ts:
+    last_write_checksum: sha1:baed15036a2333fc9f41dc108d2ba60ea2d3b49c
+  src/models/paymentmethodkrcard.ts:
+    last_write_checksum: sha1:716b5783999169bb860cb5a808d7a7516a704ba8
+  src/models/paymentmethodlink.ts:
+    last_write_checksum: sha1:ac5242fd76cb6c15179d04985e99c969d98c1686
+  src/models/paymentmethodmbway.ts:
+    last_write_checksum: sha1:a75d7e1501a5a527e8b65980867ae47c68902f41
+  src/models/paymentmethodmobilepay.ts:
+    last_write_checksum: sha1:46f2d9a154fb35369a7f4e8e3562500eb0a1dd7f
+  src/models/paymentmethodmultibanco.ts:
+    last_write_checksum: sha1:307d4877e611369a683ce1f5c22bf644aea389db
+  src/models/paymentmethodnaverpay.ts:
+    last_write_checksum: sha1:3caa11607f66c084a3d9b7643235a69f0544a23b
+  src/models/paymentmethodnzbankaccount.ts:
+    last_write_checksum: sha1:7467a026479baf516c8bf472ff55e5e673f821ea
+  src/models/paymentmethodoptionsaffirm.ts:
+    last_write_checksum: sha1:2cfb11c2d47117d8779618b1895d34c1b9cc7b58
+  src/models/paymentmethodoptionsafterpayclearpay.ts:
+    last_write_checksum: sha1:714189e4aa6322bb8e6b9a69ba36cab6ac104e59
+  src/models/paymentmethodoptionsalipay.ts:
+    last_write_checksum: sha1:2dede49a491f4e322d6648b4a6d48f2314e95221
+  src/models/paymentmethodoptionsalma.ts:
+    last_write_checksum: sha1:61d1c6c44a1e09c1f85df5a086734929a2e837ea
+  src/models/paymentmethodoptionsamazonpay.ts:
+    last_write_checksum: sha1:2a50c6b7d605f45551014f714f00a4afab1fe574
+  src/models/paymentmethodoptionsbancontact.ts:
+    last_write_checksum: sha1:c9a81a5495bb58ca96d817f8a0973dc3f8cb0a83
+  src/models/paymentmethodoptionsbillie.ts:
+    last_write_checksum: sha1:8f1950c74564df5a3c254b87c0055575f621ca8a
+  src/models/paymentmethodoptionsboleto.ts:
+    last_write_checksum: sha1:364917e23e39011b8c17830045ac070fde320a7d
+  src/models/paymentmethodoptionscardinstallments.ts:
+    last_write_checksum: sha1:be735843a3c4df64a4f178d1dd43ad731a9fd816
+  src/models/paymentmethodoptionscardmandateoptions.ts:
+    last_write_checksum: sha1:744ef340bc50690ed3dd15e36b96d4e0f5133b2e
+  src/models/paymentmethodoptionscardpresent.ts:
+    last_write_checksum: sha1:f01b37079393ad3c14c956aa48465fc6dd92c4bb
+  src/models/paymentmethodoptionscardpresentrouting.ts:
+    last_write_checksum: sha1:310709366d9346903c9c20156a083e7775b9879e
+  src/models/paymentmethodoptionscashapp.ts:
+    last_write_checksum: sha1:1c37575fec471b062f6ccc5f2e08b64e936e5f8f
+  src/models/paymentmethodoptionscrypto.ts:
+    last_write_checksum: sha1:fafc171bc79dcfb8227a38c1199078e72f3bb13c
+  src/models/paymentmethodoptionscustomerbalance.ts:
+    last_write_checksum: sha1:cbfcdb91a80e01c7863a1c5b27ef45724e0c08a0
+  src/models/paymentmethodoptionscustomerbalancebanktransfer.ts:
+    last_write_checksum: sha1:9ba984b9c843638f84a127c9a2060572d2ba3be6
+  src/models/paymentmethodoptionscustomerbalanceeubankaccount.ts:
+    last_write_checksum: sha1:66fe47c381a52866bf293c0e1e13a442adefeb50
+  src/models/paymentmethodoptionsfpx.ts:
+    last_write_checksum: sha1:eacfd268ade215fc9369192bac6cf0861c1ec9a0
+  src/models/paymentmethodoptionsgiropay.ts:
+    last_write_checksum: sha1:8acff027ff46d8ae178a97ae6d3f277b1e10956f
+  src/models/paymentmethodoptionsgrabpay.ts:
+    last_write_checksum: sha1:0363d5daae8848b21ddb0a5fe50f408c6b6d9309
+  src/models/paymentmethodoptionsideal.ts:
+    last_write_checksum: sha1:cca483ef3d674358d14c432c4578d76b0f07c502
+  src/models/paymentmethodoptionsinteracpresent.ts:
+    last_write_checksum: sha1:eec467a9e422d0493ca266882414319678a1f86f
+  src/models/paymentmethodoptionsklarna.ts:
+    last_write_checksum: sha1:6b7d8421a11bd94528f2439da89b02f578613697
+  src/models/paymentmethodoptionskonbini.ts:
+    last_write_checksum: sha1:15da356475196fd46b97c89bc8127eda2f64fd69
+  src/models/paymentmethodoptionskrcard.ts:
+    last_write_checksum: sha1:55fd440f3bb15366cc2fdecb333a04aa8435235f
+  src/models/paymentmethodoptionsmbway.ts:
+    last_write_checksum: sha1:2dc3dd0ef4779ff87246100f5297736f417207b7
+  src/models/paymentmethodoptionsmultibanco.ts:
+    last_write_checksum: sha1:5be90a9b326bc713e4984794de8a656112d8830d
+  src/models/paymentmethodoptionsoxxo.ts:
+    last_write_checksum: sha1:8d8b131e4fe7941df096b873321481ace518bf70
+  src/models/paymentmethodoptionsp24.ts:
+    last_write_checksum: sha1:5082785976e24f1efd5110113dc6e6358f008681
+  src/models/paymentmethodoptionspaybybank.ts:
+    last_write_checksum: sha1:22918a6a7104f58d91e81ce880bb3047954d0d9c
+  src/models/paymentmethodoptionspaynow.ts:
+    last_write_checksum: sha1:72081d73cb1bba20e175559e8a4577aa6cc3dab3
+  src/models/paymentmethodoptionspaypal.ts:
+    last_write_checksum: sha1:47bba626fb9a4cba509d25b10519403ebe5a477a
+  src/models/paymentmethodoptionspix.ts:
+    last_write_checksum: sha1:eccbbcc80d0ebca817da916484df52f93fefa961
+  src/models/paymentmethodoptionspromptpay.ts:
+    last_write_checksum: sha1:0b3207722f2fb4416f32b03947d73cec437dba42
+  src/models/paymentmethodoptionsrevolutpay.ts:
+    last_write_checksum: sha1:0c1c2a75f8532f30bb0d0693cf9666fc920b6cf5
+  src/models/paymentmethodoptionssatispay.ts:
+    last_write_checksum: sha1:cd9c4ce6bdc40940d184a208881e2a71d0a9fad3
+  src/models/paymentmethodoptionssofort.ts:
+    last_write_checksum: sha1:7dc37a64dc095e8ed3ced549936a24002e063a16
+  src/models/paymentmethodoptionstwint.ts:
+    last_write_checksum: sha1:45f7b5f3f0857151768429f9c2d04569271561cb
+  src/models/paymentmethodoptionsusbankaccountmandateoptions.ts:
+    last_write_checksum: sha1:2838b074cc503bb145f7817e08f66d677e56e070
+  src/models/paymentmethodoptionswechatpay.ts:
+    last_write_checksum: sha1:1074a18e66baed13259e2385957f191f67b1c91c
+  src/models/paymentmethodoptionszip.ts:
+    last_write_checksum: sha1:e19b4f860beab9b12536236bfe761eeaa08c6e25
+  src/models/paymentmethodoxxo.ts:
+    last_write_checksum: sha1:71ecb7e77c726799092f679d28640dcb9ec258d5
+  src/models/paymentmethodp24.ts:
+    last_write_checksum: sha1:2e568be2fcc08f50ff25e8b2148824108a4adf9d
+  src/models/paymentmethodpaybybank.ts:
+    last_write_checksum: sha1:dc39770a0c9d3a1f58652e8cbce59e13f0b6db5d
+  src/models/paymentmethodpayco.ts:
+    last_write_checksum: sha1:614771732df2d14c2dc423210c7f5f588f2f3245
+  src/models/paymentmethodpaynow.ts:
+    last_write_checksum: sha1:7e7c42b4d1a24936af185f1482208787e6e9330a
+  src/models/paymentmethodpaypal.ts:
+    last_write_checksum: sha1:6094787f0b98b66b59a8835aa4d8c0d8167c47a9
+  src/models/paymentmethodpayto.ts:
+    last_write_checksum: sha1:dba3ea125631e16c470d05aa1946e623a55fda28
+  src/models/paymentmethodpix.ts:
+    last_write_checksum: sha1:3d1310278748ab17569eb78ae2f70fb25e345c01
+  src/models/paymentmethodpromptpay.ts:
+    last_write_checksum: sha1:5c56465192e758fa79c2e82aa4208c8b7adb24ac
+  src/models/paymentmethodrevolutpay.ts:
+    last_write_checksum: sha1:4e8120841db86dac1ce7b000f939329d77df581d
+  src/models/paymentmethodsamsungpay.ts:
+    last_write_checksum: sha1:7b2afc5efd312d9aeb34508736a4f26b79b14d35
+  src/models/paymentmethodsatispay.ts:
+    last_write_checksum: sha1:2386cc09d413af359175eebe0af61f5d8726d1b3
+  src/models/paymentmethodsepadebit.ts:
+    last_write_checksum: sha1:259c88490bb658def4a158c3ac13c4bab123ccaf
+  src/models/paymentmethodsofort.ts:
+    last_write_checksum: sha1:8075546ab66f10fae3217bcdb57b5e0fbe13e4a7
+  src/models/paymentmethodswish.ts:
+    last_write_checksum: sha1:51a943e13bcfdd7fb806f72e07cc37dbabe8151d
+  src/models/paymentmethodtwint.ts:
+    last_write_checksum: sha1:97917bdb489c8e0b16de7a8199685da6ba40e6f0
+  src/models/paymentmethodusbankaccount.ts:
+    last_write_checksum: sha1:7b1fca37f60b0aa01199543832015d51baaca3fe
+  src/models/paymentmethodusbankaccountblocked.ts:
+    last_write_checksum: sha1:150803a1ad9b9d218a5dde470f64e59c7e35b749
+  src/models/paymentmethodusbankaccountstatusdetails.ts:
+    last_write_checksum: sha1:73eeac6b7f6362a649b04ed15d1e2cb3bfb0186c
+  src/models/paymentmethodwechatpay.ts:
+    last_write_checksum: sha1:2c872c1aa3dd019e383b8d7e77167471250c5fc5
+  src/models/paymentmethodzip.ts:
+    last_write_checksum: sha1:67ef03ad5c51404b1500013a46b2147d359777c2
+  src/models/paymentrecord.ts:
+    last_write_checksum: sha1:aa11b75ee9d11f74ef79747f5d36f4ee33001c01
+  src/models/paymentsprimitivespaymentrecordsresourceaddress.ts:
+    last_write_checksum: sha1:41d4786ab216cc92043ecb1bdc2792b09919dba7
+  src/models/paymentsprimitivespaymentrecordsresourceamount.ts:
+    last_write_checksum: sha1:ccb0b92728e437905d582919b57e0e8772c87f9c
+  src/models/paymentsprimitivespaymentrecordsresourcebillingdetails.ts:
+    last_write_checksum: sha1:ad6cb1567969d5863bd73d65c1cfba8bdc1a7588
+  src/models/paymentsprimitivespaymentrecordsresourcecustomerdetails.ts:
+    last_write_checksum: sha1:29c3d5ad28506fac16a046cf5cfd9a428ddb74ac
+  src/models/paymentsprimitivespaymentrecordsresourcepaymentmethodcarddetails.ts:
+    last_write_checksum: sha1:9c59308e8be86f312ea12368ea3ec1fabb83c921
+  src/models/paymentsprimitivespaymentrecordsresourcepaymentmethodcarddetailsresourcechecks.ts:
+    last_write_checksum: sha1:863046d3a3a3b4a53a9fda12489be56c63aedd6e
+  src/models/paymentsprimitivespaymentrecordsresourcepaymentmethodcarddetailsresourceinstallmentplan.ts:
+    last_write_checksum: sha1:6337219f2bc9a6946fde164d7ae02e1f9e3357f9
+  src/models/paymentsprimitivespaymentrecordsresourcepaymentmethodcarddetailsresourceinstallments.ts:
+    last_write_checksum: sha1:9cae719786327aff820e353ba19db634a92425a0
+  src/models/paymentsprimitivespaymentrecordsresourcepaymentmethodcarddetailsresourcenetworktoken.ts:
+    last_write_checksum: sha1:2d38be55cee43cff60792d73c7fc50c761eefbdd
+  src/models/paymentsprimitivespaymentrecordsresourcepaymentmethodcarddetailsresourcethreedsecure.ts:
+    last_write_checksum: sha1:80743f06b7f2969f610cd497bd15a4f627e76a4a
+  src/models/paymentsprimitivespaymentrecordsresourcepaymentmethodcarddetailsresourcewallet.ts:
+    last_write_checksum: sha1:d0ea79fe8c378e70e1836969b2396b66aaee13cb
+  src/models/paymentsprimitivespaymentrecordsresourcepaymentmethodcarddetailsresourcewalletresourceapplepay.ts:
+    last_write_checksum: sha1:bd9d78d9b480eaa2f60c668b615a8f67d66a7b60
+  src/models/paymentsprimitivespaymentrecordsresourcepaymentmethodcarddetailsresourcewalletresourcegooglepay.ts:
+    last_write_checksum: sha1:799147c4f57eb61659fcbe1170f8a37a14d9d181
+  src/models/paymentsprimitivespaymentrecordsresourcepaymentmethodcustomdetails.ts:
+    last_write_checksum: sha1:579172b6e0f791dcb7bf26384e7562e42a8625bd
+  src/models/paymentsprimitivespaymentrecordsresourcepaymentmethoddetails.ts:
+    last_write_checksum: sha1:37dece0726df1e34c1f18c00c3576be9d9caff31
+  src/models/paymentsprimitivespaymentrecordsresourcepaymentmethodkonbinidetailsresourcestore.ts:
+    last_write_checksum: sha1:265d040ae6c3ae9377145d2ce298ffd91a27a26b
+  src/models/paymentsprimitivespaymentrecordsresourceprocessordetails.ts:
+    last_write_checksum: sha1:a2d2e983c0f42d7e1d11ec14d6e213769f12c032
+  src/models/paymentsprimitivespaymentrecordsresourceprocessordetailsresourcecustomdetails.ts:
+    last_write_checksum: sha1:7f7a35b35ca91997be4fc94f2897f8745185bc5e
+  src/models/paymentsprimitivespaymentrecordsresourceshippingdetails.ts:
+    last_write_checksum: sha1:8e7588ff331bf8d82082db58b713c0205881b5a5
+  src/models/paypalsellerprotection.ts:
+    last_write_checksum: sha1:216201e68e1ce567f9eed20876387216ae854172
+  src/models/person.ts:
+    last_write_checksum: sha1:ba906c55cd54270c96c52e039303123bec0dd88e
+  src/models/personadditionaltosacceptance.ts:
+    last_write_checksum: sha1:d0c84a94dd779581770e2f6d78873e1e9af7cb26
+  src/models/personadditionaltosacceptances.ts:
+    last_write_checksum: sha1:250e225471c60f662932bf919bddf76db82e0c43
+  src/models/personethnicitydetails.ts:
+    last_write_checksum: sha1:49d09b1ed0359b69999b2106add083a41f3a3674
+  src/models/personfuturerequirements.ts:
+    last_write_checksum: sha1:638d14ee369d6bece1d0f9f34172c93f9791ecce
+  src/models/personracedetails.ts:
+    last_write_checksum: sha1:59d3ea22a1aa647da84544950d3cb3704d8343cb
+  src/models/personrelationship.ts:
+    last_write_checksum: sha1:37484a262d686ca872391f24f8a3ef169950e179
+  src/models/personrequirements.ts:
+    last_write_checksum: sha1:6b380f5f7c732370b20879379f05f200ed201818
+  src/models/personuscfpbdata.ts:
+    last_write_checksum: sha1:a00e0a9550e7d3bfcb1115f80952ed2ffd777667
+  src/models/platformearningfeesource.ts:
+    last_write_checksum: sha1:06bc70b045097bcdbf885b6e657bf8eef84d8107
+  src/models/price.ts:
+    last_write_checksum: sha1:91120bf886ea4af19fa08ca78e19e792e480d3ba
+  src/models/pricetier.ts:
+    last_write_checksum: sha1:4e17849631379276fa8d0d2ee025747c3503a44d
+  src/models/product.ts:
+    last_write_checksum: sha1:fb1c90e037ac4de2b528274df408b0b78fa49e98
+  src/models/productmarketingfeature.ts:
+    last_write_checksum: sha1:2e5cc73b27502e5e60ea1bb0f2478b43ae1d0872
+  src/models/promotioncode.ts:
+    last_write_checksum: sha1:00fa838bd22386d5ffdb1cdb5f3f939d781b3688
+  src/models/promotioncodecurrencyoption.ts:
+    last_write_checksum: sha1:e74c7d0c2adb15655dac2c0df24dd96775439ff1
+  src/models/promotioncodesresourcepromotion.ts:
+    last_write_checksum: sha1:d9f993cfc9fc84247c7d7ce583ea3cae072f038b
+  src/models/promotioncodesresourcerestrictions.ts:
+    last_write_checksum: sha1:8c6777fed7a4f5c78d7241e90c05889fd4c01c22
+  src/models/radarradaroptions.ts:
+    last_write_checksum: sha1:00e4a038abb15efd070c6601bcd39bc53809591f
+  src/models/radarreviewresourcelocation.ts:
+    last_write_checksum: sha1:597f7cb8d4f89206ae6cf8af26059537164d81e3
+  src/models/radarreviewresourcesession.ts:
+    last_write_checksum: sha1:b95649b98cc5f97ba6e5ea1084341ad179c071ba
+  src/models/recurring.ts:
+    last_write_checksum: sha1:d40d724d893f09f3ec046631e7212c9e39f0219f
+  src/models/refund.ts:
+    last_write_checksum: sha1:7f4cea69545a4c6e749a6a743739a17d8e598bfc
+  src/models/refunddestinationdetails.ts:
+    last_write_checksum: sha1:bc085474fbf7f1fb8e63c7af8fe4c4ef78005ef1
+  src/models/refunddestinationdetailsblik.ts:
+    last_write_checksum: sha1:b7322581575492c9197e8e0a82bdc28a5a3aae50
+  src/models/refunddestinationdetailsbrbanktransfer.ts:
+    last_write_checksum: sha1:bd117b4069638cfcc746ceb1bc997ea0218845b9
+  src/models/refunddestinationdetailscard.ts:
+    last_write_checksum: sha1:2e08e96b4baacb0e301b642818c01bf70cfa91e9
+  src/models/refunddestinationdetailscrypto.ts:
+    last_write_checksum: sha1:5825c5f9d80f282c117a8a61e4372a15a2df2daa
+  src/models/refunddestinationdetailseubanktransfer.ts:
+    last_write_checksum: sha1:9e5a1a1904efea29aef05f1d5408b51373721e7e
+  src/models/refunddestinationdetailsgbbanktransfer.ts:
+    last_write_checksum: sha1:dfd9055c20ad98b549d3d031700903a901ad753e
+  src/models/refunddestinationdetailsjpbanktransfer.ts:
+    last_write_checksum: sha1:26601eee201968a9716612c8f969abc421aa385b
+  src/models/refunddestinationdetailsmbway.ts:
+    last_write_checksum: sha1:7436e5aedda2ad29a44ec8f3c00be1d6d92db172
+  src/models/refunddestinationdetailsmultibanco.ts:
+    last_write_checksum: sha1:348729e24da93cd24a6aa56e0f862e1542fa6a2b
+  src/models/refunddestinationdetailsmxbanktransfer.ts:
+    last_write_checksum: sha1:c75a6706755a6c232cca97a04ce0f519a7e397fa
+  src/models/refunddestinationdetailsp24.ts:
+    last_write_checksum: sha1:d5733c89d911e06f51297b7436d5979584ee7bf1
+  src/models/refunddestinationdetailspaypal.ts:
+    last_write_checksum: sha1:6c4d907fc8052b0365c8f739d911f8019a348d61
+  src/models/refunddestinationdetailsswish.ts:
+    last_write_checksum: sha1:51b427cbe22efe1fd3330f0939df9373c9608736
+  src/models/refunddestinationdetailsthbanktransfer.ts:
+    last_write_checksum: sha1:b591cc6bbef77b369d722ecb1a0735a3f0db06f2
+  src/models/refunddestinationdetailsusbanktransfer.ts:
+    last_write_checksum: sha1:1f880f6802516d9e70c71433914dfa41da0e9de2
+  src/models/refundnextaction.ts:
+    last_write_checksum: sha1:0b8c64881bf8a79820a40f96eb8e0478a21d493f
+  src/models/refundnextactiondisplaydetails.ts:
+    last_write_checksum: sha1:72353a810224abbf78664b848aac2bf2a79b1567
+  src/models/review.ts:
+    last_write_checksum: sha1:4a56e116636554e73c8c372d7cad000d5654c359
+  src/models/revolutpayunderlyingpaymentmethodfundingdetails.ts:
+    last_write_checksum: sha1:ca177f86151856ca910d1172abadb98b872bfc3e
+  src/models/rule.ts:
+    last_write_checksum: sha1:8ee0cb22ddbb381ab790f63b12b2ac272ff44518
+  src/models/schedulesphaseautomatictax.ts:
+    last_write_checksum: sha1:31326d638c51b22d1086ebaf0bea60e2e1c5d301
+  src/models/security.ts:
+    last_write_checksum: sha1:26fa176bd77439b2bb6a4939b8db00bee0b74232
+  src/models/sepadebitgeneratedfrom.ts:
+    last_write_checksum: sha1:da241019c14de5abfa2577ea3d15514cf8037b57
+  src/models/setupattempt.ts:
+    last_write_checksum: sha1:073bc69fc3a070179d70e003ce3f60031e1f0510
+  src/models/setupattemptpaymentmethoddetails.ts:
+    last_write_checksum: sha1:4f5acbe4c221709089623d60c493941cd9a94d7f
+  src/models/setupattemptpaymentmethoddetailsacssdebit.ts:
+    last_write_checksum: sha1:8d49def0597365b36095231001522258ecae36fe
+  src/models/setupattemptpaymentmethoddetailsamazonpay.ts:
+    last_write_checksum: sha1:053dac9349d5559f77ff682b1c9ec945115e7042
+  src/models/setupattemptpaymentmethoddetailsaubecsdebit.ts:
+    last_write_checksum: sha1:56d9e869b0f1bf9cd14ca2db41e992df55486eda
+  src/models/setupattemptpaymentmethoddetailsbacsdebit.ts:
+    last_write_checksum: sha1:1ddb13035909206fe98541a81c938d4d55330c1f
+  src/models/setupattemptpaymentmethoddetailsbancontact.ts:
+    last_write_checksum: sha1:f50b6dcb5fc6e86391e832411693bbb20a1fd080
+  src/models/setupattemptpaymentmethoddetailsboleto.ts:
+    last_write_checksum: sha1:8b478065b44b1d239f4b28fe798977f7efb3bc49
+  src/models/setupattemptpaymentmethoddetailscard.ts:
+    last_write_checksum: sha1:5a41f6a0d65cbfb4b9cbe7197df378461465c772
+  src/models/setupattemptpaymentmethoddetailscardchecks.ts:
+    last_write_checksum: sha1:b2bc222fa4db9d74595313cc4dacf2ab29f62ee1
+  src/models/setupattemptpaymentmethoddetailscardpresent.ts:
+    last_write_checksum: sha1:a7669fec669871707f793163cc3c57127735da4f
+  src/models/setupattemptpaymentmethoddetailscardwallet.ts:
+    last_write_checksum: sha1:430c59a8b78479e4dcf2ee46ddccb554504ea5df
+  src/models/setupattemptpaymentmethoddetailscashapp.ts:
+    last_write_checksum: sha1:51382acd8f47b962bf949fe36f0b41de057b967d
+  src/models/setupattemptpaymentmethoddetailsideal.ts:
+    last_write_checksum: sha1:273db33c66d6685bcb016f19181e185f72b6c22c
+  src/models/setupattemptpaymentmethoddetailskakaopay.ts:
+    last_write_checksum: sha1:199ee6634008e8bdffb0dea46c7931dfc773a078
+  src/models/setupattemptpaymentmethoddetailsklarna.ts:
+    last_write_checksum: sha1:b1d45314132857dd20896af225ce12b22a0908a5
+  src/models/setupattemptpaymentmethoddetailskrcard.ts:
+    last_write_checksum: sha1:7b06f96f7596d34fc64b9493b15712e970669555
+  src/models/setupattemptpaymentmethoddetailslink.ts:
+    last_write_checksum: sha1:8b72a08ac56093a1e93585a80de561db2a521a46
+  src/models/setupattemptpaymentmethoddetailsnaverpay.ts:
+    last_write_checksum: sha1:10e2aa36830bce4ce6773d03c63f31faeeaa7a96
+  src/models/setupattemptpaymentmethoddetailsnzbankaccount.ts:
+    last_write_checksum: sha1:24dec5027e68d73ee1fc8c82c3e20bad9bf67517
+  src/models/setupattemptpaymentmethoddetailspaypal.ts:
+    last_write_checksum: sha1:d9c9a6fbb061f89996e697b970e3c21b8ff450e8
+  src/models/setupattemptpaymentmethoddetailspayto.ts:
+    last_write_checksum: sha1:29212f2cabc0dace6aa03458ca8d003f6fc2c0b1
+  src/models/setupattemptpaymentmethoddetailsrevolutpay.ts:
+    last_write_checksum: sha1:b9e79efb3641907fa4ba69650f3d4f55ad180e36
+  src/models/setupattemptpaymentmethoddetailssepadebit.ts:
+    last_write_checksum: sha1:97450dfb8803365ebd01eff2b579a0dd2efe7eae
+  src/models/setupattemptpaymentmethoddetailssofort.ts:
+    last_write_checksum: sha1:52e051a826a19751a5119868868fce36e8a70de6
+  src/models/setupattemptpaymentmethoddetailsusbankaccount.ts:
+    last_write_checksum: sha1:d638742b7548b92b8dcff7d204f63a786957326c
+  src/models/setupintent.ts:
+    last_write_checksum: sha1:4c8142e68555b871b0a29ab80aa54c2863c94372
+  src/models/setupintentnextaction.ts:
+    last_write_checksum: sha1:6e63cf2f6188fb8f2a73b3210d8ac3743bb94a26
+  src/models/setupintentnextactionredirecttourl.ts:
+    last_write_checksum: sha1:91b3f31c4f1875cfe8134e4db7930f9fc5b7f775
+  src/models/setupintentnextactionverifywithmicrodeposits.ts:
+    last_write_checksum: sha1:c7da4e86519678df2e2e6d794e4e6381930b1d0c
+  src/models/setupintentpaymentmethodoptions.ts:
+    last_write_checksum: sha1:3ce209183b715c1e36a70d2ad426c8e73ba78f1f
+  src/models/setupintentpaymentmethodoptionsacssdebit.ts:
+    last_write_checksum: sha1:1db56ac459cf206d100cded0d45b63c747a4215d
+  src/models/setupintentpaymentmethodoptionsamazonpay.ts:
+    last_write_checksum: sha1:3d1f0fce20ae3c4d1a4f13e5f82fb99c5219d4a7
+  src/models/setupintentpaymentmethodoptionsbacsdebit.ts:
+    last_write_checksum: sha1:a1c99bb0b245d9a185afb7cca65322dda855005e
+  src/models/setupintentpaymentmethodoptionscard.ts:
+    last_write_checksum: sha1:c4b0d5a9c93ee0b43f38318dc6cdc7ac8add2708
+  src/models/setupintentpaymentmethodoptionscardmandateoptions.ts:
+    last_write_checksum: sha1:bef733021301004bed7ed2df0cf02562678ff10d
+  src/models/setupintentpaymentmethodoptionscardpresent.ts:
+    last_write_checksum: sha1:6d8b4e19c1e68ad32a412196084e4d0b589a1d21
+  src/models/setupintentpaymentmethodoptionsklarna.ts:
+    last_write_checksum: sha1:0291b2913f6bee8b46f8ed5ff94a4de302781d22
+  src/models/setupintentpaymentmethodoptionslink.ts:
+    last_write_checksum: sha1:e0be08648063e538fb91fc24261dabf85a5615d7
+  src/models/setupintentpaymentmethodoptionsmandateoptionsacssdebit.ts:
+    last_write_checksum: sha1:e897be6adbe32fa433ab5c698112ac892c0b2c51
+  src/models/setupintentpaymentmethodoptionsmandateoptionsbacsdebit.ts:
+    last_write_checksum: sha1:4f796053d1b11284b789db518f7ec66d416c52f6
+  src/models/setupintentpaymentmethodoptionsmandateoptionspayto.ts:
+    last_write_checksum: sha1:6774f885719d89c472201e4fafb0bd0036972a59
+  src/models/setupintentpaymentmethodoptionsmandateoptionssepadebit.ts:
+    last_write_checksum: sha1:efdfcfdcdf6d24b8e87e4afa61fa4805e7d49d95
+  src/models/setupintentpaymentmethodoptionspaypal.ts:
+    last_write_checksum: sha1:5aa0eed0c4c0c50dcb769953064a9a7c166fe7d1
+  src/models/setupintentpaymentmethodoptionspayto.ts:
+    last_write_checksum: sha1:ae18a2aa43500a12682aeb7f8b7fac59b1cdf2a2
+  src/models/setupintentpaymentmethodoptionssepadebit.ts:
+    last_write_checksum: sha1:f4ebf0d03ded817072baa4ccdec0a178574b6563
+  src/models/setupintentpaymentmethodoptionsusbankaccount.ts:
+    last_write_checksum: sha1:7a67c9e9f4ffb53ebf4128631b2c3c30d8296a5d
+  src/models/shipping.ts:
+    last_write_checksum: sha1:127421a86850bca5447e581de05b92b106c22737
+  src/models/shippingrate.ts:
+    last_write_checksum: sha1:9d124bcab05e7ec311b3a363b7c7a7b961bc262e
+  src/models/shippingratecurrencyoption.ts:
+    last_write_checksum: sha1:9da1bc3b46624ed161256df0ab7665b246e8f0a1
+  src/models/shippingratedeliveryestimate.ts:
+    last_write_checksum: sha1:f87a1b0675b7b573196bbd926c3001f185336986
+  src/models/shippingratedeliveryestimatebound.ts:
+    last_write_checksum: sha1:f9b9358054f85b8bdec4de6f07c2039e18a75945
+  src/models/shippingratefixedamount.ts:
+    last_write_checksum: sha1:6e1df4d09d591a0ae59817940b56c6d7c31b0ad6
+  src/models/subscription.ts:
+    last_write_checksum: sha1:00a76d7bc752c829a12aeabab9e5af1151e51900
+  src/models/subscriptionautomatictax.ts:
+    last_write_checksum: sha1:1760aff7cc1fdaf77a5da41923539badd8415ff9
+  src/models/subscriptionbillingthresholds.ts:
+    last_write_checksum: sha1:687420f9bce0836fcf783ac5f2638ca4f9ad8a13
+  src/models/subscriptionitem.ts:
+    last_write_checksum: sha1:6027883bfeedfb543fbe865a7b57be2eaa9c6830
+  src/models/subscriptionitembillingthresholds.ts:
+    last_write_checksum: sha1:d3df60326c4f7f0a6d16aaa5872e5de511bc236b
+  src/models/subscriptionpaymentmethodoptionscard.ts:
+    last_write_checksum: sha1:f1d207d24eb5a51e0fe5b00fff28d2fb54d8dfa0
+  src/models/subscriptionpendinginvoiceiteminterval.ts:
+    last_write_checksum: sha1:635c7f7a0e27ca95e1c02ae7ccb78ec25c3bb40e
+  src/models/subscriptionschedule.ts:
+    last_write_checksum: sha1:d701027341a51469607b8aec391e391dd19f7cef
+  src/models/subscriptionscheduleaddinvoiceitem.ts:
+    last_write_checksum: sha1:4a5c3180370ea3d5c5534f9657bd8da9efb4a5b5
+  src/models/subscriptionscheduleaddinvoiceitemperiod.ts:
+    last_write_checksum: sha1:f997472fb3aeab37c3e069bdcd898427080b3a9a
+  src/models/subscriptionscheduleconfigurationitem.ts:
+    last_write_checksum: sha1:317fe09d88e7373d8d7b7dce6b7f14bd0ee63881
+  src/models/subscriptionschedulecurrentphase.ts:
+    last_write_checksum: sha1:a65e6c6043d7f34ee2eac0d2706856dcdd3f0bd6
+  src/models/subscriptionschedulephaseconfiguration.ts:
+    last_write_checksum: sha1:b8ca7ad282380dcda08a4683c372481bc8874fa8
+  src/models/subscriptionschedulesresourcedefaultsettings.ts:
+    last_write_checksum: sha1:7ab6a6d6c21052a169222e4a89c11d4a09ba041d
+  src/models/subscriptionschedulesresourcedefaultsettingsautomatictax.ts:
+    last_write_checksum: sha1:bd505211f9118eb56f7576912df61394f09a43d6
+  src/models/subscriptionschedulesresourceinvoiceitemperiodresourceperiodend.ts:
+    last_write_checksum: sha1:641fe1cac2d4f57527597544c89dba251a543cca
+  src/models/subscriptionschedulesresourceinvoiceitemperiodresourceperiodstart.ts:
+    last_write_checksum: sha1:5607d9d96b8ef3f593ce5f534f82a856656a925e
+  src/models/subscriptionsresourcebillingcycleanchorconfig.ts:
+    last_write_checksum: sha1:12be99ac83552daa62615d205a994d43f92ef08b
+  src/models/subscriptionsresourcebillingmode.ts:
+    last_write_checksum: sha1:0e74d006f192015d3a8ba8df9fde61c554d475d7
+  src/models/subscriptionsresourcebillingmodeflexible.ts:
+    last_write_checksum: sha1:bd4b9ca6d70b66112263259caff47073d11f5918
+  src/models/subscriptionsresourcepausecollection.ts:
+    last_write_checksum: sha1:f3756c24c8b5580e169639becc30b269284f5e55
+  src/models/subscriptionsresourcepaymentmethodoptions.ts:
+    last_write_checksum: sha1:a8a792b3c8e916e9a3124440323bc39a8cf22925
+  src/models/subscriptionsresourcepaymentsettings.ts:
+    last_write_checksum: sha1:a28c8f7e513ab25ca77867f49d1f9c22fb858bcc
+  src/models/subscriptionsresourcependingupdate.ts:
+    last_write_checksum: sha1:2e475f3d3d6e0f19fa53bbd52e9635e0ba691775
+  src/models/subscriptionsresourcesubscriptioninvoicesettings.ts:
+    last_write_checksum: sha1:ec78dd3546fdcaa8d42e246c4ab1d207b436d3a1
+  src/models/subscriptionstrialsresourceendbehavior.ts:
+    last_write_checksum: sha1:455b77870ecd0d7193e4fc503aa05ea00f420413
+  src/models/subscriptionstrialsresourcetrialsettings.ts:
+    last_write_checksum: sha1:a627fa9a55a06392b7818584c0515ca938a6cdf8
+  src/models/subscriptiontransferdata.ts:
+    last_write_checksum: sha1:840612e6c55420f00923e351406317aad6103aba
+  src/models/taxcode.ts:
+    last_write_checksum: sha1:5d7cbf2bb5718351c46b21f164dc5dbda5f1e832
+  src/models/taxid.ts:
+    last_write_checksum: sha1:c2180f9a3902af3e40babee8e50603057d84e262
+  src/models/taxidsowner.ts:
+    last_write_checksum: sha1:547be94f36c1856e6a38ba08fe5c7ea2a539beea
+  src/models/taxidverification.ts:
+    last_write_checksum: sha1:ea1351bd866da9eb37dcd9586c974d1a1bac7a97
+  src/models/taxrate.ts:
+    last_write_checksum: sha1:799b9a03354ffeb3e2f0b5b0326cbb3ebfb92d73
+  src/models/taxrateflatamount.ts:
+    last_write_checksum: sha1:71d00976d69d10204cdd8440e0ed17bc15cab128
+  src/models/testhelperstestclock.ts:
+    last_write_checksum: sha1:fed4a7318a007359c29fb331492edb7f0798376c
+  src/models/threedsecuredetails.ts:
+    last_write_checksum: sha1:49491a71fa20256c7b6e78c827ac18c08b3961ab
+  src/models/threedsecuredetailscharge.ts:
+    last_write_checksum: sha1:8fa5a4ffab727ea89c8fcb74ba50fd3b62f9df90
+  src/models/threedsecureusage.ts:
+    last_write_checksum: sha1:5c2a5eeb3cebfbb3a505fc420d07dee41653ff2c
+  src/models/transfer.ts:
+    last_write_checksum: sha1:ab5f8fb3e4fb52c5f2e163f6b5cd9b94a8ff3f1a
+  src/models/transferdata.ts:
+    last_write_checksum: sha1:c737cbad373da6b6d79943f1506dbdfaf749d8f6
+  src/models/transferreversal.ts:
+    last_write_checksum: sha1:0365b349be4504fd5297527b430cf96593bc5fce
+  src/models/transferschedule.ts:
+    last_write_checksum: sha1:efe9c96237e109ec68d9b9a640bf29904cfd05a0
+  src/models/transformquantity.ts:
+    last_write_checksum: sha1:723a1fbd6bea46aab2d888f18d271c94678e4905
+  src/models/usbankaccountnetworks.ts:
+    last_write_checksum: sha1:1cc9d97b783d69e624366aa441f61c1be57f74d8
+  src/tool-names.ts:
+    last_write_checksum: sha1:0e7df541f93e400f5bcdfda2b35aac3c081c72f9
+  src/types/async.ts:
+    last_write_checksum: sha1:3ff07b3feaf390ec1aeb18ff938e139c6c4a9585
+  src/types/bigint.ts:
+    last_write_checksum: sha1:58178437a7d38f022b5d9bef691ba5539fad4655
+  src/types/blobs.ts:
+    last_write_checksum: sha1:9cc86e0e9420999afb48d53c57d71584be745fd7
+  src/types/decimal.ts:
+    last_write_checksum: sha1:d2134a50a5d30cb2846147dd8f9487b0eb1b3ee0
+  src/types/enums.ts:
+    last_write_checksum: sha1:384e3fc4bee3f006cd8f39556a44b3508597b8e5
+  src/types/fp.ts:
+    last_write_checksum: sha1:d24994d58f37a1ca106847fcc6d2e976c6f1c093
+  src/types/rfcdate.ts:
+    last_write_checksum: sha1:8e5f382e02fe21c2f2e24deb1b7bbf8cddd3dd16
+  src/types/streams.ts:
+    last_write_checksum: sha1:cc9ced2dd34a76c3a1bd7784ccda1cc3b37ab9a9
+  tsconfig.json:
+    last_write_checksum: sha1:2a1769fabf9e934fa0b118db46d3b66cb500a6b7
+examples:
+  GetAccount:
+    speakeasy-default-get-account:
+      responses:
+        "200":
+          application/json: {"id": "<id>"}
+        default:
+          application/json: {"error": {"type": "invalid_request_error"}}
+  GetBalance:
+    speakeasy-default-get-balance:
+      responses:
+        "200":
+          application/json: {"available": [{"amount": 137236, "currency": "Hong Kong Dollar"}], "livemode": true, "pending": []}
+        default:
+          application/json: {"error": {"type": "idempotency_error"}}
+  GetCoupons:
+    speakeasy-default-get-coupons:
+      responses:
+        "200":
+          application/json: {"data": [{"created": 881343, "duration": "once", "id": "<id>", "livemode": true, "times_redeemed": 684132, "valid": true}], "has_more": true, "url": "https://quiet-parade.com/"}
+        default:
+          application/json: {"error": {"type": "idempotency_error"}}
+  GetCustomers:
+    speakeasy-default-get-customers:
+      responses:
+        "200":
+          application/json: {"data": [{"created": 301849, "id": "<id>", "livemode": false}], "has_more": true, "url": "https://indolent-stall.org"}
+        default:
+          application/json: {"error": {"type": "idempotency_error"}}
+  GetDisputes:
+    speakeasy-default-get-disputes:
+      responses:
+        "200":
+          application/json: {"data": [{"amount": 901045, "balance_transactions": [], "charge": {"amount": 788162, "amount_captured": 456513, "amount_refunded": 514593, "billing_details": {}, "captured": true, "created": 196057, "currency": "Pound Sterling", "disputed": true, "id": "<id>", "livemode": false, "metadata": {"key": "<value>"}, "paid": true, "refunded": false, "status": "succeeded"}, "created": 868185, "currency": "Brunei Dollar", "enhanced_eligibility_types": ["visa_compliance"], "evidence": {"enhanced_evidence": {}}, "evidence_details": {"enhanced_eligibility": {}, "has_evidence": true, "past_due": false, "submission_count": 458874}, "id": "<id>", "is_charge_refundable": true, "livemode": false, "metadata": {}, "reason": "<value>", "status": "lost"}], "has_more": false, "url": "https://natural-avalanche.org/"}
+        default:
+          application/json: {"error": {"type": "idempotency_error"}}
+  GetInvoices:
+    speakeasy-default-get-invoices:
+      responses:
+        "200":
+          application/json: {"data": [{"amount_due": 657726, "amount_overpaid": 639867, "amount_paid": 281323, "amount_remaining": 46120, "amount_shipping": 109674, "attempt_count": 700753, "attempted": false, "auto_advance": true, "automatic_tax": {"enabled": false}, "collection_method": "send_invoice", "created": 889082, "currency": "Quetzal", "customer": {"created": 702823, "id": "<id>", "livemode": true}, "default_tax_rates": [], "discounts": [], "id": "<id>", "issuer": {"type": "account"}, "lines": {"data": [{"amount": 276630, "currency": "Leone", "discountable": false, "discounts": [], "id": "<id>", "livemode": true, "metadata": {}, "period": {"end": 609593, "start": 384273}, "subtotal": 234844}], "has_more": false, "url": "https://personal-igloo.biz/"}, "livemode": false, "payment_settings": {}, "period_end": 463455, "period_start": 920018, "post_payment_credit_notes_amount": 620422, "pre_payment_credit_notes_amount": 480350, "starting_balance": 971563, "status_transitions": {}, "subtotal": 593186, "total": 685884}], "has_more": false, "url": "https://likely-cheese.info/"}
+        default:
+          application/json: {"error": {"type": "invalid_request_error"}}
+  GetPaymentIntents:
+    speakeasy-default-get-payment-intents:
+      responses:
+        "200":
+          application/json: {"data": [], "has_more": false, "url": "https://glittering-violin.info/"}
+        default:
+          application/json: {"error": {"type": "api_error"}}
+  GetPrices:
+    speakeasy-default-get-prices:
+      responses:
+        "200":
+          application/json: {"data": [{"active": false, "billing_scheme": "tiered", "created": 783773, "currency": "Belize Dollar", "id": "<id>", "livemode": false, "metadata": {"key": "<value>", "key1": "<value>"}, "product": {"active": false, "created": 839667, "id": "<id>", "images": ["<value 1>", "<value 2>", "<value 3>"], "livemode": false, "marketing_features": [{}], "metadata": {"key": "<value>", "key1": "<value>", "key2": "<value>"}, "name": "<value>", "updated": 229411}, "type": "recurring"}], "has_more": true, "url": "https://happy-pile.info/"}
+        default:
+          application/json: {"error": {"type": "idempotency_error"}}
+  GetProducts:
+    speakeasy-default-get-products:
+      responses:
+        "200":
+          application/json: {"data": [{"active": true, "created": 204786, "id": "<id>", "images": ["<value 1>"], "livemode": true, "marketing_features": [], "metadata": {"key": "<value>", "key1": "<value>"}, "name": "<value>", "updated": 133025}], "has_more": false, "url": "https://zesty-behest.com/"}
+        default:
+          application/json: {"error": {"type": "card_error"}}
+  GetSubscriptions:
+    speakeasy-default-get-subscriptions:
+      responses:
+        "200":
+          application/json: {"data": [], "has_more": true, "url": "https://wise-handle.biz"}
+        default:
+          application/json: {"error": {"type": "api_error"}}
+examplesVersion: 1.0.2
