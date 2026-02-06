@@ -9,6 +9,7 @@ export interface ServerConfig {
   env: Record<string, string>;
   capabilities: { write: boolean };
   mode: "tools" | "code";
+  transport?: "stdio" | "sse" | "http";
 }
 
 export const SERVERS: ServerConfig[] = [
@@ -37,33 +38,33 @@ export const SERVERS: ServerConfig[] = [
     capabilities: { write: true },
     mode: "code",
   },
-  {
-    id: "se-stripe",
-    displayName: "Speakeasy Generated",
-    command: "node",
-    args: [
-      "/Users/cjav_dev/repos/mcp-code-mode-eval/se-stripe-mcp/stripe-mcp-typescript/bin/mcp-server.js",
-      "start",
-      "--bearer-auth",
-      process.env.STRIPE_SECRET_KEY!,
-    ],
-    env: {},
-    capabilities: { write: false },
-    mode: "tools",
-  },
-  {
-    id: "open-mcp-stripe",
-    displayName: "OpenAPI Generated",
-    command: "node",
-    args: [
-      "/Users/cjav_dev/repos/mcp-code-mode-eval/openapi-mcp-generator-stripe/server/build/index.js",
-    ],
-    env: {
-      BEARER_TOKEN_BEARERAUTH: process.env.STRIPE_SECRET_KEY!,
-    },
-    capabilities: { write: true },
-    mode: "tools",
-  },
+  // {
+  //   id: "se-stripe",
+  //   displayName: "Speakeasy Generated",
+  //   command: "node",
+  //   args: [
+  //     "/Users/cjav_dev/repos/mcp-code-mode-eval/se-stripe-mcp/stripe-mcp-typescript/bin/mcp-server.js",
+  //     "start",
+  //     "--bearer-auth",
+  //     process.env.STRIPE_SECRET_KEY!,
+  //   ],
+  //   env: {},
+  //   capabilities: { write: false },
+  //   mode: "tools",
+  // },
+  // {
+  //   id: "open-mcp-stripe",
+  //   displayName: "OpenAPI Generated",
+  //   command: "node",
+  //   args: [
+  //     "/Users/cjav_dev/repos/mcp-code-mode-eval/openapi-mcp-generator-stripe/server/build/index.js",
+  //   ],
+  //   env: {
+  //     BEARER_TOKEN_BEARERAUTH: process.env.STRIPE_SECRET_KEY!,
+  //   },
+  //   capabilities: { write: true },
+  //   mode: "tools",
+  // },
 ];
 
 export function getServer(id: string): ServerConfig {
