@@ -3,8 +3,7 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "eval:e2e": "npx braintrust eval src/evals/e2e.eval.ts",
-    "eval:direct": "npx braintrust eval src/evals/direct.eval.ts",
+    "eval": "npx braintrust eval src/evals/e2e.eval.ts",
     "eval:all": "npx braintrust eval src/evals/run-all.ts"
   },
   "dependencies": {

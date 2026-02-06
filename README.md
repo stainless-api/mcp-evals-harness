@@ -23,9 +23,11 @@ brew install hashicorp/tap/terraform
 
 Seed data into the account
 
+> Note: We use `-parallelism=3` to avoid Stripe API rate limits
+
 ```sh
 STRIPE_SECRET_KEY=sk_test_abc123
 terraform plan
-terraform apply
+terraform apply -parallelism=3 
 ```
 

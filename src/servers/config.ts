@@ -7,7 +7,6 @@ export interface ServerConfig {
   command: string;
   args: string[];
   env: Record<string, string>;
-  account: "A" | "B";
   capabilities: { write: boolean };
   mode: "tools" | "code";
 }
@@ -21,7 +20,6 @@ export const SERVERS: ServerConfig[] = [
     env: {
       STRIPE_SECRET_KEY: process.env.STRIPE_SECRET_KEY!,
     },
-    account: "A",
     capabilities: { write: true },
     mode: "tools",
   },
@@ -36,7 +34,6 @@ export const SERVERS: ServerConfig[] = [
       STRIPE_SECRET_KEY: process.env.STRIPE_SECRET_KEY!,
       STAINLESS_API_KEY: process.env.STAINLESS_API_KEY!,
     },
-    account: "A",
     capabilities: { write: true },
     mode: "code",
   },
@@ -51,7 +48,6 @@ export const SERVERS: ServerConfig[] = [
       process.env.STRIPE_SECRET_KEY!,
     ],
     env: {},
-    account: "B",
     capabilities: { write: false },
     mode: "tools",
   },
@@ -65,7 +61,6 @@ export const SERVERS: ServerConfig[] = [
     env: {
       BEARER_TOKEN_BEARERAUTH: process.env.STRIPE_SECRET_KEY!,
     },
-    account: "B",
     capabilities: { write: true },
     mode: "tools",
   },
