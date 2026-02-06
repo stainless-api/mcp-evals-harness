@@ -18,15 +18,6 @@ export function scoreCompleteness(
     }
   }
 
-  // Check jsonFields — look for field names in the output
-  if (expected.jsonFields && expected.jsonFields.length > 0) {
-    for (const field of expected.jsonFields) {
-      // Match "field": or "field" : patterns
-      const pattern = new RegExp(`"${field}"\\s*:`, "i");
-      checks.push(pattern.test(output));
-    }
-  }
-
   // Check fieldValues
   if (expected.fieldValues) {
     for (const [key, value] of Object.entries(expected.fieldValues)) {
