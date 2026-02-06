@@ -30,4 +30,3 @@ STRIPE_SECRET_KEY=sk_test_abc123
 terraform plan
 terraform apply -parallelism=3 
 ```
-
