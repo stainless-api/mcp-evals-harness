@@ -22,6 +22,8 @@ export interface TestCase {
   requiredCapabilities?: { write?: boolean };
 }
 
+const randomId = Math.random().toString(36).substring(2, 8);
+
 export const TEST_CASES: TestCase[] = [
   {
     id: "list-customers",
@@ -61,7 +63,7 @@ export const TEST_CASES: TestCase[] = [
   },
   {
     id: "find-customer-by-employer",
-    prompt: "Who works at Sable Tech and what's their email? Just return the customer's name and email address.",
+    prompt: "Who works on the CI pipeline at Sable Tech and what's their email? Just return the customer's name and email address.",
     expected: {
       description: "Returns Fang Nguyen and their email because they are the only customer with employer Sable Tech",
       containsText: ["Fang Nguyen", "fang.nguyen@sable.cloud"],
@@ -79,6 +81,97 @@ export const TEST_CASES: TestCase[] = [
     expected: {
       description: "Reports the before count, creates a 25.5% off one-time-use coupon named EVAL25 with full JSON data, reports the after count, and confirms the count increased by 1.",
       containsText: ["EVAL25", "once", "25.5%"],
+    },
+    tags: ["write", "create"],
+    requiredCapabilities: { write: true },
+  },
+  {
+    id: "create-invoice",
+    prompt: `
+      Create an invoice for Charlotte Souza at SynapseIO to charge them 
+      for a data migration service and white glove onboarding.
+
+      Return the invoice including the total and the line items.
+    `,
+    expected: {
+      description: `
+        Creates a draft invoice for the customer with email charlotte.souza@synapseio.com 
+        which includes the data migration product, and returns the invoice details including the line items.
+        
+        The data migration service is $5000 USD and 
+        The white glove onboarding is $2500 USD
+
+        The total should be $7500 USD.
+
+        The output should include detail about the line items and the total amount.
+      `,
+      containsText: ["invoice", "7500"],
+    },
+    tags: ["write", "create"],
+    requiredCapabilities: { write: true },
+  },
+  {
+    id: "find-subscribers",
+    prompt: `
+      Which users are subscribed to the starter plan in my Stripe account? Just return the name of the user and the subscription status.
+    `,
+    expected: {
+      description: `
+        Returns Noah Patel who is the only user subscribed to the starter plan in this Stripe account, along with their subscription status which is active. 
+      `,
+      containsText: ["Noah Patel", "active"],
+    },
+    tags: ["read"],
+  },
+  {
+    id: "count-disputes",
+    prompt: `
+      Count the number of disputes in my Stripe account and just return the number of disputes and the sum of the amounts of their related payments.
+    `,
+    expected: {
+      description: `
+        Returns the number of disputes and the sum of their related payment amounts.
+      `,
+      containsText: ["disputes", "amount"],
+    },
+    tags: ["read"],
+  },
+  {
+    id: "breakdown-of-revenue-by-product",
+    prompt: `
+      What is the breakdown of revenue by product in my Stripe account? Just return the product names and their total revenue.
+    `,
+    expected: {
+      description: `
+        Returns the product names and their total revenue.
+      `,
+      containsText: ["revenue", "product"],
+    },
+    tags: ["read"],
+  },
+  {
+    id: "customers-with-disputes",
+    prompt: `
+      Which customers have had disputes in my Stripe account? Just return the customer's name, email, and the number of disputes they've had.
+    `,
+    expected: {
+      description: `
+        Returns the customers who have had disputes along with their name, email, and the number of disputes they've had.
+      `,
+      containsText: ["disputes", "customer", "email"],
+    },
+    tags: ["read"],
+  },
+  {
+    id: "create-payment-link",
+    prompt: `
+      Create a payment link for the Team Training Workshop product that charges $1500 USD. The payment link should be reusable and should collect the customer's email address. Return the URL of the payment link.
+    `,
+    expected: {
+      description: `
+        Creates a reusable payment link for the Team Training Workshop product that charges $1500 USD and collects the customer's email address. Returns the URL of the payment link.
+      `,
+      containsText: ["buy.stripe.com/test_", "Team Training Workshop", "1500"],
     },
     tags: ["write", "create"],
     requiredCapabilities: { write: true },
