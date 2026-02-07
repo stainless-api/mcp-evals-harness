@@ -1,7 +1,7 @@
 import { Eval, currentSpan } from "braintrust";
 import { Factuality } from "autoevals";
 import { config } from "dotenv";
-config();
+config({ path: "./.env" });
 
 import { SERVERS } from "../servers/config.js";
 import { getTestCasesForServer } from "../dataset/test-cases.js";

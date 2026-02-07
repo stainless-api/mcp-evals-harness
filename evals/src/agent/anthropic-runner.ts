@@ -15,7 +15,8 @@ import type {
   ToolCallRecord,
 } from "./types.js";
 
-const DEFAULT_MODEL = "claude-sonnet-4-5-20250929";
+// const DEFAULT_MODEL = "claude-sonnet-4-5-20250929";
+const DEFAULT_MODEL = "claude-opus-4-6";
 const DEFAULT_MAX_TURNS = 10;
 const DEFAULT_SYSTEM_PROMPT =
   "You are a helpful assistant with access to Stripe API tools. " +
