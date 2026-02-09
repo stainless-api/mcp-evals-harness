@@ -1,5 +1,21 @@
 import type { ServerConfig } from "../suite.js";
 
+export type Provider = "anthropic" | "openai";
+
+export interface ModelConfig {
+  alias: string;
+  modelId: string;
+  provider: Provider;
+  displayName: string;
+  betas?: string[];
+  /**
+   * When true, the runner should enable tool search (defer-loading MCP tools)
+   * and code execution capabilities via the advanced-tool-use beta.
+   */
+  codeMode?: boolean;
+  providerOptions?: Record<string, unknown>;
+}
+
 export interface ToolCallRecord {
   name: string;
   args: Record<string, unknown>;
@@ -20,7 +36,7 @@ export interface AgentResult {
 
 export interface AgentRunnerOptions {
   maxTurns?: number;
-  model?: string;
+  model?: ModelConfig;
   systemPrompt?: string;
 }
 

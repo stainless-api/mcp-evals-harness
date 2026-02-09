@@ -8,6 +8,7 @@ import type {
 } from "@anthropic-ai/claude-agent-sdk";
 import { currentSpan } from "braintrust";
 import type { ServerConfig } from "../suite.js";
+import type { ModelConfig } from "./types.js";
 import type {
   AgentResult,
   AgentRunner,
@@ -15,8 +16,13 @@ import type {
   ToolCallRecord,
 } from "./types.js";
 
-// const DEFAULT_MODEL = "claude-sonnet-4-5-20250929";
-const DEFAULT_MODEL = "claude-opus-4-6";
+const DEFAULT_MODEL: ModelConfig = {
+  alias: "opus",
+  modelId: "claude-opus-4-6",
+  provider: "anthropic",
+  displayName: "Claude Opus 4.6",
+};
+
 const DEFAULT_MAX_TURNS = 10;
 const DEFAULT_SYSTEM_PROMPT =
   "You are a helpful assistant with access to API tools via MCP. " +
@@ -28,7 +34,7 @@ export class AnthropicRunner implements AgentRunner {
     serverConfig: ServerConfig,
     options?: AgentRunnerOptions,
   ): Promise<AgentResult> {
-    const model = options?.model ?? DEFAULT_MODEL;
+    const modelConfig = options?.model ?? DEFAULT_MODEL;
     const maxTurns = options?.maxTurns ?? DEFAULT_MAX_TURNS;
     const systemPrompt = options?.systemPrompt ?? DEFAULT_SYSTEM_PROMPT;
     const startTime = Date.now();
@@ -41,27 +47,36 @@ export class AnthropicRunner implements AgentRunner {
       { name: string; args: Record<string, unknown>; startTime: number }
     >();
 
+    // Build query options
+    const queryOptions: Record<string, unknown> = {
+      model: modelConfig.modelId,
+      maxTurns,
+      systemPrompt,
+      permissionMode: "bypassPermissions",
+      allowDangerouslySkipPermissions: true,
+      persistSession: false,
+      pathToClaudeCodeExecutable: process.env.CLAUDE_CODE_PATH ?? "/Users/cjav_dev/.local/bin/claude",
+      tools: [] as string[],
+      mcpServers: {
+        [serverConfig.id]: {
+          type: "stdio",
+          command: serverConfig.command,
+          args: serverConfig.args,
+          env: serverConfig.env,
+        },
+      },
+      allowedTools: [`mcp__${serverConfig.id}__*`],
+    };
+
+    // Pass betas if the model config specifies them (cast through as any
+    // since SdkBeta is narrowly typed to 'context-1m-2025-08-07')
+    if (modelConfig.betas?.length) {
+      queryOptions.betas = modelConfig.betas;
+    }
+
     const result = query({
       prompt,
-      options: {
-        model,
-        maxTurns,
-        systemPrompt,
-        permissionMode: "bypassPermissions",
-        allowDangerouslySkipPermissions: true,
-        persistSession: false,
-        pathToClaudeCodeExecutable: process.env.CLAUDE_CODE_PATH ?? "/Users/cjav_dev/.local/bin/claude",
-        tools: [], // Disable all built-in tools
-        mcpServers: {
-          [serverConfig.id]: {
-            type: "stdio",
-            command: serverConfig.command,
-            args: serverConfig.args,
-            env: serverConfig.env,
-          },
-        },
-        allowedTools: [`mcp__${serverConfig.id}__*`],
-      },
+      options: queryOptions as any,
     });
 
     for await (const message of result) {
@@ -167,7 +182,7 @@ export class AnthropicRunner implements AgentRunner {
             outputTokens: success.usage.output_tokens,
             turnCount: success.num_turns,
             costUsd: success.total_cost_usd,
-            model,
+            model: modelConfig.modelId,
           };
         } else {
           // Error result (max turns, budget exceeded, execution error)
@@ -180,7 +195,7 @@ export class AnthropicRunner implements AgentRunner {
             outputTokens: error.usage.output_tokens,
             turnCount: error.num_turns,
             costUsd: error.total_cost_usd,
-            model,
+            model: modelConfig.modelId,
           };
         }
       }
@@ -195,7 +210,7 @@ export class AnthropicRunner implements AgentRunner {
       outputTokens: 0,
       turnCount: 0,
       costUsd: 0,
-      model,
+      model: modelConfig.modelId,
     };
   }
 }
