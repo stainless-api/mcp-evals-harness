@@ -7,7 +7,7 @@ import type {
   SDKSystemMessage,
 } from "@anthropic-ai/claude-agent-sdk";
 import { currentSpan } from "braintrust";
-import type { ServerConfig } from "../servers/config.js";
+import type { ServerConfig } from "../suite.js";
 import type {
   AgentResult,
   AgentRunner,
@@ -19,9 +19,8 @@ import type {
 const DEFAULT_MODEL = "claude-opus-4-6";
 const DEFAULT_MAX_TURNS = 10;
 const DEFAULT_SYSTEM_PROMPT =
-  "You are a helpful assistant with access to Stripe API tools. " +
-  "Use the available MCP tools to answer questions about the Stripe account. " +
-  "Always provide complete, accurate answers based on the actual API data.";
+  "You are a helpful assistant with access to API tools via MCP. " +
+  "Use the available tools to answer questions accurately based on actual data.";
 
 export class AnthropicRunner implements AgentRunner {
   async run(
