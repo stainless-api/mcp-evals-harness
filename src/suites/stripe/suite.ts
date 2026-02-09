@@ -1,11 +1,13 @@
 import { config } from "dotenv";
-import type { SuiteConfig } from "../suite.js";
+import type { SuiteConfig } from "../../suite.js";
 config();
 
 const randomId = Math.random().toString(36).substring(2, 8);
 
 const suite: SuiteConfig = {
-  projectName: "cjs-stripe-test",
+  projectName: "stainless-stripe-evals",
+
+  setup: "stripe fixtures src/suites/stripe/fixtures.json",
 
   systemPrompt:
     "You are a helpful assistant with access to Stripe API tools. " +

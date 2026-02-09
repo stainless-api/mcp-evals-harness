@@ -1,18 +1,22 @@
 # MCP Evals Harness
 
-A generic framework for evaluating MCP server implementations side-by-side using [Braintrust](https://braintrust.dev). Ships with a Stripe API eval suite, but can be extended to benchmark any MCP server.
+A generic framework for evaluating MCP server implementations side-by-side using [Braintrust](https://braintrust.dev). Ships with Stripe and Increase eval suites, but can be extended to benchmark any MCP server.
 
 ## How It Works
 
 The harness runs an agent loop (Claude Code via the Agent SDK) against each MCP server in a suite, then scores responses on **factuality**, **completeness**, and **efficiency** via Braintrust.
 
-All domain-specific content — servers, test cases, system prompt, project name — lives in a **suite config** file. The generic infrastructure (agent runner, scorers, eval loop) is shared across suites.
+All domain-specific content — servers, test cases, system prompt, project name — lives in a **suite config** directory. The generic infrastructure (agent runner, scorers, eval loop) is shared across suites.
 
 ```
-evals/src/
+src/
   suite.ts                        # SuiteConfig type + Zod schema, loadSuite(), getTestCasesForServer()
   suites/
-    stripe.ts                     # Stripe servers, 12 test cases, system prompt
+    stripe/
+      suite.ts                    # Stripe servers, 12 test cases, system prompt
+      fixtures.json               # Stripe CLI fixtures for seeding test data
+    increase/
+      suite.ts                    # Increase servers, 30 test cases, system prompt
   evals/
     e2e.eval.ts                   # Generic eval loop — loads suite via EVAL_SUITE env var
     run-all.ts                    # Re-exports e2e.eval.ts
@@ -40,10 +44,10 @@ Seed data into the account using the Stripe CLI:
 
 ```sh
 stripe login
-stripe fixtures ./fixtures.json
+stripe fixtures src/suites/stripe/fixtures.json
 ```
 
-Create `./evals/.env` with these environment variables:
+Create `./.env` with these environment variables:
 
 ```yaml
 # Braintrust
@@ -57,16 +61,18 @@ STRIPE_SECRET_KEY=
 
 # Stainless (for stainless-stripe server to fetch docs)
 STAINLESS_API_KEY=
+
+# Increase
+INCREASE_API_KEY=
 ```
 
 ```sh
-cp ./evals/.env.example ./evals/.env
+cp .env.example .env
 ```
 
 ## Run
 
 ```sh
-cd evals
 npm install
 
 # Run the default suite (stripe)
@@ -75,20 +81,22 @@ npm run eval
 # Run a specific suite
 EVAL_SUITE=stripe npm run eval
 
-# Convenience shortcut for Stripe
+# Convenience shortcuts
 npm run eval:stripe
+npm run eval:increase
 ```
 
 ## Adding a New Suite
 
-1. Create a suite config at `evals/src/suites/<name>.ts` that default-exports a `SuiteConfig`:
+1. Create a suite directory at `src/suites/<name>/` with a `suite.ts` that default-exports a `SuiteConfig`:
 
 ```typescript
-import type { SuiteConfig } from "../suite.js";
+import type { SuiteConfig } from "../../suite.js";
 
 const suite: SuiteConfig = {
   projectName: "my-project",          // Braintrust project name
   systemPrompt: "You are a helpful assistant with access to ...",
+  setup: "my-cli setup-command",      // Optional: command to seed test data
   servers: [
     {
       id: "my-server",
@@ -116,9 +124,11 @@ const suite: SuiteConfig = {
 export default suite;
 ```
 
-2. Set the required environment variables for your servers.
+2. Optionally add supporting files (e.g. `fixtures.json`) in the same directory.
 
-3. Run:
+3. Set the required environment variables for your servers.
+
+4. Run:
 
 ```sh
 EVAL_SUITE=<name> npm run eval

@@ -4,90 +4,67 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Purpose
 
-This repo evaluates four different MCP server implementations for the Stripe API side-by-side. The goal is to benchmark them using Braintrust evals to compare tool quality, accuracy, and developer experience.
-
-## MCP Servers Under Evaluation
-
-| Server | Key in `.mcp.json` | Transport | Approach |
-|--------|-------------------|-----------|----------|
-| **Official Stripe MCP** | `stripe-official` | stdio (`npx @stripe/mcp`) | First-party, all tools enabled |
-| **Stainless-generated** | `stainless-stripe` | stdio (node) | "Code Mode" — exposes 2 tools (docs search + code execution sandbox) instead of one tool per endpoint |
-| **Speakeasy-generated** | `se-stripe` | stdio (node) | Full generated SDK with MCP wrapper, one tool per endpoint, CLI-driven |
-| **OpenAPI-generated** | `open-mcp-stripe` | stdio (node) | Direct OpenAPI-to-MCP generation, axios-based HTTP calls, one tool per endpoint |
-
-Additional servers in `.mcp.json`: `ted-lasso-api` (Believe API, unrelated), `braintrust` (HTTP MCP for eval framework).
+This repo is a generic framework for evaluating MCP server implementations side-by-side using Braintrust evals. It ships with Stripe and Increase eval suites but can be extended to benchmark any MCP server.
 
 ## Architecture
 
-### Key Differences Between Servers
+The harness runs an agent loop (Claude Code via the Agent SDK) against each MCP server defined in a suite config, then scores responses on factuality, completeness, and efficiency.
 
-- **Official (`stripe-official`)**: Runs via npx, no local source code. Tools like `create_customer`, `list_products`, etc.
-- **Stainless (`stainless-stripe`)**: Source in `stripe-minimal-typescript/`. Uses a fundamentally different pattern — the agent writes TypeScript code against the Stainless SDK, which runs in an isolated sandbox. Two tools: `search_docs` and `execute`.
-- **Speakeasy (`se-stripe`)**: Source in `se-stripe-mcp/stripe-mcp-typescript/`. ~650 generated model files. Supports stdio and SSE transports. Individual tool files in `src/mcp-server/tools/`.
-- **OpenAPI (`open-mcp-stripe`)**: Source in `openapi-mcp-generator-stripe/server/`. Single `src/index.ts` (~60K bytes) with 22 tool definitions. Uses axios for HTTP.
+### Suite System
 
-### Terraform Test Data
+Each suite lives in `src/suites/<name>/` as a directory containing:
+- `suite.ts` — default-exports a `SuiteConfig` with servers, test cases, system prompt, and project name
+- Optional supporting files (e.g. `fixtures.json` for test data seeding)
 
-`main.tf` provisions 500 Stripe test customers with realistic data (names, addresses, metadata like company/plan/segment). Uses Stripe Terraform provider v0.1.3. This seeds the Stripe accounts with data for evaluation queries.
+The `SuiteConfig` schema (`src/suite.ts`) includes:
+- `projectName` — Braintrust project name
+- `systemPrompt` — prompt given to the agent
+- `servers[]` — MCP server configs (command, args, env, capabilities, mode)
+- `testCases[]` — prompts with expected results (description, containsText, fieldValues)
+- `setup` — optional shell command to seed test data (e.g. `stripe fixtures ...`)
 
-### Credentials
+### Agent Runner
 
-All Stripe API keys and server configs live in `.mcp.json` (gitignored). Each server may use a different Stripe account. The Stainless server also requires a `STAINLESS_API_KEY`.
+`src/agent/anthropic-runner.ts` uses the Claude Agent SDK (`@anthropic-ai/claude-agent-sdk`) to run an agent loop with MCP servers attached. It streams messages, tracks tool calls, and returns structured `AgentResult` objects.
+
+### Scorers
+
+- **Completeness** (`src/scorers/completeness.ts`): Heuristic — checks expected text strings and field values in output
+- **Efficiency** (`src/scorers/efficiency.ts`): Heuristic — penalizes high turn count and token usage
+- **Correctness** (`src/scorers/correctness.ts`): LLM-as-judge factuality via autoevals
+
+### Eval Loop
+
+`src/evals/e2e.eval.ts` loads a suite via `EVAL_SUITE` env var, iterates over servers, and runs each test case through the agent runner. Results are scored and logged to Braintrust.
 
 ## Build & Run
 
-### OpenAPI-generated server
 ```bash
-cd openapi-mcp-generator-stripe/server
 npm install
-npm run build          # tsc && chmod 755 build/index.js
-node build/index.js    # requires BEARER_TOKEN_BEARERAUTH env var
+
+# Run the default suite (stripe)
+npm run eval
+
+# Run a specific suite
+EVAL_SUITE=stripe npm run eval
+EVAL_SUITE=increase npm run eval
+
+# Convenience shortcuts
+npm run eval:stripe
+npm run eval:increase
 ```
 
-### Speakeasy-generated server
-```bash
-cd se-stripe-mcp/stripe-mcp-typescript
-bun install
-bun run build
-node bin/mcp-server.js start --bearer-auth <STRIPE_KEY>
-```
+## Credentials
 
-### Stainless-generated server
-```bash
-cd stripe-minimal-typescript
-pnpm install           # uses pnpm workspaces
-pnpm run build         # or: ./scripts/build
-node packages/mcp-server/dist/index.js  # requires STRIPE_SECRET_KEY env var
-```
-
-### Official Stripe MCP
-```bash
-npx -y @stripe/mcp --tools=all  # requires STRIPE_SECRET_KEY env var
-```
-
-### Terraform (seed test data)
-```bash
-terraform init
-terraform apply        # creates 500 test customers
-```
-
-## Package Managers
-
-- `stripe-minimal-typescript`: **pnpm** (v10.24.0, workspace monorepo)
-- `se-stripe-mcp`: **bun**
-- `openapi-mcp-generator-stripe`: **npm**
-
-## Testing
-
-- `stripe-minimal-typescript`: Jest (`pnpm test` or `./scripts/test`)
-- `openapi-mcp-generator-stripe`: Jest config present (`jest.config.js`)
-- `se-stripe-mcp`: Vitest config present
+All API keys are configured via `.env` (gitignored). See `.env.example` for the full list.
 
 ## Key File Locations
 
-- `.mcp.json` — All MCP server connection configs (gitignored, contains secrets)
-- `main.tf` — Terraform config for 500 test customers
-- `openapi-mcp-generator-stripe/server/src/index.ts` — Entire OpenAPI MCP server in one file
-- `se-stripe-mcp/stripe-mcp-typescript/src/mcp-server/tools/` — Individual Speakeasy tool implementations
-- `stripe-minimal-typescript/packages/mcp-server/` — Stainless MCP server package (includes Dockerfile)
-- `stripe-minimal-typescript/api.md` — Full Stainless SDK API documentation
+- `src/suite.ts` — SuiteConfig type, Zod schema, loadSuite(), getTestCasesForServer()
+- `src/suites/stripe/suite.ts` — Stripe eval suite (12 test cases, 2 servers)
+- `src/suites/stripe/fixtures.json` — Stripe CLI fixtures for seeding 500 test customers
+- `src/suites/increase/suite.ts` — Increase eval suite (30 test cases)
+- `src/evals/e2e.eval.ts` — Generic eval loop
+- `src/agent/anthropic-runner.ts` — Claude Code agent runner
+- `src/agent/types.ts` — AgentRunner interface, AgentResult, ToolCallRecord
+- `.env.example` — Required environment variables

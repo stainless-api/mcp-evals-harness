@@ -1,9 +1,9 @@
 import { config } from "dotenv";
-import type { SuiteConfig } from "../suite.js";
+import type { SuiteConfig } from "../../suite.js";
 config();
 
 const suite: SuiteConfig = {
-  projectName: "increase-mcp-evals",
+  projectName: "stainless-increase-evals",
 
   systemPrompt:
     "You are a helpful assistant with access to Increase banking API tools. " +
