@@ -1,5 +1,5 @@
 import { config } from "dotenv";
-import type { SuiteConfig } from "../../suite.js";
+import type { SuiteConfig } from "../suite.js";
 config();
 
 const randomId = Math.random().toString(36).substring(2, 8);

@@ -12,8 +12,7 @@ All domain-specific content — servers, test cases, system prompt, project name
 evals/src/
   suite.ts                        # SuiteConfig type + Zod schema, loadSuite(), getTestCasesForServer()
   suites/
-    stripe/
-      suite.ts                    # Stripe servers, 12 test cases, system prompt
+    stripe.ts                     # Stripe servers, 12 test cases, system prompt
   evals/
     e2e.eval.ts                   # Generic eval loop — loads suite via EVAL_SUITE env var
     run-all.ts                    # Re-exports e2e.eval.ts
@@ -82,10 +81,10 @@ npm run eval:stripe
 
 ## Adding a New Suite
 
-1. Create a suite config at `evals/src/suites/<name>/suite.ts` that default-exports a `SuiteConfig`:
+1. Create a suite config at `evals/src/suites/<name>.ts` that default-exports a `SuiteConfig`:
 
 ```typescript
-import type { SuiteConfig } from "../../suite.js";
+import type { SuiteConfig } from "../suite.js";
 
 const suite: SuiteConfig = {
   projectName: "my-project",          // Braintrust project name
