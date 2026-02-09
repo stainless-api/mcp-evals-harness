@@ -1,4 +1,4 @@
-import type { ExpectedResult } from "../dataset/test-cases.js";
+import type { ExpectedResult } from "../suite.js";
 
 /**
  * Heuristic scorer: checks whether the output contains expected text strings
