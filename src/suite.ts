@@ -46,7 +46,7 @@ export type SuiteConfig = z.infer<typeof SuiteConfigSchema>;
 
 export async function loadSuite(name?: string): Promise<SuiteConfig> {
   const suiteName = name ?? process.env.EVAL_SUITE ?? "stripe";
-  const mod = await import(`./suites/${suiteName}/suite.js`);
+  const mod = await import(`./suites/${suiteName}.js`);
   const raw = mod.default ?? mod;
   return SuiteConfigSchema.parse(raw);
 }
