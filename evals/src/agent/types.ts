@@ -1,4 +1,4 @@
-import type { ServerConfig } from "../servers/config.js";
+import type { ServerConfig } from "../suite.js";
 
 export interface ToolCallRecord {
   name: string;

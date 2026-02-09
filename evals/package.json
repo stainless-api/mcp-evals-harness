@@ -1,10 +1,11 @@
 {
-  "name": "stripe-mcp-evals",
+  "name": "mcp-evals-harness",
   "version": "2.0.0",
   "type": "module",
   "scripts": {
     "eval": "npx braintrust eval src/evals/e2e.eval.ts",
-    "eval:all": "npx braintrust eval src/evals/run-all.ts"
+    "eval:all": "npx braintrust eval src/evals/run-all.ts",
+    "eval:stripe": "EVAL_SUITE=stripe npx braintrust eval src/evals/e2e.eval.ts"
   },
   "dependencies": {
     "@anthropic-ai/claude-agent-sdk": "^0.2.34",
