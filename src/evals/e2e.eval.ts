@@ -3,21 +3,21 @@ import { Factuality } from "autoevals";
 import { config } from "dotenv";
 config({ path: "./.env" });
 
-import { SERVERS } from "../servers/config.js";
-import { getTestCasesForServer } from "../dataset/test-cases.js";
+import { loadSuite, getTestCasesForServer } from "../suite.js";
 import { createRunner } from "../agent/index.js";
 import { scoreCompleteness } from "../scorers/completeness.js";
 import { scoreEfficiency } from "../scorers/efficiency.js";
-import type { TestCase } from "../dataset/test-cases.js";
+import type { TestCase } from "../suite.js";
 import type { RunnerType } from "../agent/index.js";
 
+const suite = await loadSuite();
 const runnerType = (process.env.AGENT_SDK ?? "anthropic") as RunnerType;
 const runner = createRunner(runnerType);
 
-for (const server of SERVERS) {
-  const testCases = getTestCasesForServer(server.capabilities);
+for (const server of suite.servers) {
+  const testCases = getTestCasesForServer(suite.testCases, server.capabilities);
 
-  Eval("cjs-stripe-test", {
+  Eval(suite.projectName, {
     experimentName: `e2e-${server.id}`,
     maxConcurrency: 2,
     metadata: {
@@ -41,7 +41,9 @@ for (const server of SERVERS) {
         },
       })),
     task: async (input) => {
-      const result = await runner.run(input.prompt, server);
+      const result = await runner.run(input.prompt, server, {
+        systemPrompt: suite.systemPrompt,
+      });
 
       // Log raw metrics to Braintrust
       currentSpan().log({
