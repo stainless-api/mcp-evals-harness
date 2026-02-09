@@ -5,7 +5,8 @@
   "scripts": {
     "eval": "npx braintrust eval src/evals/e2e.eval.ts",
     "eval:all": "npx braintrust eval src/evals/run-all.ts",
-    "eval:stripe": "EVAL_SUITE=stripe npx braintrust eval src/evals/e2e.eval.ts"
+    "eval:stripe": "EVAL_SUITE=stripe npx braintrust eval src/evals/e2e.eval.ts",
+    "eval:increase": "EVAL_SUITE=increase npx braintrust eval src/evals/e2e.eval.ts"
   },
   "dependencies": {
     "@anthropic-ai/claude-agent-sdk": "^0.2.34",
