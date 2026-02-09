@@ -4,9 +4,11 @@ A generic framework for evaluating MCP server implementations side-by-side using
 
 ## How It Works
 
-The harness runs an agent loop (Claude Code via the Agent SDK) against each MCP server in a suite, then scores responses on **factuality**, **completeness**, and **efficiency** via Braintrust.
+The harness runs an agent loop against each MCP server in a suite, then scores responses on **factuality**, **completeness**, and **efficiency** via Braintrust.
 
-All domain-specific content — servers, test cases, system prompt, project name — lives in a **suite config** directory. The generic infrastructure (agent runner, scorers, eval loop) is shared across suites.
+Three agent runners are available. Standard Anthropic models use the Claude Agent SDK. Code-mode models (e.g. `sonnet-code`, `opus-code`) use the raw Anthropic SDK with `defer_loading` on MCP tools, `tool_search`, and `code_execution` via the advanced-tool-use beta. OpenAI models use the OpenAI SDK. The runner factory selects the right one based on the model config.
+
+All domain-specific content — servers, test cases, system prompt, project name — lives in a **suite config** directory. The generic infrastructure (agent runners, scorers, eval loop) is shared across suites.
 
 ```
 src/
@@ -21,9 +23,12 @@ src/
     e2e.eval.ts                   # Generic eval loop — loads suite via EVAL_SUITE env var
     run-all.ts                    # Re-exports e2e.eval.ts
   agent/
-    anthropic-runner.ts           # Claude Code agent runner
-    types.ts                      # AgentRunner interface, AgentResult, ToolCallRecord
-    index.ts                      # Runner factory
+    anthropic-runner.ts           # Agent SDK runner (standard Anthropic models)
+    anthropic-code-runner.ts      # Raw SDK runner (code-mode models — defer_loading, tool_search, code_execution)
+    openai-runner.ts              # OpenAI runner (GPT / o-series)
+    models.ts                     # Model registry + resolveModel()
+    types.ts                      # AgentRunner, AgentResult, ToolCallRecord, ModelConfig, Provider
+    index.ts                      # Runner factory + re-exports
   scorers/
     completeness.ts               # Heuristic: checks expected text/fields in output
     efficiency.ts                 # Heuristic: penalizes high turn count / token usage

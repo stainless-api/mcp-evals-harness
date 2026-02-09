@@ -23,9 +23,15 @@ The `SuiteConfig` schema (`src/suite.ts`) includes:
 - `testCases[]` — prompts with expected results (description, containsText, fieldValues)
 - `setup` — optional shell command to seed test data (e.g. `stripe fixtures ...`)
 
-### Agent Runner
+### Agent Runners
 
-`src/agent/anthropic-runner.ts` uses the Claude Agent SDK (`@anthropic-ai/claude-agent-sdk`) to run an agent loop with MCP servers attached. It streams messages, tracks tool calls, and returns structured `AgentResult` objects.
+All runner code, types, and the model registry live in `src/agent/`.
+
+- **`AnthropicRunner`** (`anthropic-runner.ts`) — Uses the Claude Agent SDK (`@anthropic-ai/claude-agent-sdk`) for standard Anthropic models.
+- **`AnthropicCodeRunner`** (`anthropic-code-runner.ts`) — Uses the raw `@anthropic-ai/sdk` for `-code` model aliases (e.g. `sonnet-code`, `opus-code`). Enables `defer_loading` on MCP tools, `tool_search`, and `code_execution` via the `advanced-tool-use` beta.
+- **`OpenAIRunner`** (`openai-runner.ts`) — Uses the OpenAI SDK for GPT/o-series models.
+
+The `createRunner(model)` factory in `src/agent/index.ts` dispatches to the correct runner based on `provider` and `codeMode`.
 
 ### Scorers
 
@@ -65,6 +71,10 @@ All API keys are configured via `.env` (gitignored). See `.env.example` for the 
 - `src/suites/stripe/fixtures.json` — Stripe CLI fixtures for seeding 500 test customers
 - `src/suites/increase/suite.ts` — Increase eval suite (30 test cases)
 - `src/evals/e2e.eval.ts` — Generic eval loop
-- `src/agent/anthropic-runner.ts` — Claude Code agent runner
-- `src/agent/types.ts` — AgentRunner interface, AgentResult, ToolCallRecord
+- `src/agent/anthropic-runner.ts` — Agent SDK runner (standard models)
+- `src/agent/anthropic-code-runner.ts` — Raw SDK runner (code-mode models with defer_loading)
+- `src/agent/openai-runner.ts` — OpenAI runner
+- `src/agent/types.ts` — AgentRunner interface, AgentResult, ToolCallRecord, ModelConfig, Provider
+- `src/agent/models.ts` — Model registry and resolveModel()
+- `src/agent/index.ts` — Runner factory and re-exports
 - `.env.example` — Required environment variables

@@ -25,13 +25,14 @@ const suite: SuiteConfig = {
       },
       capabilities: { write: true },
       mode: "tools",
+      models: ["opus", "sonnet"],
     },
     {
       id: "stainless-stripe",
       displayName: "Stainless Code Mode",
       command: "node",
       args: [
-        "/Users/cjav_dev/repos/mcp-code-mode-eval/stripe-minimal-typescript/packages/mcp-server/dist/index.js",
+        "/Path/to/stripe-minimal-typescript/packages/mcp-server/dist/index.js",
       ],
       env: {
         STRIPE_SECRET_KEY: process.env.STRIPE_SECRET_KEY!,
@@ -39,34 +40,8 @@ const suite: SuiteConfig = {
       },
       capabilities: { write: true },
       mode: "code",
+      models: ["opus", "sonnet"],
     },
-    // {
-    //   id: "se-stripe",
-    //   displayName: "Speakeasy Generated",
-    //   command: "node",
-    //   args: [
-    //     "/Users/cjav_dev/repos/mcp-code-mode-eval/se-stripe-mcp/stripe-mcp-typescript/bin/mcp-server.js",
-    //     "start",
-    //     "--bearer-auth",
-    //     process.env.STRIPE_SECRET_KEY!,
-    //   ],
-    //   env: {},
-    //   capabilities: { write: false },
-    //   mode: "tools",
-    // },
-    // {
-    //   id: "open-mcp-stripe",
-    //   displayName: "OpenAPI Generated",
-    //   command: "node",
-    //   args: [
-    //     "/Users/cjav_dev/repos/mcp-code-mode-eval/openapi-mcp-generator-stripe/server/build/index.js",
-    //   ],
-    //   env: {
-    //     BEARER_TOKEN_BEARERAUTH: process.env.STRIPE_SECRET_KEY!,
-    //   },
-    //   capabilities: { write: true },
-    //   mode: "tools",
-    // },
   ],
 
   testCases: [

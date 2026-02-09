@@ -11,6 +11,7 @@ export const ServerConfigSchema = z.object({
   capabilities: z.object({ write: z.boolean() }),
   mode: z.enum(["tools", "code"]),
   transport: z.enum(["stdio", "sse", "http"]).optional(),
+  models: z.array(z.string()).optional(),
 });
 
 export const ExpectedResultSchema = z.object({

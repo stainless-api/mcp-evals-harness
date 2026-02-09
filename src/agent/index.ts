@@ -3,23 +3,24 @@ export type {
   AgentResult,
   AgentRunnerOptions,
   ToolCallRecord,
+  ModelConfig,
+  Provider,
 } from "./types.js";
 export { AnthropicRunner } from "./anthropic-runner.js";
+export { AnthropicCodeRunner } from "./anthropic-code-runner.js";
+export { OpenAIRunner } from "./openai-runner.js";
+export { resolveModel } from "./models.js";
 
-import type { AgentRunner } from "./types.js";
+import type { AgentRunner, ModelConfig } from "./types.js";
 import { AnthropicRunner } from "./anthropic-runner.js";
+import { AnthropicCodeRunner } from "./anthropic-code-runner.js";
+import { OpenAIRunner } from "./openai-runner.js";
 
-export type RunnerType = "anthropic" | "openai";
-
-export function createRunner(type: RunnerType = "anthropic"): AgentRunner {
-  switch (type) {
+export function createRunner(model: ModelConfig): AgentRunner {
+  switch (model.provider) {
     case "anthropic":
-      return new AnthropicRunner();
+      return model.codeMode ? new AnthropicCodeRunner() : new AnthropicRunner();
     case "openai":
-      throw new Error(
-        "OpenAI runner not yet implemented. Install @openai/agents and create openai-runner.ts.",
-      );
-    default:
-      throw new Error(`Unknown runner type: ${type}`);
+      return new OpenAIRunner();
   }
 }
