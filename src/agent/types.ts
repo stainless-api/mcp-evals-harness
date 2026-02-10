@@ -1,9 +1,10 @@
 import type { ServerConfig } from "../suite.js";
+import type { ModelAlias } from "./models.js";
 
 export type Provider = "anthropic" | "openai";
 
 export interface ModelConfig {
-  alias: string;
+  alias: ModelAlias;
   modelId: string;
   provider: Provider;
   displayName: string;
