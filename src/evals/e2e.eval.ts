@@ -21,9 +21,10 @@ import type { TestCase } from "../suite.js";
       const runner = createRunner(modelConfig);
 
       Eval(suite.projectName, {
-        experimentName: `e2e-${server.id}-${modelConfig.alias}`,
+        experimentName: `${server.id}-${modelConfig.alias}`,
         maxConcurrency: 2,
         metadata: {
+          name: `${server.id}-${modelConfig.alias}`,
           server: server.id,
           model: modelConfig.alias,
           provider: modelConfig.provider,
