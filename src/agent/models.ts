@@ -2,7 +2,21 @@ import type { ModelConfig } from "./types.js";
 
 const ADVANCED_TOOL_USE_BETA = "advanced-tool-use-2025-11-20";
 
-const MODEL_REGISTRY: Record<string, ModelConfig> = {
+export const MODEL_ALIASES = [
+  "opus",
+  "sonnet",
+  "haiku",
+  "sonnet-code",
+  "opus-code",
+  "gpt-4o",
+  "gpt-4o-mini",
+  "o3",
+  "o4-mini",
+] as const;
+
+export type ModelAlias = (typeof MODEL_ALIASES)[number];
+
+const MODEL_REGISTRY: Record<ModelAlias, ModelConfig> = {
   opus: {
     alias: "opus",
     modelId: "claude-opus-4-6",
@@ -63,13 +77,6 @@ const MODEL_REGISTRY: Record<string, ModelConfig> = {
   },
 };
 
-export function resolveModel(alias: string): ModelConfig {
-  const config = MODEL_REGISTRY[alias];
-  if (!config) {
-    const available = Object.keys(MODEL_REGISTRY).join(", ");
-    throw new Error(
-      `Unknown model alias "${alias}". Available: ${available}`,
-    );
-  }
-  return config;
+export function resolveModel(alias: ModelAlias): ModelConfig {
+  return MODEL_REGISTRY[alias];
 }

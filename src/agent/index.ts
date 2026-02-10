@@ -6,6 +6,8 @@ export type {
   ModelConfig,
   Provider,
 } from "./types.js";
+export type { ModelAlias } from "./models.js";
+export { MODEL_ALIASES } from "./models.js";
 export { AnthropicRunner } from "./anthropic-runner.js";
 export { AnthropicCodeRunner } from "./anthropic-code-runner.js";
 export { OpenAIRunner } from "./openai-runner.js";

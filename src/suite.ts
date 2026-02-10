@@ -1,6 +1,9 @@
 import { z } from "zod";
+import { MODEL_ALIASES } from "./agent/models.js";
 
 // ── Zod schemas ──
+
+const ModelAliasSchema = z.enum(MODEL_ALIASES);
 
 export const ServerConfigSchema = z.object({
   id: z.string(),
@@ -11,7 +14,7 @@ export const ServerConfigSchema = z.object({
   capabilities: z.object({ write: z.boolean() }),
   mode: z.enum(["tools", "code"]),
   transport: z.enum(["stdio", "sse", "http"]).optional(),
-  models: z.array(z.string()).optional(),
+  models: z.array(ModelAliasSchema).optional(),
 });
 
 export const ExpectedResultSchema = z.object({

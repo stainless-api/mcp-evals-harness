@@ -11,18 +11,40 @@ const suite: SuiteConfig = {
     "Always provide complete, accurate answers based on the actual API data.",
 
   servers: [
-    // TODO: Add Increase MCP server configs
-    // {
-    //   id: "increase-official",
-    //   displayName: "Increase MCP",
-    //   command: "node",
-    //   args: [],
-    //   env: {
-    //     INCREASE_API_KEY: process.env.INCREASE_API_KEY!,
-    //   },
-    //   capabilities: { write: false },
-    //   mode: "tools",
-    // },
+    {
+      id: "increase-stainless",
+      displayName: "Increase, Stainless-generated",
+      command: "node",
+      args: ["/Path/to/increase-mcp-demo-typescript/packages/mcp-server/dist/index.js"],
+      env: {
+        INCREASE_MCP_DEMO_API_KEY: process.env.INCREASE_API_KEY!,
+      },
+      capabilities: { write : false },
+      mode: "code", 
+    },
+    {
+      id: "increase-dynamic",
+      displayName: "Increase, Dynamic tools",
+      command: "node",
+      args: ["/Path/to/increase-mcp-demo-typescript/packages/mcp-server/dist/index.js", "--tools=dynamic"],
+      env: {
+        INCREASE_MCP_DEMO_API_KEY: process.env.INCREASE_API_KEY!,
+      },
+      capabilities: { write : false },
+      mode: "tools", 
+    },
+    {
+      id: "increase-anthropic-code-mode",
+      displayName: "Increase, Anthropic Code Mode",
+      command: "node",
+      args: ["/Path/to/increase-mcp-demo-typescript/packages/mcp-server/dist/index.js"],
+      env: {
+        INCREASE_MCP_DEMO_API_KEY: process.env.INCREASE_API_KEY!,
+      },
+      capabilities: { write : false },
+      mode: "tools", 
+      models: ["opus-code"],
+    },
   ],
 
   testCases: [
