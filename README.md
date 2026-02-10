@@ -11,9 +11,12 @@ Three agent runners are available. Standard Anthropic models use the Claude Agen
 All domain-specific content — servers, test cases, system prompt, project name — lives in a **suite config** directory. The generic infrastructure (agent runners, scorers, eval loop) is shared across suites.
 
 ```
+scripts/
+  generate-suite-index.ts         # Auto-generates src/suites/index.ts from discovered suite dirs
 src/
   suite.ts                        # SuiteConfig type + Zod schema, loadSuite(), getTestCasesForServer()
   suites/
+    index.ts                      # Auto-generated barrel (do not edit)
     stripe/
       suite.ts                    # Stripe servers, 12 test cases, system prompt
       fixtures.json               # Stripe CLI fixtures for seeding test data
