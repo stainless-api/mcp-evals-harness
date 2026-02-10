@@ -1,3 +1,5 @@
+import os from "os";
+import path from "path";
 import { query } from "@anthropic-ai/claude-agent-sdk";
 import type {
   SDKMessage,
@@ -55,7 +57,7 @@ export class AnthropicRunner implements AgentRunner {
       permissionMode: "bypassPermissions",
       allowDangerouslySkipPermissions: true,
       persistSession: false,
-      pathToClaudeCodeExecutable: process.env.CLAUDE_CODE_PATH ?? "/Users/cjav_dev/.local/bin/claude",
+      pathToClaudeCodeExecutable: process.env.CLAUDE_CODE_PATH ?? path.join(os.homedir(), ".local", "bin", "claude"),
       tools: [] as string[],
       mcpServers: {
         [serverConfig.id]: {
@@ -66,6 +68,14 @@ export class AnthropicRunner implements AgentRunner {
         },
       },
       allowedTools: [`mcp__${serverConfig.id}__*`],
+      disallowedTools: [
+        "Read", "Write", "Edit", "NotebookEdit",
+        "Glob", "Grep",
+        "Bash",
+        "WebFetch", "WebSearch",
+        "Task", "TodoRead", "TodoWrite",
+      ],
+      extraArgs: { "strict-mcp-config": null },
     };
 
     // Pass betas if the model config specifies them (cast through as any

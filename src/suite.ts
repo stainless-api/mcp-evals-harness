@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { MODEL_ALIASES } from "./agent/models.js";
+import suiteModules from "./suites/index.js";
 
 // ── Zod schemas ──
 
@@ -50,8 +51,12 @@ export type SuiteConfig = z.infer<typeof SuiteConfigSchema>;
 
 export async function loadSuite(name?: string): Promise<SuiteConfig> {
   const suiteName = name ?? process.env.EVAL_SUITE ?? "stripe";
-  const mod = await import(`./suites/${suiteName}/suite.js`);
-  const raw = mod.default ?? mod;
+  const raw = suiteModules[suiteName];
+  if (!raw) {
+    throw new Error(
+      `Unknown suite "${suiteName}". Available: ${Object.keys(suiteModules).join(", ")}`,
+    );
+  }
   return SuiteConfigSchema.parse(raw);
 }
 
