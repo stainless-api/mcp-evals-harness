@@ -15,9 +15,7 @@ const suite: SuiteConfig = {
       id: "increase-stainless",
       displayName: "Increase, Stainless-generated",
       command: "node",
-      args: [
-        "/Path/to/increase-mcp-demo-typescript/packages/mcp-server/dist/index.js",
-      ],
+      args: ["/Users/pierceclark/increase-mcp-demo-typescript/packages/mcp-server/dist/index.js"],
       env: {
         INCREASE_MCP_DEMO_API_KEY: process.env.INCREASE_API_KEY!,
       },
@@ -29,10 +27,7 @@ const suite: SuiteConfig = {
       id: "increase-dynamic",
       displayName: "Increase, Dynamic tools",
       command: "node",
-      args: [
-        "/Path/to/increase-mcp-demo-typescript/packages/mcp-server/dist/index.js",
-        "--tools=dynamic",
-      ],
+      args: ["/Users/pierceclark/increase-mcp-demo-typescript-dynamic/packages/mcp-server/dist/index.js", "--tools=dynamic", "--no-tools=docs"],
       env: {
         INCREASE_MCP_DEMO_API_KEY: process.env.INCREASE_API_KEY!,
       },
@@ -44,9 +39,7 @@ const suite: SuiteConfig = {
       id: "increase-anthropic-code-mode",
       displayName: "Increase, Anthropic Code Mode",
       command: "node",
-      args: [
-        "/Path/to/increase-mcp-demo-typescript/packages/mcp-server/dist/index.js",
-      ],
+      args: ["/Path/to/increase-mcp-demo-typescript-anthropic/packages/mcp-server/dist/index.js"],
       env: {
         INCREASE_MCP_DEMO_API_KEY: process.env.INCREASE_API_KEY!,
       },
