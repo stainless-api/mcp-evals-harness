@@ -17,6 +17,7 @@ const suite: SuiteConfig = {
       command: "node",
       args: ["/Users/pierceclark/increase-mcp-demo-typescript/packages/mcp-server/dist/index.js"],
       env: {
+        STAINLESS_API_KEY: process.env.STAINLESS_API_KEY_REFERENCES!,
         INCREASE_MCP_DEMO_API_KEY: process.env.INCREASE_API_KEY!,
       },
       capabilities: { write: false },

@@ -36,7 +36,7 @@ const suite: SuiteConfig = {
       ],
       env: {
         STRIPE_SECRET_KEY: process.env.STRIPE_SECRET_KEY!,
-        STAINLESS_API_KEY: process.env.STAINLESS_API_KEY!,
+        STAINLESS_API_KEY: process.env.STAINLESS_API_KEY_DEMOCAST!,
       },
       capabilities: { write: true },
       mode: "code",
