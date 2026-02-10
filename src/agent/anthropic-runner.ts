@@ -67,7 +67,7 @@ export class AnthropicRunner implements AgentRunner {
           env: serverConfig.env,
         },
       },
-      allowedTools: [`mcp__${serverConfig.id}__*`],
+      allowedTools: [`mcp__${serverConfig.id}__*`, "Read", "Grep"],
       disallowedTools: [
         "Write", "Edit", "NotebookEdit",
         "Glob", 
