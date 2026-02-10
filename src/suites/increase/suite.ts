@@ -39,7 +39,7 @@ const suite: SuiteConfig = {
       id: "increase-anthropic-code-mode",
       displayName: "Increase, Anthropic Code Mode",
       command: "node",
-      args: ["/Path/to/increase-mcp-demo-typescript-anthropic/packages/mcp-server/dist/index.js"],
+      args: ["/Users/pierceclark/increase-mcp-demo-typescript-anthropic/packages/mcp-server/dist/index.js"],
       env: {
         INCREASE_MCP_DEMO_API_KEY: process.env.INCREASE_API_KEY!,
       },
