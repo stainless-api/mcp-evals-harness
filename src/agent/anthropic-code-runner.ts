@@ -195,6 +195,41 @@ export class AnthropicCodeRunner implements AgentRunner {
 
         lastMessage = response;
 
+        // Extract server-side tool calls (tool_search, code_execution)
+        for (const block of response.content) {
+          if (block.type === "server_tool_use") {
+            const { id, name, input } = block as any;
+            const resultBlock = response.content.find(
+              (b: any) => b.tool_use_id === id,
+            ) as any;
+            const result = resultBlock
+              ? JSON.stringify(resultBlock.content).slice(0, 90_000)
+              : "";
+
+            const record: ToolCallRecord = {
+              name,
+              args: (input as Record<string, unknown>) ?? {},
+              result,
+            };
+            toolCalls.push(record);
+
+            try {
+              currentSpan().traced(
+                (childSpan) => {
+                  childSpan.log({
+                    input: record.args,
+                    output: record.result,
+                    metadata: { toolName: name },
+                  });
+                },
+                { name: `tool:${name}` },
+              );
+            } catch {
+              // No active span context
+            }
+          }
+        }
+
         // Check stop reason
         if (response.stop_reason === "end_turn") {
           break;

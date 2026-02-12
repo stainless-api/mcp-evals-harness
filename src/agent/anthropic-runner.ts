@@ -25,7 +25,7 @@ const DEFAULT_MODEL: ModelConfig = {
   displayName: "Claude Opus 4.6",
 };
 
-const DEFAULT_MAX_TURNS = 10;
+const DEFAULT_MAX_TURNS = 30;
 const DEFAULT_SYSTEM_PROMPT =
   "You are a helpful assistant with access to API tools via MCP. " +
   "Use the available tools to answer questions accurately based on actual data.";
@@ -58,7 +58,7 @@ export class AnthropicRunner implements AgentRunner {
       allowDangerouslySkipPermissions: true,
       persistSession: false,
       pathToClaudeCodeExecutable: process.env.CLAUDE_CODE_PATH ?? path.join(os.homedir(), ".local", "bin", "claude"),
-      tools: [] as string[],
+      tools: ["Read", "Grep"] as string[],
       mcpServers: {
         [serverConfig.id]: {
           type: "stdio",
