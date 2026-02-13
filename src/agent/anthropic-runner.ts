@@ -60,12 +60,19 @@ export class AnthropicRunner implements AgentRunner {
       pathToClaudeCodeExecutable: process.env.CLAUDE_CODE_PATH ?? path.join(os.homedir(), ".local", "bin", "claude"),
       tools: ["Read", "Grep"] as string[],
       mcpServers: {
-        [serverConfig.id]: {
-          type: "stdio",
-          command: serverConfig.command,
-          args: serverConfig.args,
-          env: serverConfig.env,
-        },
+        [serverConfig.id]:
+          serverConfig.transport === "http"
+            ? {
+                type: "http",
+                url: serverConfig.url,
+                headers: serverConfig.headers,
+              }
+            : {
+                type: "stdio",
+                command: serverConfig.command,
+                args: serverConfig.args,
+                env: serverConfig.env,
+              },
       },
       allowedTools: [`mcp__${serverConfig.id}__*`, "Read", "Grep"],
       disallowedTools: [

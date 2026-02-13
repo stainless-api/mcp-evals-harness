@@ -5,7 +5,7 @@ import type {
   ChatCompletionMessageToolCall,
 } from "openai/resources/chat/completions.js";
 import { Client } from "@modelcontextprotocol/sdk/client/index.js";
-import { StdioClientTransport } from "@modelcontextprotocol/sdk/client/stdio.js";
+import { createTransport } from "./transport.js";
 import { logToolCallSpan, withTurnSpan } from "./span-utils.js";
 import type { ServerConfig } from "../suite.js";
 import type { ModelConfig } from "./types.js";
@@ -88,13 +88,8 @@ export class OpenAIRunner implements AgentRunner {
     let totalOutputTokens = 0;
     let turnCount = 0;
 
-    // 1. Spawn MCP server via StdioClientTransport
-    const transport = new StdioClientTransport({
-      command: serverConfig.command,
-      args: serverConfig.args,
-      env: { ...process.env, ...serverConfig.env } as Record<string, string>,
-      stderr: "pipe",
-    });
+    // 1. Connect to MCP server
+    const transport = createTransport(serverConfig);
 
     const mcpClient = new Client(
       { name: "openai-runner", version: "1.0.0" },

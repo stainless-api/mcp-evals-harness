@@ -19,13 +19,10 @@ const suite: SuiteConfig = {
         "/Users/pierceclark/lithic-mcp-demo-typescript/packages/mcp-server/dist/index.js",
       ],
       env: {
-        LITHIC_API_KEY: process.env.LITHIC_API_KEY!,
-        ...(process.env.REFERENCES_BASE_URL && {
-          REFERENCES_BASE_URL: process.env.REFERENCES_BASE_URL,
-        }),
-        ...(process.env.REFERENCES_ENVIRONMENT && {
-          REFERENCES_ENVIRONMENT: process.env.REFERENCES_ENVIRONMENT,
-        }),
+        LITHIC_MCP_DEMO_API_KEY: process.env.LITHIC_MCP_DEMO_API_KEY!,
+        LITHIC_API_KEY: process.env.LITHIC_MCP_DEMO_API_KEY!,
+        STAINLESS_API_KEY: process.env.STAINLESS_API_KEY_REFERENCES!,
+        REFERENCES_ENVIRONMENT: "sandbox",
       },
       capabilities: { write: false },
       mode: "code",
@@ -33,18 +30,10 @@ const suite: SuiteConfig = {
     {
       id: "lithic-readme",
       displayName: "Lithic, Readme-generated",
-      command: "node",
-      args: [
-        "/Users/pierceclark/lithic-mcp-demo-typescript/packages/mcp-server/dist/index.js",
-      ],
-      env: {
-        LITHIC_API_KEY: process.env.LITHIC_API_KEY!,
-        ...(process.env.REFERENCES_BASE_URL && {
-          REFERENCES_BASE_URL: process.env.REFERENCES_BASE_URL,
-        }),
-        ...(process.env.REFERENCES_ENVIRONMENT && {
-          REFERENCES_ENVIRONMENT: process.env.REFERENCES_ENVIRONMENT,
-        }),
+      transport: "http",
+      url: "https://stainless.readme.io/mcp",
+      headers: {
+        Authorization: process.env.LITHIC_MCP_DEMO_API_KEY!,
       },
       capabilities: { write: false },
       mode: "code",

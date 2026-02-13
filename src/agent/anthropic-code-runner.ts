@@ -1,7 +1,7 @@
 import Anthropic from "@anthropic-ai/sdk";
 import { Client } from "@modelcontextprotocol/sdk/client/index.js";
-import { StdioClientTransport } from "@modelcontextprotocol/sdk/client/stdio.js";
 import { currentSpan } from "braintrust";
+import { createTransport } from "./transport.js";
 import { logToolCallSpan, withTurnSpan } from "./span-utils.js";
 import type { ServerConfig } from "../suite.js";
 import type {
@@ -67,12 +67,7 @@ export class AnthropicCodeRunner implements AgentRunner {
     let turnCount = 0;
 
     // 1. Spawn MCP server
-    const transport = new StdioClientTransport({
-      command: serverConfig.command,
-      args: serverConfig.args,
-      env: { ...process.env, ...serverConfig.env } as Record<string, string>,
-      stderr: "pipe",
-    });
+    const transport = createTransport(serverConfig);
 
     const mcpClient = new Client(
       { name: "anthropic-code-runner", version: "1.0.0" },

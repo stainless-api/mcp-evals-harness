@@ -1,22 +1,49 @@
 import { z } from "zod";
 import { MODEL_ALIASES } from "./agent/models.js";
+import type { ModelAlias } from "./agent/models.js";
 import suiteModules from "./suites/index.js";
 
 // ── Zod schemas ──
 
 const ModelAliasSchema = z.enum(MODEL_ALIASES);
 
-export const ServerConfigSchema = z.object({
+const SharedServerFields = {
   id: z.string(),
   displayName: z.string(),
+  capabilities: z.object({ write: z.boolean() }),
+  mode: z.enum(["tools", "code"]),
+  models: z.array(ModelAliasSchema).optional(),
+};
+
+const StdioServerConfigSchema = z.object({
+  ...SharedServerFields,
+  transport: z.literal("stdio"),
   command: z.string(),
   args: z.array(z.string()),
   env: z.record(z.string(), z.string()),
-  capabilities: z.object({ write: z.boolean() }),
-  mode: z.enum(["tools", "code"]),
-  transport: z.enum(["stdio", "sse", "http"]).optional(),
-  models: z.array(ModelAliasSchema).optional(),
 });
+
+const HttpServerConfigSchema = z.object({
+  ...SharedServerFields,
+  transport: z.literal("http"),
+  url: z.string().url(),
+  headers: z.record(z.string(), z.string()).optional(),
+});
+
+// Preprocess adds transport:"stdio" when missing for backward compatibility,
+// so existing suites without a transport field continue to work.
+export const ServerConfigSchema = z.preprocess(
+  (val) => {
+    if (val && typeof val === "object" && !("transport" in val)) {
+      return { ...val, transport: "stdio" };
+    }
+    return val;
+  },
+  z.discriminatedUnion("transport", [
+    StdioServerConfigSchema,
+    HttpServerConfigSchema,
+  ]),
+);
 
 export const ExpectedResultSchema = z.object({
   description: z.string(),
@@ -41,11 +68,42 @@ export const SuiteConfigSchema = z.object({
 });
 
 // ── TypeScript types ──
+// Manually defined so that suite files can omit `transport` (defaults to "stdio")
+// while consumers always see a discriminated union after parsing.
 
-export type ServerConfig = z.infer<typeof ServerConfigSchema>;
+interface SharedServerConfig {
+  id: string;
+  displayName: string;
+  capabilities: { write: boolean };
+  mode: "tools" | "code";
+  models?: ModelAlias[];
+}
+
+export interface StdioServerConfig extends SharedServerConfig {
+  transport?: "stdio";
+  command: string;
+  args: string[];
+  env: Record<string, string>;
+}
+
+export interface HttpServerConfig extends SharedServerConfig {
+  transport: "http";
+  url: string;
+  headers?: Record<string, string>;
+}
+
+export type ServerConfig = StdioServerConfig | HttpServerConfig;
+
 export type ExpectedResult = z.infer<typeof ExpectedResultSchema>;
 export type TestCase = z.infer<typeof TestCaseSchema>;
-export type SuiteConfig = z.infer<typeof SuiteConfigSchema>;
+
+export interface SuiteConfig {
+  projectName: string;
+  systemPrompt: string;
+  servers: ServerConfig[];
+  testCases: TestCase[];
+  setup?: string;
+}
 
 // ── Loader ──
 
