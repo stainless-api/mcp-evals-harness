@@ -8,7 +8,7 @@ import type {
   SDKResultError,
   SDKSystemMessage,
 } from "@anthropic-ai/claude-agent-sdk";
-import { currentSpan } from "braintrust";
+import { logToolCallSpan } from "./span-utils.js";
 import type { ServerConfig } from "../suite.js";
 import type { ModelConfig } from "./types.js";
 import type {
@@ -147,6 +147,7 @@ export class AnthropicRunner implements AgentRunner {
                     : JSON.stringify(toolResultBlock.content ?? "");
                 const durationMs = Date.now() - pending.startTime;
 
+                const endTime = Date.now();
                 const record: ToolCallRecord = {
                   name: pending.name,
                   args: pending.args,
@@ -155,20 +156,15 @@ export class AnthropicRunner implements AgentRunner {
                 };
                 toolCalls.push(record);
 
-                // Log as Braintrust child span
+                // Log as Braintrust child span with real timestamps
                 try {
-                  const span = currentSpan();
-                  span.traced(
-                    (childSpan) => {
-                      childSpan.log({
-                        input: pending.args,
-                        output: resultText,
-                        metadata: { toolName: pending.name },
-                        metrics: { durationMs },
-                      });
-                    },
-                    { name: `tool:${pending.name}` },
-                  );
+                  logToolCallSpan({
+                    name: pending.name,
+                    input: pending.args,
+                    output: resultText,
+                    startTimeMs: pending.startTime,
+                    endTimeMs: endTime,
+                  });
                 } catch {
                   // No active span context (e.g., running outside Braintrust eval)
                 }

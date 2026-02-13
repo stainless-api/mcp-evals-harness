@@ -6,7 +6,7 @@ import type {
 } from "openai/resources/chat/completions.js";
 import { Client } from "@modelcontextprotocol/sdk/client/index.js";
 import { StdioClientTransport } from "@modelcontextprotocol/sdk/client/stdio.js";
-import { currentSpan } from "braintrust";
+import { logToolCallSpan, withTurnSpan } from "./span-utils.js";
 import type { ServerConfig } from "../suite.js";
 import type { ModelConfig } from "./types.js";
 import type {
@@ -117,112 +117,117 @@ export class OpenAIRunner implements AgentRunner {
       for (let turn = 0; turn < maxTurns; turn++) {
         turnCount++;
 
-        const response = await openai.chat.completions.create({
-          model: modelConfig.modelId,
-          messages,
-          tools: openaiTools.length > 0 ? openaiTools : undefined,
-        });
+        let earlyReturn: AgentResult | undefined;
 
-        const choice = response.choices[0];
-        const assistantMessage = choice.message;
-
-        // Track tokens
-        if (response.usage) {
-          totalInputTokens += response.usage.prompt_tokens;
-          totalOutputTokens += response.usage.completion_tokens;
-        }
-
-        // Add assistant message to conversation
-        messages.push(assistantMessage);
-
-        // If no tool calls, we're done
-        if (
-          choice.finish_reason !== "tool_calls" ||
-          !assistantMessage.tool_calls?.length
-        ) {
-          const finalText = assistantMessage.content ?? "";
-          return {
-            finalText,
-            toolCalls,
-            wallClockMs: Date.now() - startTime,
-            inputTokens: totalInputTokens,
-            outputTokens: totalOutputTokens,
-            turnCount,
-            costUsd: estimateCost(
-              modelConfig.modelId,
-              totalInputTokens,
-              totalOutputTokens,
-            ),
+        await withTurnSpan(`turn:${turnCount}`, async () => {
+          const response = await openai.chat.completions.create({
             model: modelConfig.modelId,
-          };
-        }
+            messages,
+            tools: openaiTools.length > 0 ? openaiTools : undefined,
+          });
 
-        // 4. Execute tool calls via MCP client
-        for (const tc of assistantMessage.tool_calls) {
-          const toolStart = Date.now();
-          let resultText: string;
+          const choice = response.choices[0];
+          const assistantMessage = choice.message;
 
-          try {
-            const args = JSON.parse(tc.function.arguments);
-            const mcpResult = await mcpClient.callTool({
-              name: tc.function.name,
-              arguments: args,
-            });
+          // Track tokens
+          const turnInputTokens = response.usage?.prompt_tokens ?? 0;
+          const turnOutputTokens = response.usage?.completion_tokens ?? 0;
+          totalInputTokens += turnInputTokens;
+          totalOutputTokens += turnOutputTokens;
 
-            // Extract text from MCP result content
-            const content = mcpResult.content;
-            if (Array.isArray(content)) {
-              resultText = content
-                .map((c: any) =>
-                  c.type === "text" ? c.text : JSON.stringify(c),
-                )
-                .join("\n");
-            } else {
-              resultText = JSON.stringify(content);
-            }
+          // Add assistant message to conversation
+          messages.push(assistantMessage);
 
-            const record: ToolCallRecord = {
-              name: tc.function.name,
-              args,
-              result: resultText,
-              durationMs: Date.now() - toolStart,
+          // If no tool calls, we're done
+          if (
+            choice.finish_reason !== "tool_calls" ||
+            !assistantMessage.tool_calls?.length
+          ) {
+            const finalText = assistantMessage.content ?? "";
+            earlyReturn = {
+              finalText,
+              toolCalls,
+              wallClockMs: Date.now() - startTime,
+              inputTokens: totalInputTokens,
+              outputTokens: totalOutputTokens,
+              turnCount,
+              costUsd: estimateCost(
+                modelConfig.modelId,
+                totalInputTokens,
+                totalOutputTokens,
+              ),
+              model: modelConfig.modelId,
             };
-            toolCalls.push(record);
+            return { inputTokens: turnInputTokens, outputTokens: turnOutputTokens };
+          }
 
-            // Log as Braintrust child span
+          // 4. Execute tool calls via MCP client
+          for (const tc of assistantMessage.tool_calls) {
+            const toolStart = Date.now();
+            let resultText: string;
+
             try {
-              const span = currentSpan();
-              span.traced(
-                (childSpan) => {
-                  childSpan.log({
-                    input: args,
-                    output: resultText,
-                    metadata: { toolName: tc.function.name },
-                    metrics: { durationMs: record.durationMs },
-                  });
-                },
-                { name: `tool:${tc.function.name}` },
-              );
-            } catch {
-              // No active span context
+              const args = JSON.parse(tc.function.arguments);
+              const mcpResult = await mcpClient.callTool({
+                name: tc.function.name,
+                arguments: args,
+              });
+
+              // Extract text from MCP result content
+              const content = mcpResult.content;
+              if (Array.isArray(content)) {
+                resultText = content
+                  .map((c: any) =>
+                    c.type === "text" ? c.text : JSON.stringify(c),
+                  )
+                  .join("\n");
+              } else {
+                resultText = JSON.stringify(content);
+              }
+
+              const toolEnd = Date.now();
+              const record: ToolCallRecord = {
+                name: tc.function.name,
+                args,
+                result: resultText,
+                durationMs: toolEnd - toolStart,
+              };
+              toolCalls.push(record);
+
+              // Log as Braintrust child span with real timestamps
+              try {
+                logToolCallSpan({
+                  name: tc.function.name,
+                  input: args,
+                  output: resultText,
+                  startTimeMs: toolStart,
+                  endTimeMs: toolEnd,
+                });
+              } catch {
+                // No active span context
+              }
+            } catch (err) {
+              resultText = `Error: ${err instanceof Error ? err.message : String(err)}`;
+              toolCalls.push({
+                name: tc.function.name,
+                args: {},
+                result: resultText,
+                durationMs: Date.now() - toolStart,
+              });
             }
-          } catch (err) {
-            resultText = `Error: ${err instanceof Error ? err.message : String(err)}`;
-            toolCalls.push({
-              name: tc.function.name,
-              args: {},
-              result: resultText,
-              durationMs: Date.now() - toolStart,
+
+            // Inject tool result back into conversation
+            messages.push({
+              role: "tool",
+              tool_call_id: tc.id,
+              content: resultText,
             });
           }
 
-          // Inject tool result back into conversation
-          messages.push({
-            role: "tool",
-            tool_call_id: tc.id,
-            content: resultText,
-          });
-        }
+          return { inputTokens: turnInputTokens, outputTokens: turnOutputTokens };
+        });
+
+        if (earlyReturn) return earlyReturn;
       }
 
       // Max turns reached — return last assistant content
