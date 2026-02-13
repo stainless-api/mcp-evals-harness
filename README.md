@@ -1,12 +1,27 @@
-# MCP Evals Harness
+# Stainless MCP Evaluation Harness
 
-A generic framework for evaluating MCP server implementations side-by-side using [Braintrust](https://braintrust.dev). Ships with Stripe and Increase eval suites, but can be extended to benchmark any MCP server.
+A generic framework for evaluating MCP server implementations side-by-side using [Braintrust](https://braintrust.dev).
 
 ## How It Works
 
 The harness runs an agent loop against each MCP server in a suite, then scores responses on **factuality**, **completeness**, and **efficiency** via Braintrust.
 
-Three agent runners are available. Standard Anthropic models use the Claude Agent SDK. Code-mode models (e.g. `sonnet-code`, `opus-code`) use the raw Anthropic SDK with `defer_loading` on MCP tools, `tool_search`, and `code_execution` via the advanced-tool-use beta. OpenAI models use the OpenAI SDK. The runner factory selects the right one based on the model config.
+You can test your MCP servers with three different model sets:
+* OpenAI models
+* Anthropic models
+* Anthropic models, with advanced tool use betas.
+
+Models can be specified per-MCP-server from among the below options: 
+* "opus"
+* "sonnet"
+* "haiku"
+* "sonnet-code"
+* "opus-code"
+* "gpt-4o"
+* "gpt-4o-mini"
+* "o3"
+* "o4-mini"
+
 
 All domain-specific content — servers, test cases, system prompt, project name — lives in a **suite config** directory. The generic infrastructure (agent runners, scorers, eval loop) is shared across suites.
 
@@ -41,38 +56,15 @@ src/
 ## Prerequisites
 
 * Braintrust account
-* Stripe Account (for the Stripe suite — you can sign up for a free account)
-    * Stripe Sandbox
+* Stripe Account (optional, for the Stripe suite)
     * Stripe Secret API key for your sandbox
     * Stripe CLI (`brew install stripe/stripe-cli/stripe`)
+* Increase Account (optional, for Increase suite)
+   
 
 ## Setup
 
-Seed data into the account using the Stripe CLI:
-
-```sh
-stripe login
-stripe fixtures src/suites/stripe/fixtures.json
-```
-
-Create `./.env` with these environment variables:
-
-```yaml
-# Braintrust
-BRAINTRUST_API_KEY=
-
-# Anthropic (for E2E agent loop)
-ANTHROPIC_API_KEY=
-
-# Stripe Account (stripe-official + stainless-stripe)
-STRIPE_SECRET_KEY=
-
-# Stainless (for stainless-stripe server to fetch docs)
-STAINLESS_API_KEY=
-
-# Increase
-INCREASE_API_KEY=
-```
+create a `.env` file with the required environment variables. You can use a template file at `.env.example`:
 
 ```sh
 cp .env.example .env
@@ -82,9 +74,6 @@ cp .env.example .env
 
 ```sh
 npm install
-
-# Run the default suite (stripe)
-npm run eval
 
 # Run a specific suite
 EVAL_SUITE=stripe npm run eval
@@ -104,7 +93,7 @@ import type { SuiteConfig } from "../../suite.js";
 const suite: SuiteConfig = {
   projectName: "my-project",          // Braintrust project name
   systemPrompt: "You are a helpful assistant with access to ...",
-  setup: "my-cli setup-command",      // Optional: command to seed test data
+  setup: "my-cli setup-command",      // Optional: command to be run before evals to seed test data
   servers: [
     {
       id: "my-server",
@@ -132,25 +121,15 @@ const suite: SuiteConfig = {
 export default suite;
 ```
 
-2. Optionally add supporting files (e.g. `fixtures.json`) in the same directory.
+2. Optionally add supporting files (e.g. `fixtures.json`) in the same directory. You can provide a start-up command to help seed data in your sandbox account if you would like.
 
-3. Set the required environment variables for your servers.
+3. Set the required environment variables for your servers. 
 
 4. Run:
 
 ```sh
 EVAL_SUITE=<name> npm run eval
 ```
+## Support
 
-No framework code needs to change.
-
-## Stripe Suite
-
-The built-in `stripe` suite evaluates these MCP servers:
-
-| Server | Key | Approach |
-|--------|-----|----------|
-| **Official Stripe MCP** | `stripe-official` | First-party, all tools enabled via `npx @stripe/mcp` |
-| **Stainless Code Mode** | `stainless-stripe` | 2-tool "code mode" — docs search + code execution sandbox |
-
-It includes 12 test cases covering reads (list customers, get balance, find products) and writes (create coupons, invoices, payment links).
+For help/bug reports, please reach out to support@stainless.com
