@@ -37,6 +37,17 @@ const suite: SuiteConfig = {
       tags: ["Dynamic"],
     },
     {
+      id: "increase-old",
+      displayName: "Increase, Standard tools",
+      command: "node",
+      args: ["/Users/pierceclark/increase-mcp-demo-typescript-dynamic/packages/mcp-server/dist/index.js", "--no-tools=docs"],
+      env: {
+        INCREASE_MCP_DEMO_API_KEY: process.env.INCREASE_API_KEY!,
+      },
+      capabilities: { write : false },
+      mode: "tools", 
+    },
+    {
       id: "increase-anthropic-code-mode",
       displayName: "Increase, Anthropic Code Mode",
       command: "node",
@@ -281,7 +292,7 @@ const suite: SuiteConfig = {
     {
       id: "total-outbound-ach",
       prompt:
-        "What is the total amount of outbound ACH transfers we have made?",
+        "What is the total amount of outbound ACH transfers we have successfully completed?",
       expected: {
         description:
           "Returns $13,600.00 as the total amount of outbound ACH transfers.",
