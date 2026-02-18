@@ -61,6 +61,7 @@ const suite: SuiteConfig = {
       },
       capabilities: { write : false },
       mode: "tools", 
+      tags: ["One-To-One"]
     },
     {
       id: "increase-anthropic-code-mode",
