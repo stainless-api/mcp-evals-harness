@@ -81,7 +81,6 @@ import type { TestCase } from "../suite.js";
               modelId: result.model,
               provider: modelConfig.provider,
             },
-            tags: input.tags,
           });
 
           // Return structured output for scorers
