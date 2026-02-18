@@ -60,6 +60,15 @@ npm run eval:stripe
 npm run eval:increase
 ```
 
+## Tags
+
+Experiment records can be tagged from three sources:
+- **Test case tags** — `tags` array on each test case
+- **Server tags** — optional `tags` array on each server config in `SharedServerFields`/`SharedServerConfig`
+- **CLI tags** — `EVAL_TAGS` env var (comma-separated), parsed in `src/evals/e2e.eval.ts`
+
+Tags are applied to the top-level `EvalCase.tags` and `metadata.tags` in the `data()` function. They must NOT be logged on child spans (Braintrust only allows tags on the root span).
+
 ## Credentials
 
 All API keys are configured via `.env` (gitignored). See `.env.example` for the full list.
