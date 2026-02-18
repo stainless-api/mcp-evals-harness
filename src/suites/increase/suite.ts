@@ -379,8 +379,8 @@ const suite: SuiteConfig = {
         "Which routing number is most commonly used by senders of inbound real-time payments?",
       expected: {
         description:
-          "Returns 026009593 as the most commonly used routing number for inbound real-time payments.",
-        containsText: ["026009593"],
+          "Returns 021000021 as the most commonly used routing number for inbound real-time payments.",
+        containsText: ["021000021"],
       },
       tags: ["read", "transactions", "analysis"],
     },
