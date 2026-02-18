@@ -13,6 +13,7 @@ const SharedServerFields = {
   capabilities: z.object({ write: z.boolean() }),
   mode: z.enum(["tools", "code"]),
   models: z.array(ModelAliasSchema).optional(),
+  tags: z.array(z.string()).optional(),
 };
 
 const StdioServerConfigSchema = z.object({
@@ -77,6 +78,7 @@ interface SharedServerConfig {
   capabilities: { write: boolean };
   mode: "tools" | "code";
   models?: ModelAlias[];
+  tags?: string[];
 }
 
 export interface StdioServerConfig extends SharedServerConfig {

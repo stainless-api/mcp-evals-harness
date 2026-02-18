@@ -12,9 +12,15 @@ import type { TestCase } from "../suite.js";
 (async () => {
   const suite = await loadSuite();
 
+  const cliTags: string[] = (process.env.EVAL_TAGS ?? "")
+    .split(",")
+    .map((t) => t.trim())
+    .filter(Boolean);
+
   for (const server of suite.servers) {
     const modelAliases = server.models ?? ["opus"];
     const testCases = getTestCasesForServer(suite.testCases, server.capabilities);
+    const serverTags: string[] = server.tags ?? [];
 
     for (const alias of modelAliases) {
       const modelConfig = resolveModel(alias);
@@ -31,22 +37,28 @@ import type { TestCase } from "../suite.js";
           modelId: modelConfig.modelId,
           approach: "e2e",
           mode: server.mode,
+          serverTags,
+          cliTags,
         },
         data: () =>
-          testCases.map((tc) => ({
-            input: {
-              prompt: tc.prompt,
-              testCaseId: tc.id,
-              tags: tc.tags,
-            },
-            expected: tc.expected.description,
-            metadata: {
-              testCaseId: tc.id,
-              serverId: server.id,
-              model: modelConfig.alias,
-              tags: tc.tags,
-            },
-          })),
+          testCases.map((tc) => {
+            const mergedTags = [...new Set([...tc.tags, ...serverTags, ...cliTags])];
+            return {
+              input: {
+                prompt: tc.prompt,
+                testCaseId: tc.id,
+                tags: mergedTags,
+              },
+              tags: mergedTags,
+              expected: tc.expected.description,
+              metadata: {
+                testCaseId: tc.id,
+                serverId: server.id,
+                model: modelConfig.alias,
+                tags: mergedTags,
+              },
+            };
+          }),
         task: async (input) => {
           const result = await runner.run(input.prompt, server, {
             systemPrompt: suite.systemPrompt,
@@ -69,6 +81,7 @@ import type { TestCase } from "../suite.js";
               modelId: result.model,
               provider: modelConfig.provider,
             },
+            tags: input.tags,
           });
 
           // Return structured output for scorers

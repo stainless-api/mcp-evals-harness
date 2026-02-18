@@ -21,6 +21,7 @@ const suite: SuiteConfig = {
       },
       capabilities: { write : false },
       mode: "code", 
+      tags: ["Stainless"]
     },
     {
       id: "increase-dynamic",
@@ -32,6 +33,7 @@ const suite: SuiteConfig = {
       },
       capabilities: { write : false },
       mode: "tools", 
+      tags: ["Dynamic"]
     },
     {
       id: "increase-anthropic-code-mode",
@@ -44,6 +46,7 @@ const suite: SuiteConfig = {
       capabilities: { write : false },
       mode: "tools", 
       models: ["opus-code"],
+      tags: ["Anthropic-Code"]
     },
   ],
 
