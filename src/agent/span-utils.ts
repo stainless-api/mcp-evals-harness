@@ -25,7 +25,6 @@ export function logToolCallSpan(opts: {
       metadata: { toolName: opts.name, ...opts.metadata },
       metrics: {
         end: opts.endTimeMs / 1000,
-        durationMs: opts.endTimeMs - opts.startTimeMs,
         ...opts.metrics,
       },
     },
