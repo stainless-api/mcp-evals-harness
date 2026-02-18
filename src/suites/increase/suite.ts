@@ -40,7 +40,22 @@ const suite: SuiteConfig = {
       id: "increase-old",
       displayName: "Increase, Standard tools",
       command: "node",
-      args: ["/Users/pierceclark/increase-mcp-demo-typescript-dynamic/packages/mcp-server/dist/index.js", "--no-tools=docs"],
+      args: [
+        "/Users/pierceclark/increase-mcp-demo-typescript-dynamic/packages/mcp-server/dist/index.js", 
+        "--no-tools=docs",
+        "--resource=accounts",
+        "--resource=account_numbers",
+        "--resource=account_statements",
+        "--resource=account_transfers",
+        "--resource=ach_transfers",
+        "--resource=external_accounts",
+        "--resource=inbound_ach_transfers",
+        "--resource=inbound_real_time_payments_transfers",
+        "--resource=pending_transactions",
+        "--resource=real_time_payments_transfers",
+        "--resource=routing_numbers",
+        "--resource=transactions"
+      ],
       env: {
         INCREASE_MCP_DEMO_API_KEY: process.env.INCREASE_API_KEY!,
       },
