@@ -1,3 +1,5 @@
+import path from "path";
+import { pathToFileURL } from "url";
 import { z } from "zod";
 import { MODEL_ALIASES } from "./agent/models.js";
 import type { ModelAlias } from "./agent/models.js";
@@ -111,6 +113,14 @@ export interface SuiteConfig {
 
 export async function loadSuite(name?: string): Promise<SuiteConfig> {
   const suiteName = name ?? process.env.EVAL_SUITE ?? "stripe";
+
+  // If the name contains path separators, treat it as a file path
+  if (path.basename(suiteName) !== suiteName) {
+    const resolved = path.resolve(suiteName);
+    const mod = await import(pathToFileURL(resolved).href);
+    return SuiteConfigSchema.parse(mod.default);
+  }
+
   const raw = suiteModules[suiteName];
   if (!raw) {
     throw new Error(

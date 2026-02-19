@@ -11,6 +11,10 @@
       "types": "./dist/agent/index.d.ts",
       "default": "./dist/agent/index.js"
     },
+    "./eval": {
+      "types": "./dist/eval.d.ts",
+      "default": "./dist/eval.js"
+    },
     "./scorers/*": {
       "types": "./dist/scorers/*.d.ts",
       "default": "./dist/scorers/*.js"
