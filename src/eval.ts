@@ -15,8 +15,7 @@ export interface RunEvalsOptions {
 const tagPromises: Promise<void>[] = [];
 
 async function tagExperiment(experimentId: string, tags: string[]) {
-  const apiUrl =
-    process.env.BRAINTRUST_API_URL ?? "https://api.braintrust.dev";
+  const apiUrl = process.env.BRAINTRUST_API_URL ?? "https://api.braintrust.dev";
   const res = await fetch(`${apiUrl}/v1/experiment/${experimentId}`, {
     method: "PATCH",
     headers: {

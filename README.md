@@ -27,19 +27,22 @@ Models can be specified per-MCP-server from among the below options:
 All domain-specific content — servers, test cases, system prompt, project name — lives in a **suite config** directory. The generic infrastructure (agent runners, scorers, eval loop) is shared across suites.
 
 ```
-scripts/
-  generate-suite-index.ts         # Auto-generates src/suites/index.ts from discovered suite dirs
 src/
   suite.ts                        # SuiteConfig type + Zod schema, loadSuite(), getTestCasesForServer()
+  eval.ts                         # runEvals() — importable eval orchestrator
   suites/
     index.ts                      # Auto-generated barrel (do not edit)
     stripe/
-      suite.ts                    # Stripe servers, 12 test cases, system prompt
+      suite.ts                    # Stripe servers, 12 test cases
       fixtures.json               # Stripe CLI fixtures for seeding test data
     increase/
-      suite.ts                    # Increase servers, 30 test cases, system prompt
+      suite.ts                    # Increase servers, 30 test cases
+    increase-search-docs/
+      suite.ts                    # Increase doc search, 20 test cases
+    gemini-search-docs/
+      suite.ts                    # Gemini API doc search, 20 test cases
   evals/
-    e2e.eval.ts                   # Generic eval loop — loads suite via EVAL_SUITE env var
+    e2e.eval.ts                   # Entry point for Braintrust CLI
     run-all.ts                    # Re-exports e2e.eval.ts
   agent/
     anthropic-runner.ts           # Agent SDK runner (standard Anthropic models)
@@ -64,21 +67,25 @@ src/
 
 ## Setup
 
-create a `.env` file with the required environment variables. You can use a template file at `.env.example`:
-
 ```sh
-cp .env.example .env
+./scripts/bootstrap
 ```
+
+Or manually: `cp .env.example .env` and fill in your keys, then `npm install`.
 
 ## Run
 
 ```sh
-npm install
+# Run a built-in suite
+./scripts/run-eval stripe
+./scripts/run-eval increase
+./scripts/run-eval gemini-search-docs
 
-# Run a specific suite
+# Run an external suite file from another repo
+./scripts/run-eval ../my-repo/suites/my-suite.ts
+
+# Or via npm
 EVAL_SUITE=stripe npm run eval
-
-# Convenience shortcuts
 npm run eval:stripe
 npm run eval:increase
 ```
@@ -130,6 +137,47 @@ export default suite;
 ```sh
 EVAL_SUITE=<name> npm run eval
 ```
+
+## Using as a Library
+
+The harness can be imported directly from other repos. Install from git, then use `runEvals` to run a suite with all scoring/tagging/metrics plumbing handled for you:
+
+```typescript
+import { runEvals } from "mcp-evals-harness/eval";
+import type { SuiteConfig } from "mcp-evals-harness";
+
+const suite: SuiteConfig = {
+  projectName: "my-project",
+  systemPrompt: "You are a helpful assistant...",
+  servers: [
+    {
+      id: "my-server",
+      transport: "http",
+      url: "https://my-mcp-server.example.com",
+      capabilities: { write: false },
+      mode: "code",
+      models: ["sonnet-code"],
+    },
+  ],
+  testCases: [
+    {
+      id: "test-1",
+      prompt: "How many items are there?",
+      expected: {
+        description: "Returns the count of items",
+        containsText: ["42"],
+      },
+      tags: [],
+    },
+  ],
+};
+
+runEvals(suite, {
+  tags: (process.env.EVAL_TAGS ?? "").split(",").filter(Boolean),
+});
+```
+
+Run with `npx braintrust eval your-eval-file.ts`.
 
 ## Tags
 
