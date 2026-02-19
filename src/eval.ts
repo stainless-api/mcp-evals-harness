@@ -104,7 +104,7 @@ export function runEvals(suite: SuiteConfig, options?: RunEvalsOptions): void {
               inputTokens: result.inputTokens,
               outputTokens: result.outputTokens,
               totalTokens: result.inputTokens + result.outputTokens,
-              toolCallCount: result.toolCalls.length,
+              tool_calls: result.toolCalls.length,
               turnCount: result.turnCount,
               wallClockMs: result.wallClockMs,
               costUsd: result.costUsd,

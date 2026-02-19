@@ -16,6 +16,12 @@ const SharedServerFields = {
   mode: z.enum(["tools", "code"]),
   models: z.array(ModelAliasSchema).optional(),
   tags: z.array(z.string()).optional(),
+  /** When true, MCP tools are deferred so only code execution can invoke them. */
+  deferLoading: z.boolean().optional(),
+  /** Restricts which callers can invoke MCP tools (e.g. ["code_execution_20250825"]). */
+  allowedCallers: z
+    .array(z.enum(["direct", "code_execution_20250825"]))
+    .optional(),
 };
 
 const StdioServerConfigSchema = z.object({
@@ -81,6 +87,10 @@ interface SharedServerConfig {
   mode: "tools" | "code";
   models?: ModelAlias[];
   tags?: string[];
+  /** When true, MCP tools are deferred so only code execution can invoke them. */
+  deferLoading?: boolean;
+  /** Restricts which callers can invoke MCP tools (e.g. ["code_execution_20250825"]). */
+  allowedCallers?: Array<"direct" | "code_execution_20250825">;
 }
 
 export interface StdioServerConfig extends SharedServerConfig {

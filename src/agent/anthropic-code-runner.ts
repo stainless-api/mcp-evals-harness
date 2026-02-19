@@ -81,15 +81,19 @@ export class AnthropicCodeRunner implements AgentRunner {
       await mcpClient.connect(transport);
       const { tools: discoveredTools } = await mcpClient.listTools();
 
-      // Build MCP tools with defer_loading and allowed_callers for code execution
+      // Build MCP tools, optionally deferring them to code execution
       const mcpTools: RunnableMcpTool[] = discoveredTools.map((tool) => ({
         type: "custom" as const,
         name: tool.name,
         description: tool.description,
         input_schema:
           tool.inputSchema as Anthropic.Beta.Messages.BetaTool.InputSchema,
-        allowed_callers: ["code_execution_20250825" as const],
-        defer_loading: true,
+        ...(serverConfig.allowedCallers && {
+          allowed_callers: serverConfig.allowedCallers,
+        }),
+        ...(serverConfig.deferLoading !== undefined && {
+          defer_loading: serverConfig.deferLoading,
+        }),
         run: async (args: unknown) => {
           const toolStart = Date.now();
           const mcpResult = await mcpClient.callTool({
