@@ -132,14 +132,16 @@ EVAL_SUITE=<name> npm run eval
 ```
 ## Tags
 
-Tags let you label and filter experiment records in Braintrust. There are three sources:
+Tags let you label and filter experiments and records in Braintrust. There are three sources:
 
-- **Test case tags** — defined in `tags` on each test case
-- **Server tags** — add `tags` to a server config to apply them to all records from that server
-- **CLI tags** — set `EVAL_TAGS` (comma-separated) to apply tags to all records in a run
+- **Test case tags** — defined in `tags` on each test case (applied per-record)
+- **Server tags** — add `tags` to a server config (applied to the experiment)
+- **CLI tags** — set `EVAL_TAGS` (comma-separated) to tag all experiments in a run
+
+Server and CLI tags are applied at the experiment level. Test case tags are applied to individual records.
 
 ```typescript
-// Test case tags in suite config
+// Test case tags (per-record)
 testCases: [
   {
     id: "test-1",
@@ -151,7 +153,7 @@ testCases: [
 ```
 
 ```typescript
-// Server tags in suite config
+// Server tags (experiment-level)
 servers: [
   {
     id: "my-server",
@@ -162,10 +164,8 @@ servers: [
 ```
 
 ```sh
-# CLI tags
+# CLI tags (experiment-level)
 EVAL_TAGS=nightly,regression npm run eval:stripe
-
-# All sources are merged — records get test case + server + CLI tags
 ```
 
 ## Support

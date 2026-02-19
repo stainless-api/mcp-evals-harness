@@ -9,6 +9,28 @@ import { scoreCompleteness } from "../scorers/completeness.js";
 import { scoreEfficiency } from "../scorers/efficiency.js";
 import type { TestCase } from "../suite.js";
 
+// Collect tagging promises so we can ensure they complete before process exit
+const tagPromises: Promise<void>[] = [];
+
+async function tagExperiment(experimentId: string, tags: string[]) {
+  const apiUrl = process.env.BRAINTRUST_API_URL ?? "https://api.braintrust.dev";
+  const res = await fetch(`${apiUrl}/v1/experiment/${experimentId}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${process.env.BRAINTRUST_API_KEY}`,
+    },
+    body: JSON.stringify({ tags }),
+  });
+  if (!res.ok) {
+    console.error(`Failed to tag experiment ${experimentId}: ${res.status} ${await res.text()}`);
+  }
+}
+
+process.on("beforeExit", async () => {
+  await Promise.allSettled(tagPromises);
+});
+
 (async () => {
   const suite = await loadSuite();
 
@@ -25,12 +47,15 @@ import type { TestCase } from "../suite.js";
     for (const alias of modelAliases) {
       const modelConfig = resolveModel(alias);
       const runner = createRunner(modelConfig);
+      const experimentName = `${server.id}-${modelConfig.alias}`;
+      const experimentTags = [...new Set([...serverTags, ...cliTags])];
+      let taggedExperiment = false;
 
       Eval(suite.projectName, {
-        experimentName: `${server.id}-${modelConfig.alias}`,
+        experimentName,
         maxConcurrency: 2,
         metadata: {
-          name: `${server.id}-${modelConfig.alias}`,
+          name: experimentName,
           server: server.id,
           model: modelConfig.alias,
           provider: modelConfig.provider,
@@ -41,25 +66,31 @@ import type { TestCase } from "../suite.js";
           cliTags,
         },
         data: () =>
-          testCases.map((tc) => {
-            const mergedTags = [...new Set([...tc.tags, ...serverTags, ...cliTags])];
-            return {
-              input: {
-                prompt: tc.prompt,
-                testCaseId: tc.id,
-                tags: mergedTags,
-              },
-              tags: mergedTags,
-              expected: tc.expected.description,
-              metadata: {
-                testCaseId: tc.id,
-                serverId: server.id,
-                model: modelConfig.alias,
-                tags: mergedTags,
-              },
-            };
-          }),
-        task: async (input) => {
+          testCases.map((tc) => ({
+            input: {
+              prompt: tc.prompt,
+              testCaseId: tc.id,
+              tags: tc.tags,
+            },
+            tags: tc.tags,
+            expected: tc.expected.description,
+            metadata: {
+              testCaseId: tc.id,
+              serverId: server.id,
+              model: modelConfig.alias,
+              tags: tc.tags,
+            },
+          })),
+        task: async (input, { span }) => {
+          // Tag the experiment once via REST API on the first task invocation
+          if (!taggedExperiment && experimentTags.length > 0) {
+            taggedExperiment = true;
+            const parentId = await (span as any).parentObjectId?.get?.();
+            if (parentId) {
+              tagPromises.push(tagExperiment(parentId, experimentTags));
+            }
+          }
+
           const result = await runner.run(input.prompt, server, {
             systemPrompt: suite.systemPrompt,
             model: modelConfig,
