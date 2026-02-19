@@ -23,7 +23,9 @@ async function tagExperiment(experimentId: string, tags: string[]) {
     body: JSON.stringify({ tags }),
   });
   if (!res.ok) {
-    console.error(`Failed to tag experiment ${experimentId}: ${res.status} ${await res.text()}`);
+    console.error(
+      `Failed to tag experiment ${experimentId}: ${res.status} ${await res.text()}`,
+    );
   }
 }
 
@@ -41,7 +43,10 @@ process.on("beforeExit", async () => {
 
   for (const server of suite.servers) {
     const modelAliases = server.models ?? ["opus"];
-    const testCases = getTestCasesForServer(suite.testCases, server.capabilities);
+    const testCases = getTestCasesForServer(
+      suite.testCases,
+      server.capabilities,
+    );
     const serverTags: string[] = server.tags ?? [];
 
     for (const alias of modelAliases) {

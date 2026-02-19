@@ -57,7 +57,9 @@ export class AnthropicRunner implements AgentRunner {
       permissionMode: "bypassPermissions",
       allowDangerouslySkipPermissions: true,
       persistSession: false,
-      pathToClaudeCodeExecutable: process.env.CLAUDE_CODE_PATH ?? path.join(os.homedir(), ".local", "bin", "claude"),
+      pathToClaudeCodeExecutable:
+        process.env.CLAUDE_CODE_PATH ??
+        path.join(os.homedir(), ".local", "bin", "claude"),
       tools: ["Read", "Grep"] as string[],
       mcpServers: {
         [serverConfig.id]:
@@ -76,11 +78,16 @@ export class AnthropicRunner implements AgentRunner {
       },
       allowedTools: [`mcp__${serverConfig.id}__*`, "Read", "Grep"],
       disallowedTools: [
-        "Write", "Edit", "NotebookEdit",
-        "Glob", 
+        "Write",
+        "Edit",
+        "NotebookEdit",
+        "Glob",
         "Bash",
-        "WebFetch", "WebSearch",
-        "Task", "TodoRead", "TodoWrite",
+        "WebFetch",
+        "WebSearch",
+        "Task",
+        "TodoRead",
+        "TodoWrite",
       ],
       extraArgs: { "strict-mcp-config": null },
     };
@@ -144,9 +151,7 @@ export class AnthropicRunner implements AgentRunner {
                 tool_use_id: string;
                 content?: unknown;
               };
-              const pending = pendingToolUses.get(
-                toolResultBlock.tool_use_id,
-              );
+              const pending = pendingToolUses.get(toolResultBlock.tool_use_id);
               if (pending) {
                 const resultText =
                   typeof toolResultBlock.content === "string"

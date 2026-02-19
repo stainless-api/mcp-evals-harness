@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+set -euo pipefail
+cd "$(dirname "$0")/.."
+
+suite="${1:-${EVAL_SUITE:-stripe}}"
+
+npm run generate:suites --silent
+EVAL_SUITE="$suite" npx braintrust eval src/evals/e2e.eval.ts

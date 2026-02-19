@@ -3,8 +3,8 @@ import suite0 from "./increase/suite.js";
 import suite1 from "./stripe/suite.js";
 
 const suites: Record<string, unknown> = {
-  "increase": suite0,
-  "stripe": suite1,
+  increase: suite0,
+  stripe: suite1,
 };
 
 export default suites;

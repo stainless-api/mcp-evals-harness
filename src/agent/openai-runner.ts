@@ -91,9 +91,7 @@ export class OpenAIRunner implements AgentRunner {
     // 1. Connect to MCP server
     const transport = createTransport(serverConfig);
 
-    const mcpClient = new Client(
-      { name: "openai-runner", version: "1.0.0" },
-    );
+    const mcpClient = new Client({ name: "openai-runner", version: "1.0.0" });
 
     const openai = new OpenAI();
 
@@ -153,7 +151,10 @@ export class OpenAIRunner implements AgentRunner {
               ),
               model: modelConfig.modelId,
             };
-            return { inputTokens: turnInputTokens, outputTokens: turnOutputTokens };
+            return {
+              inputTokens: turnInputTokens,
+              outputTokens: turnOutputTokens,
+            };
           }
 
           // 4. Execute tool calls via MCP client
@@ -219,7 +220,10 @@ export class OpenAIRunner implements AgentRunner {
             });
           }
 
-          return { inputTokens: turnInputTokens, outputTokens: turnOutputTokens };
+          return {
+            inputTokens: turnInputTokens,
+            outputTokens: turnOutputTokens,
+          };
         });
 
         if (earlyReturn) return earlyReturn;

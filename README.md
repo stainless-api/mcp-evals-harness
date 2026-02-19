@@ -7,21 +7,22 @@ A generic framework for evaluating MCP server implementations side-by-side using
 The harness runs an agent loop against each MCP server in a suite, then scores responses on **factuality**, **completeness**, and **efficiency** via Braintrust.
 
 You can test your MCP servers with three different model sets:
-* OpenAI models
-* Anthropic models
-* Anthropic models, with advanced tool use betas.
 
-Models can be specified per-MCP-server from among the below options: 
-* "opus"
-* "sonnet"
-* "haiku"
-* "sonnet-code"
-* "opus-code"
-* "gpt-4o"
-* "gpt-4o-mini"
-* "o3"
-* "o4-mini"
+- OpenAI models
+- Anthropic models
+- Anthropic models, with advanced tool use betas.
 
+Models can be specified per-MCP-server from among the below options:
+
+- "opus"
+- "sonnet"
+- "haiku"
+- "sonnet-code"
+- "opus-code"
+- "gpt-4o"
+- "gpt-4o-mini"
+- "o3"
+- "o4-mini"
 
 All domain-specific content — servers, test cases, system prompt, project name — lives in a **suite config** directory. The generic infrastructure (agent runners, scorers, eval loop) is shared across suites.
 
@@ -55,12 +56,11 @@ src/
 
 ## Prerequisites
 
-* Braintrust account
-* Stripe Account (optional, for the Stripe suite)
-    * Stripe Secret API key for your sandbox
-    * Stripe CLI (`brew install stripe/stripe-cli/stripe`)
-* Increase Account (optional, for Increase suite)
-   
+- Braintrust account
+- Stripe Account (optional, for the Stripe suite)
+  - Stripe Secret API key for your sandbox
+  - Stripe CLI (`brew install stripe/stripe-cli/stripe`)
+- Increase Account (optional, for Increase suite)
 
 ## Setup
 
@@ -91,9 +91,9 @@ npm run eval:increase
 import type { SuiteConfig } from "../../suite.js";
 
 const suite: SuiteConfig = {
-  projectName: "my-project",          // Braintrust project name
+  projectName: "my-project", // Braintrust project name
   systemPrompt: "You are a helpful assistant with access to ...",
-  setup: "my-cli setup-command",      // Optional: command to be run before evals to seed test data
+  setup: "my-cli setup-command", // Optional: command to be run before evals to seed test data
   servers: [
     {
       id: "my-server",
@@ -123,13 +123,14 @@ export default suite;
 
 2. Optionally add supporting files (e.g. `fixtures.json`) in the same directory. You can provide a start-up command to help seed data in your sandbox account if you would like.
 
-3. Set the required environment variables for your servers. 
+3. Set the required environment variables for your servers.
 
 4. Run:
 
 ```sh
 EVAL_SUITE=<name> npm run eval
 ```
+
 ## Tags
 
 Tags let you label and filter experiments and records in Braintrust. There are three sources:

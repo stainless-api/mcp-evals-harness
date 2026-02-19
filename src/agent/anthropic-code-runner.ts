@@ -69,9 +69,10 @@ export class AnthropicCodeRunner implements AgentRunner {
     // 1. Spawn MCP server
     const transport = createTransport(serverConfig);
 
-    const mcpClient = new Client(
-      { name: "anthropic-code-runner", version: "1.0.0" },
-    );
+    const mcpClient = new Client({
+      name: "anthropic-code-runner",
+      version: "1.0.0",
+    });
 
     const anthropic = new Anthropic();
 
@@ -85,7 +86,8 @@ export class AnthropicCodeRunner implements AgentRunner {
         type: "custom" as const,
         name: tool.name,
         description: tool.description,
-        input_schema: tool.inputSchema as Anthropic.Beta.Messages.BetaTool.InputSchema,
+        input_schema:
+          tool.inputSchema as Anthropic.Beta.Messages.BetaTool.InputSchema,
         allowed_callers: ["code_execution_20250825" as const],
         defer_loading: true,
         run: async (args: unknown) => {
@@ -98,9 +100,7 @@ export class AnthropicCodeRunner implements AgentRunner {
           let resultText: string;
           if (Array.isArray(content)) {
             resultText = content
-              .map((c: any) =>
-                c.type === "text" ? c.text : JSON.stringify(c),
-              )
+              .map((c: any) => (c.type === "text" ? c.text : JSON.stringify(c)))
               .join("\n");
           } else {
             resultText = JSON.stringify(content);
@@ -133,14 +133,16 @@ export class AnthropicCodeRunner implements AgentRunner {
       }));
 
       // Server-side tools (not deferred) + deferred MCP tools
-      const toolSearchTool: Anthropic.Beta.Messages.BetaToolSearchToolBm25_20251119 = {
-        type: "tool_search_tool_bm25_20251119",
-        name: "tool_search_tool_bm25",
-      };
-      const codeExecutionTool: Anthropic.Beta.Messages.BetaCodeExecutionTool20250825 = {
-        type: "code_execution_20250825",
-        name: "code_execution",
-      };
+      const toolSearchTool: Anthropic.Beta.Messages.BetaToolSearchToolBm25_20251119 =
+        {
+          type: "tool_search_tool_bm25_20251119",
+          name: "tool_search_tool_bm25",
+        };
+      const codeExecutionTool: Anthropic.Beta.Messages.BetaCodeExecutionTool20250825 =
+        {
+          type: "code_execution_20250825",
+          name: "code_execution",
+        };
 
       const tools: Anthropic.Beta.Messages.BetaToolUnion[] = [
         toolSearchTool,

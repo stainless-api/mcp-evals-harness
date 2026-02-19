@@ -972,9 +972,7 @@
             "country": "US"
           }
         },
-        "preferred_locales": [
-          "en"
-        ],
+        "preferred_locales": ["en"],
         "metadata": {
           "company": "Heliosphere Inc.",
           "plan": "enterprise",
@@ -1052,10 +1050,7 @@
             "country": "US"
           }
         },
-        "preferred_locales": [
-          "en",
-          "ja"
-        ],
+        "preferred_locales": ["en", "ja"],
         "metadata": {
           "company": "Vortex Labs",
           "plan": "startup",
@@ -1112,10 +1107,7 @@
             "country": "SE"
           }
         },
-        "preferred_locales": [
-          "sv",
-          "en"
-        ],
+        "preferred_locales": ["sv", "en"],
         "metadata": {
           "company": "NordiqFlow AB",
           "plan": "business",
@@ -1155,9 +1147,7 @@
             "country": "US"
           }
         },
-        "preferred_locales": [
-          "en"
-        ],
+        "preferred_locales": ["en"],
         "metadata": {
           "company": "Cascade HQ",
           "plan": "pro",
@@ -1182,9 +1172,11 @@
       "params": {
         "customer": "${cus_customer_04:id}",
         "default_payment_method": "${pm_noah:id}",
-        "items": [{
-          "price": "${price_pro_monthly:id}"
-        }]
+        "items": [
+          {
+            "price": "${price_pro_monthly:id}"
+          }
+        ]
       }
     },
     {
@@ -1216,10 +1208,7 @@
             "country": "FR"
           }
         },
-        "preferred_locales": [
-          "fr",
-          "en"
-        ],
+        "preferred_locales": ["fr", "en"],
         "metadata": {
           "company": "Luminare Studio",
           "plan": "business",
@@ -1257,9 +1246,7 @@
             "country": "IE"
           }
         },
-        "preferred_locales": [
-          "en"
-        ],
+        "preferred_locales": ["en"],
         "metadata": {
           "company": "Greenfield.io",
           "plan": "enterprise",
@@ -1297,10 +1284,7 @@
             "country": "SG"
           }
         },
-        "preferred_locales": [
-          "en",
-          "ms"
-        ],
+        "preferred_locales": ["en", "ms"],
         "metadata": {
           "company": "PeakMind Labs",
           "plan": "startup",
@@ -1340,10 +1324,7 @@
             "country": "BR"
           }
         },
-        "preferred_locales": [
-          "pt",
-          "en"
-        ],
+        "preferred_locales": ["pt", "en"],
         "metadata": {
           "company": "Aurora Systems",
           "plan": "pro",
@@ -1383,10 +1364,7 @@
             "country": "JP"
           }
         },
-        "preferred_locales": [
-          "ja",
-          "en"
-        ],
+        "preferred_locales": ["ja", "en"],
         "metadata": {
           "company": "SkyBridge Corp",
           "plan": "enterprise",
@@ -1426,10 +1404,7 @@
             "country": "IN"
           }
         },
-        "preferred_locales": [
-          "en",
-          "hi"
-        ],
+        "preferred_locales": ["en", "hi"],
         "metadata": {
           "company": "NebulaEdge Technologies",
           "plan": "pro",
@@ -1488,10 +1463,7 @@
             "country": "DE"
           }
         },
-        "preferred_locales": [
-          "de",
-          "en"
-        ],
+        "preferred_locales": ["de", "en"],
         "metadata": {
           "company": "Ironforge GmbH",
           "plan": "enterprise",
@@ -1529,10 +1501,7 @@
             "country": "IT"
           }
         },
-        "preferred_locales": [
-          "it",
-          "en"
-        ],
+        "preferred_locales": ["it", "en"],
         "metadata": {
           "company": "TerraFlux S.r.l.",
           "plan": "business",
@@ -1570,10 +1539,7 @@
             "country": "US"
           }
         },
-        "preferred_locales": [
-          "en",
-          "ko"
-        ],
+        "preferred_locales": ["en", "ko"],
         "metadata": {
           "company": "QuantumLeap",
           "plan": "startup",
@@ -1611,10 +1577,7 @@
             "country": "AE"
           }
         },
-        "preferred_locales": [
-          "ar",
-          "en"
-        ],
+        "preferred_locales": ["ar", "en"],
         "metadata": {
           "company": "OasisPay",
           "plan": "enterprise",
@@ -1669,10 +1632,7 @@
             "country": "DK"
           }
         },
-        "preferred_locales": [
-          "da",
-          "en"
-        ],
+        "preferred_locales": ["da", "en"],
         "metadata": {
           "company": "Wavecrest Labs",
           "plan": "pro",
@@ -1712,9 +1672,7 @@
             "country": "AU"
           }
         },
-        "preferred_locales": [
-          "en"
-        ],
+        "preferred_locales": ["en"],
         "metadata": {
           "company": "Cirrus Analytics",
           "plan": "business",
@@ -1752,10 +1710,7 @@
             "country": "PT"
           }
         },
-        "preferred_locales": [
-          "pt",
-          "en"
-        ],
+        "preferred_locales": ["pt", "en"],
         "metadata": {
           "company": "SolarWind HQ",
           "plan": "startup",
@@ -1793,10 +1748,7 @@
             "country": "PL"
           }
         },
-        "preferred_locales": [
-          "pl",
-          "en"
-        ],
+        "preferred_locales": ["pl", "en"],
         "metadata": {
           "company": "BlueprintOps",
           "plan": "business",
@@ -1836,10 +1788,7 @@
             "country": "US"
           }
         },
-        "preferred_locales": [
-          "en",
-          "ru"
-        ],
+        "preferred_locales": ["en", "ru"],
         "metadata": {
           "company": "CodeZenith",
           "plan": "pro",
@@ -1877,10 +1826,7 @@
             "country": "TW"
           }
         },
-        "preferred_locales": [
-          "zh",
-          "en"
-        ],
+        "preferred_locales": ["zh", "en"],
         "metadata": {
           "company": "JadePath Ventures",
           "plan": "enterprise",
@@ -1920,10 +1866,7 @@
             "country": "BR"
           }
         },
-        "preferred_locales": [
-          "pt",
-          "en"
-        ],
+        "preferred_locales": ["pt", "en"],
         "metadata": {
           "company": "Xpanse AB",
           "plan": "pro",
@@ -1963,9 +1906,7 @@
             "country": "NZ"
           }
         },
-        "preferred_locales": [
-          "en"
-        ],
+        "preferred_locales": ["en"],
         "metadata": {
           "company": "Elevate AB",
           "plan": "business",
@@ -2005,10 +1946,7 @@
             "country": "KR"
           }
         },
-        "preferred_locales": [
-          "ko",
-          "en"
-        ],
+        "preferred_locales": ["ko", "en"],
         "metadata": {
           "company": "Cirrus Analytics Ventures",
           "plan": "enterprise",
@@ -2048,10 +1986,7 @@
             "country": "MX"
           }
         },
-        "preferred_locales": [
-          "es",
-          "en"
-        ],
+        "preferred_locales": ["es", "en"],
         "metadata": {
           "company": "ZenithOps B.V.",
           "plan": "starter",
@@ -2091,10 +2026,7 @@
             "country": "AT"
           }
         },
-        "preferred_locales": [
-          "de",
-          "en"
-        ],
+        "preferred_locales": ["de", "en"],
         "metadata": {
           "company": "SkyBridge Corp B.V.",
           "plan": "enterprise",
@@ -2134,9 +2066,7 @@
             "country": "GB"
           }
         },
-        "preferred_locales": [
-          "en"
-        ],
+        "preferred_locales": ["en"],
         "metadata": {
           "company": "TerraFlux Group",
           "plan": "starter",
@@ -2176,9 +2106,7 @@
             "country": "AU"
           }
         },
-        "preferred_locales": [
-          "en"
-        ],
+        "preferred_locales": ["en"],
         "metadata": {
           "company": "RapidScale ApS",
           "plan": "pro",
@@ -2218,10 +2146,7 @@
             "country": "AT"
           }
         },
-        "preferred_locales": [
-          "de",
-          "en"
-        ],
+        "preferred_locales": ["de", "en"],
         "metadata": {
           "company": "NordiqFlow Corp.",
           "plan": "pro",
@@ -2261,10 +2186,7 @@
             "country": "CO"
           }
         },
-        "preferred_locales": [
-          "es",
-          "en"
-        ],
+        "preferred_locales": ["es", "en"],
         "metadata": {
           "company": "Zenith Labs",
           "plan": "pro",
@@ -2302,10 +2224,7 @@
             "country": "NO"
           }
         },
-        "preferred_locales": [
-          "nb",
-          "en"
-        ],
+        "preferred_locales": ["nb", "en"],
         "metadata": {
           "company": "Sable LLC",
           "plan": "pro",
@@ -2345,10 +2264,7 @@
             "country": "SE"
           }
         },
-        "preferred_locales": [
-          "sv",
-          "en"
-        ],
+        "preferred_locales": ["sv", "en"],
         "metadata": {
           "company": "Northstar ApS",
           "plan": "pro",
@@ -2388,10 +2304,7 @@
             "country": "DE"
           }
         },
-        "preferred_locales": [
-          "de",
-          "en"
-        ],
+        "preferred_locales": ["de", "en"],
         "metadata": {
           "company": "Orchid Ventures",
           "plan": "pro",
@@ -2431,10 +2344,7 @@
             "country": "CO"
           }
         },
-        "preferred_locales": [
-          "es",
-          "en"
-        ],
+        "preferred_locales": ["es", "en"],
         "metadata": {
           "company": "QuantumBit ApS",
           "plan": "pro",
@@ -2474,10 +2384,7 @@
             "country": "MX"
           }
         },
-        "preferred_locales": [
-          "es",
-          "en"
-        ],
+        "preferred_locales": ["es", "en"],
         "metadata": {
           "company": "Foundry Ltd.",
           "plan": "business",
@@ -2515,10 +2422,7 @@
             "country": "IL"
           }
         },
-        "preferred_locales": [
-          "he",
-          "en"
-        ],
+        "preferred_locales": ["he", "en"],
         "metadata": {
           "company": "SolarWind HQ Systems",
           "plan": "pro",
@@ -2556,10 +2460,7 @@
             "country": "FI"
           }
         },
-        "preferred_locales": [
-          "fi",
-          "en"
-        ],
+        "preferred_locales": ["fi", "en"],
         "metadata": {
           "company": "Axiom Data Oy",
           "plan": "business",
@@ -2597,10 +2498,7 @@
             "country": "NO"
           }
         },
-        "preferred_locales": [
-          "nb",
-          "en"
-        ],
+        "preferred_locales": ["nb", "en"],
         "metadata": {
           "company": "Quantum Solutions",
           "plan": "business",
@@ -2640,10 +2538,7 @@
             "country": "DE"
           }
         },
-        "preferred_locales": [
-          "de",
-          "en"
-        ],
+        "preferred_locales": ["de", "en"],
         "metadata": {
           "company": "Vortex Labs Corp.",
           "plan": "pro",
@@ -2683,10 +2578,7 @@
             "country": "CL"
           }
         },
-        "preferred_locales": [
-          "es",
-          "en"
-        ],
+        "preferred_locales": ["es", "en"],
         "metadata": {
           "company": "Beacon Technologies",
           "plan": "enterprise",
@@ -2724,10 +2616,7 @@
             "country": "FI"
           }
         },
-        "preferred_locales": [
-          "fi",
-          "en"
-        ],
+        "preferred_locales": ["fi", "en"],
         "metadata": {
           "company": "YieldMax S.r.l.",
           "plan": "starter",
@@ -2765,10 +2654,7 @@
             "country": "AE"
           }
         },
-        "preferred_locales": [
-          "ar",
-          "en"
-        ],
+        "preferred_locales": ["ar", "en"],
         "metadata": {
           "company": "Luminare Studio Corp.",
           "plan": "starter",
@@ -2808,10 +2694,7 @@
             "country": "AT"
           }
         },
-        "preferred_locales": [
-          "de",
-          "en"
-        ],
+        "preferred_locales": ["de", "en"],
         "metadata": {
           "company": "SkyBridge Corp Systems",
           "plan": "enterprise",
@@ -2849,10 +2732,7 @@
             "country": "FI"
           }
         },
-        "preferred_locales": [
-          "fi",
-          "en"
-        ],
+        "preferred_locales": ["fi", "en"],
         "metadata": {
           "company": "FusionGrid SAS",
           "plan": "enterprise",
@@ -2890,10 +2770,7 @@
             "country": "AE"
           }
         },
-        "preferred_locales": [
-          "ar",
-          "en"
-        ],
+        "preferred_locales": ["ar", "en"],
         "metadata": {
           "company": "Northstar Solutions",
           "plan": "enterprise",
@@ -2933,10 +2810,7 @@
             "country": "JP"
           }
         },
-        "preferred_locales": [
-          "ja",
-          "en"
-        ],
+        "preferred_locales": ["ja", "en"],
         "metadata": {
           "company": "FusionGrid Pty Ltd",
           "plan": "business",
@@ -2976,9 +2850,7 @@
             "country": "AU"
           }
         },
-        "preferred_locales": [
-          "en"
-        ],
+        "preferred_locales": ["en"],
         "metadata": {
           "company": "LambdaCore Platform",
           "plan": "pro",
@@ -3018,10 +2890,7 @@
             "country": "BR"
           }
         },
-        "preferred_locales": [
-          "pt",
-          "en"
-        ],
+        "preferred_locales": ["pt", "en"],
         "metadata": {
           "company": "BlueprintOps GmbH",
           "plan": "enterprise",
@@ -3061,11 +2930,7 @@
             "country": "CH"
           }
         },
-        "preferred_locales": [
-          "de",
-          "fr",
-          "en"
-        ],
+        "preferred_locales": ["de", "fr", "en"],
         "metadata": {
           "company": "DeltaPrime Software",
           "plan": "enterprise",
@@ -3105,10 +2970,7 @@
             "country": "AT"
           }
         },
-        "preferred_locales": [
-          "de",
-          "en"
-        ],
+        "preferred_locales": ["de", "en"],
         "metadata": {
           "company": "WaveSync Inc.",
           "plan": "enterprise",
@@ -3148,10 +3010,7 @@
             "country": "ES"
           }
         },
-        "preferred_locales": [
-          "es",
-          "en"
-        ],
+        "preferred_locales": ["es", "en"],
         "metadata": {
           "company": "Yonder Consulting",
           "plan": "starter",
@@ -3189,10 +3048,7 @@
             "country": "PT"
           }
         },
-        "preferred_locales": [
-          "pt",
-          "en"
-        ],
+        "preferred_locales": ["pt", "en"],
         "metadata": {
           "company": "Outlook Corp.",
           "plan": "business",
@@ -3230,10 +3086,7 @@
             "country": "FI"
           }
         },
-        "preferred_locales": [
-          "fi",
-          "en"
-        ],
+        "preferred_locales": ["fi", "en"],
         "metadata": {
           "company": "Elevate Digital",
           "plan": "starter",
@@ -3271,10 +3124,7 @@
             "country": "FI"
           }
         },
-        "preferred_locales": [
-          "fi",
-          "en"
-        ],
+        "preferred_locales": ["fi", "en"],
         "metadata": {
           "company": "Keystone Platform",
           "plan": "business",
@@ -3312,10 +3162,7 @@
             "country": "PT"
           }
         },
-        "preferred_locales": [
-          "pt",
-          "en"
-        ],
+        "preferred_locales": ["pt", "en"],
         "metadata": {
           "company": "Zenith Oy",
           "plan": "starter",
@@ -3355,10 +3202,7 @@
             "country": "PL"
           }
         },
-        "preferred_locales": [
-          "pl",
-          "en"
-        ],
+        "preferred_locales": ["pl", "en"],
         "metadata": {
           "company": "GammaRay A/S",
           "plan": "enterprise",
@@ -3398,10 +3242,7 @@
             "country": "SE"
           }
         },
-        "preferred_locales": [
-          "sv",
-          "en"
-        ],
+        "preferred_locales": ["sv", "en"],
         "metadata": {
           "company": "ZephyrCloud Co.",
           "plan": "enterprise",
@@ -3439,10 +3280,7 @@
             "country": "SG"
           }
         },
-        "preferred_locales": [
-          "en",
-          "zh"
-        ],
+        "preferred_locales": ["en", "zh"],
         "metadata": {
           "company": "Jubilee B.V.",
           "plan": "pro",
@@ -3482,9 +3320,7 @@
             "country": "IE"
           }
         },
-        "preferred_locales": [
-          "en"
-        ],
+        "preferred_locales": ["en"],
         "metadata": {
           "company": "QuantumBit A/S",
           "plan": "pro",
@@ -3522,10 +3358,7 @@
             "country": "TW"
           }
         },
-        "preferred_locales": [
-          "zh",
-          "en"
-        ],
+        "preferred_locales": ["zh", "en"],
         "metadata": {
           "company": "Cirrus Analytics SAS",
           "plan": "starter",
@@ -3565,9 +3398,7 @@
             "country": "AU"
           }
         },
-        "preferred_locales": [
-          "en"
-        ],
+        "preferred_locales": ["en"],
         "metadata": {
           "company": "Northstar Ltd.",
           "plan": "business",
@@ -3607,10 +3438,7 @@
             "country": "IN"
           }
         },
-        "preferred_locales": [
-          "en",
-          "hi"
-        ],
+        "preferred_locales": ["en", "hi"],
         "metadata": {
           "company": "JetStream Ventures",
           "plan": "enterprise",
@@ -3650,9 +3478,7 @@
             "country": "IE"
           }
         },
-        "preferred_locales": [
-          "en"
-        ],
+        "preferred_locales": ["en"],
         "metadata": {
           "company": "StellarOps SAS",
           "plan": "business",
@@ -3692,10 +3518,7 @@
             "country": "AT"
           }
         },
-        "preferred_locales": [
-          "de",
-          "en"
-        ],
+        "preferred_locales": ["de", "en"],
         "metadata": {
           "company": "Meridian Oy",
           "plan": "enterprise",
@@ -3735,10 +3558,7 @@
             "country": "IT"
           }
         },
-        "preferred_locales": [
-          "it",
-          "en"
-        ],
+        "preferred_locales": ["it", "en"],
         "metadata": {
           "company": "ZephyrCloud LLC",
           "plan": "enterprise",
@@ -3778,10 +3598,7 @@
             "country": "AT"
           }
         },
-        "preferred_locales": [
-          "de",
-          "en"
-        ],
+        "preferred_locales": ["de", "en"],
         "metadata": {
           "company": "ZephyrCloud GmbH",
           "plan": "pro",
@@ -3819,10 +3636,7 @@
             "country": "SG"
           }
         },
-        "preferred_locales": [
-          "en",
-          "zh"
-        ],
+        "preferred_locales": ["en", "zh"],
         "metadata": {
           "company": "Wander Digital",
           "plan": "starter",
@@ -3860,10 +3674,7 @@
             "country": "SG"
           }
         },
-        "preferred_locales": [
-          "en",
-          "zh"
-        ],
+        "preferred_locales": ["en", "zh"],
         "metadata": {
           "company": "Indie Inc.",
           "plan": "enterprise",
@@ -3901,10 +3712,7 @@
             "country": "TW"
           }
         },
-        "preferred_locales": [
-          "zh",
-          "en"
-        ],
+        "preferred_locales": ["zh", "en"],
         "metadata": {
           "company": "JetStream Software",
           "plan": "starter",
@@ -3944,10 +3752,7 @@
             "country": "ES"
           }
         },
-        "preferred_locales": [
-          "es",
-          "en"
-        ],
+        "preferred_locales": ["es", "en"],
         "metadata": {
           "company": "Vertex GmbH",
           "plan": "starter",
@@ -3987,10 +3792,7 @@
             "country": "ES"
           }
         },
-        "preferred_locales": [
-          "es",
-          "en"
-        ],
+        "preferred_locales": ["es", "en"],
         "metadata": {
           "company": "Yellowbrick Ltd.",
           "plan": "pro",
@@ -4030,9 +3832,7 @@
             "country": "AU"
           }
         },
-        "preferred_locales": [
-          "en"
-        ],
+        "preferred_locales": ["en"],
         "metadata": {
           "company": "Echo S.A.",
           "plan": "enterprise",
@@ -4072,10 +3872,7 @@
             "country": "DE"
           }
         },
-        "preferred_locales": [
-          "de",
-          "en"
-        ],
+        "preferred_locales": ["de", "en"],
         "metadata": {
           "company": "XylemTech S.A.",
           "plan": "business",
@@ -4113,10 +3910,7 @@
             "country": "NO"
           }
         },
-        "preferred_locales": [
-          "nb",
-          "en"
-        ],
+        "preferred_locales": ["nb", "en"],
         "metadata": {
           "company": "Vortex Labs Sp. z o.o.",
           "plan": "starter",
@@ -4156,10 +3950,7 @@
             "country": "CL"
           }
         },
-        "preferred_locales": [
-          "es",
-          "en"
-        ],
+        "preferred_locales": ["es", "en"],
         "metadata": {
           "company": "Daybreak AG",
           "plan": "pro",
@@ -4199,10 +3990,7 @@
             "country": "JP"
           }
         },
-        "preferred_locales": [
-          "ja",
-          "en"
-        ],
+        "preferred_locales": ["ja", "en"],
         "metadata": {
           "company": "NeutronOps Ltd.",
           "plan": "enterprise",
@@ -4242,11 +4030,7 @@
             "country": "CH"
           }
         },
-        "preferred_locales": [
-          "de",
-          "fr",
-          "en"
-        ],
+        "preferred_locales": ["de", "fr", "en"],
         "metadata": {
           "company": "Cascade HQ Technologies",
           "plan": "starter",
@@ -4286,10 +4070,7 @@
             "country": "MX"
           }
         },
-        "preferred_locales": [
-          "es",
-          "en"
-        ],
+        "preferred_locales": ["es", "en"],
         "metadata": {
           "company": "MesonTech AG",
           "plan": "pro",
@@ -4329,10 +4110,7 @@
             "country": "KR"
           }
         },
-        "preferred_locales": [
-          "ko",
-          "en"
-        ],
+        "preferred_locales": ["ko", "en"],
         "metadata": {
           "company": "ZenithOps LLC",
           "plan": "starter",
@@ -4372,10 +4150,7 @@
             "country": "JP"
           }
         },
-        "preferred_locales": [
-          "ja",
-          "en"
-        ],
+        "preferred_locales": ["ja", "en"],
         "metadata": {
           "company": "WarpDrive Group",
           "plan": "starter",
@@ -4413,10 +4188,7 @@
             "country": "FR"
           }
         },
-        "preferred_locales": [
-          "fr",
-          "en"
-        ],
+        "preferred_locales": ["fr", "en"],
         "metadata": {
           "company": "HelixData KG",
           "plan": "enterprise",
@@ -4454,10 +4226,7 @@
             "country": "FR"
           }
         },
-        "preferred_locales": [
-          "fr",
-          "en"
-        ],
+        "preferred_locales": ["fr", "en"],
         "metadata": {
           "company": "IonPath Systems",
           "plan": "enterprise",
@@ -4495,10 +4264,7 @@
             "country": "FR"
           }
         },
-        "preferred_locales": [
-          "fr",
-          "en"
-        ],
+        "preferred_locales": ["fr", "en"],
         "metadata": {
           "company": "Glyph ApS",
           "plan": "business",
@@ -4538,9 +4304,7 @@
             "country": "IE"
           }
         },
-        "preferred_locales": [
-          "en"
-        ],
+        "preferred_locales": ["en"],
         "metadata": {
           "company": "Quantum Ventures",
           "plan": "starter",
@@ -4580,10 +4344,7 @@
             "country": "SE"
           }
         },
-        "preferred_locales": [
-          "sv",
-          "en"
-        ],
+        "preferred_locales": ["sv", "en"],
         "metadata": {
           "company": "Foundry S.r.l.",
           "plan": "pro",
@@ -4621,10 +4382,7 @@
             "country": "FI"
           }
         },
-        "preferred_locales": [
-          "fi",
-          "en"
-        ],
+        "preferred_locales": ["fi", "en"],
         "metadata": {
           "company": "Vivid Systems",
           "plan": "starter",
@@ -4664,10 +4422,7 @@
             "country": "IT"
           }
         },
-        "preferred_locales": [
-          "it",
-          "en"
-        ],
+        "preferred_locales": ["it", "en"],
         "metadata": {
           "company": "CoreSync ApS",
           "plan": "business",
@@ -4705,10 +4460,7 @@
             "country": "TW"
           }
         },
-        "preferred_locales": [
-          "zh",
-          "en"
-        ],
+        "preferred_locales": ["zh", "en"],
         "metadata": {
           "company": "OptiCore B.V.",
           "plan": "starter",
@@ -4748,10 +4500,7 @@
             "country": "NL"
           }
         },
-        "preferred_locales": [
-          "nl",
-          "en"
-        ],
+        "preferred_locales": ["nl", "en"],
         "metadata": {
           "company": "MindForge S.r.l.",
           "plan": "starter",
@@ -4789,10 +4538,7 @@
             "country": "NO"
           }
         },
-        "preferred_locales": [
-          "nb",
-          "en"
-        ],
+        "preferred_locales": ["nb", "en"],
         "metadata": {
           "company": "Unison Ltd.",
           "plan": "enterprise",
@@ -4830,10 +4576,7 @@
             "country": "PT"
           }
         },
-        "preferred_locales": [
-          "pt",
-          "en"
-        ],
+        "preferred_locales": ["pt", "en"],
         "metadata": {
           "company": "LunarByte ApS",
           "plan": "pro",
@@ -4873,10 +4616,7 @@
             "country": "CA"
           }
         },
-        "preferred_locales": [
-          "en",
-          "fr"
-        ],
+        "preferred_locales": ["en", "fr"],
         "metadata": {
           "company": "CodeZenith AB",
           "plan": "pro",
@@ -4916,10 +4656,7 @@
             "country": "IN"
           }
         },
-        "preferred_locales": [
-          "en",
-          "hi"
-        ],
+        "preferred_locales": ["en", "hi"],
         "metadata": {
           "company": "SynapseIO Partners",
           "plan": "enterprise",
@@ -4957,10 +4694,7 @@
             "country": "PT"
           }
         },
-        "preferred_locales": [
-          "pt",
-          "en"
-        ],
+        "preferred_locales": ["pt", "en"],
         "metadata": {
           "company": "Tidal Partners",
           "plan": "starter",
@@ -5000,10 +4734,7 @@
             "country": "SE"
           }
         },
-        "preferred_locales": [
-          "sv",
-          "en"
-        ],
+        "preferred_locales": ["sv", "en"],
         "metadata": {
           "company": "Horizon S.A.",
           "plan": "business",
@@ -5043,10 +4774,7 @@
             "country": "JP"
           }
         },
-        "preferred_locales": [
-          "ja",
-          "en"
-        ],
+        "preferred_locales": ["ja", "en"],
         "metadata": {
           "company": "Daybreak Systems",
           "plan": "business",
@@ -5086,9 +4814,7 @@
             "country": "IE"
           }
         },
-        "preferred_locales": [
-          "en"
-        ],
+        "preferred_locales": ["en"],
         "metadata": {
           "company": "XenonLabs Group",
           "plan": "pro",
@@ -5126,10 +4852,7 @@
             "country": "TW"
           }
         },
-        "preferred_locales": [
-          "zh",
-          "en"
-        ],
+        "preferred_locales": ["zh", "en"],
         "metadata": {
           "company": "Jubilee Digital",
           "plan": "business",
@@ -5167,10 +4890,7 @@
             "country": "SG"
           }
         },
-        "preferred_locales": [
-          "en",
-          "zh"
-        ],
+        "preferred_locales": ["en", "zh"],
         "metadata": {
           "company": "NeutronOps Group",
           "plan": "business",
@@ -5210,9 +4930,7 @@
             "country": "AU"
           }
         },
-        "preferred_locales": [
-          "en"
-        ],
+        "preferred_locales": ["en"],
         "metadata": {
           "company": "Ironforge Group",
           "plan": "business",
@@ -5252,10 +4970,7 @@
             "country": "AT"
           }
         },
-        "preferred_locales": [
-          "de",
-          "en"
-        ],
+        "preferred_locales": ["de", "en"],
         "metadata": {
           "company": "Cascade HQ Co.",
           "plan": "business",
@@ -5293,10 +5008,7 @@
             "country": "SG"
           }
         },
-        "preferred_locales": [
-          "en",
-          "zh"
-        ],
+        "preferred_locales": ["en", "zh"],
         "metadata": {
           "company": "Wavecrest Labs Group",
           "plan": "pro",
@@ -5336,10 +5048,7 @@
             "country": "BR"
           }
         },
-        "preferred_locales": [
-          "pt",
-          "en"
-        ],
+        "preferred_locales": ["pt", "en"],
         "metadata": {
           "company": "Horizon AG",
           "plan": "starter",
@@ -5379,9 +5088,7 @@
             "country": "NZ"
           }
         },
-        "preferred_locales": [
-          "en"
-        ],
+        "preferred_locales": ["en"],
         "metadata": {
           "company": "NordiqFlow AG",
           "plan": "enterprise",
@@ -5421,10 +5128,7 @@
             "country": "IT"
           }
         },
-        "preferred_locales": [
-          "it",
-          "en"
-        ],
+        "preferred_locales": ["it", "en"],
         "metadata": {
           "company": "Upward Group",
           "plan": "pro",
@@ -5464,10 +5168,7 @@
             "country": "SE"
           }
         },
-        "preferred_locales": [
-          "sv",
-          "en"
-        ],
+        "preferred_locales": ["sv", "en"],
         "metadata": {
           "company": "Cirrus Analytics Partners",
           "plan": "starter",
@@ -5507,10 +5208,7 @@
             "country": "DE"
           }
         },
-        "preferred_locales": [
-          "de",
-          "en"
-        ],
+        "preferred_locales": ["de", "en"],
         "metadata": {
           "company": "VeloCloud Corp.",
           "plan": "starter",
@@ -5550,9 +5248,7 @@
             "country": "US"
           }
         },
-        "preferred_locales": [
-          "en"
-        ],
+        "preferred_locales": ["en"],
         "metadata": {
           "company": "Pinnacle S.A.",
           "plan": "enterprise",
@@ -5592,10 +5288,7 @@
             "country": "SE"
           }
         },
-        "preferred_locales": [
-          "sv",
-          "en"
-        ],
+        "preferred_locales": ["sv", "en"],
         "metadata": {
           "company": "BlueprintOps KG",
           "plan": "business",
@@ -5635,10 +5328,7 @@
             "country": "CA"
           }
         },
-        "preferred_locales": [
-          "en",
-          "fr"
-        ],
+        "preferred_locales": ["en", "fr"],
         "metadata": {
           "company": "Unison A/S",
           "plan": "pro",
@@ -5678,9 +5368,7 @@
             "country": "NZ"
           }
         },
-        "preferred_locales": [
-          "en"
-        ],
+        "preferred_locales": ["en"],
         "metadata": {
           "company": "Cirrus Analytics B.V.",
           "plan": "starter",
@@ -5718,10 +5406,7 @@
             "country": "FI"
           }
         },
-        "preferred_locales": [
-          "fi",
-          "en"
-        ],
+        "preferred_locales": ["fi", "en"],
         "metadata": {
           "company": "Bloom ApS",
           "plan": "enterprise",
@@ -5761,9 +5446,7 @@
             "country": "AU"
           }
         },
-        "preferred_locales": [
-          "en"
-        ],
+        "preferred_locales": ["en"],
         "metadata": {
           "company": "SynapseIO S.A.",
           "plan": "starter",
@@ -5801,10 +5484,7 @@
             "country": "AE"
           }
         },
-        "preferred_locales": [
-          "ar",
-          "en"
-        ],
+        "preferred_locales": ["ar", "en"],
         "metadata": {
           "company": "BrightPath Systems",
           "plan": "enterprise",
@@ -5844,9 +5524,7 @@
             "country": "NZ"
           }
         },
-        "preferred_locales": [
-          "en"
-        ],
+        "preferred_locales": ["en"],
         "metadata": {
           "company": "LunarByte Partners",
           "plan": "business",
@@ -5884,10 +5562,7 @@
             "country": "DK"
           }
         },
-        "preferred_locales": [
-          "da",
-          "en"
-        ],
+        "preferred_locales": ["da", "en"],
         "metadata": {
           "company": "Aeris AG",
           "plan": "enterprise",
@@ -5927,10 +5602,7 @@
             "country": "CL"
           }
         },
-        "preferred_locales": [
-          "es",
-          "en"
-        ],
+        "preferred_locales": ["es", "en"],
         "metadata": {
           "company": "Wander Sp. z o.o.",
           "plan": "pro",
@@ -5968,10 +5640,7 @@
             "country": "AE"
           }
         },
-        "preferred_locales": [
-          "ar",
-          "en"
-        ],
+        "preferred_locales": ["ar", "en"],
         "metadata": {
           "company": "QuantumBit A/S",
           "plan": "starter",
@@ -6011,10 +5680,7 @@
             "country": "KR"
           }
         },
-        "preferred_locales": [
-          "ko",
-          "en"
-        ],
+        "preferred_locales": ["ko", "en"],
         "metadata": {
           "company": "QuantumBit Ltd.",
           "plan": "pro",
@@ -6054,10 +5720,7 @@
             "country": "JP"
           }
         },
-        "preferred_locales": [
-          "ja",
-          "en"
-        ],
+        "preferred_locales": ["ja", "en"],
         "metadata": {
           "company": "Greenfield.io LLC",
           "plan": "business",
@@ -6097,9 +5760,7 @@
             "country": "IE"
           }
         },
-        "preferred_locales": [
-          "en"
-        ],
+        "preferred_locales": ["en"],
         "metadata": {
           "company": "BlueShift S.r.l.",
           "plan": "starter",
@@ -6137,10 +5798,7 @@
             "country": "TW"
           }
         },
-        "preferred_locales": [
-          "zh",
-          "en"
-        ],
+        "preferred_locales": ["zh", "en"],
         "metadata": {
           "company": "Vertex Technologies",
           "plan": "pro",
@@ -6180,10 +5838,7 @@
             "country": "CA"
           }
         },
-        "preferred_locales": [
-          "en",
-          "fr"
-        ],
+        "preferred_locales": ["en", "fr"],
         "metadata": {
           "company": "BlueprintOps KG",
           "plan": "enterprise",
@@ -6221,10 +5876,7 @@
             "country": "TW"
           }
         },
-        "preferred_locales": [
-          "zh",
-          "en"
-        ],
+        "preferred_locales": ["zh", "en"],
         "metadata": {
           "company": "InnoSpark S.r.l.",
           "plan": "enterprise",
@@ -6264,10 +5916,7 @@
             "country": "DE"
           }
         },
-        "preferred_locales": [
-          "de",
-          "en"
-        ],
+        "preferred_locales": ["de", "en"],
         "metadata": {
           "company": "Zeal Digital",
           "plan": "pro",
@@ -6307,10 +5956,7 @@
             "country": "NL"
           }
         },
-        "preferred_locales": [
-          "nl",
-          "en"
-        ],
+        "preferred_locales": ["nl", "en"],
         "metadata": {
           "company": "QuantumLeap ApS",
           "plan": "starter",
@@ -6350,10 +5996,7 @@
             "country": "AT"
           }
         },
-        "preferred_locales": [
-          "de",
-          "en"
-        ],
+        "preferred_locales": ["de", "en"],
         "metadata": {
           "company": "Vertex Software",
           "plan": "business",
@@ -6391,10 +6034,7 @@
             "country": "NO"
           }
         },
-        "preferred_locales": [
-          "nb",
-          "en"
-        ],
+        "preferred_locales": ["nb", "en"],
         "metadata": {
           "company": "Quill GmbH",
           "plan": "business",
@@ -6434,10 +6074,7 @@
             "country": "DE"
           }
         },
-        "preferred_locales": [
-          "de",
-          "en"
-        ],
+        "preferred_locales": ["de", "en"],
         "metadata": {
           "company": "TachyonAI Co.",
           "plan": "starter",
@@ -6475,10 +6112,7 @@
             "country": "SG"
           }
         },
-        "preferred_locales": [
-          "en",
-          "zh"
-        ],
+        "preferred_locales": ["en", "zh"],
         "metadata": {
           "company": "Cirrus Analytics Oy",
           "plan": "pro",
@@ -6518,9 +6152,7 @@
             "country": "IE"
           }
         },
-        "preferred_locales": [
-          "en"
-        ],
+        "preferred_locales": ["en"],
         "metadata": {
           "company": "ZephyrCloud Ventures",
           "plan": "pro",
@@ -6560,10 +6192,7 @@
             "country": "CO"
           }
         },
-        "preferred_locales": [
-          "es",
-          "en"
-        ],
+        "preferred_locales": ["es", "en"],
         "metadata": {
           "company": "Quantum B.V.",
           "plan": "business",
@@ -6601,10 +6230,7 @@
             "country": "PT"
           }
         },
-        "preferred_locales": [
-          "pt",
-          "en"
-        ],
+        "preferred_locales": ["pt", "en"],
         "metadata": {
           "company": "Yellowbrick B.V.",
           "plan": "pro",
@@ -6644,10 +6270,7 @@
             "country": "AT"
           }
         },
-        "preferred_locales": [
-          "de",
-          "en"
-        ],
+        "preferred_locales": ["de", "en"],
         "metadata": {
           "company": "Orchid Ventures",
           "plan": "starter",
@@ -6685,10 +6308,7 @@
             "country": "FI"
           }
         },
-        "preferred_locales": [
-          "fi",
-          "en"
-        ],
+        "preferred_locales": ["fi", "en"],
         "metadata": {
           "company": "WaveSync S.L.",
           "plan": "pro",
@@ -6728,10 +6348,7 @@
             "country": "CO"
           }
         },
-        "preferred_locales": [
-          "es",
-          "en"
-        ],
+        "preferred_locales": ["es", "en"],
         "metadata": {
           "company": "Foundry Systems",
           "plan": "business",
@@ -6771,10 +6388,7 @@
             "country": "IN"
           }
         },
-        "preferred_locales": [
-          "en",
-          "hi"
-        ],
+        "preferred_locales": ["en", "hi"],
         "metadata": {
           "company": "GammaRay S.r.l.",
           "plan": "enterprise",
@@ -6814,10 +6428,7 @@
             "country": "BR"
           }
         },
-        "preferred_locales": [
-          "pt",
-          "en"
-        ],
+        "preferred_locales": ["pt", "en"],
         "metadata": {
           "company": "WaveSync A/S",
           "plan": "business",
@@ -6855,10 +6466,7 @@
             "country": "FI"
           }
         },
-        "preferred_locales": [
-          "fi",
-          "en"
-        ],
+        "preferred_locales": ["fi", "en"],
         "metadata": {
           "company": "WaveSync Labs",
           "plan": "pro",
@@ -6896,10 +6504,7 @@
             "country": "FR"
           }
         },
-        "preferred_locales": [
-          "fr",
-          "en"
-        ],
+        "preferred_locales": ["fr", "en"],
         "metadata": {
           "company": "Alloy Labs",
           "plan": "business",
@@ -6939,10 +6544,7 @@
             "country": "CL"
           }
         },
-        "preferred_locales": [
-          "es",
-          "en"
-        ],
+        "preferred_locales": ["es", "en"],
         "metadata": {
           "company": "QuantumLeap Partners",
           "plan": "business",
@@ -6982,10 +6584,7 @@
             "country": "BR"
           }
         },
-        "preferred_locales": [
-          "pt",
-          "en"
-        ],
+        "preferred_locales": ["pt", "en"],
         "metadata": {
           "company": "BlueShift Consulting",
           "plan": "starter",
@@ -7025,10 +6624,7 @@
             "country": "BR"
           }
         },
-        "preferred_locales": [
-          "pt",
-          "en"
-        ],
+        "preferred_locales": ["pt", "en"],
         "metadata": {
           "company": "Kinesis Solutions",
           "plan": "starter",
@@ -7066,10 +6662,7 @@
             "country": "FI"
           }
         },
-        "preferred_locales": [
-          "fi",
-          "en"
-        ],
+        "preferred_locales": ["fi", "en"],
         "metadata": {
           "company": "NordiqFlow KG",
           "plan": "enterprise",
@@ -7109,10 +6702,7 @@
             "country": "BR"
           }
         },
-        "preferred_locales": [
-          "pt",
-          "en"
-        ],
+        "preferred_locales": ["pt", "en"],
         "metadata": {
           "company": "LunarByte Digital",
           "plan": "business",
@@ -7150,10 +6740,7 @@
             "country": "NO"
           }
         },
-        "preferred_locales": [
-          "nb",
-          "en"
-        ],
+        "preferred_locales": ["nb", "en"],
         "metadata": {
           "company": "HyperLoop Platform",
           "plan": "pro",
@@ -7191,10 +6778,7 @@
             "country": "PT"
           }
         },
-        "preferred_locales": [
-          "pt",
-          "en"
-        ],
+        "preferred_locales": ["pt", "en"],
         "metadata": {
           "company": "BlueShift Pty Ltd",
           "plan": "business",
@@ -7234,9 +6818,7 @@
             "country": "NZ"
           }
         },
-        "preferred_locales": [
-          "en"
-        ],
+        "preferred_locales": ["en"],
         "metadata": {
           "company": "Keystone AB",
           "plan": "pro",
@@ -7276,9 +6858,7 @@
             "country": "NZ"
           }
         },
-        "preferred_locales": [
-          "en"
-        ],
+        "preferred_locales": ["en"],
         "metadata": {
           "company": "CoreSync Digital",
           "plan": "starter",
@@ -7316,10 +6896,7 @@
             "country": "FR"
           }
         },
-        "preferred_locales": [
-          "fr",
-          "en"
-        ],
+        "preferred_locales": ["fr", "en"],
         "metadata": {
           "company": "TachyonAI ApS",
           "plan": "starter",
@@ -7359,10 +6936,7 @@
             "country": "KR"
           }
         },
-        "preferred_locales": [
-          "ko",
-          "en"
-        ],
+        "preferred_locales": ["ko", "en"],
         "metadata": {
           "company": "BrightPath Systems",
           "plan": "starter",
@@ -7402,10 +6976,7 @@
             "country": "IT"
           }
         },
-        "preferred_locales": [
-          "it",
-          "en"
-        ],
+        "preferred_locales": ["it", "en"],
         "metadata": {
           "company": "Horizon B.V.",
           "plan": "business",
@@ -7445,10 +7016,7 @@
             "country": "NL"
           }
         },
-        "preferred_locales": [
-          "nl",
-          "en"
-        ],
+        "preferred_locales": ["nl", "en"],
         "metadata": {
           "company": "CloudNova S.L.",
           "plan": "starter",
@@ -7488,10 +7056,7 @@
             "country": "DE"
           }
         },
-        "preferred_locales": [
-          "de",
-          "en"
-        ],
+        "preferred_locales": ["de", "en"],
         "metadata": {
           "company": "Jubilee Digital",
           "plan": "enterprise",
@@ -7531,10 +7096,7 @@
             "country": "DE"
           }
         },
-        "preferred_locales": [
-          "de",
-          "en"
-        ],
+        "preferred_locales": ["de", "en"],
         "metadata": {
           "company": "Keystone Ventures",
           "plan": "pro",
@@ -7574,10 +7136,7 @@
             "country": "CO"
           }
         },
-        "preferred_locales": [
-          "es",
-          "en"
-        ],
+        "preferred_locales": ["es", "en"],
         "metadata": {
           "company": "Pinnacle Sp. z o.o.",
           "plan": "pro",
@@ -7617,10 +7176,7 @@
             "country": "CO"
           }
         },
-        "preferred_locales": [
-          "es",
-          "en"
-        ],
+        "preferred_locales": ["es", "en"],
         "metadata": {
           "company": "KryptonSoft Labs",
           "plan": "business",
@@ -7660,9 +7216,7 @@
             "country": "AU"
           }
         },
-        "preferred_locales": [
-          "en"
-        ],
+        "preferred_locales": ["en"],
         "metadata": {
           "company": "Jetpack S.A.",
           "plan": "pro",
@@ -7702,10 +7256,7 @@
             "country": "NL"
           }
         },
-        "preferred_locales": [
-          "nl",
-          "en"
-        ],
+        "preferred_locales": ["nl", "en"],
         "metadata": {
           "company": "DataPulse AG",
           "plan": "business",
@@ -7745,10 +7296,7 @@
             "country": "MX"
           }
         },
-        "preferred_locales": [
-          "es",
-          "en"
-        ],
+        "preferred_locales": ["es", "en"],
         "metadata": {
           "company": "Elevate Ltd.",
           "plan": "enterprise",
@@ -7788,10 +7336,7 @@
             "country": "AT"
           }
         },
-        "preferred_locales": [
-          "de",
-          "en"
-        ],
+        "preferred_locales": ["de", "en"],
         "metadata": {
           "company": "Unison Solutions",
           "plan": "pro",
@@ -7831,10 +7376,7 @@
             "country": "MX"
           }
         },
-        "preferred_locales": [
-          "es",
-          "en"
-        ],
+        "preferred_locales": ["es", "en"],
         "metadata": {
           "company": "RadiantIO ApS",
           "plan": "pro",
@@ -7872,10 +7414,7 @@
             "country": "FR"
           }
         },
-        "preferred_locales": [
-          "fr",
-          "en"
-        ],
+        "preferred_locales": ["fr", "en"],
         "metadata": {
           "company": "Wavecrest Labs Sp. z o.o.",
           "plan": "enterprise",
@@ -7915,10 +7454,7 @@
             "country": "BR"
           }
         },
-        "preferred_locales": [
-          "pt",
-          "en"
-        ],
+        "preferred_locales": ["pt", "en"],
         "metadata": {
           "company": "Cipher Partners",
           "plan": "pro",
@@ -7956,10 +7492,7 @@
             "country": "DK"
           }
         },
-        "preferred_locales": [
-          "da",
-          "en"
-        ],
+        "preferred_locales": ["da", "en"],
         "metadata": {
           "company": "Yonder Software",
           "plan": "enterprise",
@@ -7997,10 +7530,7 @@
             "country": "IL"
           }
         },
-        "preferred_locales": [
-          "he",
-          "en"
-        ],
+        "preferred_locales": ["he", "en"],
         "metadata": {
           "company": "LambdaCore Ltd.",
           "plan": "business",
@@ -8040,9 +7570,7 @@
             "country": "IE"
           }
         },
-        "preferred_locales": [
-          "en"
-        ],
+        "preferred_locales": ["en"],
         "metadata": {
           "company": "Indie B.V.",
           "plan": "enterprise",
@@ -8082,10 +7610,7 @@
             "country": "CA"
           }
         },
-        "preferred_locales": [
-          "en",
-          "fr"
-        ],
+        "preferred_locales": ["en", "fr"],
         "metadata": {
           "company": "Heliosphere ApS",
           "plan": "pro",
@@ -8125,10 +7650,7 @@
             "country": "JP"
           }
         },
-        "preferred_locales": [
-          "ja",
-          "en"
-        ],
+        "preferred_locales": ["ja", "en"],
         "metadata": {
           "company": "PulseNet Ltd.",
           "plan": "starter",
@@ -8166,10 +7688,7 @@
             "country": "FI"
           }
         },
-        "preferred_locales": [
-          "fi",
-          "en"
-        ],
+        "preferred_locales": ["fi", "en"],
         "metadata": {
           "company": "CoreSync Group",
           "plan": "enterprise",
@@ -8207,10 +7726,7 @@
             "country": "FR"
           }
         },
-        "preferred_locales": [
-          "fr",
-          "en"
-        ],
+        "preferred_locales": ["fr", "en"],
         "metadata": {
           "company": "BlueprintOps Group",
           "plan": "starter",
@@ -8250,10 +7766,7 @@
             "country": "CL"
           }
         },
-        "preferred_locales": [
-          "es",
-          "en"
-        ],
+        "preferred_locales": ["es", "en"],
         "metadata": {
           "company": "TachyonAI B.V.",
           "plan": "business",
@@ -8293,10 +7806,7 @@
             "country": "MX"
           }
         },
-        "preferred_locales": [
-          "es",
-          "en"
-        ],
+        "preferred_locales": ["es", "en"],
         "metadata": {
           "company": "AlphaWave SAS",
           "plan": "enterprise",
@@ -8336,10 +7846,7 @@
             "country": "IN"
           }
         },
-        "preferred_locales": [
-          "en",
-          "hi"
-        ],
+        "preferred_locales": ["en", "hi"],
         "metadata": {
           "company": "Horizon GmbH",
           "plan": "pro",
@@ -8377,10 +7884,7 @@
             "country": "AE"
           }
         },
-        "preferred_locales": [
-          "ar",
-          "en"
-        ],
+        "preferred_locales": ["ar", "en"],
         "metadata": {
           "company": "MesonTech Technologies",
           "plan": "pro",
@@ -8420,10 +7924,7 @@
             "country": "NL"
           }
         },
-        "preferred_locales": [
-          "nl",
-          "en"
-        ],
+        "preferred_locales": ["nl", "en"],
         "metadata": {
           "company": "Sable Inc.",
           "plan": "pro",
@@ -8461,10 +7962,7 @@
             "country": "FR"
           }
         },
-        "preferred_locales": [
-          "fr",
-          "en"
-        ],
+        "preferred_locales": ["fr", "en"],
         "metadata": {
           "company": "Pinnacle Labs",
           "plan": "enterprise",
@@ -8502,10 +8000,7 @@
             "country": "FI"
           }
         },
-        "preferred_locales": [
-          "fi",
-          "en"
-        ],
+        "preferred_locales": ["fi", "en"],
         "metadata": {
           "company": "UltraNode AB",
           "plan": "business",
@@ -8545,10 +8040,7 @@
             "country": "CA"
           }
         },
-        "preferred_locales": [
-          "en",
-          "fr"
-        ],
+        "preferred_locales": ["en", "fr"],
         "metadata": {
           "company": "Vortex Labs AG",
           "plan": "enterprise",
@@ -8588,11 +8080,7 @@
             "country": "CH"
           }
         },
-        "preferred_locales": [
-          "de",
-          "fr",
-          "en"
-        ],
+        "preferred_locales": ["de", "fr", "en"],
         "metadata": {
           "company": "Kinesis Digital",
           "plan": "business",
@@ -8632,10 +8120,7 @@
             "country": "SE"
           }
         },
-        "preferred_locales": [
-          "sv",
-          "en"
-        ],
+        "preferred_locales": ["sv", "en"],
         "metadata": {
           "company": "Summit Platform",
           "plan": "pro",
@@ -8675,10 +8160,7 @@
             "country": "NL"
           }
         },
-        "preferred_locales": [
-          "nl",
-          "en"
-        ],
+        "preferred_locales": ["nl", "en"],
         "metadata": {
           "company": "Jubilee Labs",
           "plan": "enterprise",
@@ -8718,10 +8200,7 @@
             "country": "CA"
           }
         },
-        "preferred_locales": [
-          "en",
-          "fr"
-        ],
+        "preferred_locales": ["en", "fr"],
         "metadata": {
           "company": "Alloy Group",
           "plan": "pro",
@@ -8759,10 +8238,7 @@
             "country": "FI"
           }
         },
-        "preferred_locales": [
-          "fi",
-          "en"
-        ],
+        "preferred_locales": ["fi", "en"],
         "metadata": {
           "company": "SynapseIO AB",
           "plan": "starter",
@@ -8800,10 +8276,7 @@
             "country": "IL"
           }
         },
-        "preferred_locales": [
-          "he",
-          "en"
-        ],
+        "preferred_locales": ["he", "en"],
         "metadata": {
           "company": "Quantum Solutions",
           "plan": "starter",
@@ -8843,10 +8316,7 @@
             "country": "KR"
           }
         },
-        "preferred_locales": [
-          "ko",
-          "en"
-        ],
+        "preferred_locales": ["ko", "en"],
         "metadata": {
           "company": "Indie Labs",
           "plan": "business",
@@ -8886,10 +8356,7 @@
             "country": "KR"
           }
         },
-        "preferred_locales": [
-          "ko",
-          "en"
-        ],
+        "preferred_locales": ["ko", "en"],
         "metadata": {
           "company": "TerraFlux AB",
           "plan": "enterprise",
@@ -8929,11 +8396,7 @@
             "country": "CH"
           }
         },
-        "preferred_locales": [
-          "de",
-          "fr",
-          "en"
-        ],
+        "preferred_locales": ["de", "fr", "en"],
         "metadata": {
           "company": "InnoSpark Inc.",
           "plan": "pro",
@@ -8973,10 +8436,7 @@
             "country": "NL"
           }
         },
-        "preferred_locales": [
-          "nl",
-          "en"
-        ],
+        "preferred_locales": ["nl", "en"],
         "metadata": {
           "company": "KineticAI Sp. z o.o.",
           "plan": "enterprise",
@@ -9014,10 +8474,7 @@
             "country": "DK"
           }
         },
-        "preferred_locales": [
-          "da",
-          "en"
-        ],
+        "preferred_locales": ["da", "en"],
         "metadata": {
           "company": "InnoSpark Inc.",
           "plan": "pro",
@@ -9057,10 +8514,7 @@
             "country": "KR"
           }
         },
-        "preferred_locales": [
-          "ko",
-          "en"
-        ],
+        "preferred_locales": ["ko", "en"],
         "metadata": {
           "company": "Traverse Systems",
           "plan": "pro",
@@ -9100,10 +8554,7 @@
             "country": "CO"
           }
         },
-        "preferred_locales": [
-          "es",
-          "en"
-        ],
+        "preferred_locales": ["es", "en"],
         "metadata": {
           "company": "Wavelength Inc.",
           "plan": "pro",
@@ -9143,10 +8594,7 @@
             "country": "CL"
           }
         },
-        "preferred_locales": [
-          "es",
-          "en"
-        ],
+        "preferred_locales": ["es", "en"],
         "metadata": {
           "company": "Outlook Solutions",
           "plan": "enterprise",
@@ -9186,10 +8634,7 @@
             "country": "SE"
           }
         },
-        "preferred_locales": [
-          "sv",
-          "en"
-        ],
+        "preferred_locales": ["sv", "en"],
         "metadata": {
           "company": "Plume S.L.",
           "plan": "starter",
@@ -9229,10 +8674,7 @@
             "country": "PL"
           }
         },
-        "preferred_locales": [
-          "pl",
-          "en"
-        ],
+        "preferred_locales": ["pl", "en"],
         "metadata": {
           "company": "Wavelength Ltd.",
           "plan": "business",
@@ -9272,10 +8714,7 @@
             "country": "PL"
           }
         },
-        "preferred_locales": [
-          "pl",
-          "en"
-        ],
+        "preferred_locales": ["pl", "en"],
         "metadata": {
           "company": "Vivid Labs",
           "plan": "starter",
@@ -9315,10 +8754,7 @@
             "country": "CA"
           }
         },
-        "preferred_locales": [
-          "en",
-          "fr"
-        ],
+        "preferred_locales": ["en", "fr"],
         "metadata": {
           "company": "QuantumLeap Inc.",
           "plan": "business",
@@ -9358,10 +8794,7 @@
             "country": "IT"
           }
         },
-        "preferred_locales": [
-          "it",
-          "en"
-        ],
+        "preferred_locales": ["it", "en"],
         "metadata": {
           "company": "NexGen Oy",
           "plan": "enterprise",
@@ -9401,9 +8834,7 @@
             "country": "IE"
           }
         },
-        "preferred_locales": [
-          "en"
-        ],
+        "preferred_locales": ["en"],
         "metadata": {
           "company": "Plume Pty Ltd",
           "plan": "pro",
@@ -9443,10 +8874,7 @@
             "country": "MX"
           }
         },
-        "preferred_locales": [
-          "es",
-          "en"
-        ],
+        "preferred_locales": ["es", "en"],
         "metadata": {
           "company": "IonPath Ltd.",
           "plan": "enterprise",
@@ -9486,10 +8914,7 @@
             "country": "JP"
           }
         },
-        "preferred_locales": [
-          "ja",
-          "en"
-        ],
+        "preferred_locales": ["ja", "en"],
         "metadata": {
           "company": "Wavecrest Labs ApS",
           "plan": "enterprise",
@@ -9529,10 +8954,7 @@
             "country": "JP"
           }
         },
-        "preferred_locales": [
-          "ja",
-          "en"
-        ],
+        "preferred_locales": ["ja", "en"],
         "metadata": {
           "company": "PrismTech S.L.",
           "plan": "enterprise",
@@ -9572,10 +8994,7 @@
             "country": "IT"
           }
         },
-        "preferred_locales": [
-          "it",
-          "en"
-        ],
+        "preferred_locales": ["it", "en"],
         "metadata": {
           "company": "Beacon Labs",
           "plan": "starter",
@@ -9615,11 +9034,7 @@
             "country": "CH"
           }
         },
-        "preferred_locales": [
-          "de",
-          "fr",
-          "en"
-        ],
+        "preferred_locales": ["de", "fr", "en"],
         "metadata": {
           "company": "Luminary KG",
           "plan": "enterprise",
@@ -9657,10 +9072,7 @@
             "country": "AE"
           }
         },
-        "preferred_locales": [
-          "ar",
-          "en"
-        ],
+        "preferred_locales": ["ar", "en"],
         "metadata": {
           "company": "BetaForge A/S",
           "plan": "starter",
@@ -9700,10 +9112,7 @@
             "country": "CA"
           }
         },
-        "preferred_locales": [
-          "en",
-          "fr"
-        ],
+        "preferred_locales": ["en", "fr"],
         "metadata": {
           "company": "InnoSpark Systems",
           "plan": "business",
@@ -9741,10 +9150,7 @@
             "country": "SG"
           }
         },
-        "preferred_locales": [
-          "en",
-          "zh"
-        ],
+        "preferred_locales": ["en", "zh"],
         "metadata": {
           "company": "HyperLoop Oy",
           "plan": "business",
@@ -9784,10 +9190,7 @@
             "country": "NL"
           }
         },
-        "preferred_locales": [
-          "nl",
-          "en"
-        ],
+        "preferred_locales": ["nl", "en"],
         "metadata": {
           "company": "PrismTech Solutions",
           "plan": "starter",
@@ -9827,10 +9230,7 @@
             "country": "CL"
           }
         },
-        "preferred_locales": [
-          "es",
-          "en"
-        ],
+        "preferred_locales": ["es", "en"],
         "metadata": {
           "company": "FusionGrid S.L.",
           "plan": "business",
@@ -9868,10 +9268,7 @@
             "country": "TW"
           }
         },
-        "preferred_locales": [
-          "zh",
-          "en"
-        ],
+        "preferred_locales": ["zh", "en"],
         "metadata": {
           "company": "Gradient SAS",
           "plan": "enterprise",
@@ -9911,10 +9308,7 @@
             "country": "DE"
           }
         },
-        "preferred_locales": [
-          "de",
-          "en"
-        ],
+        "preferred_locales": ["de", "en"],
         "metadata": {
           "company": "Xenon Technologies",
           "plan": "pro",
@@ -9954,10 +9348,7 @@
             "country": "NL"
           }
         },
-        "preferred_locales": [
-          "nl",
-          "en"
-        ],
+        "preferred_locales": ["nl", "en"],
         "metadata": {
           "company": "Jetpack S.A.",
           "plan": "enterprise",
@@ -9997,10 +9388,7 @@
             "country": "CA"
           }
         },
-        "preferred_locales": [
-          "en",
-          "fr"
-        ],
+        "preferred_locales": ["en", "fr"],
         "metadata": {
           "company": "Luminare Studio SAS",
           "plan": "enterprise",
@@ -10038,10 +9426,7 @@
             "country": "SG"
           }
         },
-        "preferred_locales": [
-          "en",
-          "zh"
-        ],
+        "preferred_locales": ["en", "zh"],
         "metadata": {
           "company": "Indie LLC",
           "plan": "pro",
@@ -10081,10 +9466,7 @@
             "country": "CL"
           }
         },
-        "preferred_locales": [
-          "es",
-          "en"
-        ],
+        "preferred_locales": ["es", "en"],
         "metadata": {
           "company": "SolarWind HQ B.V.",
           "plan": "starter",
@@ -10122,10 +9504,7 @@
             "country": "FR"
           }
         },
-        "preferred_locales": [
-          "fr",
-          "en"
-        ],
+        "preferred_locales": ["fr", "en"],
         "metadata": {
           "company": "KryptonSoft S.L.",
           "plan": "enterprise",
@@ -10165,9 +9544,7 @@
             "country": "IE"
           }
         },
-        "preferred_locales": [
-          "en"
-        ],
+        "preferred_locales": ["en"],
         "metadata": {
           "company": "Drift Corp.",
           "plan": "pro",
@@ -10207,10 +9584,7 @@
             "country": "DE"
           }
         },
-        "preferred_locales": [
-          "de",
-          "en"
-        ],
+        "preferred_locales": ["de", "en"],
         "metadata": {
           "company": "Vortex Labs Systems",
           "plan": "starter",
@@ -10250,10 +9624,7 @@
             "country": "CL"
           }
         },
-        "preferred_locales": [
-          "es",
-          "en"
-        ],
+        "preferred_locales": ["es", "en"],
         "metadata": {
           "company": "UltraNode ApS",
           "plan": "business",
@@ -10293,10 +9664,7 @@
             "country": "IN"
           }
         },
-        "preferred_locales": [
-          "en",
-          "hi"
-        ],
+        "preferred_locales": ["en", "hi"],
         "metadata": {
           "company": "Alloy Oy",
           "plan": "pro",
@@ -10336,10 +9704,7 @@
             "country": "CL"
           }
         },
-        "preferred_locales": [
-          "es",
-          "en"
-        ],
+        "preferred_locales": ["es", "en"],
         "metadata": {
           "company": "Plume Consulting",
           "plan": "business",
@@ -10379,9 +9744,7 @@
             "country": "IE"
           }
         },
-        "preferred_locales": [
-          "en"
-        ],
+        "preferred_locales": ["en"],
         "metadata": {
           "company": "Wavelength Pty Ltd",
           "plan": "enterprise",
@@ -10421,10 +9784,7 @@
             "country": "PL"
           }
         },
-        "preferred_locales": [
-          "pl",
-          "en"
-        ],
+        "preferred_locales": ["pl", "en"],
         "metadata": {
           "company": "StellarOps Pty Ltd",
           "plan": "enterprise",
@@ -10464,10 +9824,7 @@
             "country": "PL"
           }
         },
-        "preferred_locales": [
-          "pl",
-          "en"
-        ],
+        "preferred_locales": ["pl", "en"],
         "metadata": {
           "company": "Luminare Studio SAS",
           "plan": "enterprise",
@@ -10505,10 +9862,7 @@
             "country": "FR"
           }
         },
-        "preferred_locales": [
-          "fr",
-          "en"
-        ],
+        "preferred_locales": ["fr", "en"],
         "metadata": {
           "company": "LambdaCore Corp.",
           "plan": "enterprise",
@@ -10548,10 +9902,7 @@
             "country": "KR"
           }
         },
-        "preferred_locales": [
-          "ko",
-          "en"
-        ],
+        "preferred_locales": ["ko", "en"],
         "metadata": {
           "company": "Wander Software",
           "plan": "enterprise",
@@ -10591,9 +9942,7 @@
             "country": "IE"
           }
         },
-        "preferred_locales": [
-          "en"
-        ],
+        "preferred_locales": ["en"],
         "metadata": {
           "company": "Kinesis Sp. z o.o.",
           "plan": "business",
@@ -10631,10 +9980,7 @@
             "country": "AE"
           }
         },
-        "preferred_locales": [
-          "ar",
-          "en"
-        ],
+        "preferred_locales": ["ar", "en"],
         "metadata": {
           "company": "BlueprintOps ApS",
           "plan": "business",
@@ -10674,10 +10020,7 @@
             "country": "MX"
           }
         },
-        "preferred_locales": [
-          "es",
-          "en"
-        ],
+        "preferred_locales": ["es", "en"],
         "metadata": {
           "company": "Daybreak Sp. z o.o.",
           "plan": "pro",
@@ -10717,10 +10060,7 @@
             "country": "CA"
           }
         },
-        "preferred_locales": [
-          "en",
-          "fr"
-        ],
+        "preferred_locales": ["en", "fr"],
         "metadata": {
           "company": "Drift S.r.l.",
           "plan": "starter",
@@ -10760,10 +10100,7 @@
             "country": "CL"
           }
         },
-        "preferred_locales": [
-          "es",
-          "en"
-        ],
+        "preferred_locales": ["es", "en"],
         "metadata": {
           "company": "PeakMind Labs Inc.",
           "plan": "pro",
@@ -10803,10 +10140,7 @@
             "country": "KR"
           }
         },
-        "preferred_locales": [
-          "ko",
-          "en"
-        ],
+        "preferred_locales": ["ko", "en"],
         "metadata": {
           "company": "TachyonAI Corp.",
           "plan": "starter",
@@ -10846,10 +10180,7 @@
             "country": "PL"
           }
         },
-        "preferred_locales": [
-          "pl",
-          "en"
-        ],
+        "preferred_locales": ["pl", "en"],
         "metadata": {
           "company": "Echo Sp. z o.o.",
           "plan": "starter",
@@ -10889,10 +10220,7 @@
             "country": "CA"
           }
         },
-        "preferred_locales": [
-          "en",
-          "fr"
-        ],
+        "preferred_locales": ["en", "fr"],
         "metadata": {
           "company": "AlphaWave S.r.l.",
           "plan": "enterprise",
@@ -10932,10 +10260,7 @@
             "country": "AT"
           }
         },
-        "preferred_locales": [
-          "de",
-          "en"
-        ],
+        "preferred_locales": ["de", "en"],
         "metadata": {
           "company": "QuantumBit Inc.",
           "plan": "starter",
@@ -10975,10 +10300,7 @@
             "country": "CO"
           }
         },
-        "preferred_locales": [
-          "es",
-          "en"
-        ],
+        "preferred_locales": ["es", "en"],
         "metadata": {
           "company": "WaveSync Consulting",
           "plan": "pro",
@@ -11018,10 +10340,7 @@
             "country": "NL"
           }
         },
-        "preferred_locales": [
-          "nl",
-          "en"
-        ],
+        "preferred_locales": ["nl", "en"],
         "metadata": {
           "company": "FusionGrid ApS",
           "plan": "business",
@@ -11061,10 +10380,7 @@
             "country": "KR"
           }
         },
-        "preferred_locales": [
-          "ko",
-          "en"
-        ],
+        "preferred_locales": ["ko", "en"],
         "metadata": {
           "company": "Vivid Oy",
           "plan": "starter",
@@ -11102,10 +10418,7 @@
             "country": "AE"
           }
         },
-        "preferred_locales": [
-          "ar",
-          "en"
-        ],
+        "preferred_locales": ["ar", "en"],
         "metadata": {
           "company": "Heliosphere Sp. z o.o.",
           "plan": "pro",
@@ -11143,10 +10456,7 @@
             "country": "PT"
           }
         },
-        "preferred_locales": [
-          "pt",
-          "en"
-        ],
+        "preferred_locales": ["pt", "en"],
         "metadata": {
           "company": "Outlook Partners",
           "plan": "business",
@@ -11186,10 +10496,7 @@
             "country": "CA"
           }
         },
-        "preferred_locales": [
-          "en",
-          "fr"
-        ],
+        "preferred_locales": ["en", "fr"],
         "metadata": {
           "company": "SkyBridge Corp Platform",
           "plan": "starter",
@@ -11229,10 +10536,7 @@
             "country": "JP"
           }
         },
-        "preferred_locales": [
-          "ja",
-          "en"
-        ],
+        "preferred_locales": ["ja", "en"],
         "metadata": {
           "company": "Kinesis AG",
           "plan": "pro",
@@ -11270,10 +10574,7 @@
             "country": "FI"
           }
         },
-        "preferred_locales": [
-          "fi",
-          "en"
-        ],
+        "preferred_locales": ["fi", "en"],
         "metadata": {
           "company": "Jetpack Inc.",
           "plan": "business",
@@ -11311,10 +10612,7 @@
             "country": "DK"
           }
         },
-        "preferred_locales": [
-          "da",
-          "en"
-        ],
+        "preferred_locales": ["da", "en"],
         "metadata": {
           "company": "EpsilonAI AG",
           "plan": "enterprise",
@@ -11354,10 +10652,7 @@
             "country": "SE"
           }
         },
-        "preferred_locales": [
-          "sv",
-          "en"
-        ],
+        "preferred_locales": ["sv", "en"],
         "metadata": {
           "company": "SkyBridge Corp AB",
           "plan": "business",
@@ -11397,10 +10692,7 @@
             "country": "SE"
           }
         },
-        "preferred_locales": [
-          "sv",
-          "en"
-        ],
+        "preferred_locales": ["sv", "en"],
         "metadata": {
           "company": "Meridian S.L.",
           "plan": "pro",
@@ -11440,10 +10732,7 @@
             "country": "CA"
           }
         },
-        "preferred_locales": [
-          "en",
-          "fr"
-        ],
+        "preferred_locales": ["en", "fr"],
         "metadata": {
           "company": "Lattice AB",
           "plan": "pro",
@@ -11481,10 +10770,7 @@
             "country": "PT"
           }
         },
-        "preferred_locales": [
-          "pt",
-          "en"
-        ],
+        "preferred_locales": ["pt", "en"],
         "metadata": {
           "company": "SolarWind HQ Sp. z o.o.",
           "plan": "business",
@@ -11522,10 +10808,7 @@
             "country": "FI"
           }
         },
-        "preferred_locales": [
-          "fi",
-          "en"
-        ],
+        "preferred_locales": ["fi", "en"],
         "metadata": {
           "company": "BrightPath Pty Ltd",
           "plan": "pro",
@@ -11563,10 +10846,7 @@
             "country": "NO"
           }
         },
-        "preferred_locales": [
-          "nb",
-          "en"
-        ],
+        "preferred_locales": ["nb", "en"],
         "metadata": {
           "company": "FluxWave KG",
           "plan": "starter",
@@ -11606,10 +10886,7 @@
             "country": "ES"
           }
         },
-        "preferred_locales": [
-          "es",
-          "en"
-        ],
+        "preferred_locales": ["es", "en"],
         "metadata": {
           "company": "Pinnacle Solutions",
           "plan": "pro",
@@ -11649,10 +10926,7 @@
             "country": "PL"
           }
         },
-        "preferred_locales": [
-          "pl",
-          "en"
-        ],
+        "preferred_locales": ["pl", "en"],
         "metadata": {
           "company": "Foundry Platform",
           "plan": "business",
@@ -11692,10 +10966,7 @@
             "country": "IN"
           }
         },
-        "preferred_locales": [
-          "en",
-          "hi"
-        ],
+        "preferred_locales": ["en", "hi"],
         "metadata": {
           "company": "Meridian Sp. z o.o.",
           "plan": "business",
@@ -11733,10 +11004,7 @@
             "country": "TW"
           }
         },
-        "preferred_locales": [
-          "zh",
-          "en"
-        ],
+        "preferred_locales": ["zh", "en"],
         "metadata": {
           "company": "Catalyze AG",
           "plan": "pro",
@@ -11776,10 +11044,7 @@
             "country": "ES"
           }
         },
-        "preferred_locales": [
-          "es",
-          "en"
-        ],
+        "preferred_locales": ["es", "en"],
         "metadata": {
           "company": "Vivid Technologies",
           "plan": "starter",
@@ -11819,10 +11084,7 @@
             "country": "AT"
           }
         },
-        "preferred_locales": [
-          "de",
-          "en"
-        ],
+        "preferred_locales": ["de", "en"],
         "metadata": {
           "company": "Luminary Systems",
           "plan": "pro",
@@ -11860,10 +11122,7 @@
             "country": "PT"
           }
         },
-        "preferred_locales": [
-          "pt",
-          "en"
-        ],
+        "preferred_locales": ["pt", "en"],
         "metadata": {
           "company": "EpsilonAI S.L.",
           "plan": "pro",
@@ -11901,10 +11160,7 @@
             "country": "DK"
           }
         },
-        "preferred_locales": [
-          "da",
-          "en"
-        ],
+        "preferred_locales": ["da", "en"],
         "metadata": {
           "company": "CloudNova ApS",
           "plan": "enterprise",
@@ -11944,10 +11200,7 @@
             "country": "IT"
           }
         },
-        "preferred_locales": [
-          "it",
-          "en"
-        ],
+        "preferred_locales": ["it", "en"],
         "metadata": {
           "company": "XenonLabs Group",
           "plan": "business",
@@ -11987,10 +11240,7 @@
             "country": "NL"
           }
         },
-        "preferred_locales": [
-          "nl",
-          "en"
-        ],
+        "preferred_locales": ["nl", "en"],
         "metadata": {
           "company": "Yellowbrick Consulting",
           "plan": "pro",
@@ -12030,10 +11280,7 @@
             "country": "BR"
           }
         },
-        "preferred_locales": [
-          "pt",
-          "en"
-        ],
+        "preferred_locales": ["pt", "en"],
         "metadata": {
           "company": "FluxWave Consulting",
           "plan": "enterprise",
@@ -12073,10 +11320,7 @@
             "country": "IN"
           }
         },
-        "preferred_locales": [
-          "en",
-          "hi"
-        ],
+        "preferred_locales": ["en", "hi"],
         "metadata": {
           "company": "Unison KG",
           "plan": "enterprise",
@@ -12116,10 +11360,7 @@
             "country": "MX"
           }
         },
-        "preferred_locales": [
-          "es",
-          "en"
-        ],
+        "preferred_locales": ["es", "en"],
         "metadata": {
           "company": "Vortex Labs Inc.",
           "plan": "business",
@@ -12157,10 +11398,7 @@
             "country": "TW"
           }
         },
-        "preferred_locales": [
-          "zh",
-          "en"
-        ],
+        "preferred_locales": ["zh", "en"],
         "metadata": {
           "company": "HelixData Digital",
           "plan": "pro",
@@ -12200,10 +11438,7 @@
             "country": "JP"
           }
         },
-        "preferred_locales": [
-          "ja",
-          "en"
-        ],
+        "preferred_locales": ["ja", "en"],
         "metadata": {
           "company": "Fathom Labs",
           "plan": "enterprise",
@@ -12241,10 +11476,7 @@
             "country": "IL"
           }
         },
-        "preferred_locales": [
-          "he",
-          "en"
-        ],
+        "preferred_locales": ["he", "en"],
         "metadata": {
           "company": "OmicronAI Consulting",
           "plan": "business",
@@ -12284,10 +11516,7 @@
             "country": "PL"
           }
         },
-        "preferred_locales": [
-          "pl",
-          "en"
-        ],
+        "preferred_locales": ["pl", "en"],
         "metadata": {
           "company": "Meridian Solutions",
           "plan": "pro",
@@ -12327,10 +11556,7 @@
             "country": "DE"
           }
         },
-        "preferred_locales": [
-          "de",
-          "en"
-        ],
+        "preferred_locales": ["de", "en"],
         "metadata": {
           "company": "Luminary Ventures",
           "plan": "enterprise",
@@ -12370,10 +11596,7 @@
             "country": "IN"
           }
         },
-        "preferred_locales": [
-          "en",
-          "hi"
-        ],
+        "preferred_locales": ["en", "hi"],
         "metadata": {
           "company": "KineticAI Systems",
           "plan": "starter",
@@ -12413,10 +11636,7 @@
             "country": "KR"
           }
         },
-        "preferred_locales": [
-          "ko",
-          "en"
-        ],
+        "preferred_locales": ["ko", "en"],
         "metadata": {
           "company": "Wander Platform",
           "plan": "enterprise",
@@ -12456,10 +11676,7 @@
             "country": "PL"
           }
         },
-        "preferred_locales": [
-          "pl",
-          "en"
-        ],
+        "preferred_locales": ["pl", "en"],
         "metadata": {
           "company": "Beacon Digital",
           "plan": "starter",
@@ -12499,9 +11716,7 @@
             "country": "US"
           }
         },
-        "preferred_locales": [
-          "en"
-        ],
+        "preferred_locales": ["en"],
         "metadata": {
           "company": "JadePath Ventures S.r.l.",
           "plan": "business",
@@ -12541,11 +11756,7 @@
             "country": "CH"
           }
         },
-        "preferred_locales": [
-          "de",
-          "fr",
-          "en"
-        ],
+        "preferred_locales": ["de", "fr", "en"],
         "metadata": {
           "company": "EchoVault ApS",
           "plan": "business",
@@ -12585,9 +11796,7 @@
             "country": "AU"
           }
         },
-        "preferred_locales": [
-          "en"
-        ],
+        "preferred_locales": ["en"],
         "metadata": {
           "company": "Mosaic Ltd.",
           "plan": "starter",
@@ -12627,10 +11836,7 @@
             "country": "CO"
           }
         },
-        "preferred_locales": [
-          "es",
-          "en"
-        ],
+        "preferred_locales": ["es", "en"],
         "metadata": {
           "company": "OptiCore GmbH",
           "plan": "starter",
@@ -12670,10 +11876,7 @@
             "country": "DE"
           }
         },
-        "preferred_locales": [
-          "de",
-          "en"
-        ],
+        "preferred_locales": ["de", "en"],
         "metadata": {
           "company": "Cipher S.L.",
           "plan": "pro",
@@ -12713,9 +11916,7 @@
             "country": "GB"
           }
         },
-        "preferred_locales": [
-          "en"
-        ],
+        "preferred_locales": ["en"],
         "metadata": {
           "company": "Jetpack Labs",
           "plan": "business",
@@ -12755,10 +11956,7 @@
             "country": "BR"
           }
         },
-        "preferred_locales": [
-          "pt",
-          "en"
-        ],
+        "preferred_locales": ["pt", "en"],
         "metadata": {
           "company": "EpsilonAI Partners",
           "plan": "starter",
@@ -12798,10 +11996,7 @@
             "country": "NL"
           }
         },
-        "preferred_locales": [
-          "nl",
-          "en"
-        ],
+        "preferred_locales": ["nl", "en"],
         "metadata": {
           "company": "QuasarHQ Pty Ltd",
           "plan": "enterprise",
@@ -12841,10 +12036,7 @@
             "country": "IT"
           }
         },
-        "preferred_locales": [
-          "it",
-          "en"
-        ],
+        "preferred_locales": ["it", "en"],
         "metadata": {
           "company": "VeloCloud Labs",
           "plan": "enterprise",
@@ -12884,10 +12076,7 @@
             "country": "NL"
           }
         },
-        "preferred_locales": [
-          "nl",
-          "en"
-        ],
+        "preferred_locales": ["nl", "en"],
         "metadata": {
           "company": "Ignite Pty Ltd",
           "plan": "starter",
@@ -12927,9 +12116,7 @@
             "country": "GB"
           }
         },
-        "preferred_locales": [
-          "en"
-        ],
+        "preferred_locales": ["en"],
         "metadata": {
           "company": "CloudNova Software",
           "plan": "business",
@@ -12969,10 +12156,7 @@
             "country": "AT"
           }
         },
-        "preferred_locales": [
-          "de",
-          "en"
-        ],
+        "preferred_locales": ["de", "en"],
         "metadata": {
           "company": "Meridian A/S",
           "plan": "business",
@@ -13012,10 +12196,7 @@
             "country": "PL"
           }
         },
-        "preferred_locales": [
-          "pl",
-          "en"
-        ],
+        "preferred_locales": ["pl", "en"],
         "metadata": {
           "company": "Vertex Pty Ltd",
           "plan": "enterprise",
@@ -13053,10 +12234,7 @@
             "country": "DK"
           }
         },
-        "preferred_locales": [
-          "da",
-          "en"
-        ],
+        "preferred_locales": ["da", "en"],
         "metadata": {
           "company": "ZephyrCloud S.L.",
           "plan": "business",
@@ -13096,10 +12274,7 @@
             "country": "PL"
           }
         },
-        "preferred_locales": [
-          "pl",
-          "en"
-        ],
+        "preferred_locales": ["pl", "en"],
         "metadata": {
           "company": "CoreSync Group",
           "plan": "starter",
@@ -13139,10 +12314,7 @@
             "country": "CO"
           }
         },
-        "preferred_locales": [
-          "es",
-          "en"
-        ],
+        "preferred_locales": ["es", "en"],
         "metadata": {
           "company": "Bloom Consulting",
           "plan": "business",
@@ -13182,10 +12354,7 @@
             "country": "KR"
           }
         },
-        "preferred_locales": [
-          "ko",
-          "en"
-        ],
+        "preferred_locales": ["ko", "en"],
         "metadata": {
           "company": "TerraFlux Sp. z o.o.",
           "plan": "starter",
@@ -13225,10 +12394,7 @@
             "country": "BR"
           }
         },
-        "preferred_locales": [
-          "pt",
-          "en"
-        ],
+        "preferred_locales": ["pt", "en"],
         "metadata": {
           "company": "Orchid Group",
           "plan": "pro",
@@ -13268,10 +12434,7 @@
             "country": "ES"
           }
         },
-        "preferred_locales": [
-          "es",
-          "en"
-        ],
+        "preferred_locales": ["es", "en"],
         "metadata": {
           "company": "TerraFlux Pty Ltd",
           "plan": "enterprise",
@@ -13311,9 +12474,7 @@
             "country": "IE"
           }
         },
-        "preferred_locales": [
-          "en"
-        ],
+        "preferred_locales": ["en"],
         "metadata": {
           "company": "ArcLight B.V.",
           "plan": "starter",
@@ -13353,10 +12514,7 @@
             "country": "SE"
           }
         },
-        "preferred_locales": [
-          "sv",
-          "en"
-        ],
+        "preferred_locales": ["sv", "en"],
         "metadata": {
           "company": "EchoVault Co.",
           "plan": "pro",
@@ -13396,10 +12554,7 @@
             "country": "AT"
           }
         },
-        "preferred_locales": [
-          "de",
-          "en"
-        ],
+        "preferred_locales": ["de", "en"],
         "metadata": {
           "company": "Yonder Technologies",
           "plan": "business",
@@ -13439,10 +12594,7 @@
             "country": "MX"
           }
         },
-        "preferred_locales": [
-          "es",
-          "en"
-        ],
+        "preferred_locales": ["es", "en"],
         "metadata": {
           "company": "Daybreak Platform",
           "plan": "business",
@@ -13480,10 +12632,7 @@
             "country": "DK"
           }
         },
-        "preferred_locales": [
-          "da",
-          "en"
-        ],
+        "preferred_locales": ["da", "en"],
         "metadata": {
           "company": "Crux S.L.",
           "plan": "starter",
@@ -13523,9 +12672,7 @@
             "country": "AU"
           }
         },
-        "preferred_locales": [
-          "en"
-        ],
+        "preferred_locales": ["en"],
         "metadata": {
           "company": "EpsilonAI Labs",
           "plan": "pro",
@@ -13563,10 +12710,7 @@
             "country": "DK"
           }
         },
-        "preferred_locales": [
-          "da",
-          "en"
-        ],
+        "preferred_locales": ["da", "en"],
         "metadata": {
           "company": "Wavelength S.L.",
           "plan": "pro",
@@ -13604,10 +12748,7 @@
             "country": "NO"
           }
         },
-        "preferred_locales": [
-          "nb",
-          "en"
-        ],
+        "preferred_locales": ["nb", "en"],
         "metadata": {
           "company": "Fathom B.V.",
           "plan": "pro",
@@ -13645,10 +12786,7 @@
             "country": "SG"
           }
         },
-        "preferred_locales": [
-          "en",
-          "zh"
-        ],
+        "preferred_locales": ["en", "zh"],
         "metadata": {
           "company": "Alloy ApS",
           "plan": "pro",
@@ -13688,10 +12826,7 @@
             "country": "JP"
           }
         },
-        "preferred_locales": [
-          "ja",
-          "en"
-        ],
+        "preferred_locales": ["ja", "en"],
         "metadata": {
           "company": "Cipher A/S",
           "plan": "business",
@@ -13731,10 +12866,7 @@
             "country": "IT"
           }
         },
-        "preferred_locales": [
-          "it",
-          "en"
-        ],
+        "preferred_locales": ["it", "en"],
         "metadata": {
           "company": "CloudNova Ventures",
           "plan": "starter",
@@ -13774,10 +12906,7 @@
             "country": "CL"
           }
         },
-        "preferred_locales": [
-          "es",
-          "en"
-        ],
+        "preferred_locales": ["es", "en"],
         "metadata": {
           "company": "WaveSync S.L.",
           "plan": "enterprise",
@@ -13815,10 +12944,7 @@
             "country": "IL"
           }
         },
-        "preferred_locales": [
-          "he",
-          "en"
-        ],
+        "preferred_locales": ["he", "en"],
         "metadata": {
           "company": "NeutronOps Consulting",
           "plan": "pro",
@@ -13858,10 +12984,7 @@
             "country": "CO"
           }
         },
-        "preferred_locales": [
-          "es",
-          "en"
-        ],
+        "preferred_locales": ["es", "en"],
         "metadata": {
           "company": "MindForge Co.",
           "plan": "starter",
@@ -13901,9 +13024,7 @@
             "country": "AU"
           }
         },
-        "preferred_locales": [
-          "en"
-        ],
+        "preferred_locales": ["en"],
         "metadata": {
           "company": "Orchid GmbH",
           "plan": "starter",
@@ -13943,9 +13064,7 @@
             "country": "IE"
           }
         },
-        "preferred_locales": [
-          "en"
-        ],
+        "preferred_locales": ["en"],
         "metadata": {
           "company": "Glyph Platform",
           "plan": "pro",
@@ -13985,10 +13104,7 @@
             "country": "JP"
           }
         },
-        "preferred_locales": [
-          "ja",
-          "en"
-        ],
+        "preferred_locales": ["ja", "en"],
         "metadata": {
           "company": "YieldMax LLC",
           "plan": "enterprise",
@@ -14028,10 +13144,7 @@
             "country": "NL"
           }
         },
-        "preferred_locales": [
-          "nl",
-          "en"
-        ],
+        "preferred_locales": ["nl", "en"],
         "metadata": {
           "company": "Bloom S.r.l.",
           "plan": "pro",
@@ -14069,10 +13182,7 @@
             "country": "DK"
           }
         },
-        "preferred_locales": [
-          "da",
-          "en"
-        ],
+        "preferred_locales": ["da", "en"],
         "metadata": {
           "company": "Wavelength Solutions",
           "plan": "pro",
@@ -14112,9 +13222,7 @@
             "country": "IE"
           }
         },
-        "preferred_locales": [
-          "en"
-        ],
+        "preferred_locales": ["en"],
         "metadata": {
           "company": "Jetpack A/S",
           "plan": "enterprise",
@@ -14152,10 +13260,7 @@
             "country": "IL"
           }
         },
-        "preferred_locales": [
-          "he",
-          "en"
-        ],
+        "preferred_locales": ["he", "en"],
         "metadata": {
           "company": "HyperLoop Inc.",
           "plan": "business",
@@ -14195,10 +13300,7 @@
             "country": "NL"
           }
         },
-        "preferred_locales": [
-          "nl",
-          "en"
-        ],
+        "preferred_locales": ["nl", "en"],
         "metadata": {
           "company": "WarpDrive Consulting",
           "plan": "business",
@@ -14238,10 +13340,7 @@
             "country": "MX"
           }
         },
-        "preferred_locales": [
-          "es",
-          "en"
-        ],
+        "preferred_locales": ["es", "en"],
         "metadata": {
           "company": "GridPoint Sp. z o.o.",
           "plan": "starter",
@@ -14281,11 +13380,7 @@
             "country": "CH"
           }
         },
-        "preferred_locales": [
-          "de",
-          "fr",
-          "en"
-        ],
+        "preferred_locales": ["de", "fr", "en"],
         "metadata": {
           "company": "TerraFlux A/S",
           "plan": "starter",
@@ -14325,10 +13420,7 @@
             "country": "NL"
           }
         },
-        "preferred_locales": [
-          "nl",
-          "en"
-        ],
+        "preferred_locales": ["nl", "en"],
         "metadata": {
           "company": "JadePath Ventures B.V.",
           "plan": "starter",
@@ -14366,10 +13458,7 @@
             "country": "FR"
           }
         },
-        "preferred_locales": [
-          "fr",
-          "en"
-        ],
+        "preferred_locales": ["fr", "en"],
         "metadata": {
           "company": "Quill LLC",
           "plan": "starter",
@@ -14409,10 +13498,7 @@
             "country": "PL"
           }
         },
-        "preferred_locales": [
-          "pl",
-          "en"
-        ],
+        "preferred_locales": ["pl", "en"],
         "metadata": {
           "company": "Vortex Labs Technologies",
           "plan": "business",
@@ -14452,9 +13538,7 @@
             "country": "IE"
           }
         },
-        "preferred_locales": [
-          "en"
-        ],
+        "preferred_locales": ["en"],
         "metadata": {
           "company": "SolarWind HQ Inc.",
           "plan": "business",
@@ -14492,10 +13576,7 @@
             "country": "PT"
           }
         },
-        "preferred_locales": [
-          "pt",
-          "en"
-        ],
+        "preferred_locales": ["pt", "en"],
         "metadata": {
           "company": "Aeris Oy",
           "plan": "business",
@@ -14535,10 +13616,7 @@
             "country": "DE"
           }
         },
-        "preferred_locales": [
-          "de",
-          "en"
-        ],
+        "preferred_locales": ["de", "en"],
         "metadata": {
           "company": "QuasarHQ Inc.",
           "plan": "business",
@@ -14578,10 +13656,7 @@
             "country": "ES"
           }
         },
-        "preferred_locales": [
-          "es",
-          "en"
-        ],
+        "preferred_locales": ["es", "en"],
         "metadata": {
           "company": "FusionGrid Sp. z o.o.",
           "plan": "business",
@@ -14619,10 +13694,7 @@
             "country": "PT"
           }
         },
-        "preferred_locales": [
-          "pt",
-          "en"
-        ],
+        "preferred_locales": ["pt", "en"],
         "metadata": {
           "company": "Wander Digital",
           "plan": "starter",
@@ -14662,9 +13734,7 @@
             "country": "GB"
           }
         },
-        "preferred_locales": [
-          "en"
-        ],
+        "preferred_locales": ["en"],
         "metadata": {
           "company": "Lattice Systems",
           "plan": "pro",
@@ -14704,10 +13774,7 @@
             "country": "AT"
           }
         },
-        "preferred_locales": [
-          "de",
-          "en"
-        ],
+        "preferred_locales": ["de", "en"],
         "metadata": {
           "company": "SynapseIO Ventures",
           "plan": "starter",
@@ -14747,10 +13814,7 @@
             "country": "BR"
           }
         },
-        "preferred_locales": [
-          "pt",
-          "en"
-        ],
+        "preferred_locales": ["pt", "en"],
         "metadata": {
           "company": "Nimbus Inc.",
           "plan": "business",
@@ -14788,10 +13852,7 @@
             "country": "IL"
           }
         },
-        "preferred_locales": [
-          "he",
-          "en"
-        ],
+        "preferred_locales": ["he", "en"],
         "metadata": {
           "company": "Vortex Labs Ltd.",
           "plan": "enterprise",
@@ -14831,9 +13892,7 @@
             "country": "AU"
           }
         },
-        "preferred_locales": [
-          "en"
-        ],
+        "preferred_locales": ["en"],
         "metadata": {
           "company": "ZenithOps Pty Ltd",
           "plan": "starter",
@@ -14873,10 +13932,7 @@
             "country": "DE"
           }
         },
-        "preferred_locales": [
-          "de",
-          "en"
-        ],
+        "preferred_locales": ["de", "en"],
         "metadata": {
           "company": "PulseNet Digital",
           "plan": "starter",
@@ -14916,9 +13972,7 @@
             "country": "IE"
           }
         },
-        "preferred_locales": [
-          "en"
-        ],
+        "preferred_locales": ["en"],
         "metadata": {
           "company": "TachyonAI Platform",
           "plan": "pro",
@@ -14958,10 +14012,7 @@
             "country": "JP"
           }
         },
-        "preferred_locales": [
-          "ja",
-          "en"
-        ],
+        "preferred_locales": ["ja", "en"],
         "metadata": {
           "company": "QuasarHQ Ltd.",
           "plan": "enterprise",
@@ -14999,10 +14050,7 @@
             "country": "DK"
           }
         },
-        "preferred_locales": [
-          "da",
-          "en"
-        ],
+        "preferred_locales": ["da", "en"],
         "metadata": {
           "company": "DataPulse Partners",
           "plan": "pro",
@@ -15040,10 +14088,7 @@
             "country": "FI"
           }
         },
-        "preferred_locales": [
-          "fi",
-          "en"
-        ],
+        "preferred_locales": ["fi", "en"],
         "metadata": {
           "company": "NexGen Group",
           "plan": "enterprise",
@@ -15083,9 +14128,7 @@
             "country": "NZ"
           }
         },
-        "preferred_locales": [
-          "en"
-        ],
+        "preferred_locales": ["en"],
         "metadata": {
           "company": "QuantumBit Ventures",
           "plan": "business",
@@ -15125,10 +14168,7 @@
             "country": "CL"
           }
         },
-        "preferred_locales": [
-          "es",
-          "en"
-        ],
+        "preferred_locales": ["es", "en"],
         "metadata": {
           "company": "Bloom Systems",
           "plan": "starter",
@@ -15168,10 +14208,7 @@
             "country": "IN"
           }
         },
-        "preferred_locales": [
-          "en",
-          "hi"
-        ],
+        "preferred_locales": ["en", "hi"],
         "metadata": {
           "company": "Vertex S.r.l.",
           "plan": "enterprise",
@@ -15209,10 +14246,7 @@
             "country": "SG"
           }
         },
-        "preferred_locales": [
-          "en",
-          "zh"
-        ],
+        "preferred_locales": ["en", "zh"],
         "metadata": {
           "company": "DataPulse AB",
           "plan": "enterprise",
@@ -15252,10 +14286,7 @@
             "country": "DE"
           }
         },
-        "preferred_locales": [
-          "de",
-          "en"
-        ],
+        "preferred_locales": ["de", "en"],
         "metadata": {
           "company": "CloudNova Oy",
           "plan": "starter",
@@ -15295,10 +14326,7 @@
             "country": "IT"
           }
         },
-        "preferred_locales": [
-          "it",
-          "en"
-        ],
+        "preferred_locales": ["it", "en"],
         "metadata": {
           "company": "MindForge Group",
           "plan": "enterprise",
@@ -15338,10 +14366,7 @@
             "country": "CO"
           }
         },
-        "preferred_locales": [
-          "es",
-          "en"
-        ],
+        "preferred_locales": ["es", "en"],
         "metadata": {
           "company": "Heliosphere S.L.",
           "plan": "enterprise",
@@ -15381,10 +14406,7 @@
             "country": "MX"
           }
         },
-        "preferred_locales": [
-          "es",
-          "en"
-        ],
+        "preferred_locales": ["es", "en"],
         "metadata": {
           "company": "Alloy S.L.",
           "plan": "enterprise",
@@ -15424,9 +14446,7 @@
             "country": "NZ"
           }
         },
-        "preferred_locales": [
-          "en"
-        ],
+        "preferred_locales": ["en"],
         "metadata": {
           "company": "WaveSync Consulting",
           "plan": "pro",
@@ -15466,10 +14486,7 @@
             "country": "AT"
           }
         },
-        "preferred_locales": [
-          "de",
-          "en"
-        ],
+        "preferred_locales": ["de", "en"],
         "metadata": {
           "company": "NordiqFlow A/S",
           "plan": "starter",
@@ -15509,9 +14526,7 @@
             "country": "NZ"
           }
         },
-        "preferred_locales": [
-          "en"
-        ],
+        "preferred_locales": ["en"],
         "metadata": {
           "company": "IonPath Co.",
           "plan": "starter",
@@ -15551,9 +14566,7 @@
             "country": "AU"
           }
         },
-        "preferred_locales": [
-          "en"
-        ],
+        "preferred_locales": ["en"],
         "metadata": {
           "company": "BetaForge SAS",
           "plan": "starter",
@@ -15593,9 +14606,7 @@
             "country": "NZ"
           }
         },
-        "preferred_locales": [
-          "en"
-        ],
+        "preferred_locales": ["en"],
         "metadata": {
           "company": "Relay Partners",
           "plan": "pro",
@@ -15635,10 +14646,7 @@
             "country": "PL"
           }
         },
-        "preferred_locales": [
-          "pl",
-          "en"
-        ],
+        "preferred_locales": ["pl", "en"],
         "metadata": {
           "company": "HelixData Inc.",
           "plan": "business",
@@ -15678,9 +14686,7 @@
             "country": "IE"
           }
         },
-        "preferred_locales": [
-          "en"
-        ],
+        "preferred_locales": ["en"],
         "metadata": {
           "company": "Luminary Ventures",
           "plan": "starter",
@@ -15720,9 +14726,7 @@
             "country": "IE"
           }
         },
-        "preferred_locales": [
-          "en"
-        ],
+        "preferred_locales": ["en"],
         "metadata": {
           "company": "Drift Inc.",
           "plan": "business",
@@ -15762,10 +14766,7 @@
             "country": "BR"
           }
         },
-        "preferred_locales": [
-          "pt",
-          "en"
-        ],
+        "preferred_locales": ["pt", "en"],
         "metadata": {
           "company": "CoreSync Platform",
           "plan": "pro",
@@ -15805,10 +14806,7 @@
             "country": "CO"
           }
         },
-        "preferred_locales": [
-          "es",
-          "en"
-        ],
+        "preferred_locales": ["es", "en"],
         "metadata": {
           "company": "SolarWind HQ LLC",
           "plan": "pro",
@@ -15846,10 +14844,7 @@
             "country": "FI"
           }
         },
-        "preferred_locales": [
-          "fi",
-          "en"
-        ],
+        "preferred_locales": ["fi", "en"],
         "metadata": {
           "company": "Elevate A/S",
           "plan": "enterprise",
@@ -15889,10 +14884,7 @@
             "country": "KR"
           }
         },
-        "preferred_locales": [
-          "ko",
-          "en"
-        ],
+        "preferred_locales": ["ko", "en"],
         "metadata": {
           "company": "IonPath KG",
           "plan": "starter",
@@ -15930,10 +14922,7 @@
             "country": "PT"
           }
         },
-        "preferred_locales": [
-          "pt",
-          "en"
-        ],
+        "preferred_locales": ["pt", "en"],
         "metadata": {
           "company": "MesonTech Software",
           "plan": "starter",
@@ -15973,9 +14962,7 @@
             "country": "NZ"
           }
         },
-        "preferred_locales": [
-          "en"
-        ],
+        "preferred_locales": ["en"],
         "metadata": {
           "company": "Echo B.V.",
           "plan": "business",
@@ -16015,10 +15002,7 @@
             "country": "CA"
           }
         },
-        "preferred_locales": [
-          "en",
-          "fr"
-        ],
+        "preferred_locales": ["en", "fr"],
         "metadata": {
           "company": "Traverse Group",
           "plan": "business",
@@ -16056,10 +15040,7 @@
             "country": "DK"
           }
         },
-        "preferred_locales": [
-          "da",
-          "en"
-        ],
+        "preferred_locales": ["da", "en"],
         "metadata": {
           "company": "QuasarHQ KG",
           "plan": "starter",
@@ -16097,10 +15078,7 @@
             "country": "FR"
           }
         },
-        "preferred_locales": [
-          "fr",
-          "en"
-        ],
+        "preferred_locales": ["fr", "en"],
         "metadata": {
           "company": "BrightPath AB",
           "plan": "enterprise",
@@ -16140,9 +15118,7 @@
             "country": "NZ"
           }
         },
-        "preferred_locales": [
-          "en"
-        ],
+        "preferred_locales": ["en"],
         "metadata": {
           "company": "NordiqFlow Software",
           "plan": "business",
@@ -16182,10 +15158,7 @@
             "country": "SE"
           }
         },
-        "preferred_locales": [
-          "sv",
-          "en"
-        ],
+        "preferred_locales": ["sv", "en"],
         "metadata": {
           "company": "JetStream A/S",
           "plan": "pro",
@@ -16225,10 +15198,7 @@
             "country": "IT"
           }
         },
-        "preferred_locales": [
-          "it",
-          "en"
-        ],
+        "preferred_locales": ["it", "en"],
         "metadata": {
           "company": "Catalyze GmbH",
           "plan": "starter",
@@ -16268,10 +15238,7 @@
             "country": "JP"
           }
         },
-        "preferred_locales": [
-          "ja",
-          "en"
-        ],
+        "preferred_locales": ["ja", "en"],
         "metadata": {
           "company": "Vivid Co.",
           "plan": "enterprise",
@@ -16309,10 +15276,7 @@
             "country": "AE"
           }
         },
-        "preferred_locales": [
-          "ar",
-          "en"
-        ],
+        "preferred_locales": ["ar", "en"],
         "metadata": {
           "company": "Cascade HQ S.L.",
           "plan": "pro",
@@ -16350,10 +15314,7 @@
             "country": "DK"
           }
         },
-        "preferred_locales": [
-          "da",
-          "en"
-        ],
+        "preferred_locales": ["da", "en"],
         "metadata": {
           "company": "Outlook Ltd.",
           "plan": "business",
@@ -16393,10 +15354,7 @@
             "country": "IT"
           }
         },
-        "preferred_locales": [
-          "it",
-          "en"
-        ],
+        "preferred_locales": ["it", "en"],
         "metadata": {
           "company": "YieldMax S.r.l.",
           "plan": "pro",
@@ -16434,10 +15392,7 @@
             "country": "TW"
           }
         },
-        "preferred_locales": [
-          "zh",
-          "en"
-        ],
+        "preferred_locales": ["zh", "en"],
         "metadata": {
           "company": "Wander Sp. z o.o.",
           "plan": "enterprise",
@@ -16475,10 +15430,7 @@
             "country": "SG"
           }
         },
-        "preferred_locales": [
-          "en",
-          "zh"
-        ],
+        "preferred_locales": ["en", "zh"],
         "metadata": {
           "company": "Jubilee Sp. z o.o.",
           "plan": "enterprise",
@@ -16518,9 +15470,7 @@
             "country": "IE"
           }
         },
-        "preferred_locales": [
-          "en"
-        ],
+        "preferred_locales": ["en"],
         "metadata": {
           "company": "Aeris AB",
           "plan": "business",
@@ -16560,10 +15510,7 @@
             "country": "CO"
           }
         },
-        "preferred_locales": [
-          "es",
-          "en"
-        ],
+        "preferred_locales": ["es", "en"],
         "metadata": {
           "company": "NeutronOps Platform",
           "plan": "pro",
@@ -16603,10 +15550,7 @@
             "country": "NL"
           }
         },
-        "preferred_locales": [
-          "nl",
-          "en"
-        ],
+        "preferred_locales": ["nl", "en"],
         "metadata": {
           "company": "VeloCloud Software",
           "plan": "enterprise",
@@ -16646,10 +15590,7 @@
             "country": "BR"
           }
         },
-        "preferred_locales": [
-          "pt",
-          "en"
-        ],
+        "preferred_locales": ["pt", "en"],
         "metadata": {
           "company": "JadePath Ventures KG",
           "plan": "business",
@@ -16689,10 +15630,7 @@
             "country": "NL"
           }
         },
-        "preferred_locales": [
-          "nl",
-          "en"
-        ],
+        "preferred_locales": ["nl", "en"],
         "metadata": {
           "company": "UnityStack Group",
           "plan": "enterprise",
@@ -16732,10 +15670,7 @@
             "country": "ES"
           }
         },
-        "preferred_locales": [
-          "es",
-          "en"
-        ],
+        "preferred_locales": ["es", "en"],
         "metadata": {
           "company": "PulseNet Group",
           "plan": "starter",
@@ -16775,9 +15710,7 @@
             "country": "US"
           }
         },
-        "preferred_locales": [
-          "en"
-        ],
+        "preferred_locales": ["en"],
         "metadata": {
           "company": "Outlook AG",
           "plan": "starter",
@@ -16817,10 +15750,7 @@
             "country": "PL"
           }
         },
-        "preferred_locales": [
-          "pl",
-          "en"
-        ],
+        "preferred_locales": ["pl", "en"],
         "metadata": {
           "company": "Sable Group",
           "plan": "enterprise",
@@ -16858,10 +15788,7 @@
             "country": "FR"
           }
         },
-        "preferred_locales": [
-          "fr",
-          "en"
-        ],
+        "preferred_locales": ["fr", "en"],
         "metadata": {
           "company": "Aeris Co.",
           "plan": "enterprise",
@@ -16899,10 +15826,7 @@
             "country": "SG"
           }
         },
-        "preferred_locales": [
-          "en",
-          "zh"
-        ],
+        "preferred_locales": ["en", "zh"],
         "metadata": {
           "company": "ZephyrCloud ApS",
           "plan": "starter",
@@ -16942,9 +15866,7 @@
             "country": "AU"
           }
         },
-        "preferred_locales": [
-          "en"
-        ],
+        "preferred_locales": ["en"],
         "metadata": {
           "company": "Vivid Platform",
           "plan": "enterprise",
@@ -16982,10 +15904,7 @@
             "country": "TW"
           }
         },
-        "preferred_locales": [
-          "zh",
-          "en"
-        ],
+        "preferred_locales": ["zh", "en"],
         "metadata": {
           "company": "PrismTech GmbH",
           "plan": "starter",
@@ -17023,10 +15942,7 @@
             "country": "FR"
           }
         },
-        "preferred_locales": [
-          "fr",
-          "en"
-        ],
+        "preferred_locales": ["fr", "en"],
         "metadata": {
           "company": "Ignite Technologies",
           "plan": "starter",
@@ -17066,10 +15982,7 @@
             "country": "IT"
           }
         },
-        "preferred_locales": [
-          "it",
-          "en"
-        ],
+        "preferred_locales": ["it", "en"],
         "metadata": {
           "company": "Mosaic S.L.",
           "plan": "enterprise",
@@ -17107,10 +16020,7 @@
             "country": "NO"
           }
         },
-        "preferred_locales": [
-          "nb",
-          "en"
-        ],
+        "preferred_locales": ["nb", "en"],
         "metadata": {
           "company": "OmicronAI SAS",
           "plan": "business",
@@ -17150,10 +16060,7 @@
             "country": "SE"
           }
         },
-        "preferred_locales": [
-          "sv",
-          "en"
-        ],
+        "preferred_locales": ["sv", "en"],
         "metadata": {
           "company": "Kinesis AG",
           "plan": "business",
@@ -17193,9 +16100,7 @@
             "country": "US"
           }
         },
-        "preferred_locales": [
-          "en"
-        ],
+        "preferred_locales": ["en"],
         "metadata": {
           "company": "XenonLabs S.A.",
           "plan": "enterprise",
@@ -17233,10 +16138,7 @@
             "country": "FR"
           }
         },
-        "preferred_locales": [
-          "fr",
-          "en"
-        ],
+        "preferred_locales": ["fr", "en"],
         "metadata": {
           "company": "Gradient A/S",
           "plan": "pro",
@@ -17276,10 +16178,7 @@
             "country": "BR"
           }
         },
-        "preferred_locales": [
-          "pt",
-          "en"
-        ],
+        "preferred_locales": ["pt", "en"],
         "metadata": {
           "company": "FusionGrid Partners",
           "plan": "business",
@@ -17319,10 +16218,7 @@
             "country": "KR"
           }
         },
-        "preferred_locales": [
-          "ko",
-          "en"
-        ],
+        "preferred_locales": ["ko", "en"],
         "metadata": {
           "company": "FluxWave ApS",
           "plan": "business",
@@ -17360,10 +16256,7 @@
             "country": "DK"
           }
         },
-        "preferred_locales": [
-          "da",
-          "en"
-        ],
+        "preferred_locales": ["da", "en"],
         "metadata": {
           "company": "Jetpack LLC",
           "plan": "enterprise",
@@ -17403,10 +16296,7 @@
             "country": "KR"
           }
         },
-        "preferred_locales": [
-          "ko",
-          "en"
-        ],
+        "preferred_locales": ["ko", "en"],
         "metadata": {
           "company": "Foundry Pty Ltd",
           "plan": "pro",
@@ -17446,10 +16336,7 @@
             "country": "IN"
           }
         },
-        "preferred_locales": [
-          "en",
-          "hi"
-        ],
+        "preferred_locales": ["en", "hi"],
         "metadata": {
           "company": "Echo Partners",
           "plan": "enterprise",
@@ -17489,10 +16376,7 @@
             "country": "AT"
           }
         },
-        "preferred_locales": [
-          "de",
-          "en"
-        ],
+        "preferred_locales": ["de", "en"],
         "metadata": {
           "company": "Xpanse KG",
           "plan": "pro",
@@ -17532,10 +16416,7 @@
             "country": "IT"
           }
         },
-        "preferred_locales": [
-          "it",
-          "en"
-        ],
+        "preferred_locales": ["it", "en"],
         "metadata": {
           "company": "HyperLoop AB",
           "plan": "business",
@@ -17575,11 +16456,7 @@
             "country": "CH"
           }
         },
-        "preferred_locales": [
-          "de",
-          "fr",
-          "en"
-        ],
+        "preferred_locales": ["de", "fr", "en"],
         "metadata": {
           "company": "NordiqFlow Solutions",
           "plan": "starter",
@@ -17619,10 +16496,7 @@
             "country": "CA"
           }
         },
-        "preferred_locales": [
-          "en",
-          "fr"
-        ],
+        "preferred_locales": ["en", "fr"],
         "metadata": {
           "company": "KineticAI S.r.l.",
           "plan": "business",
@@ -17662,10 +16536,7 @@
             "country": "PL"
           }
         },
-        "preferred_locales": [
-          "pl",
-          "en"
-        ],
+        "preferred_locales": ["pl", "en"],
         "metadata": {
           "company": "Wavelength Consulting",
           "plan": "starter",
@@ -17705,9 +16576,7 @@
             "country": "NZ"
           }
         },
-        "preferred_locales": [
-          "en"
-        ],
+        "preferred_locales": ["en"],
         "metadata": {
           "company": "Quantum ApS",
           "plan": "pro",
@@ -17747,10 +16616,7 @@
             "country": "AT"
           }
         },
-        "preferred_locales": [
-          "de",
-          "en"
-        ],
+        "preferred_locales": ["de", "en"],
         "metadata": {
           "company": "Yonder Inc.",
           "plan": "business",
@@ -17788,10 +16654,7 @@
             "country": "TW"
           }
         },
-        "preferred_locales": [
-          "zh",
-          "en"
-        ],
+        "preferred_locales": ["zh", "en"],
         "metadata": {
           "company": "VoltaLabs ApS",
           "plan": "pro",
@@ -17831,9 +16694,7 @@
             "country": "US"
           }
         },
-        "preferred_locales": [
-          "en"
-        ],
+        "preferred_locales": ["en"],
         "metadata": {
           "company": "Echo GmbH",
           "plan": "enterprise",
@@ -17873,10 +16734,7 @@
             "country": "DE"
           }
         },
-        "preferred_locales": [
-          "de",
-          "en"
-        ],
+        "preferred_locales": ["de", "en"],
         "metadata": {
           "company": "Foundry AB",
           "plan": "business",
@@ -17916,10 +16774,7 @@
             "country": "IN"
           }
         },
-        "preferred_locales": [
-          "en",
-          "hi"
-        ],
+        "preferred_locales": ["en", "hi"],
         "metadata": {
           "company": "Daybreak S.A.",
           "plan": "starter",
@@ -17959,11 +16814,7 @@
             "country": "CH"
           }
         },
-        "preferred_locales": [
-          "de",
-          "fr",
-          "en"
-        ],
+        "preferred_locales": ["de", "fr", "en"],
         "metadata": {
           "company": "QuantumBit Platform",
           "plan": "starter",
@@ -18003,10 +16854,7 @@
             "country": "IN"
           }
         },
-        "preferred_locales": [
-          "en",
-          "hi"
-        ],
+        "preferred_locales": ["en", "hi"],
         "metadata": {
           "company": "Luminare Studio A/S",
           "plan": "starter",
@@ -18046,10 +16894,7 @@
             "country": "CL"
           }
         },
-        "preferred_locales": [
-          "es",
-          "en"
-        ],
+        "preferred_locales": ["es", "en"],
         "metadata": {
           "company": "Jubilee S.A.",
           "plan": "starter",
@@ -18089,10 +16934,7 @@
             "country": "AT"
           }
         },
-        "preferred_locales": [
-          "de",
-          "en"
-        ],
+        "preferred_locales": ["de", "en"],
         "metadata": {
           "company": "BetaForge Sp. z o.o.",
           "plan": "business",
@@ -18130,10 +16972,7 @@
             "country": "SG"
           }
         },
-        "preferred_locales": [
-          "en",
-          "zh"
-        ],
+        "preferred_locales": ["en", "zh"],
         "metadata": {
           "company": "Fathom Solutions",
           "plan": "starter",
@@ -18171,10 +17010,7 @@
             "country": "IL"
           }
         },
-        "preferred_locales": [
-          "he",
-          "en"
-        ],
+        "preferred_locales": ["he", "en"],
         "metadata": {
           "company": "FusionGrid S.r.l.",
           "plan": "enterprise",
@@ -18214,10 +17050,7 @@
             "country": "DE"
           }
         },
-        "preferred_locales": [
-          "de",
-          "en"
-        ],
+        "preferred_locales": ["de", "en"],
         "metadata": {
           "company": "Foundry ApS",
           "plan": "business",
@@ -18257,10 +17090,7 @@
             "country": "MX"
           }
         },
-        "preferred_locales": [
-          "es",
-          "en"
-        ],
+        "preferred_locales": ["es", "en"],
         "metadata": {
           "company": "JadePath Ventures GmbH",
           "plan": "enterprise",
@@ -18300,10 +17130,7 @@
             "country": "DE"
           }
         },
-        "preferred_locales": [
-          "de",
-          "en"
-        ],
+        "preferred_locales": ["de", "en"],
         "metadata": {
           "company": "MindForge Sp. z o.o.",
           "plan": "business",
@@ -18343,10 +17170,7 @@
             "country": "IN"
           }
         },
-        "preferred_locales": [
-          "en",
-          "hi"
-        ],
+        "preferred_locales": ["en", "hi"],
         "metadata": {
           "company": "Yellowbrick Technologies",
           "plan": "business",
@@ -18386,10 +17210,7 @@
             "country": "JP"
           }
         },
-        "preferred_locales": [
-          "ja",
-          "en"
-        ],
+        "preferred_locales": ["ja", "en"],
         "metadata": {
           "company": "TerraFlux GmbH",
           "plan": "business",
@@ -18429,11 +17250,7 @@
             "country": "CH"
           }
         },
-        "preferred_locales": [
-          "de",
-          "fr",
-          "en"
-        ],
+        "preferred_locales": ["de", "fr", "en"],
         "metadata": {
           "company": "Wavecrest Labs S.A.",
           "plan": "business",
@@ -18471,10 +17288,7 @@
             "country": "AE"
           }
         },
-        "preferred_locales": [
-          "ar",
-          "en"
-        ],
+        "preferred_locales": ["ar", "en"],
         "metadata": {
           "company": "Xpanse Sp. z o.o.",
           "plan": "enterprise",
@@ -18514,10 +17328,7 @@
             "country": "ES"
           }
         },
-        "preferred_locales": [
-          "es",
-          "en"
-        ],
+        "preferred_locales": ["es", "en"],
         "metadata": {
           "company": "Ripple Solutions",
           "plan": "enterprise",
@@ -18557,10 +17368,7 @@
             "country": "CO"
           }
         },
-        "preferred_locales": [
-          "es",
-          "en"
-        ],
+        "preferred_locales": ["es", "en"],
         "metadata": {
           "company": "Mosaic Consulting",
           "plan": "pro",
@@ -18600,9 +17408,7 @@
             "country": "IE"
           }
         },
-        "preferred_locales": [
-          "en"
-        ],
+        "preferred_locales": ["en"],
         "metadata": {
           "company": "Echo ApS",
           "plan": "starter",
@@ -18642,9 +17448,7 @@
             "country": "IE"
           }
         },
-        "preferred_locales": [
-          "en"
-        ],
+        "preferred_locales": ["en"],
         "metadata": {
           "company": "ArcLight Pty Ltd",
           "plan": "starter",
@@ -18684,9 +17488,7 @@
             "country": "AU"
           }
         },
-        "preferred_locales": [
-          "en"
-        ],
+        "preferred_locales": ["en"],
         "metadata": {
           "company": "StellarOps Corp.",
           "plan": "business",
@@ -18726,9 +17528,7 @@
             "country": "US"
           }
         },
-        "preferred_locales": [
-          "en"
-        ],
+        "preferred_locales": ["en"],
         "metadata": {
           "company": "Bloom Group",
           "plan": "pro",
@@ -18766,10 +17566,7 @@
             "country": "DK"
           }
         },
-        "preferred_locales": [
-          "da",
-          "en"
-        ],
+        "preferred_locales": ["da", "en"],
         "metadata": {
           "company": "Yonder Software",
           "plan": "enterprise",
@@ -18809,10 +17606,7 @@
             "country": "CO"
           }
         },
-        "preferred_locales": [
-          "es",
-          "en"
-        ],
+        "preferred_locales": ["es", "en"],
         "metadata": {
           "company": "Aurora Systems Solutions",
           "plan": "enterprise",
@@ -18852,9 +17646,7 @@
             "country": "NZ"
           }
         },
-        "preferred_locales": [
-          "en"
-        ],
+        "preferred_locales": ["en"],
         "metadata": {
           "company": "YieldMax Platform",
           "plan": "starter",
@@ -18894,9 +17686,7 @@
             "country": "AU"
           }
         },
-        "preferred_locales": [
-          "en"
-        ],
+        "preferred_locales": ["en"],
         "metadata": {
           "company": "Zenith Solutions",
           "plan": "business",
@@ -18936,9 +17726,7 @@
             "country": "US"
           }
         },
-        "preferred_locales": [
-          "en"
-        ],
+        "preferred_locales": ["en"],
         "metadata": {
           "company": "Catalyze Labs",
           "plan": "enterprise",
@@ -18976,10 +17764,7 @@
             "country": "FI"
           }
         },
-        "preferred_locales": [
-          "fi",
-          "en"
-        ],
+        "preferred_locales": ["fi", "en"],
         "metadata": {
           "company": "Daybreak B.V.",
           "plan": "enterprise",
@@ -19017,10 +17802,7 @@
             "country": "TW"
           }
         },
-        "preferred_locales": [
-          "zh",
-          "en"
-        ],
+        "preferred_locales": ["zh", "en"],
         "metadata": {
           "company": "ArcLight KG",
           "plan": "enterprise",
@@ -19060,9 +17842,7 @@
             "country": "IE"
           }
         },
-        "preferred_locales": [
-          "en"
-        ],
+        "preferred_locales": ["en"],
         "metadata": {
           "company": "HyperLoop Oy",
           "plan": "pro",
@@ -19102,9 +17882,7 @@
             "country": "US"
           }
         },
-        "preferred_locales": [
-          "en"
-        ],
+        "preferred_locales": ["en"],
         "metadata": {
           "company": "RapidScale A/S",
           "plan": "starter",
@@ -19144,11 +17922,7 @@
             "country": "CH"
           }
         },
-        "preferred_locales": [
-          "de",
-          "fr",
-          "en"
-        ],
+        "preferred_locales": ["de", "fr", "en"],
         "metadata": {
           "company": "BlueShift Oy",
           "plan": "starter",
@@ -19188,10 +17962,7 @@
             "country": "NL"
           }
         },
-        "preferred_locales": [
-          "nl",
-          "en"
-        ],
+        "preferred_locales": ["nl", "en"],
         "metadata": {
           "company": "Sable S.L.",
           "plan": "starter",
@@ -19229,10 +18000,7 @@
             "country": "FR"
           }
         },
-        "preferred_locales": [
-          "fr",
-          "en"
-        ],
+        "preferred_locales": ["fr", "en"],
         "metadata": {
           "company": "Ripple Inc.",
           "plan": "enterprise",
@@ -19270,10 +18038,7 @@
             "country": "DK"
           }
         },
-        "preferred_locales": [
-          "da",
-          "en"
-        ],
+        "preferred_locales": ["da", "en"],
         "metadata": {
           "company": "Cascade HQ Software",
           "plan": "starter",
@@ -19313,9 +18078,7 @@
             "country": "AU"
           }
         },
-        "preferred_locales": [
-          "en"
-        ],
+        "preferred_locales": ["en"],
         "metadata": {
           "company": "Horizon Co.",
           "plan": "pro",
@@ -19353,10 +18116,7 @@
             "country": "DK"
           }
         },
-        "preferred_locales": [
-          "da",
-          "en"
-        ],
+        "preferred_locales": ["da", "en"],
         "metadata": {
           "company": "TachyonAI Group",
           "plan": "pro",
@@ -19394,10 +18154,7 @@
             "country": "IL"
           }
         },
-        "preferred_locales": [
-          "he",
-          "en"
-        ],
+        "preferred_locales": ["he", "en"],
         "metadata": {
           "company": "Aeris SAS",
           "plan": "enterprise",
@@ -19435,10 +18192,7 @@
             "country": "AE"
           }
         },
-        "preferred_locales": [
-          "ar",
-          "en"
-        ],
+        "preferred_locales": ["ar", "en"],
         "metadata": {
           "company": "Alloy Consulting",
           "plan": "starter",
@@ -19478,10 +18232,7 @@
             "country": "CO"
           }
         },
-        "preferred_locales": [
-          "es",
-          "en"
-        ],
+        "preferred_locales": ["es", "en"],
         "metadata": {
           "company": "TerraFlux S.L.",
           "plan": "business",
@@ -19521,10 +18272,7 @@
             "country": "JP"
           }
         },
-        "preferred_locales": [
-          "ja",
-          "en"
-        ],
+        "preferred_locales": ["ja", "en"],
         "metadata": {
           "company": "Tidal Digital",
           "plan": "starter",
@@ -19564,10 +18312,7 @@
             "country": "SE"
           }
         },
-        "preferred_locales": [
-          "sv",
-          "en"
-        ],
+        "preferred_locales": ["sv", "en"],
         "metadata": {
           "company": "Indie Technologies",
           "plan": "business",
@@ -19607,10 +18352,7 @@
             "country": "SE"
           }
         },
-        "preferred_locales": [
-          "sv",
-          "en"
-        ],
+        "preferred_locales": ["sv", "en"],
         "metadata": {
           "company": "Crux A/S",
           "plan": "pro",
@@ -19650,10 +18392,7 @@
             "country": "JP"
           }
         },
-        "preferred_locales": [
-          "ja",
-          "en"
-        ],
+        "preferred_locales": ["ja", "en"],
         "metadata": {
           "company": "SkyBridge Corp Sp. z o.o.",
           "plan": "starter",
@@ -19693,10 +18432,7 @@
             "country": "MX"
           }
         },
-        "preferred_locales": [
-          "es",
-          "en"
-        ],
+        "preferred_locales": ["es", "en"],
         "metadata": {
           "company": "PrismTech Corp.",
           "plan": "pro",
@@ -19736,10 +18472,7 @@
             "country": "ES"
           }
         },
-        "preferred_locales": [
-          "es",
-          "en"
-        ],
+        "preferred_locales": ["es", "en"],
         "metadata": {
           "company": "InnoSpark Digital",
           "plan": "business",
@@ -19777,10 +18510,7 @@
             "country": "FI"
           }
         },
-        "preferred_locales": [
-          "fi",
-          "en"
-        ],
+        "preferred_locales": ["fi", "en"],
         "metadata": {
           "company": "Jubilee LLC",
           "plan": "starter",
@@ -19820,10 +18550,7 @@
             "country": "IT"
           }
         },
-        "preferred_locales": [
-          "it",
-          "en"
-        ],
+        "preferred_locales": ["it", "en"],
         "metadata": {
           "company": "Unison Partners",
           "plan": "pro",
@@ -19863,10 +18590,7 @@
             "country": "ES"
           }
         },
-        "preferred_locales": [
-          "es",
-          "en"
-        ],
+        "preferred_locales": ["es", "en"],
         "metadata": {
           "company": "NeutronOps Partners",
           "plan": "pro",
@@ -19906,10 +18630,7 @@
             "country": "CL"
           }
         },
-        "preferred_locales": [
-          "es",
-          "en"
-        ],
+        "preferred_locales": ["es", "en"],
         "metadata": {
           "company": "HelixData A/S",
           "plan": "business",
@@ -19949,10 +18670,7 @@
             "country": "NL"
           }
         },
-        "preferred_locales": [
-          "nl",
-          "en"
-        ],
+        "preferred_locales": ["nl", "en"],
         "metadata": {
           "company": "TurboStack Technologies",
           "plan": "pro",
@@ -19992,10 +18710,7 @@
             "country": "CO"
           }
         },
-        "preferred_locales": [
-          "es",
-          "en"
-        ],
+        "preferred_locales": ["es", "en"],
         "metadata": {
           "company": "Outlook A/S",
           "plan": "enterprise",
@@ -20035,10 +18750,7 @@
             "country": "BR"
           }
         },
-        "preferred_locales": [
-          "pt",
-          "en"
-        ],
+        "preferred_locales": ["pt", "en"],
         "metadata": {
           "company": "Ignite B.V.",
           "plan": "business",
@@ -20078,10 +18790,7 @@
             "country": "CA"
           }
         },
-        "preferred_locales": [
-          "en",
-          "fr"
-        ],
+        "preferred_locales": ["en", "fr"],
         "metadata": {
           "company": "Beacon Inc.",
           "plan": "starter",
@@ -20119,10 +18828,7 @@
             "country": "SG"
           }
         },
-        "preferred_locales": [
-          "en",
-          "zh"
-        ],
+        "preferred_locales": ["en", "zh"],
         "metadata": {
           "company": "Wander B.V.",
           "plan": "pro",
@@ -20160,10 +18866,7 @@
             "country": "IL"
           }
         },
-        "preferred_locales": [
-          "he",
-          "en"
-        ],
+        "preferred_locales": ["he", "en"],
         "metadata": {
           "company": "Foundry ApS",
           "plan": "pro",
@@ -20203,9 +18906,7 @@
             "country": "IE"
           }
         },
-        "preferred_locales": [
-          "en"
-        ],
+        "preferred_locales": ["en"],
         "metadata": {
           "company": "Ironforge Partners",
           "plan": "enterprise",
@@ -20245,10 +18946,7 @@
             "country": "AT"
           }
         },
-        "preferred_locales": [
-          "de",
-          "en"
-        ],
+        "preferred_locales": ["de", "en"],
         "metadata": {
           "company": "FusionGrid Solutions",
           "plan": "business",
@@ -20288,10 +18986,7 @@
             "country": "SE"
           }
         },
-        "preferred_locales": [
-          "sv",
-          "en"
-        ],
+        "preferred_locales": ["sv", "en"],
         "metadata": {
           "company": "KryptonSoft KG",
           "plan": "enterprise",
@@ -20331,10 +19026,7 @@
             "country": "IN"
           }
         },
-        "preferred_locales": [
-          "en",
-          "hi"
-        ],
+        "preferred_locales": ["en", "hi"],
         "metadata": {
           "company": "KryptonSoft Pty Ltd",
           "plan": "starter",
@@ -20372,10 +19064,7 @@
             "country": "SG"
           }
         },
-        "preferred_locales": [
-          "en",
-          "zh"
-        ],
+        "preferred_locales": ["en", "zh"],
         "metadata": {
           "company": "WarpDrive AB",
           "plan": "enterprise",
@@ -20413,10 +19102,7 @@
             "country": "NO"
           }
         },
-        "preferred_locales": [
-          "nb",
-          "en"
-        ],
+        "preferred_locales": ["nb", "en"],
         "metadata": {
           "company": "Yonder GmbH",
           "plan": "business",
@@ -20456,10 +19142,7 @@
             "country": "ES"
           }
         },
-        "preferred_locales": [
-          "es",
-          "en"
-        ],
+        "preferred_locales": ["es", "en"],
         "metadata": {
           "company": "Xenon Digital",
           "plan": "business",
@@ -20499,10 +19182,7 @@
             "country": "PL"
           }
         },
-        "preferred_locales": [
-          "pl",
-          "en"
-        ],
+        "preferred_locales": ["pl", "en"],
         "metadata": {
           "company": "Cipher Digital",
           "plan": "enterprise",
@@ -20540,10 +19220,7 @@
             "country": "FR"
           }
         },
-        "preferred_locales": [
-          "fr",
-          "en"
-        ],
+        "preferred_locales": ["fr", "en"],
         "metadata": {
           "company": "EchoVault A/S",
           "plan": "pro",
@@ -20583,10 +19260,7 @@
             "country": "MX"
           }
         },
-        "preferred_locales": [
-          "es",
-          "en"
-        ],
+        "preferred_locales": ["es", "en"],
         "metadata": {
           "company": "JetStream S.r.l.",
           "plan": "enterprise",
@@ -20624,10 +19298,7 @@
             "country": "SG"
           }
         },
-        "preferred_locales": [
-          "en",
-          "zh"
-        ],
+        "preferred_locales": ["en", "zh"],
         "metadata": {
           "company": "Orchid B.V.",
           "plan": "starter",
@@ -20665,10 +19336,7 @@
             "country": "DK"
           }
         },
-        "preferred_locales": [
-          "da",
-          "en"
-        ],
+        "preferred_locales": ["da", "en"],
         "metadata": {
           "company": "Gradient Pty Ltd",
           "plan": "enterprise",
@@ -20708,10 +19376,7 @@
             "country": "CL"
           }
         },
-        "preferred_locales": [
-          "es",
-          "en"
-        ],
+        "preferred_locales": ["es", "en"],
         "metadata": {
           "company": "Sable Technologies",
           "plan": "starter",
@@ -20751,10 +19416,7 @@
             "country": "SE"
           }
         },
-        "preferred_locales": [
-          "sv",
-          "en"
-        ],
+        "preferred_locales": ["sv", "en"],
         "metadata": {
           "company": "ZephyrCloud Corp.",
           "plan": "starter",
@@ -20794,10 +19456,7 @@
             "country": "CA"
           }
         },
-        "preferred_locales": [
-          "en",
-          "fr"
-        ],
+        "preferred_locales": ["en", "fr"],
         "metadata": {
           "company": "FusionGrid Software",
           "plan": "enterprise",
@@ -20835,10 +19494,7 @@
             "country": "AE"
           }
         },
-        "preferred_locales": [
-          "ar",
-          "en"
-        ],
+        "preferred_locales": ["ar", "en"],
         "metadata": {
           "company": "Kinesis Inc.",
           "plan": "pro",
@@ -20876,10 +19532,7 @@
             "country": "FI"
           }
         },
-        "preferred_locales": [
-          "fi",
-          "en"
-        ],
+        "preferred_locales": ["fi", "en"],
         "metadata": {
           "company": "Summit LLC",
           "plan": "pro",
@@ -20919,10 +19572,7 @@
             "country": "CA"
           }
         },
-        "preferred_locales": [
-          "en",
-          "fr"
-        ],
+        "preferred_locales": ["en", "fr"],
         "metadata": {
           "company": "XenonLabs Consulting",
           "plan": "pro",
@@ -20962,10 +19612,7 @@
             "country": "SE"
           }
         },
-        "preferred_locales": [
-          "sv",
-          "en"
-        ],
+        "preferred_locales": ["sv", "en"],
         "metadata": {
           "company": "HyperLoop Corp.",
           "plan": "business",
@@ -21005,9 +19652,7 @@
             "country": "IE"
           }
         },
-        "preferred_locales": [
-          "en"
-        ],
+        "preferred_locales": ["en"],
         "metadata": {
           "company": "Bloom Technologies",
           "plan": "enterprise",
@@ -21045,10 +19690,7 @@
             "country": "IL"
           }
         },
-        "preferred_locales": [
-          "he",
-          "en"
-        ],
+        "preferred_locales": ["he", "en"],
         "metadata": {
           "company": "CoreSync KG",
           "plan": "starter",
@@ -21088,10 +19730,7 @@
             "country": "KR"
           }
         },
-        "preferred_locales": [
-          "ko",
-          "en"
-        ],
+        "preferred_locales": ["ko", "en"],
         "metadata": {
           "company": "FluxWave GmbH",
           "plan": "starter",
@@ -21131,10 +19770,7 @@
             "country": "AT"
           }
         },
-        "preferred_locales": [
-          "de",
-          "en"
-        ],
+        "preferred_locales": ["de", "en"],
         "metadata": {
           "company": "XylemTech LLC",
           "plan": "pro",
@@ -21174,9 +19810,7 @@
             "country": "NZ"
           }
         },
-        "preferred_locales": [
-          "en"
-        ],
+        "preferred_locales": ["en"],
         "metadata": {
           "company": "ZephyrCloud Consulting",
           "plan": "business",
@@ -21216,9 +19850,7 @@
             "country": "IE"
           }
         },
-        "preferred_locales": [
-          "en"
-        ],
+        "preferred_locales": ["en"],
         "metadata": {
           "company": "Nimbus Partners",
           "plan": "enterprise",
@@ -21256,10 +19888,7 @@
             "country": "SG"
           }
         },
-        "preferred_locales": [
-          "en",
-          "zh"
-        ],
+        "preferred_locales": ["en", "zh"],
         "metadata": {
           "company": "Tidal Ventures",
           "plan": "enterprise",
@@ -21299,10 +19928,7 @@
             "country": "CA"
           }
         },
-        "preferred_locales": [
-          "en",
-          "fr"
-        ],
+        "preferred_locales": ["en", "fr"],
         "metadata": {
           "company": "JadePath Ventures Ventures",
           "plan": "enterprise",
@@ -21342,10 +19968,7 @@
             "country": "ES"
           }
         },
-        "preferred_locales": [
-          "es",
-          "en"
-        ],
+        "preferred_locales": ["es", "en"],
         "metadata": {
           "company": "EchoVault Group",
           "plan": "starter",
@@ -21385,10 +20008,7 @@
             "country": "BR"
           }
         },
-        "preferred_locales": [
-          "pt",
-          "en"
-        ],
+        "preferred_locales": ["pt", "en"],
         "metadata": {
           "company": "CodeZenith AB",
           "plan": "business",
@@ -21426,10 +20046,7 @@
             "country": "PT"
           }
         },
-        "preferred_locales": [
-          "pt",
-          "en"
-        ],
+        "preferred_locales": ["pt", "en"],
         "metadata": {
           "company": "Quill S.L.",
           "plan": "enterprise",
@@ -21467,10 +20084,7 @@
             "country": "SG"
           }
         },
-        "preferred_locales": [
-          "en",
-          "zh"
-        ],
+        "preferred_locales": ["en", "zh"],
         "metadata": {
           "company": "HelixData Solutions",
           "plan": "enterprise",
@@ -21510,9 +20124,7 @@
             "country": "NZ"
           }
         },
-        "preferred_locales": [
-          "en"
-        ],
+        "preferred_locales": ["en"],
         "metadata": {
           "company": "Yellowbrick S.A.",
           "plan": "starter",
@@ -21550,10 +20162,7 @@
             "country": "TW"
           }
         },
-        "preferred_locales": [
-          "zh",
-          "en"
-        ],
+        "preferred_locales": ["zh", "en"],
         "metadata": {
           "company": "QuasarHQ Systems",
           "plan": "enterprise",
@@ -21593,10 +20202,7 @@
             "country": "NL"
           }
         },
-        "preferred_locales": [
-          "nl",
-          "en"
-        ],
+        "preferred_locales": ["nl", "en"],
         "metadata": {
           "company": "Quantum Platform",
           "plan": "pro",
@@ -21634,10 +20240,7 @@
             "country": "TW"
           }
         },
-        "preferred_locales": [
-          "zh",
-          "en"
-        ],
+        "preferred_locales": ["zh", "en"],
         "metadata": {
           "company": "Yonder Digital",
           "plan": "starter",
@@ -21677,10 +20280,7 @@
             "country": "CL"
           }
         },
-        "preferred_locales": [
-          "es",
-          "en"
-        ],
+        "preferred_locales": ["es", "en"],
         "metadata": {
           "company": "QuasarHQ S.L.",
           "plan": "pro",
@@ -21720,10 +20320,7 @@
             "country": "IT"
           }
         },
-        "preferred_locales": [
-          "it",
-          "en"
-        ],
+        "preferred_locales": ["it", "en"],
         "metadata": {
           "company": "BrightPath Platform",
           "plan": "business",
@@ -21763,10 +20360,7 @@
             "country": "PL"
           }
         },
-        "preferred_locales": [
-          "pl",
-          "en"
-        ],
+        "preferred_locales": ["pl", "en"],
         "metadata": {
           "company": "BlueprintOps Ventures",
           "plan": "pro",
@@ -21806,10 +20400,7 @@
             "country": "CL"
           }
         },
-        "preferred_locales": [
-          "es",
-          "en"
-        ],
+        "preferred_locales": ["es", "en"],
         "metadata": {
           "company": "TerraFlux Co.",
           "plan": "enterprise",
@@ -21847,10 +20438,7 @@
             "country": "PT"
           }
         },
-        "preferred_locales": [
-          "pt",
-          "en"
-        ],
+        "preferred_locales": ["pt", "en"],
         "metadata": {
           "company": "Northstar Technologies",
           "plan": "pro",
@@ -21888,10 +20476,7 @@
             "country": "DK"
           }
         },
-        "preferred_locales": [
-          "da",
-          "en"
-        ],
+        "preferred_locales": ["da", "en"],
         "metadata": {
           "company": "UltraNode S.r.l.",
           "plan": "pro",
@@ -21929,10 +20514,7 @@
             "country": "FI"
           }
         },
-        "preferred_locales": [
-          "fi",
-          "en"
-        ],
+        "preferred_locales": ["fi", "en"],
         "metadata": {
           "company": "EpsilonAI S.r.l.",
           "plan": "business",
@@ -21970,10 +20552,7 @@
             "country": "TW"
           }
         },
-        "preferred_locales": [
-          "zh",
-          "en"
-        ],
+        "preferred_locales": ["zh", "en"],
         "metadata": {
           "company": "SolarWind HQ Co.",
           "plan": "starter",
@@ -22013,10 +20592,7 @@
             "country": "MX"
           }
         },
-        "preferred_locales": [
-          "es",
-          "en"
-        ],
+        "preferred_locales": ["es", "en"],
         "metadata": {
           "company": "Yonder ApS",
           "plan": "pro",
@@ -22054,10 +20630,7 @@
             "country": "AE"
           }
         },
-        "preferred_locales": [
-          "ar",
-          "en"
-        ],
+        "preferred_locales": ["ar", "en"],
         "metadata": {
           "company": "SynapseIO Digital",
           "plan": "enterprise",
@@ -22097,9 +20670,7 @@
             "country": "IE"
           }
         },
-        "preferred_locales": [
-          "en"
-        ],
+        "preferred_locales": ["en"],
         "metadata": {
           "company": "Catalyze Sp. z o.o.",
           "plan": "pro",
@@ -22137,10 +20708,7 @@
             "country": "DK"
           }
         },
-        "preferred_locales": [
-          "da",
-          "en"
-        ],
+        "preferred_locales": ["da", "en"],
         "metadata": {
           "company": "Drift Partners",
           "plan": "starter",
@@ -22180,10 +20748,7 @@
             "country": "CA"
           }
         },
-        "preferred_locales": [
-          "en",
-          "fr"
-        ],
+        "preferred_locales": ["en", "fr"],
         "metadata": {
           "company": "SolarWind HQ Sp. z o.o.",
           "plan": "starter",

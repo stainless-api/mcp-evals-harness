@@ -13,10 +13,12 @@ The harness runs an agent loop (Claude Code via the Agent SDK) against each MCP 
 ### Suite System
 
 Each suite lives in `src/suites/<name>/` as a directory containing:
+
 - `suite.ts` — default-exports a `SuiteConfig` with servers, test cases, system prompt, and project name
 - Optional supporting files (e.g. `fixtures.json` for test data seeding)
 
 The `SuiteConfig` schema (`src/suite.ts`) includes:
+
 - `projectName` — Braintrust project name
 - `systemPrompt` — prompt given to the agent
 - `servers[]` — MCP server configs (command, args, env, capabilities, mode)
@@ -63,6 +65,7 @@ npm run eval:increase
 ## Tags
 
 Experiment records can be tagged from three sources:
+
 - **Test case tags** — `tags` array on each test case, applied per-record via `EvalCase.tags`
 - **Server tags** — optional `tags` array on each server config in `SharedServerFields`/`SharedServerConfig`, applied at the experiment level
 - **CLI tags** — `EVAL_TAGS` env var (comma-separated), applied at the experiment level

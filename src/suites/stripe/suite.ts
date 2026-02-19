@@ -48,45 +48,55 @@ const suite: SuiteConfig = {
   testCases: [
     {
       id: "list-customers",
-      prompt: "How many customers are in my Stripe Account? Only return the total count.",
+      prompt:
+        "How many customers are in my Stripe Account? Only return the total count.",
       expected: {
-        description: "Returns a count of customers in the Stripe Account which is 500 in this test account",
+        description:
+          "Returns a count of customers in the Stripe Account which is 500 in this test account",
         containsText: ["500"],
       },
       tags: ["read"],
     },
     {
       id: "list-customers-limit-3",
-      prompt: "List exactly 3 customers from this Stripe account. Just return their customer IDs and email addresses.",
+      prompt:
+        "List exactly 3 customers from this Stripe account. Just return their customer IDs and email addresses.",
       expected: {
-        description: "Returns exactly 3 customers with their IDs and email addresses",
+        description:
+          "Returns exactly 3 customers with their IDs and email addresses",
         containsText: ["cus_", "@"],
       },
       tags: ["read", "filter"],
     },
     {
       id: "get-balance",
-      prompt: "What is the current balance on this Stripe account? Be concise but include both available and pending amounts.",
+      prompt:
+        "What is the current balance on this Stripe account? Be concise but include both available and pending amounts.",
       expected: {
-        description: "Returns Stripe Account balance information with available and pending amounts which are both 0 in this test account",
+        description:
+          "Returns Stripe Account balance information with available and pending amounts which are both 0 in this test account",
         containsText: ["available", "pending"],
       },
       tags: ["read"],
     },
     {
       id: "find-expensive-product",
-      prompt: "What's the most expensive product in my Stripe account? Give me the name and amount for the product.",
+      prompt:
+        "What's the most expensive product in my Stripe account? Give me the name and amount for the product.",
       expected: {
-        description: "Returns the Team Training Weekend product because its the most expensive product at GBP 999,999.99",
+        description:
+          "Returns the Team Training Weekend product because its the most expensive product at GBP 999,999.99",
         containsText: ["Team Training Weekend"],
       },
       tags: ["read"],
     },
     {
       id: "find-customer-by-employer",
-      prompt: "Who works on the CI pipeline at Sable Tech and what's their email? Just return the customer's name and email address.",
+      prompt:
+        "Who works on the CI pipeline at Sable Tech and what's their email? Just return the customer's name and email address.",
       expected: {
-        description: "Returns Fang Nguyen and their email because they are the only customer with employer Sable Tech",
+        description:
+          "Returns Fang Nguyen and their email because they are the only customer with employer Sable Tech",
         containsText: ["Fang Nguyen", "fang.nguyen@sable.cloud"],
       },
       tags: ["read"],
@@ -100,7 +110,8 @@ const suite: SuiteConfig = {
       Report the before count, the new coupon's full json data, and the after count.
     `,
       expected: {
-        description: "Reports the before count, creates a 25.5% off one-time-use coupon named EVAL25 with full JSON data, reports the after count, and confirms the count increased by 1.",
+        description:
+          "Reports the before count, creates a 25.5% off one-time-use coupon named EVAL25 with full JSON data, reports the after count, and confirms the count increased by 1.",
         containsText: ["EVAL25", "once", "25.5%"],
       },
       tags: ["write", "create"],
@@ -192,7 +203,11 @@ const suite: SuiteConfig = {
         description: `
         Creates a reusable payment link for the Team Training Workshop product that charges $1500 USD and collects the customer's email address. Returns the URL of the payment link.
       `,
-        containsText: ["buy.stripe.com/test_", "Team Training Workshop", "1500"],
+        containsText: [
+          "buy.stripe.com/test_",
+          "Team Training Workshop",
+          "1500",
+        ],
       },
       tags: ["write", "create"],
       requiredCapabilities: { write: true },

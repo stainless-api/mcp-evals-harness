@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+set -euo pipefail
+cd "$(dirname "$0")/.."
+
+if ! command -v node &>/dev/null; then
+  echo "error: node is not installed" >&2
+  exit 1
+fi
+
+npm install
+
+if [ ! -f .env ]; then
+  cp .env.example .env
+  echo "Created .env from .env.example — fill in your API keys."
+fi

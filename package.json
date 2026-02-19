@@ -8,7 +8,9 @@
     "eval:all": "npm run generate:suites && npx braintrust eval src/evals/run-all.ts",
     "eval:stripe": "EVAL_SUITE=stripe npm run eval",
     "eval:increase": "EVAL_SUITE=increase npm run eval",
-    "eval:lithic": "EVAL_SUITE=lithic npm run eval"
+    "eval:lithic": "EVAL_SUITE=lithic npm run eval",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
   },
   "dependencies": {
     "@anthropic-ai/claude-agent-sdk": "^0.2.34",
@@ -22,6 +24,7 @@
   },
   "devDependencies": {
     "@types/node": "^22.0.0",
+    "prettier": "^3.8.1",
     "tsx": "^4.19.0",
     "typescript": "^5.7.0"
   }

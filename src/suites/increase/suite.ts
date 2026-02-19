@@ -15,51 +15,58 @@ const suite: SuiteConfig = {
       id: "increase-stainless",
       displayName: "Increase, Stainless-generated",
       command: "node",
-      args: ["/Path/to/increase-mcp-demo-typescript/packages/mcp-server/dist/index.js"],
+      args: [
+        "/Path/to/increase-mcp-demo-typescript/packages/mcp-server/dist/index.js",
+      ],
       env: {
         INCREASE_MCP_DEMO_API_KEY: process.env.INCREASE_API_KEY!,
       },
-      capabilities: { write : false },
-      mode: "code", 
-      tags: ["Stainless"]
+      capabilities: { write: false },
+      mode: "code",
+      tags: ["Stainless"],
     },
     {
       id: "increase-dynamic",
       displayName: "Increase, Dynamic tools",
       command: "node",
-      args: ["/Path/to/increase-mcp-demo-typescript/packages/mcp-server/dist/index.js", "--tools=dynamic"],
+      args: [
+        "/Path/to/increase-mcp-demo-typescript/packages/mcp-server/dist/index.js",
+        "--tools=dynamic",
+      ],
       env: {
         INCREASE_MCP_DEMO_API_KEY: process.env.INCREASE_API_KEY!,
       },
-      capabilities: { write : false },
-      mode: "tools", 
-      tags: ["Dynamic"]
+      capabilities: { write: false },
+      mode: "tools",
+      tags: ["Dynamic"],
     },
     {
       id: "increase-anthropic-code-mode",
       displayName: "Increase, Anthropic Code Mode",
       command: "node",
-      args: ["/Path/to/increase-mcp-demo-typescript/packages/mcp-server/dist/index.js"],
+      args: [
+        "/Path/to/increase-mcp-demo-typescript/packages/mcp-server/dist/index.js",
+      ],
       env: {
         INCREASE_MCP_DEMO_API_KEY: process.env.INCREASE_API_KEY!,
       },
-      capabilities: { write : false },
-      mode: "tools", 
+      capabilities: { write: false },
+      mode: "tools",
       models: ["opus-code"],
-      tags: ["Anthropic-Code"]
+      tags: ["Anthropic-Code"],
     },
   ],
 
   // ============================================
   //  TEST CASES
   //
-  //  WARNING! These cases are based on our 
-  //  sandbox data, and are included for posterity 
+  //  WARNING! These cases are based on our
+  //  sandbox data, and are included for posterity
   //  with our published evaluation results.
   //
   //  TO GET ACCURATE RESULTS YOURSELF:
   //  You will need to create your own sandbox
-  //  dataset and update these test cases with 
+  //  dataset and update these test cases with
   //  the correct answers.
   // ============================================
   //
@@ -372,7 +379,7 @@ const suite: SuiteConfig = {
     {
       id: "payment-type-breakdown",
       prompt:
-        'Break down inbound payments by type based on remittance info (e.g., invoice payments, milestone payments, distributions, dividends, royalties). Show counts and totals for each.',
+        "Break down inbound payments by type based on remittance info (e.g., invoice payments, milestone payments, distributions, dividends, royalties). Show counts and totals for each.",
       expected: {
         description:
           "Returns a breakdown of inbound payments by type including invoice payments, milestone payments, distributions, dividends, and royalties with counts and dollar totals for each category.",
