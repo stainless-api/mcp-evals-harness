@@ -230,6 +230,36 @@ const suite: SuiteConfig = {
       },
       tags: ["read", "transactions", "aggregation"],
     },
+    // ============================================
+    // LITHIC SPECIFIC EXAMPLES
+    // ============================================
+    {
+      id: "tokenization-rules",
+      prompt: "We recently added tokenization rules to the API and want to test how they show up in dashboard. Create 10-20 tokenization rules to test potential UI edge cases. Then simulate a tokenization and review results are as expected.",
+      expected: {
+        description: "Should create 10-20 tokenzation rules, and run a successful simulation. The reviewed results should indicate that everything worked correctly.",
+        containsText: [],
+      },
+      tags: ['write', "tokenzation", "lithic-provided", "simulation"],
+    },
+    {
+      id: "add-simulated-data",
+      prompt: "I want to populate sandbox with test data. Create 5 account holders with realistic PII that matches the San Francisco area. Issue each of those cardholders 2 cards. On each card, simulate 3 transactions which are representative of typical consumer spend for the area.",
+      expected: {
+        description: "Should create 5 account holders with realistic PII from SF. Should also generate two cards per user, with 3 realistic transactions each.",
+        containsText: [],
+      },
+      tags: ['write', "cards", "transactions", "simulation", "lithic-provided"],
+    },
+        {
+      id: "velocity-based-auth-rule",
+      prompt: "Create a velocity based auth rule, simulate enough transactions to trigger it, fetch rule feature state afterwards and verify it's as expected. Then, regardless of the simulation result, remove the auth rule.",
+      expected: {
+        description: "Should create a velocity based auth rule. Should also create a successful simulation to trigger it, and verify that the feature state is as expected. The feature state that it fetches should also be correct and without error. The auth rule must then also be removed following the simulation.",
+        containsText: [],
+      },
+      tags: ['write', "auth-rules", "simulation", "lithic-provided"],
+    }
   ],
 };
 
