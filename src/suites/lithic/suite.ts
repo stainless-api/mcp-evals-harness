@@ -28,6 +28,21 @@ const suite: SuiteConfig = {
       mode: "code",
     },
     {
+      id: "lithic-stainless-prose",
+      displayName: "Lithic, Stainless-generated, with prose docs",
+      command: "node",
+      args: [
+        "/Users/pierceclark/lithic-typescript/packages/mcp-server/dist/index.js",
+      ],
+      env: {
+        LITHIC_API_KEY: process.env.LITHIC_MCP_DEMO_API_KEY!,
+        STAINLESS_API_KEY: process.env.STAINLESS_API_KEY_LITHIC!,
+        LITHIC_ENVIRONMENT: "sandbox",
+      },
+      capabilities: { write: false },
+      mode: "code",
+    },
+    {
       id: "lithic-readme",
       displayName: "Lithic, Readme-generated",
       transport: "http",

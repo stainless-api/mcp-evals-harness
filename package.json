@@ -32,7 +32,7 @@
     "eval:stripe": "EVAL_SUITE=stripe npm run eval",
     "eval:increase": "EVAL_SUITE=increase npm run eval",
     "eval:lithic": "EVAL_SUITE=lithic npm run eval",
-    "eval:polar": "EVAL_SUITE=polar npm run eval"
+    "eval:polar": "EVAL_SUITE=polar npm run eval",
     "format": "prettier --write .",
     "format:check": "prettier --check ."
   },
