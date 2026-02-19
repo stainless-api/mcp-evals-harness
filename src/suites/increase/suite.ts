@@ -50,6 +50,21 @@ const suite: SuiteConfig = {
     },
   ],
 
+  // ============================================
+  //  TEST CASES
+  //
+  //  WARNING! These cases are based on our 
+  //  sandbox data, and are included for posterity 
+  //  with our published evaluation results.
+  //
+  //  TO GET ACCURATE RESULTS YOURSELF:
+  //  You will need to create your own sandbox
+  //  dataset and update these test cases with 
+  //  the correct answers.
+  // ============================================
+  //
+  //
+  //
   testCases: [
     // ============================================
     // BALANCE AND ACCOUNT QUERIES

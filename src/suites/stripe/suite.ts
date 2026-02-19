@@ -44,6 +44,7 @@ const suite: SuiteConfig = {
     },
   ],
 
+  // These test cases are based off of the data generated with fixtures.json
   testCases: [
     {
       id: "list-customers",
