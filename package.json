@@ -2,7 +2,26 @@
   "name": "mcp-evals-harness",
   "version": "2.0.0",
   "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/suite.d.ts",
+      "default": "./dist/suite.js"
+    },
+    "./agent": {
+      "types": "./dist/agent/index.d.ts",
+      "default": "./dist/agent/index.js"
+    },
+    "./scorers/*": {
+      "types": "./dist/scorers/*.d.ts",
+      "default": "./dist/scorers/*.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
   "scripts": {
+    "build": "tsc",
+    "prepare": "tsc",
     "generate:suites": "npx tsx scripts/generate-suite-index.ts",
     "eval": "npm run generate:suites && npx braintrust eval src/evals/e2e.eval.ts",
     "eval:all": "npm run generate:suites && npx braintrust eval src/evals/run-all.ts",
