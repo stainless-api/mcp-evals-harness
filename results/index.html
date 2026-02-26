@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Increase MCP Eval Results</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+<style>
+  :root {
+    --bg: #0f1117;
+    --surface: #1a1d27;
+    --surface2: #232734;
+    --border: #2e3345;
+    --text: #e1e4ed;
+    --text-dim: #8b90a0;
+    --accent: #6c8cff;
+    --green: #34d399;
+    --yellow: #fbbf24;
+    --red: #f87171;
+    --orange: #fb923c;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.5;
+    padding: 2rem;
+  }
+  h1 { font-size: 1.75rem; font-weight: 700; margin-bottom: 0.25rem; }
+  h2 { font-size: 1.25rem; font-weight: 600; margin-bottom: 1rem; color: var(--text-dim); }
+  h3 { font-size: 1rem; font-weight: 600; margin-bottom: 0.75rem; }
+  .hint { font-weight: 400; color: var(--text-dim); font-size: 0.8rem; }
+  .subtitle { color: var(--text-dim); font-size: 0.9rem; margin-bottom: 2rem; }
+
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.25rem;
+  }
+  .card-title { font-size: 0.85rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.75rem; }
+  .card-scores { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .card-score { text-align: center; }
+  .card-score .value { font-size: 1.5rem; font-weight: 700; }
+  .card-score .label { font-size: 0.7rem; color: var(--text-dim); text-transform: uppercase; }
+  .card-meta { margin-top: 0.75rem; font-size: 0.8rem; color: var(--text-dim); display: flex; gap: 1rem; }
+
+  .section {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  .chart-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem; }
+  @media (max-width: 900px) { .chart-row { grid-template-columns: 1fr; } }
+  .chart-container { position: relative; height: 320px; }
+
+  .filters { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1rem; }
+  .filter-btn {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    padding: 0.3rem 0.75rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    transition: all 0.15s;
+  }
+  .filter-btn:hover { border-color: var(--accent); color: var(--text); }
+  .filter-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+  thead th {
+    position: sticky;
+    top: 0;
+    background: var(--surface);
+    padding: 0.6rem 0.5rem;
+    text-align: left;
+    border-bottom: 2px solid var(--border);
+    cursor: pointer;
+    user-select: none;
+    white-space: nowrap;
+    color: var(--text-dim);
+    font-weight: 600;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+  thead th:hover { color: var(--text); }
+  thead th .sort-arrow { margin-left: 4px; opacity: 0.4; }
+  thead th.sorted .sort-arrow { opacity: 1; color: var(--accent); }
+  tbody td { padding: 0.5rem; border-bottom: 1px solid var(--border); }
+  tbody tr:hover { background: var(--surface2); }
+  .test-name { font-weight: 500; white-space: nowrap; }
+  .tag { display: inline-block; padding: 0.1rem 0.4rem; border-radius: 4px; font-size: 0.7rem; background: var(--surface2); color: var(--text-dim); margin-right: 0.2rem; }
+  .score-cell { text-align: center; font-variant-numeric: tabular-nums; font-weight: 500; min-width: 48px; }
+  .dur-cell { text-align: right; font-variant-numeric: tabular-nums; color: var(--text-dim); min-width: 56px; }
+
+  .config-header { text-align: center !important; border-bottom: 2px solid var(--border); }
+  .config-header-group { border-left: 2px solid var(--border); }
+
+  .table-scroll { overflow-x: auto; max-height: 70vh; overflow-y: auto; }
+
+  .legend { display: flex; gap: 1.5rem; margin-bottom: 1rem; font-size: 0.8rem; color: var(--text-dim); align-items: center; }
+  .legend-swatch { width: 12px; height: 12px; border-radius: 3px; display: inline-block; margin-right: 4px; vertical-align: middle; }
+</style>
+</head>
+<body>
+
+<h1>Increase MCP Server Eval Results</h1>
+<p class="subtitle">Comparing four MCP server configurations across 31 test cases exercising the Increase REST API</p>
+
+<div id="summary-cards" class="cards"></div>
+
+<div class="chart-row">
+  <div class="section">
+    <h3>Average Scores by Configuration <span class="hint">(higher is better)</span></h3>
+    <div class="chart-container"><canvas id="scoresChart"></canvas></div>
+  </div>
+  <div class="section">
+    <h3>Average Duration <span class="hint">(lower is better)</span></h3>
+    <div class="chart-container"><canvas id="durationChart"></canvas></div>
+  </div>
+</div>
+
+<div class="chart-row">
+  <div class="section">
+    <h3>Score Distribution: Completeness <span class="hint">(more at right is better)</span></h3>
+    <div class="chart-container"><canvas id="distCompleteness"></canvas></div>
+  </div>
+  <div class="section">
+    <h3>Score Distribution: Factuality <span class="hint">(more at right is better)</span></h3>
+    <div class="chart-container"><canvas id="distFactuality"></canvas></div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>Per-Test-Case Comparison</h3>
+  <div class="filters" id="tag-filters"></div>
+  <div class="table-scroll">
+    <table id="results-table">
+      <thead id="results-thead"></thead>
+      <tbody id="results-tbody"></tbody>
+    </table>
+  </div>
+</div>
+
+<script>
+const DATA = {"configs":[{"name":"Anthropic Code Mode","results":[{"testCaseId":"find-bonus-payments","prompt":"Which companies have sent us bonus payments? Calculate the total.","tags":["read","transactions","search"],"expected":"Returns Titan Corp and Atlas Group as senders of bonus payments, with a total of approximately $42,395.67.","scores":{"Completeness":0.5,"Efficiency":0.32404444444444447,"Factuality":0},"metrics":{"duration":286.59299993515015,"tool_calls":0,"errors":0}},{"testCaseId":"find-trust-distribution-sender","prompt":"Which company sends us trust distributions? How much have they sent in total?","tags":["read","transactions","search"],"expected":"Returns Northern Trust Admin as the sender of trust distributions, with a total of approximately $175,540.26.","scores":{"Completeness":0.5,"Efficiency":0.8103518590156888,"Factuality":0},"metrics":{"duration":63.657999992370605,"tool_calls":0,"errors":0}},{"testCaseId":"reconcile-monthly-retainer","prompt":"We need to verify retainer payments. Find all payments with \"retainer\" in the memo and calculate the total.","tags":["read","transactions","reconciliation"],"expected":"Returns Westside Consulting as the sender of retainer payments with a total of approximately $49,453.35.","scores":{"Completeness":1,"Efficiency":0.3104111111111111,"Factuality":0},"metrics":{"duration":178.19999980926514,"tool_calls":0,"errors":0}},{"testCaseId":"royalty-payments-analysis","prompt":"Analyze our royalty payments: who sends them and what is the total amount received?","tags":["read","transactions","analysis"],"expected":"Returns Silver Creek Mining as the sender of royalty payments, with a total of approximately $63,030.84.","scores":{"Completeness":1,"Efficiency":0.31702121212121215,"Factuality":0},"metrics":{"duration":160.8159999847412,"tool_calls":0,"errors":0}},{"testCaseId":"reconcile-investment-returns","prompt":"We are reconciling investment returns. List all payments mentioning \"Investment returns\" in the remittance info, including the sender and amounts.","tags":["read","transactions","reconciliation"],"expected":"Returns Redwood Financial as the sender of multiple \"Investment returns Q4\" payments, listing individual amounts such as $29,240.06, $24,240.23, $23,651.15, etc.","scores":{"Completeness":1,"Efficiency":0.8025215559853858,"Factuality":0.6},"metrics":{"duration":75.75699996948242,"tool_calls":0,"errors":0}},{"testCaseId":"payment-type-breakdown","prompt":"Break down inbound payments by type based on remittance info (e.g., invoice payments, milestone payments, distributions, dividends, royalties). Show counts and totals for each.","tags":["read","analysis","multi-step"],"expected":"Returns a breakdown of inbound payments by type including invoice payments, milestone payments, distributions, dividends, and royalties with counts and dollar totals for each category.","scores":{"Completeness":1,"Efficiency":0.8055882226520524,"Factuality":0.4},"metrics":{"duration":223.97800016403198,"tool_calls":0,"errors":0}},{"testCaseId":"find-largest-single-payment","prompt":"What was the largest single inbound payment we received? Who sent it and what was it for?","tags":["read","transactions","search"],"expected":"Returns $29,240.06 from Redwood Financial for \"Investment returns Q4\" as the largest single inbound payment.","scores":{"Completeness":1,"Efficiency":0.828757833655706,"Factuality":0},"metrics":{"duration":63.01900005340576,"tool_calls":0,"errors":0}},{"testCaseId":"settlement-payments-total","prompt":"Calculate the total amount of payments that mention \"settlement\" in the remittance info.","tags":["read","transactions","aggregation"],"expected":"Returns approximately $137,669.00 as the total amount of payments mentioning \"settlement\" in the remittance info.","scores":{"Completeness":1,"Efficiency":0.8481932731571029,"Factuality":0.6},"metrics":{"duration":67.65300011634827,"tool_calls":0,"errors":0}},{"testCaseId":"aggregate-tech-company-payments","prompt":"How much total money have we received from companies with \"Tech\" in their name?","tags":["read","transactions","aggregation"],"expected":"Returns approximately $101,694.36 from 21 payments from companies with \"Tech\" in their name, mainly Valley Tech Partners.","scores":{"Completeness":1,"Efficiency":0.8521883086180958,"Factuality":0.6},"metrics":{"duration":59.80200004577637,"tool_calls":0,"errors":0}},{"testCaseId":"search-by-remittance-info","prompt":"Find all payments with remittance information mentioning \"Grant disbursement\". Who sent these and what is the total?","tags":["read","transactions","search"],"expected":"Returns Quantum Research Inc as the sender of grant disbursements, with a total of approximately $140,580.12.","scores":{"Completeness":1,"Efficiency":0.8559425961745111,"Factuality":0.6},"metrics":{"duration":54.70300006866455,"tool_calls":0,"errors":0}},{"testCaseId":"find-invoice-payments-from-acme","prompt":"How many payments have we received from Acme Corporation and what is the total amount?","tags":["read","transactions","aggregation"],"expected":"Returns 16 payments from Acme Corporation totaling $42,601.08.","scores":{"Completeness":1,"Efficiency":0.8623418439716312,"Factuality":0.6},"metrics":{"duration":52.948999881744385,"tool_calls":0,"errors":0}},{"testCaseId":"receiving-account-distribution","prompt":"How many different accounts are receiving inbound real-time payments? Which accounts are they?","tags":["read","analysis"],"expected":"Returns 6 unique accounts receiving inbound real-time payments, listing the account IDs.","scores":{"Completeness":1,"Efficiency":0.8668326670964969,"Factuality":0.6},"metrics":{"duration":44.882999897003174,"tool_calls":0,"errors":0}},{"testCaseId":"total-balance-across-accounts","prompt":"What is the total current balance across all my open accounts?","tags":["read","accounts","balance"],"expected":"Returns the total balance across all open accounts, which is approximately $604.6 million across 12 open accounts.","scores":{"Completeness":1,"Efficiency":0.8692376316355039,"Factuality":0.6},"metrics":{"duration":51.30299997329712,"tool_calls":0,"errors":0}},{"testCaseId":"find-expense-reimbursements","prompt":"Who did we send expense reimbursements to and for how much?","tags":["read","ach","search"],"expected":"Returns Bob Smith as the recipient of a $750 expense reimbursement.","scores":{"Completeness":1,"Efficiency":0.8918686868686869,"Factuality":0.6},"metrics":{"duration":55.187000036239624,"tool_calls":0,"errors":0}},{"testCaseId":"identify-unknown-payment-source","prompt":"We received a payment for \"Contract payment milestone 3\" but are unsure who sent it. Can you identify the sender?","tags":["read","transactions","search"],"expected":"Returns Riverdale Manufacturing as the sender of the \"Contract payment milestone 3\" payment.","scores":{"Completeness":1,"Efficiency":0.8922565656565656,"Factuality":0.6},"metrics":{"duration":44.22099995613098,"tool_calls":0,"errors":0}},{"testCaseId":"aggregate-financial-company-payments","prompt":"Calculate the total amount received from companies that appear to be financial institutions (including \"Financial\", \"Capital\", or \"Investment\" in their names).","tags":["read","transactions","aggregation"],"expected":"Returns approximately $301,648.10 from 27 payments from financial institutions including companies with Financial, Capital, or Investment in their names.","scores":{"Completeness":1,"Efficiency":0.9006790457769182,"Factuality":0.6},"metrics":{"duration":55.94700002670288,"tool_calls":0,"errors":0}},{"testCaseId":"count-open-accounts","prompt":"How many accounts do I have that are currently open?","tags":["read","accounts"],"expected":"Returns 12 open accounts.","scores":{"Completeness":1,"Efficiency":0.9142961315280465,"Factuality":0.6},"metrics":{"duration":40.568000078201294,"tool_calls":0,"errors":0}},{"testCaseId":"cash-flow-summary","prompt":"Provide a cash flow summary: total inbound real-time payments minus total outbound ACH transfers.","tags":["read","analysis","multi-step"],"expected":"Returns a cash flow summary showing inbound RTP of $1,933,037.08 minus outbound ACH of $13,600.00, for a net of approximately $1,919,437.08.","scores":{"Completeness":1,"Efficiency":0.9279063185041909,"Factuality":1},"metrics":{"duration":47.123000144958496,"tool_calls":0,"errors":0}},{"testCaseId":"top-sender-by-volume","prompt":"Which sender has sent us the most money in total via real-time payments?","tags":["read","transactions","aggregation"],"expected":"Returns Redwood Financial as the top sender by total amount with $179,791.84 in real-time payments.","scores":{"Completeness":1,"Efficiency":0.9300102729421879,"Factuality":0.4},"metrics":{"duration":34.812999963760376,"tool_calls":0,"errors":0}},{"testCaseId":"sender-routing-number-lookup","prompt":"Which routing number is most commonly used by senders of inbound real-time payments?","tags":["read","transactions","analysis"],"expected":"Returns 026009593 as the most commonly used routing number for inbound real-time payments.","scores":{"Completeness":1,"Efficiency":0.9425628841607565,"Factuality":0},"metrics":{"duration":34.69800019264221,"tool_calls":0,"errors":0}},{"testCaseId":"count-unique-payment-senders","prompt":"How many unique companies/entities have sent us inbound real-time payments?","tags":["read","transactions","aggregation"],"expected":"Returns 47 unique senders of inbound real-time payments.","scores":{"Completeness":1,"Efficiency":0.9460830002149152,"Factuality":1},"metrics":{"duration":33.270999908447266,"tool_calls":0,"errors":0}},{"testCaseId":"find-smallest-payment","prompt":"What was the smallest inbound real-time payment we received? Include the sender and amount.","tags":["read","transactions","search"],"expected":"Returns $178.70 from Premier Services for \"Subscription renewal\" as the smallest inbound real-time payment.","scores":{"Completeness":1,"Efficiency":0.9499305609284332,"Factuality":0.6},"metrics":{"duration":30.92799997329712,"tool_calls":0,"errors":0}},{"testCaseId":"find-account-by-name","prompt":"What is the account ID for the account named \"Test Account\"?","tags":["read","accounts"],"expected":"Returns the account ID sandbox_account_d2vjanwqek34xx5khtq8 for the account named \"Test Account\".","scores":{"Completeness":1,"Efficiency":0.9527020202020202,"Factuality":0.6},"metrics":{"duration":20.90499997138977,"tool_calls":0,"errors":0}},{"testCaseId":"find-contractor-payments","prompt":"How much have we paid to individual contractors (not businesses) via ACH? List the recipients.","tags":["read","ach","search"],"expected":"Returns individual contractors paid via ACH: Alice Johnson ($150), Bob Smith ($750), and Freelancer John Doe ($7,500), totaling $8,400.","scores":{"Completeness":1,"Efficiency":0.9564050505050505,"Factuality":0},"metrics":{"duration":36.75399994850159,"tool_calls":0,"errors":0}},{"testCaseId":"average-transaction-amount","prompt":"What is the average amount of an inbound real-time payment?","tags":["read","transactions","aggregation"],"expected":"Returns $5,522.96 as the average amount of an inbound real-time payment.","scores":{"Completeness":1,"Efficiency":0.9589052224371373,"Factuality":0.6},"metrics":{"duration":25.1010000705719,"tool_calls":0,"errors":0}},{"testCaseId":"total-inbound-rtp-payments","prompt":"What is the total amount of all inbound real-time payments we have received?","tags":["read","transactions","aggregation"],"expected":"Returns $1,933,037.08 as the total amount of all inbound real-time payments.","scores":{"Completeness":1,"Efficiency":0.968251687083602,"Factuality":0.6},"metrics":{"duration":22.873000144958496,"tool_calls":0,"errors":0}},{"testCaseId":"find-payroll-external-accounts","prompt":"Which payroll service providers do we have external accounts set up for?","tags":["read","external-accounts","search"],"expected":"Returns ADP, Gusto, and Paychex as payroll service providers with external accounts.","scores":{"Completeness":1,"Efficiency":0.98479898989899,"Factuality":0.6},"metrics":{"duration":18.118000030517578,"tool_calls":0,"errors":0}},{"testCaseId":"total-outbound-ach","prompt":"What is the total amount of outbound ACH transfers we have successfully completed?","tags":["read","ach","aggregation"],"expected":"Returns $13,600.00 as the total amount of outbound ACH transfers.","scores":{"Completeness":1,"Efficiency":0.9874222222222222,"Factuality":0.6},"metrics":{"duration":21.336000204086304,"tool_calls":0,"errors":0}},{"testCaseId":"find-law-firm-accounts","prompt":"List all law firms we have as external accounts.","tags":["read","external-accounts","search"],"expected":"Returns Cooley LLP, Fenwick & West LLP, and Wilson Sonsini as law firms with external accounts.","scores":{"Completeness":1,"Efficiency":0.9882727272727272,"Factuality":0.6},"metrics":{"duration":20.07200002670288,"tool_calls":0,"errors":0}},{"testCaseId":"count-external-accounts","prompt":"How many external accounts do we have set up for payments?","tags":["read","external-accounts"],"expected":"Returns 69 external accounts set up for payments.","scores":{"Completeness":1,"Efficiency":0.9890222222222222,"Factuality":0.6},"metrics":{"duration":17.027999877929688,"tool_calls":0,"errors":0}},{"testCaseId":"find-dividend-payments","prompt":"List all dividend payments we have received, including the senders and total amount.","tags":["read","transactions","reconciliation"],"expected":"Returns Vertex Capital and Vertex Holdings as the senders of dividend payments, with a total of approximately $112,743.63.","scores":{"Completeness":0,"Efficiency":0,"Factuality":0},"metrics":{"duration":187.05299997329712,"tool_calls":0,"errors":0}}]},{"name":"Cloudflare","results":[{"testCaseId":"find-bonus-payments","prompt":"Which companies have sent us bonus payments? Calculate the total.","tags":["read","transactions","search"],"expected":"Returns Titan Corp and Atlas Group as senders of bonus payments, with a total of approximately $42,395.67.","scores":{"Completeness":0.5,"Efficiency":0.9042553191489362,"Factuality":0},"metrics":{"duration":64.69199991226196,"tool_calls":11,"errors":0}},{"testCaseId":"royalty-payments-analysis","prompt":"Analyze our royalty payments: who sends them and what is the total amount received?","tags":["read","transactions","analysis"],"expected":"Returns Silver Creek Mining as the sender of royalty payments, with a total of approximately $63,030.84.","scores":{"Completeness":0.5,"Efficiency":0.9148936170212766,"Factuality":0},"metrics":{"duration":108.49499988555908,"tool_calls":10,"errors":0}},{"testCaseId":"find-dividend-payments","prompt":"List all dividend payments we have received, including the senders and total amount.","tags":["read","transactions","reconciliation"],"expected":"Returns Vertex Capital and Vertex Holdings as the senders of dividend payments, with a total of approximately $112,743.63.","scores":{"Completeness":0.5,"Efficiency":0.9148936170212766,"Factuality":0},"metrics":{"duration":33.78699994087219,"tool_calls":10,"errors":0}},{"testCaseId":"search-by-remittance-info","prompt":"Find all payments with remittance information mentioning \"Grant disbursement\". Who sent these and what is the total?","tags":["read","transactions","search"],"expected":"Returns Quantum Research Inc as the sender of grant disbursements, with a total of approximately $140,580.12.","scores":{"Completeness":0.5,"Efficiency":0.9148936170212766,"Factuality":0},"metrics":{"duration":45.97199988365173,"tool_calls":10,"errors":0}},{"testCaseId":"find-invoice-payments-from-acme","prompt":"How many payments have we received from Acme Corporation and what is the total amount?","tags":["read","transactions","aggregation"],"expected":"Returns 16 payments from Acme Corporation totaling $42,601.08.","scores":{"Completeness":0.5,"Efficiency":0.925531914893617,"Factuality":0},"metrics":{"duration":64.31299996376038,"tool_calls":9,"errors":0}},{"testCaseId":"cash-flow-summary","prompt":"Provide a cash flow summary: total inbound real-time payments minus total outbound ACH transfers.","tags":["read","analysis","multi-step"],"expected":"Returns a cash flow summary showing inbound RTP of $1,933,037.08 minus outbound ACH of $13,600.00, for a net of approximately $1,919,437.08.","scores":{"Completeness":0.5,"Efficiency":0.9361702127659575,"Factuality":0},"metrics":{"duration":292.9260001182556,"tool_calls":8,"errors":0}},{"testCaseId":"find-largest-single-payment","prompt":"What was the largest single inbound payment we received? Who sent it and what was it for?","tags":["read","transactions","search"],"expected":"Returns $29,240.06 from Redwood Financial for \"Investment returns Q4\" as the largest single inbound payment.","scores":{"Completeness":1,"Efficiency":0.8404255319148937,"Factuality":0},"metrics":{"duration":62.81000018119812,"tool_calls":17,"errors":0}},{"testCaseId":"settlement-payments-total","prompt":"Calculate the total amount of payments that mention \"settlement\" in the remittance info.","tags":["read","transactions","aggregation"],"expected":"Returns approximately $137,669.00 as the total amount of payments mentioning \"settlement\" in the remittance info.","scores":{"Completeness":1,"Efficiency":0.8404255319148937,"Factuality":0.6},"metrics":{"duration":120.7059998512268,"tool_calls":17,"errors":0}},{"testCaseId":"payment-type-breakdown","prompt":"Break down inbound payments by type based on remittance info (e.g., invoice payments, milestone payments, distributions, dividends, royalties). Show counts and totals for each.","tags":["read","analysis","multi-step"],"expected":"Returns a breakdown of inbound payments by type including invoice payments, milestone payments, distributions, dividends, and royalties with counts and dollar totals for each category.","scores":{"Completeness":1,"Efficiency":0.8936170212765957,"Factuality":0.6},"metrics":{"duration":303.114000082016,"tool_calls":12,"errors":0}},{"testCaseId":"aggregate-financial-company-payments","prompt":"Calculate the total amount received from companies that appear to be financial institutions (including \"Financial\", \"Capital\", or \"Investment\" in their names).","tags":["read","transactions","aggregation"],"expected":"Returns approximately $301,648.10 from 27 payments from financial institutions including companies with Financial, Capital, or Investment in their names.","scores":{"Completeness":1,"Efficiency":0.8936170212765957,"Factuality":0.6},"metrics":{"duration":56.35199999809265,"tool_calls":12,"errors":0}},{"testCaseId":"identify-unknown-payment-source","prompt":"We received a payment for \"Contract payment milestone 3\" but are unsure who sent it. Can you identify the sender?","tags":["read","transactions","search"],"expected":"Returns Riverdale Manufacturing as the sender of the \"Contract payment milestone 3\" payment.","scores":{"Completeness":1,"Efficiency":0.9042553191489362,"Factuality":0.6},"metrics":{"duration":44.4689998626709,"tool_calls":11,"errors":0}},{"testCaseId":"aggregate-tech-company-payments","prompt":"How much total money have we received from companies with \"Tech\" in their name?","tags":["read","transactions","aggregation"],"expected":"Returns approximately $101,694.36 from 21 payments from companies with \"Tech\" in their name, mainly Valley Tech Partners.","scores":{"Completeness":1,"Efficiency":0.925531914893617,"Factuality":0},"metrics":{"duration":35.615999937057495,"tool_calls":9,"errors":0}},{"testCaseId":"find-trust-distribution-sender","prompt":"Which company sends us trust distributions? How much have they sent in total?","tags":["read","transactions","search"],"expected":"Returns Northern Trust Admin as the sender of trust distributions, with a total of approximately $175,540.26.","scores":{"Completeness":1,"Efficiency":0.925531914893617,"Factuality":0.6},"metrics":{"duration":54.8529999256134,"tool_calls":9,"errors":0}},{"testCaseId":"reconcile-monthly-retainer","prompt":"We need to verify retainer payments. Find all payments with \"retainer\" in the memo and calculate the total.","tags":["read","transactions","reconciliation"],"expected":"Returns Westside Consulting as the sender of retainer payments with a total of approximately $49,453.35.","scores":{"Completeness":1,"Efficiency":0.9361702127659575,"Factuality":0.6},"metrics":{"duration":50.581000089645386,"tool_calls":8,"errors":0}},{"testCaseId":"find-expense-reimbursements","prompt":"Who did we send expense reimbursements to and for how much?","tags":["read","ach","search"],"expected":"Returns Bob Smith as the recipient of a $750 expense reimbursement.","scores":{"Completeness":1,"Efficiency":0.9574468085106382,"Factuality":0.6},"metrics":{"duration":32.442999839782715,"tool_calls":6,"errors":0}},{"testCaseId":"reconcile-investment-returns","prompt":"We are reconciling investment returns. List all payments mentioning \"Investment returns\" in the remittance info, including the sender and amounts.","tags":["read","transactions","reconciliation"],"expected":"Returns Redwood Financial as the sender of multiple \"Investment returns Q4\" payments, listing individual amounts such as $29,240.06, $24,240.23, $23,651.15, etc.","scores":{"Completeness":1,"Efficiency":0.9574468085106382,"Factuality":0.6},"metrics":{"duration":34.46399998664856,"tool_calls":6,"errors":0}},{"testCaseId":"find-smallest-payment","prompt":"What was the smallest inbound real-time payment we received? Include the sender and amount.","tags":["read","transactions","search"],"expected":"Returns $178.70 from Premier Services for \"Subscription renewal\" as the smallest inbound real-time payment.","scores":{"Completeness":1,"Efficiency":0.9574468085106382,"Factuality":0.6},"metrics":{"duration":30.618000030517578,"tool_calls":6,"errors":0}},{"testCaseId":"total-inbound-rtp-payments","prompt":"What is the total amount of all inbound real-time payments we have received?","tags":["read","transactions","aggregation"],"expected":"Returns $1,933,037.08 as the total amount of all inbound real-time payments.","scores":{"Completeness":1,"Efficiency":0.9680851063829787,"Factuality":0.6},"metrics":{"duration":27.618000030517578,"tool_calls":5,"errors":0}},{"testCaseId":"receiving-account-distribution","prompt":"How many different accounts are receiving inbound real-time payments? Which accounts are they?","tags":["read","analysis"],"expected":"Returns 6 unique accounts receiving inbound real-time payments, listing the account IDs.","scores":{"Completeness":1,"Efficiency":0.9787234042553192,"Factuality":0.6},"metrics":{"duration":23.59499979019165,"tool_calls":4,"errors":0}},{"testCaseId":"top-sender-by-volume","prompt":"Which sender has sent us the most money in total via real-time payments?","tags":["read","transactions","aggregation"],"expected":"Returns Redwood Financial as the top sender by total amount with $179,791.84 in real-time payments.","scores":{"Completeness":1,"Efficiency":0.9787234042553192,"Factuality":0.6},"metrics":{"duration":27.47000002861023,"tool_calls":4,"errors":0}},{"testCaseId":"average-transaction-amount","prompt":"What is the average amount of an inbound real-time payment?","tags":["read","transactions","aggregation"],"expected":"Returns $5,522.96 as the average amount of an inbound real-time payment.","scores":{"Completeness":1,"Efficiency":0.9893617021276595,"Factuality":0.6},"metrics":{"duration":21.84000015258789,"tool_calls":3,"errors":0}},{"testCaseId":"total-balance-across-accounts","prompt":"What is the total current balance across all my open accounts?","tags":["read","accounts","balance"],"expected":"Returns the total balance across all open accounts, which is approximately $604.6 million across 12 open accounts.","scores":{"Completeness":1,"Efficiency":0.9893617021276595,"Factuality":0.6},"metrics":{"duration":37.09700012207031,"tool_calls":3,"errors":0}},{"testCaseId":"count-external-accounts","prompt":"How many external accounts do we have set up for payments?","tags":["read","external-accounts"],"expected":"Returns 69 external accounts set up for payments.","scores":{"Completeness":1,"Efficiency":1,"Factuality":0},"metrics":{"duration":12.939000129699707,"tool_calls":1,"errors":0}},{"testCaseId":"sender-routing-number-lookup","prompt":"Which routing number is most commonly used by senders of inbound real-time payments?","tags":["read","transactions","analysis"],"expected":"Returns 021000021 as the most commonly used routing number for inbound real-time payments.","scores":{"Completeness":1,"Efficiency":1,"Factuality":0.6},"metrics":{"duration":15.694000005722046,"tool_calls":1,"errors":0}},{"testCaseId":"find-law-firm-accounts","prompt":"List all law firms we have as external accounts.","tags":["read","external-accounts","search"],"expected":"Returns Cooley LLP, Fenwick & West LLP, and Wilson Sonsini as law firms with external accounts.","scores":{"Completeness":1,"Efficiency":1,"Factuality":0.6},"metrics":{"duration":18.47699999809265,"tool_calls":1,"errors":0}},{"testCaseId":"find-payroll-external-accounts","prompt":"Which payroll service providers do we have external accounts set up for?","tags":["read","external-accounts","search"],"expected":"Returns ADP, Gusto, and Paychex as payroll service providers with external accounts.","scores":{"Completeness":1,"Efficiency":1,"Factuality":0.6},"metrics":{"duration":12.138999938964844,"tool_calls":1,"errors":0}},{"testCaseId":"find-contractor-payments","prompt":"How much have we paid to individual contractors (not businesses) via ACH? List the recipients.","tags":["read","ach","search"],"expected":"Returns individual contractors paid via ACH: Alice Johnson ($150), Bob Smith ($750), and Freelancer John Doe ($7,500), totaling $8,400.","scores":{"Completeness":1,"Efficiency":1,"Factuality":0.6},"metrics":{"duration":25.115000009536743,"tool_calls":1,"errors":0}},{"testCaseId":"total-outbound-ach","prompt":"What is the total amount of outbound ACH transfers we have successfully completed?","tags":["read","ach","aggregation"],"expected":"Returns $13,600.00 as the total amount of outbound ACH transfers.","scores":{"Completeness":1,"Efficiency":1,"Factuality":0.6},"metrics":{"duration":31.48199987411499,"tool_calls":2,"errors":0}},{"testCaseId":"count-unique-payment-senders","prompt":"How many unique companies/entities have sent us inbound real-time payments?","tags":["read","transactions","aggregation"],"expected":"Returns 47 unique senders of inbound real-time payments.","scores":{"Completeness":1,"Efficiency":1,"Factuality":0.6},"metrics":{"duration":17.024999856948853,"tool_calls":1,"errors":0}},{"testCaseId":"find-account-by-name","prompt":"What is the account ID for the account named \"Test Account\"?","tags":["read","accounts"],"expected":"Returns the account ID sandbox_account_d2vjanwqek34xx5khtq8 for the account named \"Test Account\".","scores":{"Completeness":1,"Efficiency":1,"Factuality":0.6},"metrics":{"duration":8.968999862670898,"tool_calls":1,"errors":0}},{"testCaseId":"count-open-accounts","prompt":"How many accounts do I have that are currently open?","tags":["read","accounts"],"expected":"Returns 12 open accounts.","scores":{"Completeness":1,"Efficiency":1,"Factuality":0.6},"metrics":{"duration":17.6729998588562,"tool_calls":2,"errors":0}}]},{"name":"Dynamic","results":[{"testCaseId":"find-largest-single-payment","prompt":"What was the largest single inbound payment we received? Who sent it and what was it for?","tags":["read","transactions","search"],"expected":"Returns $29,240.06 from Redwood Financial for \"Investment returns Q4\" as the largest single inbound payment.","scores":{"Completeness":0,"Efficiency":0.8147650977863744,"Factuality":0},"metrics":{"duration":55.710999965667725,"tool_calls":0,"errors":0}},{"testCaseId":"search-by-remittance-info","prompt":"Find all payments with remittance information mentioning \"Grant disbursement\". Who sent these and what is the total?","tags":["read","transactions","search"],"expected":"Returns Quantum Research Inc as the sender of grant disbursements, with a total of approximately $140,580.12.","scores":{"Completeness":0,"Efficiency":0.851063829787234,"Factuality":0},"metrics":{"duration":47.282999992370605,"tool_calls":0,"errors":0}},{"testCaseId":"cash-flow-summary","prompt":"Provide a cash flow summary: total inbound real-time payments minus total outbound ACH transfers.","tags":["read","analysis","multi-step"],"expected":"Returns a cash flow summary showing inbound RTP of $1,933,037.08 minus outbound ACH of $13,600.00, for a net of approximately $1,919,437.08.","scores":{"Completeness":0,"Efficiency":0.9361702127659575,"Factuality":0},"metrics":{"duration":43.09299993515015,"tool_calls":0,"errors":0}},{"testCaseId":"average-transaction-amount","prompt":"What is the average amount of an inbound real-time payment?","tags":["read","transactions","aggregation"],"expected":"Returns $5,522.96 as the average amount of an inbound real-time payment.","scores":{"Completeness":0,"Efficiency":0.9573720610358909,"Factuality":0},"metrics":{"duration":37.87000012397766,"tool_calls":0,"errors":0}},{"testCaseId":"total-inbound-rtp-payments","prompt":"What is the total amount of all inbound real-time payments we have received?","tags":["read","transactions","aggregation"],"expected":"Returns $1,933,037.08 as the total amount of all inbound real-time payments.","scores":{"Completeness":0,"Efficiency":0.9574468085106382,"Factuality":0},"metrics":{"duration":45.459999799728394,"tool_calls":0,"errors":0}},{"testCaseId":"find-smallest-payment","prompt":"What was the smallest inbound real-time payment we received? Include the sender and amount.","tags":["read","transactions","search"],"expected":"Returns $178.70 from Premier Services for \"Subscription renewal\" as the smallest inbound real-time payment.","scores":{"Completeness":0,"Efficiency":1,"Factuality":0},"metrics":{"duration":11.009999990463257,"tool_calls":0,"errors":0}},{"testCaseId":"payment-type-breakdown","prompt":"Break down inbound payments by type based on remittance info (e.g., invoice payments, milestone payments, distributions, dividends, royalties). Show counts and totals for each.","tags":["read","analysis","multi-step"],"expected":"Returns a breakdown of inbound payments by type including invoice payments, milestone payments, distributions, dividends, and royalties with counts and dollar totals for each category.","scores":{"Completeness":0.3333333333333333,"Efficiency":0.7159970986460349,"Factuality":0.6},"metrics":{"duration":122.9210000038147,"tool_calls":0,"errors":0}},{"testCaseId":"find-dividend-payments","prompt":"List all dividend payments we have received, including the senders and total amount.","tags":["read","transactions","reconciliation"],"expected":"Returns Vertex Capital and Vertex Holdings as the senders of dividend payments, with a total of approximately $112,743.63.","scores":{"Completeness":0.5,"Efficiency":0.6982923060391146,"Factuality":0},"metrics":{"duration":143.88899993896484,"tool_calls":0,"errors":0}},{"testCaseId":"find-bonus-payments","prompt":"Which companies have sent us bonus payments? Calculate the total.","tags":["read","transactions","search"],"expected":"Returns Titan Corp and Atlas Group as senders of bonus payments, with a total of approximately $42,395.67.","scores":{"Completeness":0.5,"Efficiency":0.6989377605845691,"Factuality":0},"metrics":{"duration":129.79699993133545,"tool_calls":0,"errors":0}},{"testCaseId":"find-invoice-payments-from-acme","prompt":"How many payments have we received from Acme Corporation and what is the total amount?","tags":["read","transactions","aggregation"],"expected":"Returns 16 payments from Acme Corporation totaling $42,601.08.","scores":{"Completeness":0.5,"Efficiency":0.8405658499892543,"Factuality":0},"metrics":{"duration":52.13800001144409,"tool_calls":0,"errors":0}},{"testCaseId":"settlement-payments-total","prompt":"Calculate the total amount of payments that mention \"settlement\" in the remittance info.","tags":["read","transactions","aggregation"],"expected":"Returns approximately $137,669.00 as the total amount of payments mentioning \"settlement\" in the remittance info.","scores":{"Completeness":0.5,"Efficiency":0.8576384053298947,"Factuality":0},"metrics":{"duration":54.967000007629395,"tool_calls":0,"errors":0}},{"testCaseId":"reconcile-investment-returns","prompt":"We are reconciling investment returns. List all payments mentioning \"Investment returns\" in the remittance info, including the sender and amounts.","tags":["read","transactions","reconciliation"],"expected":"Returns Redwood Financial as the sender of multiple \"Investment returns Q4\" payments, listing individual amounts such as $29,240.06, $24,240.23, $23,651.15, etc.","scores":{"Completeness":0.5,"Efficiency":0.8829787234042553,"Factuality":0},"metrics":{"duration":44.22699999809265,"tool_calls":0,"errors":0}},{"testCaseId":"royalty-payments-analysis","prompt":"Analyze our royalty payments: who sends them and what is the total amount received?","tags":["read","transactions","analysis"],"expected":"Returns Silver Creek Mining as the sender of royalty payments, with a total of approximately $63,030.84.","scores":{"Completeness":1,"Efficiency":0.6303049430474963,"Factuality":0.6},"metrics":{"duration":135.07100009918213,"tool_calls":0,"errors":0}},{"testCaseId":"aggregate-tech-company-payments","prompt":"How much total money have we received from companies with \"Tech\" in their name?","tags":["read","transactions","aggregation"],"expected":"Returns approximately $101,694.36 from 21 payments from companies with \"Tech\" in their name, mainly Valley Tech Partners.","scores":{"Completeness":1,"Efficiency":0.6413200085966043,"Factuality":0},"metrics":{"duration":144.739000082016,"tool_calls":0,"errors":0}},{"testCaseId":"find-trust-distribution-sender","prompt":"Which company sends us trust distributions? How much have they sent in total?","tags":["read","transactions","search"],"expected":"Returns Northern Trust Admin as the sender of trust distributions, with a total of approximately $175,540.26.","scores":{"Completeness":1,"Efficiency":0.6868944122071782,"Factuality":0},"metrics":{"duration":156.41400003433228,"tool_calls":0,"errors":0}},{"testCaseId":"aggregate-financial-company-payments","prompt":"Calculate the total amount received from companies that appear to be financial institutions (including \"Financial\", \"Capital\", or \"Investment\" in their names).","tags":["read","transactions","aggregation"],"expected":"Returns approximately $301,648.10 from 27 payments from financial institutions including companies with Financial, Capital, or Investment in their names.","scores":{"Completeness":1,"Efficiency":0.6950670535138621,"Factuality":1},"metrics":{"duration":132.8710000514984,"tool_calls":0,"errors":0}},{"testCaseId":"reconcile-monthly-retainer","prompt":"We need to verify retainer payments. Find all payments with \"retainer\" in the memo and calculate the total.","tags":["read","transactions","reconciliation"],"expected":"Returns Westside Consulting as the sender of retainer payments with a total of approximately $49,453.35.","scores":{"Completeness":1,"Efficiency":0.6978488716956802,"Factuality":0},"metrics":{"duration":158.50400018692017,"tool_calls":0,"errors":0}},{"testCaseId":"identify-unknown-payment-source","prompt":"We received a payment for \"Contract payment milestone 3\" but are unsure who sent it. Can you identify the sender?","tags":["read","transactions","search"],"expected":"Returns Riverdale Manufacturing as the sender of the \"Contract payment milestone 3\" payment.","scores":{"Completeness":1,"Efficiency":0.7458383408553622,"Factuality":0.6},"metrics":{"duration":93.86299991607666,"tool_calls":0,"errors":0}},{"testCaseId":"total-balance-across-accounts","prompt":"What is the total current balance across all my open accounts?","tags":["read","accounts","balance"],"expected":"Returns the total balance across all open accounts, which is approximately $604.6 million across 12 open accounts.","scores":{"Completeness":1,"Efficiency":0.8404255319148937,"Factuality":0.6},"metrics":{"duration":34.47800016403198,"tool_calls":0,"errors":0}},{"testCaseId":"find-contractor-payments","prompt":"How much have we paid to individual contractors (not businesses) via ACH? List the recipients.","tags":["read","ach","search"],"expected":"Returns individual contractors paid via ACH: Alice Johnson ($150), Bob Smith ($750), and Freelancer John Doe ($7,500), totaling $8,400.","scores":{"Completeness":1,"Efficiency":0.875489748549323,"Factuality":0},"metrics":{"duration":57.74000000953674,"tool_calls":0,"errors":0}},{"testCaseId":"find-expense-reimbursements","prompt":"Who did we send expense reimbursements to and for how much?","tags":["read","ach","search"],"expected":"Returns Bob Smith as the recipient of a $750 expense reimbursement.","scores":{"Completeness":1,"Efficiency":0.8906139909735655,"Factuality":0.6},"metrics":{"duration":35.90499997138977,"tool_calls":0,"errors":0}},{"testCaseId":"receiving-account-distribution","prompt":"How many different accounts are receiving inbound real-time payments? Which accounts are they?","tags":["read","analysis"],"expected":"Returns 6 unique accounts receiving inbound real-time payments, listing the account IDs.","scores":{"Completeness":1,"Efficiency":0.9042553191489362,"Factuality":0.6},"metrics":{"duration":33.081000089645386,"tool_calls":0,"errors":0}},{"testCaseId":"sender-routing-number-lookup","prompt":"Which routing number is most commonly used by senders of inbound real-time payments?","tags":["read","transactions","analysis"],"expected":"Returns 026009593 as the most commonly used routing number for inbound real-time payments.","scores":{"Completeness":1,"Efficiency":0.925531914893617,"Factuality":0},"metrics":{"duration":45.09500002861023,"tool_calls":0,"errors":0}},{"testCaseId":"count-open-accounts","prompt":"How many accounts do I have that are currently open?","tags":["read","accounts"],"expected":"Returns 12 open accounts.","scores":{"Completeness":1,"Efficiency":0.9380953793251665,"Factuality":0.6},"metrics":{"duration":26.426000118255615,"tool_calls":0,"errors":0}},{"testCaseId":"top-sender-by-volume","prompt":"Which sender has sent us the most money in total via real-time payments?","tags":["read","transactions","aggregation"],"expected":"Returns Redwood Financial as the top sender by total amount with $179,791.84 in real-time payments.","scores":{"Completeness":1,"Efficiency":0.9466388136686008,"Factuality":0.6},"metrics":{"duration":49.75999999046326,"tool_calls":0,"errors":0}},{"testCaseId":"count-unique-payment-senders","prompt":"How many unique companies/entities have sent us inbound real-time payments?","tags":["read","transactions","aggregation"],"expected":"Returns 47 unique senders of inbound real-time payments.","scores":{"Completeness":1,"Efficiency":0.9574468085106382,"Factuality":1},"metrics":{"duration":37.05199980735779,"tool_calls":0,"errors":0}},{"testCaseId":"total-outbound-ach","prompt":"What is the total amount of outbound ACH transfers we have successfully completed?","tags":["read","ach","aggregation"],"expected":"Returns $13,600.00 as the total amount of outbound ACH transfers.","scores":{"Completeness":1,"Efficiency":0.9680851063829787,"Factuality":0.6},"metrics":{"duration":31.252999782562256,"tool_calls":0,"errors":0}},{"testCaseId":"find-law-firm-accounts","prompt":"List all law firms we have as external accounts.","tags":["read","external-accounts","search"],"expected":"Returns Cooley LLP, Fenwick & West LLP, and Wilson Sonsini as law firms with external accounts.","scores":{"Completeness":1,"Efficiency":0.9772496668815818,"Factuality":0.6},"metrics":{"duration":21.25499987602234,"tool_calls":0,"errors":0}},{"testCaseId":"find-payroll-external-accounts","prompt":"Which payroll service providers do we have external accounts set up for?","tags":["read","external-accounts","search"],"expected":"Returns ADP, Gusto, and Paychex as payroll service providers with external accounts.","scores":{"Completeness":1,"Efficiency":1,"Factuality":0.6},"metrics":{"duration":12.278000116348267,"tool_calls":0,"errors":0}},{"testCaseId":"count-external-accounts","prompt":"How many external accounts do we have set up for payments?","tags":["read","external-accounts"],"expected":"Returns 69 external accounts set up for payments.","scores":{"Completeness":1,"Efficiency":1,"Factuality":0.6},"metrics":{"duration":13.692999839782715,"tool_calls":0,"errors":0}},{"testCaseId":"find-account-by-name","prompt":"What is the account ID for the account named \"Test Account\"?","tags":["read","accounts"],"expected":"Returns the account ID sandbox_account_d2vjanwqek34xx5khtq8 for the account named \"Test Account\".","scores":{"Completeness":1,"Efficiency":1,"Factuality":1},"metrics":{"duration":8.994999885559082,"tool_calls":0,"errors":0}}]},{"name":"Stainless","results":[{"testCaseId":"cash-flow-summary","prompt":"Provide a cash flow summary: total inbound real-time payments minus total outbound ACH transfers.","tags":["read","analysis","multi-step"],"expected":"Returns a cash flow summary showing inbound RTP of $1,933,037.08 minus outbound ACH of $13,600.00, for a net of approximately $1,919,437.08.","scores":{"Completeness":0.5,"Efficiency":0.9316752632710079,"Factuality":0},"metrics":{"duration":38.05900001525879,"tool_calls":0,"errors":0}},{"testCaseId":"payment-type-breakdown","prompt":"Break down inbound payments by type based on remittance info (e.g., invoice payments, milestone payments, distributions, dividends, royalties). Show counts and totals for each.","tags":["read","analysis","multi-step"],"expected":"Returns a breakdown of inbound payments by type including invoice payments, milestone payments, distributions, dividends, and royalties with counts and dollar totals for each category.","scores":{"Completeness":1,"Efficiency":0.8481556630131097,"Factuality":0.6},"metrics":{"duration":181.06200003623962,"tool_calls":0,"errors":0}},{"testCaseId":"aggregate-financial-company-payments","prompt":"Calculate the total amount received from companies that appear to be financial institutions (including \"Financial\", \"Capital\", or \"Investment\" in their names).","tags":["read","transactions","aggregation"],"expected":"Returns approximately $301,648.10 from 27 payments from financial institutions including companies with Financial, Capital, or Investment in their names.","scores":{"Completeness":1,"Efficiency":0.8593364710939179,"Factuality":0},"metrics":{"duration":101.03600001335144,"tool_calls":0,"errors":0}},{"testCaseId":"find-largest-single-payment","prompt":"What was the largest single inbound payment we received? Who sent it and what was it for?","tags":["read","transactions","search"],"expected":"Returns $29,240.06 from Redwood Financial for \"Investment returns Q4\" as the largest single inbound payment.","scores":{"Completeness":1,"Efficiency":0.8703182033096928,"Factuality":0},"metrics":{"duration":56.55799984931946,"tool_calls":0,"errors":0}},{"testCaseId":"settlement-payments-total","prompt":"Calculate the total amount of payments that mention \"settlement\" in the remittance info.","tags":["read","transactions","aggregation"],"expected":"Returns approximately $137,669.00 as the total amount of payments mentioning \"settlement\" in the remittance info.","scores":{"Completeness":1,"Efficiency":0.8816393294648615,"Factuality":0.6},"metrics":{"duration":59.305999994277954,"tool_calls":0,"errors":0}},{"testCaseId":"aggregate-tech-company-payments","prompt":"How much total money have we received from companies with \"Tech\" in their name?","tags":["read","transactions","aggregation"],"expected":"Returns approximately $101,694.36 from 21 payments from companies with \"Tech\" in their name, mainly Valley Tech Partners.","scores":{"Completeness":1,"Efficiency":0.883599849559424,"Factuality":0},"metrics":{"duration":79.12700009346008,"tool_calls":0,"errors":0}},{"testCaseId":"search-by-remittance-info","prompt":"Find all payments with remittance information mentioning \"Grant disbursement\". Who sent these and what is the total?","tags":["read","transactions","search"],"expected":"Returns Quantum Research Inc as the sender of grant disbursements, with a total of approximately $140,580.12.","scores":{"Completeness":1,"Efficiency":0.9135239200515797,"Factuality":0.6},"metrics":{"duration":45.65599989891052,"tool_calls":0,"errors":0}},{"testCaseId":"total-balance-across-accounts","prompt":"What is the total current balance across all my open accounts?","tags":["read","accounts","balance"],"expected":"Returns the total balance across all open accounts, which is approximately $604.6 million across 12 open accounts.","scores":{"Completeness":1,"Efficiency":0.9212359552976574,"Factuality":0.6},"metrics":{"duration":77.46200013160706,"tool_calls":0,"errors":0}},{"testCaseId":"reconcile-investment-returns","prompt":"We are reconciling investment returns. List all payments mentioning \"Investment returns\" in the remittance info, including the sender and amounts.","tags":["read","transactions","reconciliation"],"expected":"Returns Redwood Financial as the sender of multiple \"Investment returns Q4\" payments, listing individual amounts such as $29,240.06, $24,240.23, $23,651.15, etc.","scores":{"Completeness":1,"Efficiency":0.9237248441865463,"Factuality":0.6},"metrics":{"duration":54.55999994277954,"tool_calls":0,"errors":0}},{"testCaseId":"find-invoice-payments-from-acme","prompt":"How many payments have we received from Acme Corporation and what is the total amount?","tags":["read","transactions","aggregation"],"expected":"Returns 16 payments from Acme Corporation totaling $42,601.08.","scores":{"Completeness":1,"Efficiency":0.9247935310552332,"Factuality":0.6},"metrics":{"duration":43.848999977111816,"tool_calls":0,"errors":0}},{"testCaseId":"find-dividend-payments","prompt":"List all dividend payments we have received, including the senders and total amount.","tags":["read","transactions","reconciliation"],"expected":"Returns Vertex Capital and Vertex Holdings as the senders of dividend payments, with a total of approximately $112,743.63.","scores":{"Completeness":1,"Efficiency":0.9347924349881798,"Factuality":0.6},"metrics":{"duration":76.81599998474121,"tool_calls":0,"errors":0}},{"testCaseId":"reconcile-monthly-retainer","prompt":"We need to verify retainer payments. Find all payments with \"retainer\" in the memo and calculate the total.","tags":["read","transactions","reconciliation"],"expected":"Returns Westside Consulting as the sender of retainer payments with a total of approximately $49,453.35.","scores":{"Completeness":1,"Efficiency":0.9352712228669675,"Factuality":0.6},"metrics":{"duration":66.09699988365173,"tool_calls":0,"errors":0}},{"testCaseId":"find-bonus-payments","prompt":"Which companies have sent us bonus payments? Calculate the total.","tags":["read","transactions","search"],"expected":"Returns Titan Corp and Atlas Group as senders of bonus payments, with a total of approximately $42,395.67.","scores":{"Completeness":1,"Efficiency":0.9537912529550827,"Factuality":0.6},"metrics":{"duration":36.54800009727478,"tool_calls":0,"errors":0}},{"testCaseId":"total-outbound-ach","prompt":"What is the total amount of outbound ACH transfers we have successfully completed?","tags":["read","ach","aggregation"],"expected":"Returns $13,600.00 as the total amount of outbound ACH transfers.","scores":{"Completeness":1,"Efficiency":0.9574468085106382,"Factuality":0.6},"metrics":{"duration":51.37400007247925,"tool_calls":0,"errors":0}},{"testCaseId":"royalty-payments-analysis","prompt":"Analyze our royalty payments: who sends them and what is the total amount received?","tags":["read","transactions","analysis"],"expected":"Returns Silver Creek Mining as the sender of royalty payments, with a total of approximately $63,030.84.","scores":{"Completeness":1,"Efficiency":0.9671750053728777,"Factuality":0.6},"metrics":{"duration":54.62599992752075,"tool_calls":0,"errors":0}},{"testCaseId":"find-expense-reimbursements","prompt":"Who did we send expense reimbursements to and for how much?","tags":["read","ach","search"],"expected":"Returns Bob Smith as the recipient of a $750 expense reimbursement.","scores":{"Completeness":1,"Efficiency":0.9680851063829787,"Factuality":0.6},"metrics":{"duration":33.263999938964844,"tool_calls":0,"errors":0}},{"testCaseId":"find-trust-distribution-sender","prompt":"Which company sends us trust distributions? How much have they sent in total?","tags":["read","transactions","search"],"expected":"Returns Northern Trust Admin as the sender of trust distributions, with a total of approximately $175,540.26.","scores":{"Completeness":1,"Efficiency":0.9680851063829787,"Factuality":0.6},"metrics":{"duration":40.54800009727478,"tool_calls":0,"errors":0}},{"testCaseId":"count-open-accounts","prompt":"How many accounts do I have that are currently open?","tags":["read","accounts"],"expected":"Returns 12 open accounts.","scores":{"Completeness":1,"Efficiency":0.9680851063829787,"Factuality":1},"metrics":{"duration":34.789000034332275,"tool_calls":0,"errors":0}},{"testCaseId":"count-external-accounts","prompt":"How many external accounts do we have set up for payments?","tags":["read","external-accounts"],"expected":"Returns 69 external accounts set up for payments.","scores":{"Completeness":1,"Efficiency":0.9686032022351172,"Factuality":0.6},"metrics":{"duration":34.098999977111816,"tool_calls":0,"errors":0}},{"testCaseId":"receiving-account-distribution","prompt":"How many different accounts are receiving inbound real-time payments? Which accounts are they?","tags":["read","analysis"],"expected":"Returns 6 unique accounts receiving inbound real-time payments, listing the account IDs.","scores":{"Completeness":1,"Efficiency":0.9782506769825918,"Factuality":0.6},"metrics":{"duration":48.57100009918213,"tool_calls":0,"errors":0}},{"testCaseId":"identify-unknown-payment-source","prompt":"We received a payment for \"Contract payment milestone 3\" but are unsure who sent it. Can you identify the sender?","tags":["read","transactions","search"],"expected":"Returns Riverdale Manufacturing as the sender of the \"Contract payment milestone 3\" payment.","scores":{"Completeness":1,"Efficiency":0.9787234042553192,"Factuality":0.6},"metrics":{"duration":26.542999982833862,"tool_calls":0,"errors":0}},{"testCaseId":"top-sender-by-volume","prompt":"Which sender has sent us the most money in total via real-time payments?","tags":["read","transactions","aggregation"],"expected":"Returns Redwood Financial as the top sender by total amount with $179,791.84 in real-time payments.","scores":{"Completeness":1,"Efficiency":0.9787234042553192,"Factuality":0.6},"metrics":{"duration":40.88100004196167,"tool_calls":0,"errors":0}},{"testCaseId":"find-law-firm-accounts","prompt":"List all law firms we have as external accounts.","tags":["read","external-accounts","search"],"expected":"Returns Cooley LLP, Fenwick & West LLP, and Wilson Sonsini as law firms with external accounts.","scores":{"Completeness":1,"Efficiency":0.9834354395013969,"Factuality":0.6},"metrics":{"duration":27.30400013923645,"tool_calls":0,"errors":0}},{"testCaseId":"find-payroll-external-accounts","prompt":"Which payroll service providers do we have external accounts set up for?","tags":["read","external-accounts","search"],"expected":"Returns ADP, Gusto, and Paychex as payroll service providers with external accounts.","scores":{"Completeness":1,"Efficiency":0.9840293788953363,"Factuality":0.6},"metrics":{"duration":20.253999948501587,"tool_calls":0,"errors":0}},{"testCaseId":"sender-routing-number-lookup","prompt":"Which routing number is most commonly used by senders of inbound real-time payments?","tags":["read","transactions","analysis"],"expected":"Returns 026009593 as the most commonly used routing number for inbound real-time payments.","scores":{"Completeness":1,"Efficiency":0.9893617021276595,"Factuality":0},"metrics":{"duration":28.2979998588562,"tool_calls":0,"errors":0}},{"testCaseId":"find-contractor-payments","prompt":"How much have we paid to individual contractors (not businesses) via ACH? List the recipients.","tags":["read","ach","search"],"expected":"Returns individual contractors paid via ACH: Alice Johnson ($150), Bob Smith ($750), and Freelancer John Doe ($7,500), totaling $8,400.","scores":{"Completeness":1,"Efficiency":0.9893617021276595,"Factuality":0.6},"metrics":{"duration":29.54099988937378,"tool_calls":0,"errors":0}},{"testCaseId":"total-inbound-rtp-payments","prompt":"What is the total amount of all inbound real-time payments we have received?","tags":["read","transactions","aggregation"],"expected":"Returns $1,933,037.08 as the total amount of all inbound real-time payments.","scores":{"Completeness":1,"Efficiency":0.9893617021276595,"Factuality":0.6},"metrics":{"duration":23.326000213623047,"tool_calls":0,"errors":0}},{"testCaseId":"count-unique-payment-senders","prompt":"How many unique companies/entities have sent us inbound real-time payments?","tags":["read","transactions","aggregation"],"expected":"Returns 47 unique senders of inbound real-time payments.","scores":{"Completeness":1,"Efficiency":0.9893617021276595,"Factuality":0.6},"metrics":{"duration":29.131999969482422,"tool_calls":0,"errors":0}},{"testCaseId":"find-smallest-payment","prompt":"What was the smallest inbound real-time payment we received? Include the sender and amount.","tags":["read","transactions","search"],"expected":"Returns $178.70 from Premier Services for \"Subscription renewal\" as the smallest inbound real-time payment.","scores":{"Completeness":1,"Efficiency":0.9893617021276595,"Factuality":0.6},"metrics":{"duration":27.019999980926514,"tool_calls":0,"errors":0}},{"testCaseId":"average-transaction-amount","prompt":"What is the average amount of an inbound real-time payment?","tags":["read","transactions","aggregation"],"expected":"Returns $5,522.96 as the average amount of an inbound real-time payment.","scores":{"Completeness":1,"Efficiency":0.9893617021276595,"Factuality":1},"metrics":{"duration":26.305000066757202,"tool_calls":0,"errors":0}},{"testCaseId":"find-account-by-name","prompt":"What is the account ID for the account named \"Test Account\"?","tags":["read","accounts"],"expected":"Returns the account ID sandbox_account_d2vjanwqek34xx5khtq8 for the account named \"Test Account\".","scores":{"Completeness":1,"Efficiency":0.9983515151515152,"Factuality":0.6},"metrics":{"duration":11.115000009536743,"tool_calls":0,"errors":0}}]}],"allTestCaseIds":["aggregate-financial-company-payments","aggregate-tech-company-payments","average-transaction-amount","cash-flow-summary","count-external-accounts","count-open-accounts","count-unique-payment-senders","find-account-by-name","find-bonus-payments","find-contractor-payments","find-dividend-payments","find-expense-reimbursements","find-invoice-payments-from-acme","find-largest-single-payment","find-law-firm-accounts","find-payroll-external-accounts","find-smallest-payment","find-trust-distribution-sender","identify-unknown-payment-source","payment-type-breakdown","receiving-account-distribution","reconcile-investment-returns","reconcile-monthly-retainer","royalty-payments-analysis","search-by-remittance-info","sender-routing-number-lookup","settlement-payments-total","top-sender-by-volume","total-balance-across-accounts","total-inbound-rtp-payments","total-outbound-ach"],"allTags":["accounts","ach","aggregation","analysis","balance","external-accounts","multi-step","read","reconciliation","search","transactions"]};
+
+const HIGHLIGHT_NAME = "Stainless";
+const HIGHLIGHT_IDX = DATA.configs.findIndex(c => c.name === HIGHLIGHT_NAME);
+
+const BASE_COLORS = ["#6c8cff", "#34d399", "#fbbf24", "#fb923c"];
+const MUTED_BORDER = BASE_COLORS.map(c => c + "88");
+const MUTED_BG = ["rgba(108,140,255,0.18)", "rgba(52,211,153,0.18)", "rgba(251,191,36,0.18)", "rgba(251,146,60,0.18)"];
+const ACCENT_BORDER = "#fb923c";
+const ACCENT_BG = "rgba(251,146,60,1)";
+
+const COLORS = DATA.configs.map((_, i) => i === HIGHLIGHT_IDX ? ACCENT_BORDER : MUTED_BORDER[i]);
+const COLORS_40 = DATA.configs.map((_, i) => i === HIGHLIGHT_IDX ? ACCENT_BG : MUTED_BG[i]);
+
+function avg(arr) { return arr.length ? arr.reduce((a, b) => a + b, 0) / arr.length : 0; }
+
+function scoreColor(v) {
+  if (v >= 0.9) return "var(--green)";
+  if (v >= 0.6) return "var(--yellow)";
+  if (v > 0) return "var(--orange)";
+  return "var(--red)";
+}
+
+function scoreBg(v) {
+  if (v >= 0.9) return "rgba(52,211,153,0.15)";
+  if (v >= 0.6) return "rgba(251,191,36,0.1)";
+  if (v > 0) return "rgba(251,146,60,0.1)";
+  return "rgba(248,113,113,0.12)";
+}
+
+// Summary cards
+const cardsEl = document.getElementById("summary-cards");
+DATA.configs.forEach((cfg, i) => {
+  const c = avg(cfg.results.map(r => r.scores.Completeness));
+  const e = avg(cfg.results.map(r => r.scores.Efficiency));
+  const f = avg(cfg.results.map(r => r.scores.Factuality));
+  const d = avg(cfg.results.map(r => r.metrics.duration));
+  const errs = cfg.results.reduce((s, r) => s + r.metrics.errors, 0);
+  const tc = avg(cfg.results.map(r => r.metrics.tool_calls));
+  const isHighlight = i === HIGHLIGHT_IDX;
+  cardsEl.innerHTML += `
+    <div class="card" style="border-top: 3px solid ${COLORS[i]};${isHighlight ? "box-shadow: 0 0 0 1px " + ACCENT_BORDER + "44;" : "opacity:0.7;"}">
+      <div class="card-title">${cfg.name}</div>
+      <div class="card-scores">
+        <div class="card-score"><div class="value" style="color:${scoreColor(c)}">${(c*100).toFixed(0)}%</div><div class="label">Completeness</div></div>
+        <div class="card-score"><div class="value" style="color:${scoreColor(e)}">${(e*100).toFixed(0)}%</div><div class="label">Efficiency</div></div>
+        <div class="card-score"><div class="value" style="color:${scoreColor(f)}">${(f*100).toFixed(0)}%</div><div class="label">Factuality</div></div>
+      </div>
+      <div class="card-meta">
+        <span>Avg ${d.toFixed(1)}s</span>
+        <span>Avg ${tc.toFixed(1)} tool calls</span>
+        <span>${errs} errors</span>
+      </div>
+    </div>`;
+});
+
+// Scores bar chart
+const scoresCtx = document.getElementById("scoresChart").getContext("2d");
+new Chart(scoresCtx, {
+  type: "bar",
+  data: {
+    labels: ["Completeness", "Efficiency", "Factuality"],
+    datasets: DATA.configs.map((cfg, i) => ({
+      label: cfg.name,
+      data: [
+        avg(cfg.results.map(r => r.scores.Completeness)),
+        avg(cfg.results.map(r => r.scores.Efficiency)),
+        avg(cfg.results.map(r => r.scores.Factuality)),
+      ],
+      backgroundColor: COLORS_40[i],
+      borderColor: COLORS[i],
+      borderWidth: 2,
+      borderRadius: 4,
+    })),
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    scales: {
+      y: { min: 0, max: 1, ticks: { color: "#8b90a0", callback: v => (v*100)+"%" }, grid: { color: "#2e3345" } },
+      x: { ticks: { color: "#8b90a0" }, grid: { display: false } },
+    },
+    plugins: { legend: { labels: { color: "#e1e4ed" } } },
+  },
+});
+
+// Duration bar chart
+const durCtx = document.getElementById("durationChart").getContext("2d");
+new Chart(durCtx, {
+  type: "bar",
+  data: {
+    labels: DATA.configs.map(c => c.name),
+    datasets: [{
+      label: "Avg Duration (s)",
+      data: DATA.configs.map(c => avg(c.results.map(r => r.metrics.duration))),
+      backgroundColor: COLORS_40,
+      borderColor: COLORS,
+      borderWidth: 2,
+      borderRadius: 4,
+    }],
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    indexAxis: "y",
+    scales: {
+      x: { ticks: { color: "#8b90a0", callback: v => v+"s" }, grid: { color: "#2e3345" } },
+      y: { ticks: { color: "#8b90a0" }, grid: { display: false } },
+    },
+    plugins: { legend: { display: false } },
+  },
+});
+
+// Score distribution helper
+function buildDistChart(canvasId, scoreKey) {
+  const buckets = ["0", "(0, 0.5)", "[0.5, 1)", "1"];
+  function bucket(v) {
+    if (v === 0) return 0;
+    if (v < 0.5) return 1;
+    if (v < 1) return 2;
+    return 3;
+  }
+  const ctx = document.getElementById(canvasId).getContext("2d");
+  new Chart(ctx, {
+    type: "bar",
+    data: {
+      labels: buckets,
+      datasets: DATA.configs.map((cfg, i) => {
+        const counts = [0, 0, 0, 0];
+        cfg.results.forEach(r => counts[bucket(r.scores[scoreKey])]++);
+        return { label: cfg.name, data: counts, backgroundColor: COLORS_40[i], borderColor: COLORS[i], borderWidth: 2, borderRadius: 4 };
+      }),
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      scales: {
+        y: { ticks: { color: "#8b90a0", stepSize: 5 }, grid: { color: "#2e3345" } },
+        x: { ticks: { color: "#8b90a0" }, grid: { display: false } },
+      },
+      plugins: { legend: { labels: { color: "#e1e4ed" } } },
+    },
+  });
+}
+buildDistChart("distCompleteness", "Completeness");
+buildDistChart("distFactuality", "Factuality");
+
+// Tag filters
+let activeTag = null;
+const filtersEl = document.getElementById("tag-filters");
+const allBtn = document.createElement("button");
+allBtn.className = "filter-btn active";
+allBtn.textContent = "All";
+allBtn.onclick = () => { activeTag = null; renderTable(); document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active")); allBtn.classList.add("active"); };
+filtersEl.appendChild(allBtn);
+DATA.allTags.filter(t => t !== "read").forEach(tag => {
+  const btn = document.createElement("button");
+  btn.className = "filter-btn";
+  btn.textContent = tag;
+  btn.onclick = () => {
+    activeTag = tag;
+    renderTable();
+    document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+  };
+  filtersEl.appendChild(btn);
+});
+
+// Table
+let sortCol = null;
+let sortDir = 1;
+
+function renderTable() {
+  const thead = document.getElementById("results-thead");
+  const tbody = document.getElementById("results-tbody");
+
+  // Build header
+  let headerHtml = "<tr><th onclick=\"sortBy('name')\">Test Case <span class=\"sort-arrow\">&#8597;</span></th><th>Tags</th>";
+  DATA.configs.forEach(cfg => {
+    headerHtml += `<th class="config-header-group config-header" colspan="4">${cfg.name}</th>`;
+  });
+  headerHtml += "</tr><tr><th></th><th></th>";
+  DATA.configs.forEach((cfg, ci) => {
+    headerHtml += `<th class="config-header-group score-cell" onclick="sortBy('c_${ci}')">C <span class="sort-arrow">&#8597;</span></th>`;
+    headerHtml += `<th class="score-cell" onclick="sortBy('e_${ci}')">E <span class="sort-arrow">&#8597;</span></th>`;
+    headerHtml += `<th class="score-cell" onclick="sortBy('f_${ci}')">F <span class="sort-arrow">&#8597;</span></th>`;
+    headerHtml += `<th class="dur-cell" onclick="sortBy('d_${ci}')">Dur <span class="sort-arrow">&#8597;</span></th>`;
+  });
+  headerHtml += "</tr>";
+  thead.innerHTML = headerHtml;
+
+  // Build lookup: testCaseId -> config index -> result
+  const lookup = {};
+  DATA.configs.forEach((cfg, ci) => {
+    cfg.results.forEach(r => {
+      if (!lookup[r.testCaseId]) lookup[r.testCaseId] = {};
+      lookup[r.testCaseId][ci] = r;
+    });
+  });
+
+  // Filter
+  let testIds = DATA.allTestCaseIds;
+  if (activeTag) {
+    testIds = testIds.filter(id => {
+      const r = lookup[id] && lookup[id][0];
+      return r && r.tags.includes(activeTag);
+    });
+  }
+
+  // Sort
+  if (sortCol) {
+    testIds = [...testIds].sort((a, b) => {
+      let va, vb;
+      if (sortCol === "name") { va = a; vb = b; return sortDir * va.localeCompare(vb); }
+      const [type, ci] = sortCol.split("_");
+      const ra = lookup[a]?.[ci], rb = lookup[b]?.[ci];
+      if (type === "c") { va = ra?.scores.Completeness ?? 0; vb = rb?.scores.Completeness ?? 0; }
+      else if (type === "e") { va = ra?.scores.Efficiency ?? 0; vb = rb?.scores.Efficiency ?? 0; }
+      else if (type === "f") { va = ra?.scores.Factuality ?? 0; vb = rb?.scores.Factuality ?? 0; }
+      else if (type === "d") { va = ra?.metrics.duration ?? 0; vb = rb?.metrics.duration ?? 0; }
+      return sortDir * (va - vb);
+    });
+  }
+
+  // Render rows
+  let rowsHtml = "";
+  testIds.forEach(id => {
+    const firstResult = lookup[id]?.[0];
+    const tags = firstResult?.tags?.filter(t => t !== "read") ?? [];
+    rowsHtml += `<tr><td class="test-name">${id}</td><td>${tags.map(t => '<span class="tag">'+t+'</span>').join("")}</td>`;
+    DATA.configs.forEach((cfg, ci) => {
+      const r = lookup[id]?.[ci];
+      if (r) {
+        rowsHtml += `<td class="score-cell config-header-group" style="background:${scoreBg(r.scores.Completeness)};color:${scoreColor(r.scores.Completeness)}">${r.scores.Completeness.toFixed(2)}</td>`;
+        rowsHtml += `<td class="score-cell" style="background:${scoreBg(r.scores.Efficiency)};color:${scoreColor(r.scores.Efficiency)}">${r.scores.Efficiency.toFixed(2)}</td>`;
+        rowsHtml += `<td class="score-cell" style="background:${scoreBg(r.scores.Factuality)};color:${scoreColor(r.scores.Factuality)}">${r.scores.Factuality.toFixed(2)}</td>`;
+        rowsHtml += `<td class="dur-cell">${r.metrics.duration.toFixed(1)}s</td>`;
+      } else {
+        rowsHtml += '<td class="score-cell config-header-group">-</td><td class="score-cell">-</td><td class="score-cell">-</td><td class="dur-cell">-</td>';
+      }
+    });
+    rowsHtml += "</tr>";
+  });
+  tbody.innerHTML = rowsHtml;
+}
+
+window.sortBy = function(col) {
+  if (sortCol === col) sortDir *= -1;
+  else { sortCol = col; sortDir = -1; }
+  renderTable();
+};
+
+renderTable();
+</script>
+</body>
+</html>
