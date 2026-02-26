@@ -32,6 +32,7 @@
     "eval:stripe": "EVAL_SUITE=stripe npm run eval",
     "eval:increase": "EVAL_SUITE=increase npm run eval",
     "eval:lithic": "EVAL_SUITE=lithic npm run eval",
+    "build:results": "npx tsx scripts/build-results-html.ts",
     "format": "prettier --write .",
     "format:check": "prettier --check ."
   },
@@ -47,6 +48,7 @@
   },
   "devDependencies": {
     "@types/node": "^22.0.0",
+    "csv-parse": "^6.1.0",
     "prettier": "^3.8.1",
     "tsx": "^4.19.0",
     "typescript": "^5.7.0"
