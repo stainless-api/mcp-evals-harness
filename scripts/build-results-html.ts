@@ -37,27 +37,29 @@ function loadCsv(filepath: string): ConfigData {
     relax_column_count: true,
   });
 
-  const results: TestCaseResult[] = records.map((row: Record<string, string>) => {
-    const input = JSON.parse(row.input);
-    const scores = JSON.parse(row.scores);
-    const metrics = JSON.parse(row.metrics);
-    return {
-      testCaseId: input.testCaseId,
-      prompt: input.prompt,
-      tags: input.tags ?? [],
-      expected: JSON.parse(row.expected),
-      scores: {
-        Completeness: scores.Completeness ?? 0,
-        Efficiency: scores.Efficiency ?? 0,
-        Factuality: scores.Factuality ?? 0,
-      },
-      metrics: {
-        duration: metrics.duration ?? 0,
-        tool_calls: metrics.tool_calls ?? 0,
-        errors: metrics.errors ?? 0,
-      },
-    };
-  });
+  const results: TestCaseResult[] = records.map(
+    (row: Record<string, string>) => {
+      const input = JSON.parse(row.input);
+      const scores = JSON.parse(row.scores);
+      const metrics = JSON.parse(row.metrics);
+      return {
+        testCaseId: input.testCaseId,
+        prompt: input.prompt,
+        tags: input.tags ?? [],
+        expected: JSON.parse(row.expected),
+        scores: {
+          Completeness: scores.Completeness ?? 0,
+          Efficiency: scores.Efficiency ?? 0,
+          Factuality: scores.Factuality ?? 0,
+        },
+        metrics: {
+          duration: metrics.duration ?? 0,
+          tool_calls: metrics.tool_calls ?? 0,
+          errors: metrics.errors ?? 0,
+        },
+      };
+    },
+  );
 
   return { name: deriveConfigName(filepath), results };
 }
