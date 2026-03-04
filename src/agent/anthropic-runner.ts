@@ -8,13 +8,15 @@ import type {
   SDKResultError,
   SDKSystemMessage,
 } from "@anthropic-ai/claude-agent-sdk";
-import { logToolCallSpan } from "./span-utils.js";
+import { defaultSpanLogger } from "./span-utils.js";
+import { cleanupRegistry } from "./cleanup-registry.js";
 import type { ServerConfig } from "../suite.js";
-import type { ModelConfig } from "./types.js";
 import type {
   AgentResult,
   AgentRunner,
   AgentRunnerOptions,
+  ModelConfig,
+  SpanLogger,
   ToolCallRecord,
 } from "./types.js";
 
@@ -31,6 +33,12 @@ const DEFAULT_SYSTEM_PROMPT =
   "Use the available tools to answer questions accurately based on actual data.";
 
 export class AnthropicRunner implements AgentRunner {
+  private spanLogger: SpanLogger;
+
+  constructor(deps?: { spanLogger?: SpanLogger }) {
+    this.spanLogger = deps?.spanLogger ?? defaultSpanLogger;
+  }
+
   async run(
     prompt: string,
     serverConfig: ServerConfig,
@@ -98,129 +106,143 @@ export class AnthropicRunner implements AgentRunner {
       queryOptions.betas = modelConfig.betas;
     }
 
-    const result = query({
+    const queryResult = query({
       prompt,
       options: queryOptions as any,
     });
 
-    for await (const message of result) {
-      // Extract tool calls from assistant messages
-      if (message.type === "assistant") {
-        const assistantMsg = message as SDKAssistantMessage;
-        const content = assistantMsg.message?.content;
-        if (Array.isArray(content)) {
-          for (const block of content) {
-            if (
-              typeof block === "object" &&
-              block !== null &&
-              "type" in block &&
-              block.type === "tool_use" &&
-              "id" in block &&
-              "name" in block
-            ) {
-              const toolUseBlock = block as {
-                type: "tool_use";
-                id: string;
-                name: string;
-                input: unknown;
-              };
-              pendingToolUses.set(toolUseBlock.id, {
-                name: toolUseBlock.name,
-                args: (toolUseBlock.input as Record<string, unknown>) ?? {},
-                startTime: Date.now(),
-              });
-            }
-          }
-        }
-      }
+    const cleanupHandle = cleanupRegistry.register(async () => {
+      try {
+        queryResult.close();
+      } catch {}
+    });
 
-      // Extract tool results from user messages
-      if (message.type === "user" && !("isReplay" in message)) {
-        const content = (message as any).message?.content;
-        if (Array.isArray(content)) {
-          for (const block of content) {
-            if (
-              typeof block === "object" &&
-              block !== null &&
-              "type" in block &&
-              block.type === "tool_result" &&
-              "tool_use_id" in block
-            ) {
-              const toolResultBlock = block as {
-                type: "tool_result";
-                tool_use_id: string;
-                content?: unknown;
-                is_error?: boolean;
-              };
-              const pending = pendingToolUses.get(toolResultBlock.tool_use_id);
-              if (pending) {
-                const resultText =
-                  typeof toolResultBlock.content === "string"
-                    ? toolResultBlock.content
-                    : JSON.stringify(toolResultBlock.content ?? "");
-                const durationMs = Date.now() - pending.startTime;
+    try {
+      for await (const message of queryResult) {
+        if (cleanupRegistry.isShuttingDown) break;
 
-                const endTime = Date.now();
-                const record: ToolCallRecord = {
-                  name: pending.name,
-                  args: pending.args,
-                  result: resultText,
-                  durationMs,
-                  ...(toolResultBlock.is_error
-                    ? { error: resultText.slice(0, 1_000) }
-                    : {}),
+        // Extract tool calls from assistant messages
+        if (message.type === "assistant") {
+          const assistantMsg = message as SDKAssistantMessage;
+          const content = assistantMsg.message?.content;
+          if (Array.isArray(content)) {
+            for (const block of content) {
+              if (
+                typeof block === "object" &&
+                block !== null &&
+                "type" in block &&
+                block.type === "tool_use" &&
+                "id" in block &&
+                "name" in block
+              ) {
+                const toolUseBlock = block as {
+                  type: "tool_use";
+                  id: string;
+                  name: string;
+                  input: unknown;
                 };
-                toolCalls.push(record);
-
-                // Log as Braintrust child span with real timestamps
-                try {
-                  logToolCallSpan({
-                    name: pending.name,
-                    input: pending.args,
-                    output: resultText,
-                    startTimeMs: pending.startTime,
-                    endTimeMs: endTime,
-                  });
-                } catch {
-                  // No active span context (e.g., running outside Braintrust eval)
-                }
-
-                pendingToolUses.delete(toolResultBlock.tool_use_id);
+                pendingToolUses.set(toolUseBlock.id, {
+                  name: toolUseBlock.name,
+                  args: (toolUseBlock.input as Record<string, unknown>) ?? {},
+                  startTime: Date.now(),
+                });
               }
             }
           }
         }
-      }
 
-      // Capture the final result
-      if (message.type === "result") {
-        if (message.subtype === "success") {
-          const success = message as SDKResultSuccess;
-          return {
-            finalText: success.result,
-            toolCalls,
-            wallClockMs: success.duration_ms,
-            inputTokens: success.usage.input_tokens,
-            outputTokens: success.usage.output_tokens,
-            turnCount: success.num_turns,
-            costUsd: success.total_cost_usd,
-            model: modelConfig.modelId,
-          };
-        } else {
-          // Error result (max turns, budget exceeded, execution error)
-          const error = message as SDKResultError;
-          return {
-            finalText: `[Agent error: ${error.subtype}] ${error.errors?.join("; ") ?? ""}`,
-            toolCalls,
-            wallClockMs: error.duration_ms,
-            inputTokens: error.usage.input_tokens,
-            outputTokens: error.usage.output_tokens,
-            turnCount: error.num_turns,
-            costUsd: error.total_cost_usd,
-            model: modelConfig.modelId,
-          };
+        // Extract tool results from user messages
+        if (message.type === "user" && !("isReplay" in message)) {
+          const content = (message as any).message?.content;
+          if (Array.isArray(content)) {
+            for (const block of content) {
+              if (
+                typeof block === "object" &&
+                block !== null &&
+                "type" in block &&
+                block.type === "tool_result" &&
+                "tool_use_id" in block
+              ) {
+                const toolResultBlock = block as {
+                  type: "tool_result";
+                  tool_use_id: string;
+                  content?: unknown;
+                  is_error?: boolean;
+                };
+                const pending = pendingToolUses.get(
+                  toolResultBlock.tool_use_id,
+                );
+                if (pending) {
+                  const resultText =
+                    typeof toolResultBlock.content === "string"
+                      ? toolResultBlock.content
+                      : JSON.stringify(toolResultBlock.content ?? "");
+                  const durationMs = Date.now() - pending.startTime;
+
+                  const endTime = Date.now();
+                  const record: ToolCallRecord = {
+                    name: pending.name,
+                    args: pending.args,
+                    result: resultText,
+                    durationMs,
+                    ...(toolResultBlock.is_error
+                      ? { error: resultText.slice(0, 1_000) }
+                      : {}),
+                  };
+                  toolCalls.push(record);
+
+                  // Log as Braintrust child span with real timestamps
+                  try {
+                    this.spanLogger.logToolCallSpan({
+                      name: pending.name,
+                      input: pending.args,
+                      output: resultText,
+                      startTimeMs: pending.startTime,
+                      endTimeMs: endTime,
+                    });
+                  } catch {
+                    // No active span context (e.g., running outside Braintrust eval)
+                  }
+
+                  pendingToolUses.delete(toolResultBlock.tool_use_id);
+                }
+              }
+            }
+          }
+        }
+
+        // Capture the final result
+        if (message.type === "result") {
+          if (message.subtype === "success") {
+            const success = message as SDKResultSuccess;
+            return {
+              finalText: success.result,
+              toolCalls,
+              wallClockMs: success.duration_ms,
+              inputTokens: success.usage.input_tokens,
+              outputTokens: success.usage.output_tokens,
+              turnCount: success.num_turns,
+              costUsd: success.total_cost_usd,
+              model: modelConfig.modelId,
+            };
+          } else {
+            // Error result (max turns, budget exceeded, execution error)
+            const error = message as SDKResultError;
+            return {
+              finalText: `[Agent error: ${error.subtype}] ${error.errors?.join("; ") ?? ""}`,
+              toolCalls,
+              wallClockMs: error.duration_ms,
+              inputTokens: error.usage.input_tokens,
+              outputTokens: error.usage.output_tokens,
+              turnCount: error.num_turns,
+              costUsd: error.total_cost_usd,
+              model: modelConfig.modelId,
+            };
+          }
         }
       }
+    } finally {
+      cleanupRegistry.deregister(cleanupHandle);
     }
 
     // Fallback if generator ends without a result message

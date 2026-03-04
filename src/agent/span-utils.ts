@@ -1,5 +1,6 @@
 import { currentSpan, withCurrent } from "braintrust";
 import type { Span } from "braintrust";
+import type { SpanLogger } from "./types.js";
 
 /**
  * Log a completed tool call as a child span with correct Duration.
@@ -74,3 +75,9 @@ export async function withTurnSpan(
     }
   }
 }
+
+/** Default SpanLogger that delegates to Braintrust's currentSpan(). */
+export const defaultSpanLogger: SpanLogger = {
+  logToolCallSpan,
+  withTurnSpan,
+};

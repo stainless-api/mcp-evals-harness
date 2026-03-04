@@ -49,3 +49,24 @@ export interface AgentRunner {
     options?: AgentRunnerOptions,
   ): Promise<AgentResult>;
 }
+
+/**
+ * Abstraction over Braintrust span logging. Runners call these instead of
+ * importing currentSpan() directly. Tests can supply a no-op or recording mock.
+ */
+export interface SpanLogger {
+  logToolCallSpan: (opts: {
+    name: string;
+    input: unknown;
+    output: string;
+    startTimeMs: number;
+    endTimeMs: number;
+    metadata?: Record<string, unknown>;
+    metrics?: Record<string, unknown>;
+  }) => void;
+
+  withTurnSpan: (
+    name: string,
+    fn: () => Promise<Record<string, unknown> | void>,
+  ) => Promise<void>;
+}

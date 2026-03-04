@@ -6,13 +6,15 @@ import type {
 } from "openai/resources/chat/completions.js";
 import { Client } from "@modelcontextprotocol/sdk/client/index.js";
 import { createTransport } from "./transport.js";
-import { logToolCallSpan, withTurnSpan } from "./span-utils.js";
+import { defaultSpanLogger } from "./span-utils.js";
+import { cleanupRegistry } from "./cleanup-registry.js";
 import type { ServerConfig } from "../suite.js";
-import type { ModelConfig } from "./types.js";
 import type {
   AgentResult,
   AgentRunner,
   AgentRunnerOptions,
+  ModelConfig,
+  SpanLogger,
   ToolCallRecord,
 } from "./types.js";
 
@@ -73,6 +75,22 @@ function mcpToolsToOpenAI(
 }
 
 export class OpenAIRunner implements AgentRunner {
+  private spanLogger: SpanLogger;
+  private createOpenAIClient: () => OpenAI;
+  private createMcpClient: () => Client;
+
+  constructor(deps?: {
+    spanLogger?: SpanLogger;
+    createOpenAIClient?: () => OpenAI;
+    createMcpClient?: () => Client;
+  }) {
+    this.spanLogger = deps?.spanLogger ?? defaultSpanLogger;
+    this.createOpenAIClient = deps?.createOpenAIClient ?? (() => new OpenAI());
+    this.createMcpClient =
+      deps?.createMcpClient ??
+      (() => new Client({ name: "openai-runner", version: "1.0.0" }));
+  }
+
   async run(
     prompt: string,
     serverConfig: ServerConfig,
@@ -91,9 +109,14 @@ export class OpenAIRunner implements AgentRunner {
     // 1. Connect to MCP server
     const transport = createTransport(serverConfig);
 
-    const mcpClient = new Client({ name: "openai-runner", version: "1.0.0" });
+    const mcpClient = this.createMcpClient();
+    const openai = this.createOpenAIClient();
 
-    const openai = new OpenAI();
+    const cleanupHandle = cleanupRegistry.register(async () => {
+      try {
+        await mcpClient.close();
+      } catch {}
+    });
 
     try {
       // 2. Connect and discover tools
@@ -108,11 +131,12 @@ export class OpenAIRunner implements AgentRunner {
       ];
 
       for (let turn = 0; turn < maxTurns; turn++) {
+        if (cleanupRegistry.isShuttingDown) break;
         turnCount++;
 
         let earlyReturn: AgentResult | undefined;
 
-        await withTurnSpan(`turn:${turnCount}`, async () => {
+        await this.spanLogger.withTurnSpan(`turn:${turnCount}`, async () => {
           const response = await openai.chat.completions.create({
             model: modelConfig.modelId,
             messages,
@@ -195,7 +219,7 @@ export class OpenAIRunner implements AgentRunner {
 
               // Log as Braintrust child span with real timestamps
               try {
-                logToolCallSpan({
+                this.spanLogger.logToolCallSpan({
                   name: tc.function.name,
                   input: args,
                   output: resultText,
@@ -257,7 +281,7 @@ export class OpenAIRunner implements AgentRunner {
         model: modelConfig.modelId,
       };
     } finally {
-      // 5. Cleanup
+      cleanupRegistry.deregister(cleanupHandle);
       try {
         await mcpClient.close();
       } catch {

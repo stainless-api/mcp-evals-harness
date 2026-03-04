@@ -1,14 +1,15 @@
 import Anthropic from "@anthropic-ai/sdk";
 import { Client } from "@modelcontextprotocol/sdk/client/index.js";
-import { currentSpan } from "braintrust";
 import { createTransport } from "./transport.js";
-import { logToolCallSpan, withTurnSpan } from "./span-utils.js";
+import { defaultSpanLogger } from "./span-utils.js";
+import { cleanupRegistry } from "./cleanup-registry.js";
 import type { ServerConfig } from "../suite.js";
 import type {
   ModelConfig,
   AgentResult,
   AgentRunner,
   AgentRunnerOptions,
+  SpanLogger,
   ToolCallRecord,
 } from "./types.js";
 
@@ -51,6 +52,23 @@ type RunnableMcpTool = Anthropic.Beta.Messages.BetaTool & {
 };
 
 export class AnthropicCodeRunner implements AgentRunner {
+  private spanLogger: SpanLogger;
+  private createAnthropicClient: () => Anthropic;
+  private createMcpClient: () => Client;
+
+  constructor(deps?: {
+    spanLogger?: SpanLogger;
+    createAnthropicClient?: () => Anthropic;
+    createMcpClient?: () => Client;
+  }) {
+    this.spanLogger = deps?.spanLogger ?? defaultSpanLogger;
+    this.createAnthropicClient =
+      deps?.createAnthropicClient ?? (() => new Anthropic());
+    this.createMcpClient =
+      deps?.createMcpClient ??
+      (() => new Client({ name: "anthropic-code-runner", version: "1.0.0" }));
+  }
+
   async run(
     prompt: string,
     serverConfig: ServerConfig,
@@ -69,12 +87,14 @@ export class AnthropicCodeRunner implements AgentRunner {
     // 1. Spawn MCP server
     const transport = createTransport(serverConfig);
 
-    const mcpClient = new Client({
-      name: "anthropic-code-runner",
-      version: "1.0.0",
-    });
+    const mcpClient = this.createMcpClient();
+    const anthropic = this.createAnthropicClient();
 
-    const anthropic = new Anthropic();
+    const cleanupHandle = cleanupRegistry.register(async () => {
+      try {
+        await mcpClient.close();
+      } catch {}
+    });
 
     try {
       // 2. Connect and discover tools
@@ -122,7 +142,7 @@ export class AnthropicCodeRunner implements AgentRunner {
 
           // Log as Braintrust child span with real timestamps
           try {
-            logToolCallSpan({
+            this.spanLogger.logToolCallSpan({
               name: tool.name,
               input: args,
               output: resultText,
@@ -166,11 +186,12 @@ export class AnthropicCodeRunner implements AgentRunner {
       let lastMessage: Anthropic.Beta.Messages.BetaMessage | undefined;
 
       for (let turn = 0; turn < maxTurns; turn++) {
+        if (cleanupRegistry.isShuttingDown) break;
         turnCount++;
 
         let loopAction: "break" | "continue" | undefined;
 
-        await withTurnSpan(`turn:${turnCount}`, async () => {
+        await this.spanLogger.withTurnSpan(`turn:${turnCount}`, async () => {
           const response = await anthropic.beta.messages.create({
             messages,
             tools,
@@ -216,16 +237,14 @@ export class AnthropicCodeRunner implements AgentRunner {
               toolCalls.push(record);
 
               try {
-                currentSpan().traced(
-                  (childSpan) => {
-                    childSpan.log({
-                      input: record.args,
-                      output: record.result,
-                      metadata: { toolName: name },
-                    });
-                  },
-                  { name: `tool:${name}` },
-                );
+                const now = Date.now();
+                this.spanLogger.logToolCallSpan({
+                  name,
+                  input: record.args,
+                  output: result,
+                  startTimeMs: now,
+                  endTimeMs: now,
+                });
               } catch {
                 // No active span context
               }
@@ -333,6 +352,7 @@ export class AnthropicCodeRunner implements AgentRunner {
         model: modelConfig.modelId,
       };
     } finally {
+      cleanupRegistry.deregister(cleanupHandle);
       try {
         await mcpClient.close();
       } catch {
