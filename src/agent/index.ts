@@ -12,6 +12,7 @@ export { AnthropicRunner } from "./anthropic-runner.js";
 export { AnthropicCodeRunner } from "./anthropic-code-runner.js";
 export { OpenAIRunner } from "./openai-runner.js";
 export { resolveModel } from "./models.js";
+export { cleanupRegistry } from "./cleanup-registry.js";
 
 import type { AgentRunner, ModelConfig } from "./types.js";
 import { AnthropicRunner } from "./anthropic-runner.js";
