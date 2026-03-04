@@ -76,6 +76,15 @@ const suite: SuiteConfig = {
       models: ["opus-code"],
       tags: ["Anthropic-Code"],
     },
+    {
+      id: "increase-cloudflare",
+      displayName: "Increase, Cloudflare Code Mode",
+      transport: "http",
+      url: "http://localhost:8787/codemode",
+      capabilities: { write: false },
+      mode: "tools",
+      tags: ["Cloudflare-Code"],
+    },
   ],
 
   // ============================================
