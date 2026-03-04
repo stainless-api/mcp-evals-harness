@@ -187,6 +187,9 @@ export class OpenAIRunner implements AgentRunner {
                 args,
                 result: resultText,
                 durationMs: toolEnd - toolStart,
+                ...(mcpResult.isError
+                  ? { error: resultText.slice(0, 1_000) }
+                  : {}),
               };
               toolCalls.push(record);
 
@@ -209,6 +212,7 @@ export class OpenAIRunner implements AgentRunner {
                 args: {},
                 result: resultText,
                 durationMs: Date.now() - toolStart,
+                error: resultText,
               });
             }
 

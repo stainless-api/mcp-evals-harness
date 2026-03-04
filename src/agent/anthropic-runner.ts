@@ -150,6 +150,7 @@ export class AnthropicRunner implements AgentRunner {
                 type: "tool_result";
                 tool_use_id: string;
                 content?: unknown;
+                is_error?: boolean;
               };
               const pending = pendingToolUses.get(toolResultBlock.tool_use_id);
               if (pending) {
@@ -165,6 +166,9 @@ export class AnthropicRunner implements AgentRunner {
                   args: pending.args,
                   result: resultText,
                   durationMs,
+                  ...(toolResultBlock.is_error
+                    ? { error: resultText.slice(0, 1_000) }
+                    : {}),
                 };
                 toolCalls.push(record);
 

@@ -116,6 +116,7 @@ export class AnthropicCodeRunner implements AgentRunner {
             args: args as Record<string, unknown>,
             result: resultText.slice(0, 90_000),
             durationMs: toolEnd - toolStart,
+            ...(mcpResult.isError ? { error: resultText.slice(0, 1_000) } : {}),
           };
           toolCalls.push(record);
 
@@ -249,10 +250,17 @@ export class AnthropicCodeRunner implements AgentRunner {
                 toolUseBlocks.map(async (toolUse) => {
                   const tool = mcpTools.find((t) => t.name === toolUse.name);
                   if (!tool) {
+                    const errorMsg = `Error: Tool '${toolUse.name}' not found`;
+                    toolCalls.push({
+                      name: toolUse.name,
+                      args: (toolUse.input as Record<string, unknown>) ?? {},
+                      result: errorMsg,
+                      error: errorMsg,
+                    });
                     return {
                       type: "tool_result" as const,
                       tool_use_id: toolUse.id,
-                      content: `Error: Tool '${toolUse.name}' not found`,
+                      content: errorMsg,
                       is_error: true,
                     };
                   }
@@ -265,10 +273,17 @@ export class AnthropicCodeRunner implements AgentRunner {
                       content: result,
                     };
                   } catch (error) {
+                    const errorMsg = `Error: ${error instanceof Error ? error.message : String(error)}`;
+                    toolCalls.push({
+                      name: toolUse.name,
+                      args: (toolUse.input as Record<string, unknown>) ?? {},
+                      result: errorMsg,
+                      error: errorMsg,
+                    });
                     return {
                       type: "tool_result" as const,
                       tool_use_id: toolUse.id,
-                      content: `Error: ${error instanceof Error ? error.message : String(error)}`,
+                      content: errorMsg,
                       is_error: true,
                     };
                   }

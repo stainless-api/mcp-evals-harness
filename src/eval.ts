@@ -5,6 +5,7 @@ import { getTestCasesForServer } from "./suite.js";
 import { createRunner, resolveModel } from "./agent/index.js";
 import { scoreCompleteness } from "./scorers/completeness.js";
 import { scoreEfficiency } from "./scorers/efficiency.js";
+import { scoreToolUsage } from "./scorers/tool-usage.js";
 import type { SuiteConfig, TestCase } from "./suite.js";
 
 export interface RunEvalsOptions {
@@ -174,6 +175,15 @@ export function runEvals(suite: SuiteConfig, options?: RunEvalsOptions): void {
               name: "Efficiency",
               score: scoreEfficiency({ turnCount, totalTokens }),
             };
+          },
+          // Tool usage scorer
+          (args: { input: any; output: string }) => {
+            let toolCalls: any[] = [];
+            try {
+              const parsed = JSON.parse(args.output);
+              toolCalls = parsed.toolCalls ?? [];
+            } catch {}
+            return scoreToolUsage(toolCalls);
           },
         ],
       });

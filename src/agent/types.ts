@@ -22,6 +22,7 @@ export interface ToolCallRecord {
   args: Record<string, unknown>;
   result: string;
   durationMs?: number;
+  error?: string;
 }
 
 export interface AgentResult {
