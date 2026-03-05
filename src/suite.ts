@@ -66,6 +66,8 @@ export const TestCaseSchema = z.object({
   expected: ExpectedResultSchema,
   tags: z.array(z.string()),
   requiredCapabilities: z.object({ write: z.boolean().optional() }).optional(),
+  // verify is a function — can't be validated by Zod, stripped during parse
+  verify: z.any().optional(),
 });
 
 export const SuiteConfigSchema = z.object({
@@ -109,7 +111,9 @@ export interface HttpServerConfig extends SharedServerConfig {
 export type ServerConfig = StdioServerConfig | HttpServerConfig;
 
 export type ExpectedResult = z.infer<typeof ExpectedResultSchema>;
-export type TestCase = z.infer<typeof TestCaseSchema>;
+export type TestCase = z.infer<typeof TestCaseSchema> & {
+  verify?: () => Promise<{ success: boolean; details: string }>;
+};
 
 export interface SuiteConfig {
   projectName: string;

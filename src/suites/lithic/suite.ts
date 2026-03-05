@@ -1,5 +1,9 @@
 import { config } from "dotenv";
-import type { SuiteConfig, ResolveExpected, ExpectedResult } from "../../suite.js";
+import type {
+  SuiteConfig,
+  ResolveExpected,
+  ExpectedResult,
+} from "../../suite.js";
 config();
 
 const suite: SuiteConfig = {
@@ -123,7 +127,14 @@ const suite: SuiteConfig = {
       expected: {
         description:
           "Returns cards broken down by state and type. States include OPEN (the majority), PAUSED, and CLOSED. Types include VIRTUAL (the majority), UNLOCKED, and SINGLE_USE. Each category should include a count.",
-        containsText: ["OPEN", "PAUSED", "CLOSED", "VIRTUAL", "UNLOCKED", "SINGLE_USE"],
+        containsText: [
+          "OPEN",
+          "PAUSED",
+          "CLOSED",
+          "VIRTUAL",
+          "UNLOCKED",
+          "SINGLE_USE",
+        ],
       },
       tags: ["read", "cards", "aggregation"],
     },
@@ -159,21 +170,6 @@ const suite: SuiteConfig = {
     },
 
     // ============================================
-    // TOP APPROVED MERCHANT
-    // ============================================
-    {
-      id: "top-approved-merchant",
-      prompt:
-        "Which merchant has the most approved, settled transactions? How many transactions and what is the total dollar amount?",
-      expected: {
-        description:
-          "Returns LYFT *RIDE as the top merchant by approved settled transaction count with 15 transactions totaling $168.08. Followed by APPLE.COM/BILL with 11 transactions ($57.44) and BLUE BOTTLE COFFEE SF with 9 transactions ($61.90).",
-        containsText: ["LYFT", "15"],
-      },
-      tags: ["read", "transactions", "aggregation"],
-    },
-
-    // ============================================
     // PENDING TRANSACTIONS TOTAL
     // ============================================
     {
@@ -186,21 +182,6 @@ const suite: SuiteConfig = {
         containsText: ["pending"],
       },
       tags: ["read", "pending-transactions", "aggregation"],
-    },
-
-    // ============================================
-    // CROSS-RESOURCE: TRANSACTIONS × ACCOUNTS
-    // ============================================
-    {
-      id: "account-with-most-transactions",
-      prompt:
-        "Which account has the highest number of transactions? How many transactions does it have?",
-      expected: {
-        description:
-          "There is one primary account (02fe0410-c36d-4f57-b488-d6bc190e99b7) that holds the vast majority of transactions. The agent should identify this account and report the total transaction count.",
-        containsText: ["02fe0410-c36d-4f57-b488-d6bc190e99b7"],
-      },
-      tags: ["read", "transactions", "accounts", "multi-step"],
     },
 
     // ============================================
@@ -249,19 +230,50 @@ const suite: SuiteConfig = {
     },
 
     // ============================================
-    // FULL TRANSACTION STATUS BREAKDOWN
+    // FILTER BY STATUS
     // ============================================
     {
-      id: "transaction-status-breakdown",
+      id: "filter-by-status",
       prompt:
-        "Break down all transactions by their status. How many transactions are in each status?",
+        "How many transactions have a PENDING status? Give me the exact count.",
+      expected: {
+        description: "Returns the exact count of pending transactions.",
+        containsText: ["pending"],
+      },
+      tags: ["read", "transactions", "filter"],
+    },
+
+    // ============================================
+    // PAGINATE WITH FILTER
+    // ============================================
+    {
+      id: "paginate-with-filter",
+      prompt:
+        "List all VOIDED transactions and group them by merchant. Which merchant has the most voided transactions?",
       expected: {
         description:
-          "Returns all transactions broken down by status. Statuses include settled (the vast majority), pending, declined, and voided. Each status should include a count. Settled transactions are the largest category.",
-        containsText: ["settled", "declined", "voided"],
+          "Returns voided transactions grouped by merchant with the top merchant identified.",
+        containsText: ["voided"],
       },
-      tags: ["read", "transactions", "aggregation"],
+      tags: ["read", "transactions", "aggregation", "filter"],
     },
+
+    // ============================================
+    // CREATE AND VERIFY CARD
+    // ============================================
+    {
+      id: "create-and-verify-card",
+      prompt:
+        "Create a new virtual card on account 02fe0410-c36d-4f57-b488-d6bc190e99b7 with a $500 monthly spend limit. Then retrieve the card to confirm it was created correctly.",
+      expected: {
+        description:
+          "Creates a virtual card with a $500/month spend limit and verifies it exists.",
+        containsText: ["VIRTUAL", "500"],
+      },
+      tags: ["write", "cards", "multi-step"],
+      requiredCapabilities: { write: true },
+    },
+
     // ============================================
     // LITHIC SPECIFIC EXAMPLES
     // ============================================
@@ -284,7 +296,12 @@ const suite: SuiteConfig = {
       expected: {
         description:
           "Creates 5 account holders with San Francisco area PII (addresses, phone numbers, etc). Issues 2 cards to each account holder (10 cards total). Simulates 3 transactions on each card (30 transactions total) with realistic SF-area consumer spending patterns.",
-        containsText: ["account holder", "card", "transaction", "San Francisco"],
+        containsText: [
+          "account holder",
+          "card",
+          "transaction",
+          "San Francisco",
+        ],
       },
       tags: ["write", "cards", "transactions", "simulation", "lithic-provided"],
       requiredCapabilities: { write: true },
@@ -327,6 +344,9 @@ async function fetchAll(
     Authorization: `api-key ${apiKey}`,
     Accept: "application/json",
   };
+  const label = params?.status
+    ? `${endpoint} [${params.status}]`
+    : endpoint;
   const results: LithicRecord[] = [];
   let startingAfter: string | undefined;
   let page = 0;
@@ -337,21 +357,24 @@ async function fetchAll(
 
     const res = await fetch(`${base}${endpoint}?${query}`, { headers });
     if (!res.ok) {
-      throw new Error(`Lithic API ${endpoint}: ${res.status} ${res.statusText}`);
+      throw new Error(
+        `Lithic API ${endpoint}: ${res.status} ${res.statusText}`,
+      );
     }
     const body = (await res.json()) as LithicListResponse;
     results.push(...body.data);
     page++;
 
-    if (page % 5 === 0 || !body.has_more) {
-      process.stderr.write(`\r  ${endpoint}: ${results.length} records (${page} pages)...`);
-    }
-
-    if (!body.has_more || body.data.length === 0 || (maxRecords && results.length >= maxRecords)) break;
+    if (
+      !body.has_more ||
+      body.data.length === 0 ||
+      (maxRecords && results.length >= maxRecords)
+    )
+      break;
     startingAfter = body.data[body.data.length - 1].token;
   }
 
-  process.stderr.write(`\r  ${endpoint}: ${results.length} records (${page} pages)    \n`);
+  console.log(`  ${label}: ${results.length} records (${page} pages)`);
   return results;
 }
 
@@ -362,26 +385,28 @@ function formatNumber(n: number): string {
 export const resolveExpected: ResolveExpected = async () => {
   const apiKey = process.env.LITHIC_MCP_DEMO_API_KEY;
   if (!apiKey) {
-    throw new Error("LITHIC_MCP_DEMO_API_KEY required for dynamic expected values");
+    throw new Error(
+      "LITHIC_MCP_DEMO_API_KEY required for dynamic expected values",
+    );
   }
 
   // Fetch cards and filtered transaction slices in parallel.
-  // Using status filters avoids fetching all 3000+ transactions (30+ pages).
-  // Settled is capped at 1000 since we only need merchant aggregations from seed data.
-  const [allCards, txDeclined, txVoided, txPending, txExpired, txSettled] = await Promise.all([
-    fetchAll("/cards", apiKey),
-    fetchAll("/transactions", apiKey, { status: "DECLINED" }),
-    fetchAll("/transactions", apiKey, { status: "VOIDED" }),
-    fetchAll("/transactions", apiKey, { status: "PENDING" }),
-    fetchAll("/transactions", apiKey, { status: "EXPIRED" }),
-    fetchAll("/transactions", apiKey, { status: "SETTLED" }, 1000),
-  ]);
-  const allTransactions = [...txDeclined, ...txVoided, ...txPending, ...txExpired, ...txSettled];
+  // Each status is fetched separately to avoid downloading all 3000+ transactions.
+  // Settled is capped at 500 — only needed for SOUTHWEST AIR merchant search.
+  const [allCards, txDeclined, txVoided, txPending, txExpired, txSettled] =
+    await Promise.all([
+      fetchAll("/cards", apiKey),
+      fetchAll("/transactions", apiKey, { status: "DECLINED" }),
+      fetchAll("/transactions", apiKey, { status: "VOIDED" }),
+      fetchAll("/transactions", apiKey, { status: "PENDING" }),
+      fetchAll("/transactions", apiKey, { status: "EXPIRED" }),
+      fetchAll("/transactions", apiKey, { status: "SETTLED" }, 500),
+    ]);
 
   console.log(
-    `  Fetched ${allCards.length} cards and ${allTransactions.length} transactions ` +
-    `(${txDeclined.length} declined, ${txVoided.length} voided, ${txPending.length} pending, ` +
-    `${txExpired.length} expired, ${txSettled.length} settled${txSettled.length >= 1000 ? "+" : ""}) from Lithic sandbox`,
+    `  Fetched ${allCards.length} cards, ` +
+      `${txDeclined.length} declined, ${txVoided.length} voided, ${txPending.length} pending, ` +
+      `${txExpired.length} expired, ${txSettled.length} settled (capped) from Lithic sandbox`,
   );
 
   const result: Record<string, Partial<ExpectedResult>> = {};
@@ -407,11 +432,8 @@ export const resolveExpected: ResolveExpected = async () => {
   };
 
   // declined-transactions-by-category
-  const declined = allTransactions.filter(
-    (t) => (t.status as string).toUpperCase() === "DECLINED",
-  );
   const declinedByResult = new Map<string, number>();
-  for (const t of declined) {
+  for (const t of txDeclined) {
     const r = t.result as string;
     declinedByResult.set(r, (declinedByResult.get(r) ?? 0) + 1);
   }
@@ -421,12 +443,9 @@ export const resolveExpected: ResolveExpected = async () => {
     .join(", ");
   result["declined-transactions-by-category"] = {
     description:
-      `Returns ${formatNumber(declined.length)} total declined transactions, broken down ` +
+      `Returns ${formatNumber(txDeclined.length)} total declined transactions, broken down ` +
       `by result type: ${declinedBreakdown}.`,
-    containsText: [
-      formatNumber(declined.length),
-      ...declinedByResult.keys(),
-    ],
+    containsText: [formatNumber(txDeclined.length), ...declinedByResult.keys()],
   };
 
   // card-state-and-type-breakdown
@@ -457,53 +476,13 @@ export const resolveExpected: ResolveExpected = async () => {
     ],
   };
 
-  // account-with-most-transactions
-  const byAccount = new Map<string, number>();
-  for (const t of allTransactions) {
-    const acct = t.account_token as string;
-    if (acct) byAccount.set(acct, (byAccount.get(acct) ?? 0) + 1);
-  }
-  const topAccount = [...byAccount.entries()].sort((a, b) => b[1] - a[1])[0];
-  if (topAccount) {
-    result["account-with-most-transactions"] = {
-      description:
-        `The account with the most transactions is ${topAccount[0]}. ` +
-        `It holds the vast majority of transactions.`,
-      containsText: [topAccount[0]],
-    };
-  }
-
-  // transaction-status-breakdown — use pre-filtered slices for exact counts
-  const statusCounts: [string, number][] = ([
-    ["settled", txSettled.length],
-    ["pending", txPending.length],
-    ["expired", txExpired.length],
-    ["declined", txDeclined.length],
-    ["voided", txVoided.length],
-  ] as [string, number][]).filter(([, c]) => c > 0);
-  // Note: settled is capped at 1000 in the resolver, so we only include
-  // non-settled counts in containsText (those are exact).
-  const statusBreakdown = statusCounts
-    .sort((a, b) => b[1] - a[1])
-    .map(([s, c]) => `${s}: ${formatNumber(c)}${s === "settled" ? "+" : ""}`)
-    .join(", ");
-  result["transaction-status-breakdown"] = {
-    description:
-      `Returns transactions broken down by status: ${statusBreakdown}. ` +
-      `Settled is the largest category.`,
-    containsText: ["settled", "declined", "voided"],
-  };
-
   // pending-transactions-total-amount
-  const pending = allTransactions.filter(
-    (t) => (t.status as string).toLowerCase() === "pending",
-  );
-  const pendingAmountCents = pending.reduce(
+  const pendingAmountCents = txPending.reduce(
     (sum, t) => sum + ((t.amount as number) ?? 0),
     0,
   );
   const pendingDollars = (pendingAmountCents / 100).toFixed(2);
-  if (pending.length === 0) {
+  if (txPending.length === 0) {
     result["pending-transactions-total-amount"] = {
       description:
         "There are currently zero pending transactions. All transactions have settled.",
@@ -512,18 +491,15 @@ export const resolveExpected: ResolveExpected = async () => {
   } else {
     result["pending-transactions-total-amount"] = {
       description:
-        `Returns ${formatNumber(pending.length)} pending transactions with a total ` +
+        `Returns ${formatNumber(txPending.length)} pending transactions with a total ` +
         `dollar amount of $${pendingDollars}.`,
-      containsText: [formatNumber(pending.length), "pending"],
+      containsText: [formatNumber(txPending.length), "pending"],
     };
   }
 
   // voided-transactions-analysis
-  const voided = allTransactions.filter(
-    (t) => (t.status as string).toLowerCase() === "voided",
-  );
   const voidedByMerchant = new Map<string, number>();
-  for (const t of voided) {
+  for (const t of txVoided) {
     const merchant = (t.merchant as any)?.descriptor as string | undefined;
     if (merchant) {
       voidedByMerchant.set(merchant, (voidedByMerchant.get(merchant) ?? 0) + 1);
@@ -537,49 +513,20 @@ export const resolveExpected: ResolveExpected = async () => {
     const voidedMerchantKey = topVoidedMerchant[0].split(/\s/)[0];
     result["voided-transactions-analysis"] = {
       description:
-        `Returns ${formatNumber(voided.length)} voided transactions. ` +
+        `Returns ${formatNumber(txVoided.length)} voided transactions. ` +
         `${topVoidedMerchant[0]} has the most with ${topVoidedMerchant[1]} voided transactions.`,
-      containsText: [formatNumber(voided.length), voidedMerchantKey],
+      containsText: [formatNumber(txVoided.length), voidedMerchantKey],
     };
   }
 
-  // top-approved-merchant
-  const settledApproved = allTransactions.filter(
-    (t) =>
-      (t.status as string).toUpperCase() === "SETTLED" &&
-      (t.result as string).toUpperCase() === "APPROVED",
-  );
-  const approvedByMerchant = new Map<string, { count: number; totalCents: number }>();
-  for (const t of settledApproved) {
-    const merchant = (t.merchant as any)?.descriptor as string | undefined;
-    if (!merchant) continue;
-    const entry = approvedByMerchant.get(merchant) ?? { count: 0, totalCents: 0 };
-    entry.count++;
-    entry.totalCents += (t.settled_amount as number) ?? (t.amount as number) ?? 0;
-    approvedByMerchant.set(merchant, entry);
-  }
-  const topApproved = [...approvedByMerchant.entries()].sort(
-    (a, b) => b[1].count - a[1].count,
-  )[0];
-  if (topApproved) {
-    const dollars = (Math.abs(topApproved[1].totalCents) / 100).toFixed(2);
-    // Use first word of merchant descriptor for flexible matching
-    const approvedMerchantKey = topApproved[0].split(/\s/)[0];
-    result["top-approved-merchant"] = {
-      description:
-        `Returns ${topApproved[0]} as the top merchant by approved settled transaction count ` +
-        `with ${formatNumber(topApproved[1].count)} transactions totaling $${dollars}.`,
-      containsText: [approvedMerchantKey, formatNumber(topApproved[1].count)],
-    };
-  }
-
-  // find-merchant-transactions (SOUTHWEST AIR)
-  const southwestTxns = allTransactions.filter((t) => {
+  // find-merchant-transactions (SOUTHWEST AIR) — searches settled transactions
+  const southwestTxns = txSettled.filter((t) => {
     const merchant = (t.merchant as any)?.descriptor as string | undefined;
     return merchant?.includes("SOUTHWEST AIR");
   });
   const southwestTotalCents = southwestTxns.reduce(
-    (sum, t) => sum + Math.abs((t.settled_amount as number) ?? (t.amount as number) ?? 0),
+    (sum, t) =>
+      sum + Math.abs((t.settled_amount as number) ?? (t.amount as number) ?? 0),
     0,
   );
   const southwestDollars = (southwestTotalCents / 100).toFixed(2);
@@ -589,6 +536,23 @@ export const resolveExpected: ResolveExpected = async () => {
       `totaling approximately $${southwestDollars}.`,
     containsText: ["SOUTHWEST", formatNumber(southwestTxns.length)],
   };
+
+  // filter-by-status — reuses pending data
+  result["filter-by-status"] = {
+    description: `Returns exactly ${formatNumber(txPending.length)} transactions with PENDING status.`,
+    containsText: [formatNumber(txPending.length), "pending"],
+  };
+
+  // paginate-with-filter — reuses voided data
+  if (topVoidedMerchant) {
+    const voidedMerchantKey = topVoidedMerchant[0].split(/\s/)[0];
+    result["paginate-with-filter"] = {
+      description:
+        `Returns ${formatNumber(txVoided.length)} voided transactions grouped by merchant. ` +
+        `${topVoidedMerchant[0]} has the most with ${topVoidedMerchant[1]} voided transactions.`,
+      containsText: [formatNumber(txVoided.length), voidedMerchantKey],
+    };
+  }
 
   return result;
 };

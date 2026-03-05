@@ -1,11 +1,9 @@
 import { Eval, currentSpan } from "braintrust";
-import { Factuality } from "autoevals";
 
 import { getTestCasesForServer, applyResolved } from "./suite.js";
 import { createRunner, resolveModel } from "./agent/index.js";
-import { scoreCompleteness } from "./scorers/completeness.js";
-import { scoreEfficiency } from "./scorers/efficiency.js";
-import { scoreToolUsage } from "./scorers/tool-usage.js";
+import { scoreTaskSuccess } from "./scorers/task-success.js";
+import { scoreErrorRate } from "./scorers/error-rate.js";
 import type { SuiteConfig, TestCase, ResolveExpected } from "./suite.js";
 
 export interface RunEvalsOptions {
@@ -65,21 +63,14 @@ export function runEvals(suite: SuiteConfig, options?: RunEvalsOptions): void {
   let resolvePromise: Promise<void> | undefined;
   if (options?.resolveExpected) {
     resolvePromise = (async () => {
-      try {
-        const t0 = performance.now();
-        console.log("Resolving dynamic expected values...");
-        const resolved = await options.resolveExpected!();
-        applyResolved(suite.testCases, resolved);
-        const elapsed = ((performance.now() - t0) / 1000).toFixed(1);
-        console.log(
-          `Resolved expected values for ${Object.keys(resolved).length} test cases (${elapsed}s)`,
-        );
-      } catch (err) {
-        console.error(
-          "Failed to resolve expected values, using static defaults:",
-          err,
-        );
-      }
+      const t0 = performance.now();
+      console.log("Resolving dynamic expected values...");
+      const resolved = await options.resolveExpected!();
+      applyResolved(suite.testCases, resolved);
+      const elapsed = ((performance.now() - t0) / 1000).toFixed(1);
+      console.log(
+        `Resolved expected values for ${Object.keys(resolved).length} test cases (${elapsed}s)`,
+      );
     })();
   }
 
@@ -173,12 +164,27 @@ export function runEvals(suite: SuiteConfig, options?: RunEvalsOptions): void {
               },
             });
 
+            // Run post-execution verification for write tests
+            const tc = testCases.find((t) => t.id === input.testCaseId);
+            let verifyResult: { success: boolean; details: string } | undefined;
+            if (tc?.verify) {
+              try {
+                verifyResult = await tc.verify();
+              } catch (err) {
+                verifyResult = {
+                  success: false,
+                  details: `verify threw: ${err}`,
+                };
+              }
+            }
+
             // Return structured output for scorers
             return JSON.stringify({
               finalText: result.finalText,
               toolCalls: result.toolCalls,
               turnCount: result.turnCount,
               totalTokens: result.inputTokens + result.outputTokens,
+              verifyResult,
             });
           } finally {
             // Always decrement, even on throw — otherwise write tests hang forever
@@ -189,71 +195,30 @@ export function runEvals(suite: SuiteConfig, options?: RunEvalsOptions): void {
           }
         },
         scores: [
-          // Factuality (LLM-as-judge)
-          async (args: { input: any; output: string; expected?: string }) => {
-            let outputText: string;
-            try {
-              const parsed = JSON.parse(args.output);
-              outputText = parsed.finalText ?? args.output;
-            } catch {
-              outputText = args.output;
-            }
-            // Agent errors are not factual answers
-            if (outputText.startsWith("[Agent error:")) {
-              return { name: "Factuality", score: 0, metadata: { reason: "agent_error" } };
-            }
-            return Factuality({
-              input: args.input.prompt,
-              output: outputText,
-              expected: args.expected,
-            });
-          },
-          // Completeness scorer
-          (args: { input: any; output: string; expected?: string }) => {
+          // TaskSuccess (headline metric, deterministic)
+          (args: { input: any; output: string }) => {
             const tc = testCases.find(
               (t) => t.id === args.input.testCaseId,
             ) as TestCase;
-            const expected = tc.expected;
             let outputText: string;
+            let verifyResult: { success: boolean; details: string } | undefined;
             try {
               const parsed = JSON.parse(args.output);
               outputText = parsed.finalText ?? args.output;
+              verifyResult = parsed.verifyResult;
             } catch {
               outputText = args.output;
             }
-            // Agent errors contain no useful content
-            if (outputText.startsWith("[Agent error:")) {
-              return { name: "Completeness", score: 0, metadata: { reason: "agent_error" } };
-            }
-            return {
-              name: "Completeness",
-              score: scoreCompleteness(outputText, expected),
-            };
+            return scoreTaskSuccess(outputText, tc.expected, verifyResult);
           },
-          // Efficiency scorer
-          (args: { input: any; output: string; expected?: string }) => {
-            let turnCount = 50;
-            let totalTokens = 500_000;
-            try {
-              const parsed = JSON.parse(args.output);
-              turnCount = parsed.turnCount ?? 50;
-              totalTokens = parsed.totalTokens ?? 500_000;
-            } catch {
-              // Use worst-case defaults
-            }
-            return {
-              name: "Efficiency",
-              score: scoreEfficiency({ turnCount, totalTokens }),
-            };
-          },
-          // Tool usage scorer
+          // ErrorRate (diagnostic, lower is better)
           (args: { input: any; output: string }) => {
             let toolCalls: any[] = [];
             try {
               const parsed = JSON.parse(args.output);
               toolCalls = parsed.toolCalls ?? [];
             } catch {}
-            return scoreToolUsage(toolCalls);
+            return scoreErrorRate(toolCalls);
           },
         ],
       });
