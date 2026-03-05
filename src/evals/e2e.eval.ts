@@ -21,11 +21,11 @@ for (const signal of ["SIGINT", "SIGTERM"] as const) {
 }
 
 (async () => {
-  const suite = await loadSuite();
+  const { config: suite, resolveExpected } = await loadSuite();
   const tags = (process.env.EVAL_TAGS ?? "")
     .split(",")
     .map((t) => t.trim())
     .filter(Boolean);
 
-  runEvals(suite, { tags });
+  runEvals(suite, { tags, resolveExpected });
 })();

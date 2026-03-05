@@ -119,25 +119,78 @@ export interface SuiteConfig {
   setup?: string;
 }
 
+// ── Dynamic expected values ──
+
+/**
+ * Optional named export from suite modules. Called before eval runs to
+ * query live API state and return ground-truth expected values.
+ * Returns a map from test case ID to partial ExpectedResult overrides.
+ */
+export type ResolveExpected = () => Promise<
+  Record<string, Partial<ExpectedResult>>
+>;
+
+export interface LoadedSuite {
+  config: SuiteConfig;
+  resolveExpected?: ResolveExpected;
+}
+
+/**
+ * Merge dynamically resolved expected values into test cases.
+ * Mutates in place — safe because loadSuite() returns freshly parsed objects.
+ */
+export function applyResolved(
+  testCases: TestCase[],
+  resolved: Record<string, Partial<ExpectedResult>>,
+): void {
+  for (const tc of testCases) {
+    const patch = resolved[tc.id];
+    if (!patch) continue;
+    if (patch.description !== undefined) {
+      tc.expected.description = patch.description;
+    }
+    if (patch.containsText !== undefined) {
+      tc.expected.containsText = patch.containsText;
+    }
+    if (patch.fieldValues !== undefined) {
+      tc.expected.fieldValues = patch.fieldValues;
+    }
+  }
+}
+
 // ── Loader ──
 
-export async function loadSuite(name?: string): Promise<SuiteConfig> {
+export async function loadSuite(name?: string): Promise<LoadedSuite> {
   const suiteName = name ?? process.env.EVAL_SUITE ?? "stripe";
+
+  let mod: Record<string, unknown>;
 
   // If the name contains path separators, treat it as a file path
   if (path.basename(suiteName) !== suiteName) {
     const resolved = path.resolve(suiteName);
-    const mod = await import(pathToFileURL(resolved).href);
-    return SuiteConfigSchema.parse(mod.default);
+    mod = await import(pathToFileURL(resolved).href);
+  } else {
+    const raw = suiteModules[suiteName];
+    if (!raw) {
+      throw new Error(
+        `Unknown suite "${suiteName}". Available: ${Object.keys(suiteModules).join(", ")}`,
+      );
+    }
+    mod = raw as Record<string, unknown>;
   }
 
-  const raw = suiteModules[suiteName];
-  if (!raw) {
-    throw new Error(
-      `Unknown suite "${suiteName}". Available: ${Object.keys(suiteModules).join(", ")}`,
-    );
-  }
-  return SuiteConfigSchema.parse(raw);
+  // Barrel now uses namespace imports, so .default holds the config.
+  // For path-based dynamic imports, .default is also the default export.
+  const configRaw = mod.default ?? mod;
+  const config = SuiteConfigSchema.parse(configRaw);
+
+  return {
+    config,
+    resolveExpected:
+      typeof mod.resolveExpected === "function"
+        ? (mod.resolveExpected as ResolveExpected)
+        : undefined,
+  };
 }
 
 // ── Helpers ──
