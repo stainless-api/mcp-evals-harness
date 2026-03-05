@@ -43,9 +43,9 @@ describe("scoreToolUsage", () => {
     expect(result.score).toBe(1);
   });
 
-  it("returns score 0 when mix of success and error", () => {
+  it("returns proportional score when mix of success and error", () => {
     const result = scoreToolUsage([tc(), tc({ error: "bad" })]);
-    expect(result.score).toBe(0);
+    expect(result.score).toBe(0.5);
     expect(result.metadata.succeeded).toBe(1);
     expect(result.metadata.errored).toBe(1);
   });

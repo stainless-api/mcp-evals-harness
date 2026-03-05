@@ -10,7 +10,7 @@ const suiteNames = readdirSync(suitesDir, { withFileTypes: true })
   .sort();
 
 const imports = suiteNames
-  .map((name, i) => `import suite${i} from "./${name}/suite.js";`)
+  .map((name, i) => `import * as suite${i} from "./${name}/suite.js";`)
   .join("\n");
 
 const entries = suiteNames

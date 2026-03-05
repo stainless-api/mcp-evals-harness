@@ -4,7 +4,7 @@ import type { ToolCallRecord } from "../agent/types.js";
 // isn't set (e.g. anthropic-runner where the Agent SDK controls tool execution).
 // Only matches patterns the runners actually produce — anchored to avoid
 // false positives on legitimate tool results containing these words.
-const ERROR_PATTERNS = [/^Error:/i, /^Internal error/i];
+const ERROR_PATTERNS = [/^Error:/i, /^Internal error/i, /^MCP error/i];
 
 function isErrorResult(tc: ToolCallRecord): boolean {
   if (tc.error) return true;
@@ -28,7 +28,7 @@ export function scoreToolUsage(toolCalls: ToolCallRecord[]): {
 
   const toolNames = [...new Set(toolCalls.map((tc) => tc.name))];
 
-  const score = totalCalls > 0 && errors.length === 0 ? 1 : 0;
+  const score = totalCalls > 0 ? succeeded / totalCalls : 0;
 
   return {
     name: "ToolUsage",
