@@ -100,7 +100,7 @@ export function runEvals(suite: SuiteConfig, options?: RunEvalsOptions): void {
 
       Eval(suite.projectName, {
         experimentName,
-        maxConcurrency: 4,
+        maxConcurrency: 1,
         metadata: {
           name: experimentName,
           server: server.id,

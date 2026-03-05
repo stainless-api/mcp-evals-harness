@@ -25,7 +25,7 @@
   ],
   "scripts": {
     "build": "tsc",
-    "prepare": "tsc",
+    "prepare": "npm run generate:suites && tsc",
     "generate:suites": "npx tsx scripts/generate-suite-index.ts",
     "eval": "npm run generate:suites && npx braintrust eval src/evals/e2e.eval.ts",
     "eval:all": "npm run generate:suites && npx braintrust eval src/evals/run-all.ts",
