@@ -37,9 +37,10 @@ The `createRunner(model)` factory in `src/agent/index.ts` dispatches to the corr
 
 ### Scorers
 
-- **Completeness** (`src/scorers/completeness.ts`): Heuristic — checks expected text strings and field values in output
-- **Efficiency** (`src/scorers/efficiency.ts`): Heuristic — penalizes high turn count and token usage
-- **Correctness** (`src/scorers/correctness.ts`): LLM-as-judge factuality via autoevals
+- **TaskSuccess** (`src/scorers/task-success.ts`): Deterministic binary pass/fail — checks containsText, fieldValues, and verify results
+- **Correctness** (`src/scorers/correctness.ts`): LLM-as-judge via autoevals ClosedQA — secondary diagnostic for semantic equivalence
+- **ErrorRate** (`src/scorers/error-rate.ts`): Tool call error proportion with server/client/timeout classification
+- **Efficiency** (`src/scorers/efficiency.ts`): Turn count normalized to 0–1 (1 - turns/maxTurns)
 
 ### Eval Loop
 
@@ -71,6 +72,16 @@ Experiment records can be tagged from three sources:
 - **CLI tags** — `EVAL_TAGS` env var (comma-separated), applied at the experiment level
 
 Server and CLI tags are applied at the experiment level. Test case tags remain per-record. Tags must NOT be logged on child spans (Braintrust only allows tags on the root span).
+
+## Reporting Results
+
+When presenting eval results, use a structured comparison format for easy scanning:
+
+- **Summary table** — one row per server, columns for each scorer (TaskSuccess, ErrorRate) and key metrics (avg duration, tests completed)
+- **Per-test-case table** — rows are test cases (grouped by category), columns are servers, cells show pass/fail and key details (e.g. the actual values found). Use bold for passes, plain for failures.
+- **Key takeaways** — numbered list of concrete findings: which server leads, where each fails, patterns in errors. Be specific (cite test names, scores, error types), not vague.
+
+Keep it terse. The tables do the talking — the text just highlights what's notable.
 
 ## Credentials
 

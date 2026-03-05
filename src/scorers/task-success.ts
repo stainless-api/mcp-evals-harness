@@ -5,7 +5,11 @@ import type { ExpectedResult } from "../suite.js";
  * This handles common number formatting differences like "$5,000" vs "5000".
  */
 function normalizeForComparison(s: string): string {
-  return s.toLowerCase().replace(/[$,]/g, "");
+  return s
+    .toLowerCase()
+    .replace(/[$,]/g, "")
+    .replace(/_/g, " ")
+    .replace(/\s+/g, " ");
 }
 
 /**

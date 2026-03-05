@@ -3,7 +3,9 @@ import { Eval, currentSpan } from "braintrust";
 import { getTestCasesForServer, applyResolved } from "./suite.js";
 import { createRunner, resolveModel } from "./agent/index.js";
 import { scoreTaskSuccess } from "./scorers/task-success.js";
+import { scoreCorrectness } from "./scorers/correctness.js";
 import { scoreErrorRate } from "./scorers/error-rate.js";
+import { scoreEfficiency } from "./scorers/efficiency.js";
 import type { SuiteConfig, TestCase, ResolveExpected } from "./suite.js";
 
 export interface RunEvalsOptions {
@@ -211,6 +213,25 @@ export function runEvals(suite: SuiteConfig, options?: RunEvalsOptions): void {
             }
             return scoreTaskSuccess(outputText, tc.expected, verifyResult);
           },
+          // Correctness (LLM-as-judge, secondary diagnostic)
+          async (args: {
+            input: any;
+            output: string;
+            expected?: string;
+          }) => {
+            let outputText: string;
+            try {
+              const parsed = JSON.parse(args.output);
+              outputText = parsed.finalText ?? args.output;
+            } catch {
+              outputText = args.output;
+            }
+            return scoreCorrectness(
+              args.input.prompt,
+              outputText,
+              args.expected ?? "",
+            );
+          },
           // ErrorRate (diagnostic, lower is better)
           (args: { input: any; output: string }) => {
             let toolCalls: any[] = [];
@@ -219,6 +240,17 @@ export function runEvals(suite: SuiteConfig, options?: RunEvalsOptions): void {
               toolCalls = parsed.toolCalls ?? [];
             } catch {}
             return scoreErrorRate(toolCalls);
+          },
+          // Efficiency (turn count normalized, higher is better)
+          (args: { input: any; output: string }) => {
+            let turnCount = 50;
+            let totalTokens = 500_000;
+            try {
+              const parsed = JSON.parse(args.output);
+              turnCount = parsed.turnCount ?? 50;
+              totalTokens = parsed.totalTokens ?? 500_000;
+            } catch {}
+            return scoreEfficiency({ turnCount, totalTokens });
           },
         ],
       });

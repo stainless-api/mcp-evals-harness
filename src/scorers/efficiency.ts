@@ -1,43 +1,27 @@
-const TURN_THRESHOLD_GOOD = 3;
-const TURN_THRESHOLD_MAX = 50;
-const TOKEN_THRESHOLD_GOOD = 5_000;
-const TOKEN_THRESHOLD_MAX = 500_000;
-
-function clamp(value: number, min: number, max: number): number {
-  return Math.max(min, Math.min(max, value));
-}
-
 /**
- * Scores agent efficiency based on turn count and token usage.
+ * Efficiency scorer — normalizes turn count to a 0–1 score.
  *
- * Turn efficiency (50% weight): 1.0 at ≤3 turns, linear decay to 0 at 50.
- * Token efficiency (50% weight): 1.0 at ≤5K tokens, linear decay to 0 at 500K.
+ * Score = 1 - (turns / maxTurns). Higher is better.
+ * A 2-turn completion scores 0.96 (at maxTurns=50), while hitting
+ * the turn limit scores 0.
+ *
+ * Metadata includes raw turnCount and totalTokens for comparison.
  */
-export function scoreEfficiency(input: {
+export function scoreEfficiency(args: {
   turnCount: number;
   totalTokens: number;
-}): number {
-  const turnScore =
-    input.turnCount <= TURN_THRESHOLD_GOOD
-      ? 1.0
-      : 1.0 -
-        clamp(
-          (input.turnCount - TURN_THRESHOLD_GOOD) /
-            (TURN_THRESHOLD_MAX - TURN_THRESHOLD_GOOD),
-          0,
-          1,
-        );
+  maxTurns?: number;
+}): { name: string; score: number; metadata: Record<string, unknown> } {
+  const maxTurns = args.maxTurns ?? 50;
+  const score = Math.max(0, 1 - args.turnCount / maxTurns);
 
-  const tokenScore =
-    input.totalTokens <= TOKEN_THRESHOLD_GOOD
-      ? 1.0
-      : 1.0 -
-        clamp(
-          (input.totalTokens - TOKEN_THRESHOLD_GOOD) /
-            (TOKEN_THRESHOLD_MAX - TOKEN_THRESHOLD_GOOD),
-          0,
-          1,
-        );
-
-  return 0.5 * turnScore + 0.5 * tokenScore;
+  return {
+    name: "Efficiency",
+    score,
+    metadata: {
+      turnCount: args.turnCount,
+      totalTokens: args.totalTokens,
+      maxTurns,
+    },
+  };
 }

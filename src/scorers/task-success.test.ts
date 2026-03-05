@@ -41,6 +41,15 @@ describe("scoreTaskSuccess", () => {
     expect(scoreTaskSuccess("The total is $5,000.00.", expected).score).toBe(1);
   });
 
+  it("normalizes underscores to spaces for enum matching", () => {
+    const expected: ExpectedResult = {
+      description: "test",
+      containsText: ["SINGLE_USE"],
+    };
+    expect(scoreTaskSuccess("Single Use cards: 2", expected).score).toBe(1);
+    expect(scoreTaskSuccess("SINGLE_USE: 2", expected).score).toBe(1);
+  });
+
   it("returns 1 when no checks are defined", () => {
     const expected: ExpectedResult = { description: "test" };
     const result = scoreTaskSuccess("anything", expected);
