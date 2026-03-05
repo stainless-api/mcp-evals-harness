@@ -1,6 +1,10 @@
 import { config } from "dotenv";
 config({ path: "./.env" });
 
+// With multiple concurrent experiments, Braintrust + Agent SDK register enough
+// listeners to exceed Node's default limit of 10.
+process.setMaxListeners(50);
+
 import { loadSuite } from "../suite.js";
 import { runEvals } from "../eval.js";
 import { cleanupRegistry } from "../agent/index.js";
