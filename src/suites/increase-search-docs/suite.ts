@@ -12,18 +12,22 @@ const suite: SuiteConfig = {
 
   servers: [
     {
-      id: "increase-stainless",
-      displayName: "Increase, Stainless-generated",
-      command: "node",
-      args: [
-        "/Path/to/increase-mcp-demo-typescript/packages/mcp-server/dist/index.js",
-      ],
-      env: {
-        INCREASE_MCP_DEMO_API_KEY: process.env.INCREASE_API_KEY!,
-      },
+      id: "increase-remote",
+      displayName: "Increase, using remote tools",
+      transport: "http",
+      url: "http://localhost:4000",
       capabilities: { write: false },
       mode: "code",
-      tags: ["Stainless"],
+      tags: ["Local"],
+    },
+    {
+      id: "increase-local",
+      displayName: "Increase, using local tools",
+      transport: "http",
+      url: "http://localhost:4001",
+      capabilities: { write: false },
+      mode: "tools",
+      tags: ["Remote"],
     },
   ],
 

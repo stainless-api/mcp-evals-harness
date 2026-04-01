@@ -12,48 +12,22 @@ const suite: SuiteConfig = {
 
   servers: [
     {
-      id: "increase-stainless",
-      displayName: "Increase, Stainless-generated",
-      command: "node",
-      args: [
-        "/Path/to/increase-mcp-demo-typescript/packages/mcp-server/dist/index.js",
-      ],
-      env: {
-        INCREASE_MCP_DEMO_API_KEY: process.env.INCREASE_API_KEY!,
-      },
+      id: "increase-remote",
+      displayName: "Increase, using remote tools",
+      transport: "http",
+      url: "http://localhost:4000",
       capabilities: { write: false },
       mode: "code",
-      tags: ["Stainless"],
+      tags: ["Local"],
     },
     {
-      id: "increase-dynamic",
-      displayName: "Increase, Dynamic tools",
-      command: "node",
-      args: [
-        "/Path/to/increase-mcp-demo-typescript/packages/mcp-server/dist/index.js",
-        "--tools=dynamic",
-      ],
-      env: {
-        INCREASE_MCP_DEMO_API_KEY: process.env.INCREASE_API_KEY!,
-      },
+      id: "increase-local",
+      displayName: "Increase, using local tools",
+      transport: "http",
+      url: "http://localhost:4001",
       capabilities: { write: false },
       mode: "tools",
-      tags: ["Dynamic"],
-    },
-    {
-      id: "increase-anthropic-code-mode",
-      displayName: "Increase, Anthropic Code Mode",
-      command: "node",
-      args: [
-        "/Path/to/increase-mcp-demo-typescript/packages/mcp-server/dist/index.js",
-      ],
-      env: {
-        INCREASE_MCP_DEMO_API_KEY: process.env.INCREASE_API_KEY!,
-      },
-      capabilities: { write: false },
-      mode: "tools",
-      models: ["opus-code"],
-      tags: ["Anthropic-Code"],
+      tags: ["Remote"],
     },
   ],
 

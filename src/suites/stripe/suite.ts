@@ -7,7 +7,7 @@ const randomId = Math.random().toString(36).substring(2, 8);
 const suite: SuiteConfig = {
   projectName: "stainless-stripe-evals",
 
-  setup: "stripe fixtures src/suites/stripe/fixtures.json",
+  //setup: "stripe fixtures src/suites/stripe/fixtures.json",
 
   systemPrompt:
     "You are a helpful assistant with access to Stripe API tools. " +
@@ -15,6 +15,24 @@ const suite: SuiteConfig = {
     "Always provide complete, accurate answers based on the actual API data.",
 
   servers: [
+    {
+      id: "stripe-remote",
+      displayName: "Stripe, using remote tools",
+      transport: "http",
+      url: "http://localhost:6000",
+      capabilities: { write: true },
+      mode: "code",
+      tags: ["Local"],
+    },
+    {
+      id: "stripe-local",
+      displayName: "Stripe, using local tools",
+      transport: "http",
+      url: "http://localhost:6001",
+      capabilities: { write: true },
+      mode: "code",
+      tags: ["Remote"],
+    },
     {
       id: "stripe-official",
       displayName: "Official Stripe MCP",
@@ -25,23 +43,7 @@ const suite: SuiteConfig = {
       },
       capabilities: { write: true },
       mode: "tools",
-      models: ["opus", "sonnet"],
-    },
-    {
-      id: "stainless-stripe",
-      displayName: "Stainless Code Mode",
-      command: "node",
-      args: [
-        "/Path/to/stripe-minimal-typescript/packages/mcp-server/dist/index.js",
-      ],
-      env: {
-        STRIPE_SECRET_KEY: process.env.STRIPE_SECRET_KEY!,
-        STAINLESS_API_KEY: process.env.STAINLESS_API_KEY!,
-      },
-      capabilities: { write: true },
-      mode: "code",
-      models: ["opus", "sonnet"],
-    },
+    }
   ],
 
   // These test cases are based off of the data generated with fixtures.json
